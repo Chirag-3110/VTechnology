@@ -7,24 +7,25 @@ const SignUp=()=>{
     <ImageBackground style={styles.container}
         source={require('../../../assests/nwe.png')}
     >
-            <View style={{alignItems:"center"}}>
+        <View>
+        <View style={{alignItems:"center"}}>
                 <Text style={styles.MainText}>Sign Up</Text>
                 <Text style={styles.subText}>Create an account,it's free</Text>
             </View>
             <View>
                 <TextInput
                     placeholder="Email"
-                    placeholderTextColor={"#686B69"}
+                    placeholderTextColor='black'
                     style={styles.customInput}
                 />
                 <TextInput
                     placeholder="Password"
-                    placeholderTextColor={"#686B69"}
+                    placeholderTextColor='black'
                     style={styles.customInput}
                 />
                 <TextInput
                     placeholder="Confirm Password"
-                    placeholderTextColor={"#686B69"}
+                    placeholderTextColor='black'
                     style={styles.customInput}
                 />
             </View>
@@ -33,7 +34,8 @@ const SignUp=()=>{
                     Sign Up
                 </Text>
             </TouchableOpacity>
-        <View style={{flexDirection:"row",position:'absolute',bottom:20}}>
+        </View>
+        <View style={styles.bottomText}>
             <Text style={styles.subText}>Already have an account?</Text>
             <Text style={styles.subText}>Log In</Text>
         </View>
@@ -49,19 +51,32 @@ const styles=StyleSheet.create({
     MainText:{
         color:"black",
         fontWeight:"bold",
-        fontSize:30
+        fontSize:30,
     },
     subText:{
         color:"#5B5B5B",
         fontWeight:"bold",
-        marginTop:10
+        marginTop:10,
+        marginBottom:10
     },
     customInput:{
         width:windowWidth-60,
-        backgroundColor:"rgba(203,203,203,0.1)",
+        backgroundColor:"white",
         marginTop:20,
-        borderBottomWidth:1.5,
-        borderBottomColor:"#A8A8A8"
+        borderRadius:5,
+        paddingHorizontal:20,
+        borderWidth:1.5,
+        borderColor:"#A8A8A8",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: -5,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius:20.00,
+        elevation: 24,
+        fontWeight:"bold",
+        color:"black"
     },
     btnContainer:{
         width:windowWidth-60,
@@ -70,14 +85,44 @@ const styles=StyleSheet.create({
         justifyContent: 'center',
         backgroundColor:"#10FFE5",
         borderRadius:200,
-        borderWidth:1.5,
-        borderColor:"#7e7e7e",
-        marginTop:windowheight/15
+        borderWidth:2,
+        borderColor:"#66EECD",
+        marginTop:windowheight/15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height:25,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 50,
     },
     btnText:{
         fontWeight:"bold",
-        color:"black",
+        color:"#535353",
         fontSize:18,
+    },
+    bottomText:{
+        flexDirection:"row",
+        position:'absolute',
+        bottom:20,
+        backgroundColor:'rgba(161,255,255,0.7)',
+        width:windowWidth-60,
+        padding:5,
+        alignItems:"center",
+        justifyContent:"center",
+        borderRadius:5,
+        borderWidth:2,
+        borderColor:"#BDFAFA",
+        marginTop:windowheight/15,
+        shadowColor: "#0DB0FA",
+        shadowOffset: {
+            width: 0,
+            height:25,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 50,
     }
 })
 export default SignUp;
