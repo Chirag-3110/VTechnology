@@ -12,8 +12,8 @@ const AuthNavigation = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="login" component={SignIn} />
             <Stack.Screen name="signup" component={SignUp} />
+            <Stack.Screen name="login" component={SignIn} />
             <Stack.Screen name="forgotpass" component={ForgotPass} />
         </Stack.Navigator>
     )
