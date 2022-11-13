@@ -1,147 +1,121 @@
-import React, { useEffect, useRef } from 'react';
-import { Modal, Animated, TouchableOpacity, Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-const SignUpLogo = require("../../../assests/SignUpLogo.png");
-
-import { TextInput, Button } from 'react-native-paper';
+const windowheight = Dimensions.get('window').height
 const SignIn = () => {
-    useEffect(() => {
-        showPopUp()
-    }, [])
-    const position = new Animated.ValueXY({ x: 0, y: windowHeight });
-    const showPopUp = () => {
-        Animated.timing(position, {
-            toValue: { x: 0, y: 0 },
-            duration: 1000,
-            useNativeDriver: true
-        }).start();
-    }
     return (
-        <>
-            <View style={styles.UserProfileImgView}>
-                <Image
-                    style={styles.UserProfileImg}
-                    source={SignUpLogo}
-                />
-
+        <ImageBackground style={styles.container}
+            source={require('../../../assests/nwe.png')}
+        >
+            <View>
+                <View style={{ alignItems: "center" }}>
+                    <Text style={styles.MainText}>Sign In</Text>
+                    
+                </View>
+                <View>
+                    <TextInput
+                        placeholder="Email"
+                        placeholderTextColor='black'
+                        style={styles.customInput}
+                    />
+                    <TextInput
+                        placeholder="Password"
+                        placeholderTextColor='black'
+                        style={styles.customInput}
+                    />
+                    
+                </View>
+                <TouchableOpacity style={styles.btnContainer}>
+                    <Text style={styles.btnText}>
+                        Sign In
+                    </Text>
+                </TouchableOpacity>
             </View>
-            <Animated.View style={[styles.animtedView,
-            {
-                transform: [
-                    { translateX: position.x },
-                    { translateY: position.y }
-                ]
-            }
-            ]}>
-                <Text style={styles.modalText}>SIGN UP</Text>
-                <ScrollView style={{ padding: 20 }}>
-                    <TextInput
-                        placeholder='Email'
-                        placeholderTextColor="purple"
-                        textColor="black"
-                        outlineColor="purple"
-                        selectionColor='red'
-                        activeOutlineColor="purple"
-                        mode='outlined'
-                        style={styles.TextInput}
-                    // right={<TextInput.Icon icon={{ uri: 'https://cdn-icons-png.flaticon.com/128/732/732200.png' }} color="white" />}
-                    />
-                    <TextInput
-                        placeholder='Password'
-                        placeholderTextColor="purple"
-                        textColor="black"
-                        outlineColor="purple"
-                        selectionColor='red'
-                        activeOutlineColor="purple"
-                        mode='outlined'
-                        style={styles.TextInput}
-                        secureTextEntry
-                    // right={<TextInput.Icon icon="eye" />}
-                    />
-                    <TextInput
-                        placeholder='Confirm-Password'
-                        placeholderTextColor="purple"
-                        textColor="black"
-                        outlineColor="purple"
-                        selectionColor='red'
-                        activeOutlineColor="purple"
-                        mode='outlined'
-                        style={styles.TextInput}
-                        secureTextEntry
-                    // right={<TextInput.Icon icon="eye" />}
-                    />
-                    <TouchableOpacity style={styles.SignUpBtn}>
-                        <Text style={styles.SignUpBtnText}>SignUp</Text>
-                    </TouchableOpacity>
-                </ScrollView>
-            </Animated.View>
-        </>
+           
+        </ImageBackground>
     )
 }
 const styles = StyleSheet.create({
-    UserProfileImgView: {
-        // borderWidth: 1,
-        justifyContent: "center"
-    },
-    UserProfileImg: {
-        width: windowWidth,
-        height: windowHeight / 1.5,
-        alignSelf: "center",
-    },
     container: {
         flex: 1,
-        backgroundColor: "#3063A0"
-    },
-    iconImage: {
-        width: 40,
-        height: 40
-    },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        fontSize: 40,
-        padding: 30
-    },
-    animtedView: {
-        backgroundColor: "white",
-        width: windowWidth,
-        height: 2 * (windowHeight / 4),
-        position: "absolute",
-        bottom: 0,
-        borderTopRightRadius: 55,
-        borderTopLeftRadius: 55,
-        padding: 10,
-        paddingTop: 30
-    },
-    modalText: {
-        fontWeight: "bold",
-        color: "#9c0b9c",
-        fontSize: 30,
-        textAlign: "center"
-    },
-    TextInput: {
-        marginHorizontal: 1,
-        marginVertical: 5,
-    },
-    SignUpBtn: {
-        borderWidth: 1,
-        marginHorizontal: 0,
-        borderRadius: 4,
-        borderColor: "white",
-        borderWidth: 0.4,
         justifyContent: "center",
-        textAlign: "center",
-        backgroundColor: "#9c0b9c",
-        marginVertical: 10,
-        paddingVertical: 4,
-
+        alignItems: 'center',
     },
-    SignUpBtnText: {
-        fontSize: 22,
-        color: "white",
-        textAlign: "center",
-        paddingVertical: 5
+    MainText: {
+        color: "black",
+        fontWeight: "bold",
+        fontSize: 30,
     },
+    subText: {
+        color: "#5B5B5B",
+        fontWeight: "bold",
+        marginTop: 10,
+        marginBottom: 10
+    },
+    customInput: {
+        width: windowWidth - 60,
+        backgroundColor: "white",
+        marginTop: 20,
+        borderRadius: 5,
+        paddingHorizontal: 20,
+        borderWidth: 1.5,
+        borderColor: "#A8A8A8",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: -5,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 20.00,
+        elevation: 24,
+        fontWeight: "bold",
+        color: "black"
+    },
+    btnContainer: {
+        width: windowWidth - 60,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: "#10FFE5",
+        borderRadius: 200,
+        borderWidth: 2,
+        borderColor: "#66EECD",
+        marginTop: windowheight / 15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 25,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 50,
+    },
+    btnText: {
+        fontWeight: "bold",
+        color: "#535353",
+        fontSize: 18,
+    },
+    bottomText: {
+        flexDirection: "row",
+        position: 'absolute',
+        bottom: 20,
+        backgroundColor: 'rgba(161,255,255,0.7)',
+        width: windowWidth - 60,
+        padding: 5,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: "#BDFAFA",
+        marginTop: windowheight / 15,
+        shadowColor: "#0DB0FA",
+        shadowOffset: {
+            width: 0,
+            height: 25,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 50,
+    }
 })
-export default SignIn
+export default SignIn;
