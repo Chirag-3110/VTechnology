@@ -2,7 +2,7 @@ import React from "react";
 import {View,Text, StyleSheet,TextInput, Dimensions, TouchableOpacity, ImageBackground} from 'react-native';
 const windowWidth=Dimensions.get('window').width;
 const windowheight=Dimensions.get('window').height
-const SignUp=()=>{
+const SignUp=({navigation})=>{
    return(
     <ImageBackground style={styles.container}
         source={require('../../../assests/nwe.png')}
@@ -29,7 +29,9 @@ const SignUp=()=>{
                     style={styles.customInput}
                 />
             </View>
-            <TouchableOpacity style={styles.btnContainer}>
+            <TouchableOpacity style={styles.btnContainer} 
+                onPress={()=>navigation.navigate("confimSignup")}
+            >
                 <Text style={styles.btnText}>
                     Sign Up
                 </Text>
@@ -87,7 +89,7 @@ const styles=StyleSheet.create({
         borderRadius:200,
         borderWidth:2,
         borderColor:"#66EECD",
-        marginTop:windowheight/15,
+        marginTop:windowheight/20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -105,24 +107,8 @@ const styles=StyleSheet.create({
     bottomText:{
         flexDirection:"row",
         position:'absolute',
-        bottom:20,
-        backgroundColor:'rgba(161,255,255,0.7)',
-        width:windowWidth-60,
-        padding:5,
-        alignItems:"center",
-        justifyContent:"center",
-        borderRadius:5,
-        borderWidth:2,
+        bottom:windowheight/40,
         borderColor:"#BDFAFA",
-        marginTop:windowheight/15,
-        shadowColor: "#0DB0FA",
-        shadowOffset: {
-            width: 0,
-            height:25,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 50,
     }
 })
 export default SignUp;
