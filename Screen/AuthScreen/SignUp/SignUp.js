@@ -8,10 +8,6 @@ const SignUp=({navigation})=>{
         source={require('../../../assests/nwe.png')}
     >
         <View>
-        <View style={{alignItems:"center"}}>
-                <Text style={styles.MainText}>Sign Up</Text>
-                <Text style={styles.subText}>Create an account,it's free</Text>
-            </View>
             <View>
                 <View style={{ alignItems: "center" }}>
                     <Text style={styles.MainText}>Sign Up</Text>
@@ -34,23 +30,18 @@ const SignUp=({navigation})=>{
                         style={styles.customInput}
                     />
                 </View>
-                <TouchableOpacity style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btnContainer}
+                    onPress={()=>navigation.navigate("confimSignup")}
+                >
                     <Text style={styles.btnText}>
                         Sign Up
                     </Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.btnContainer} 
-                onPress={()=>navigation.navigate("confimSignup")}
-            >
-                <Text style={styles.btnText}>
-                    Sign Up
-                </Text>
-            </TouchableOpacity>
         </View>
         <View style={styles.bottomText}>
             <Text style={styles.subText}>Already have an account?</Text>
-            <Text style={styles.subText}>Log In</Text>
+            <Text style={styles.subText} onPress={()=>navigation.navigate("login")}>Log In</Text>
         </View>
     </ImageBackground>
    ) 

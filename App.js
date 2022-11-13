@@ -7,10 +7,8 @@ import SignUp from './Screen/AuthScreen/SignUp/SignUp';
 const App=()=>{
   return (
     <NavigationContainer>
-      {/* <AuthNavigation/> */}
+      <AuthNavigation/>
       {/* <MainNavigation/> */}
-    <SignIn/>
-    {/* <SignUp/> */}
     </NavigationContainer>
   );
 }

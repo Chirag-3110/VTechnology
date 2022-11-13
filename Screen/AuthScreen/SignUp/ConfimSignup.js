@@ -28,7 +28,10 @@ const ConfimSignup=()=>{
         {id:7,value:"React",isSelect:false},
     ])
     const removeselectedTag=(element,elementIndex)=>{
-        selectIntesertGlobal.splice(elementIndex, 1);
+        selectIntesertGlobal=selectIntesertGlobal.filter(function(item){
+            return item.value != element.value;
+        });
+        console.log(selectIntesertGlobal)
         setSelectedInterest((options) =>
             options.map((item) => {
                 if (item.value === element.value) {
@@ -43,27 +46,22 @@ const ConfimSignup=()=>{
         let isExist=selectIntesertGlobal.find((val)=>{
             return val.value===imterest.value;
         })
-        // console.log(isExist)
         if(isExist!==undefined){
             console.log("Already Exitst");
-            removeselectedTag(imterest,index)
-            console.log(selectIntesertGlobal)
-            return ;
+            removeselectedTag(imterest,index);
         }
         else{
             setSelectedInterest((options) =>
-            options.map((item) => {
-                if (item.value === imterest.value) {
-                    imterest.isSelect = true;
-                }
-                return item;
-            })
+                options.map((item) => {
+                    if (item.value === imterest.value) {
+                        imterest.isSelect = true;
+                    }
+                    return item;
+                })
             );
             selectIntesertGlobal.push(imterest);
+            console.log(selectIntesertGlobal)
         }
-        
-        
-
     }
    
     return(
