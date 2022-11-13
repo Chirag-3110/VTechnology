@@ -2,13 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { Modal, Animated, TouchableOpacity, Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const SignUpLogo = require("../../../assests/SignUpLogo.png");
+const palmimage = require("../../../assests/palmimage.jpg");
 
 import { TextInput, Button } from 'react-native-paper';
 const SignIn = () => {
     useEffect(() => {
         showPopUp()
     }, [])
+    const [checked, setChecked] = React.useState(false);
     const position = new Animated.ValueXY({ x: 0, y: windowHeight });
     const showPopUp = () => {
         Animated.timing(position, {
@@ -22,7 +23,7 @@ const SignIn = () => {
             <View style={styles.UserProfileImgView}>
                 <Image
                     style={styles.UserProfileImg}
-                    source={SignUpLogo}
+                    source={palmimage}
                 />
 
             </View>
@@ -34,32 +35,32 @@ const SignIn = () => {
                 ]
             }
             ]}>
-                <Text style={styles.modalText}>SIGN UP</Text>
+                <Text style={styles.modalText}>SIGN IN</Text>
                 <ScrollView style={{ padding: 20 }}>
                     <TextInput
                         placeholder='Email'
-                        placeholderTextColor="purple"
+                        placeholderTextColor="#4682B4"
                         textColor="black"
-                        outlineColor="purple"
+                        outlineColor="#4682B4"
                         selectionColor='red'
-                        activeOutlineColor="purple"
+                        activeOutlineColor="#4682B4"
                         mode='outlined'
                         style={styles.TextInput}
                     // right={<TextInput.Icon icon={{ uri: 'https://cdn-icons-png.flaticon.com/128/732/732200.png' }} color="white" />}
                     />
                     <TextInput
                         placeholder='Password'
-                        placeholderTextColor="purple"
+                        placeholderTextColor="#4682B4"
                         textColor="black"
-                        outlineColor="purple"
+                        outlineColor="#4682B4"
                         selectionColor='red'
-                        activeOutlineColor="purple"
+                        activeOutlineColor="#4682B4"
                         mode='outlined'
                         style={styles.TextInput}
                         secureTextEntry
                     // right={<TextInput.Icon icon="eye" />}
                     />
-                    <TextInput
+                    {/* <TextInput
                         placeholder='Confirm-Password'
                         placeholderTextColor="purple"
                         textColor="black"
@@ -70,9 +71,11 @@ const SignIn = () => {
                         style={styles.TextInput}
                         secureTextEntry
                     // right={<TextInput.Icon icon="eye" />}
-                    />
+                    /> */}
+                 
+       
                     <TouchableOpacity style={styles.SignUpBtn}>
-                        <Text style={styles.SignUpBtnText}>SignUp</Text>
+                        <Text style={styles.SignUpBtnText}>SignIn</Text>
                     </TouchableOpacity>
                 </ScrollView>
             </Animated.View>
@@ -116,7 +119,7 @@ const styles = StyleSheet.create({
     },
     modalText: {
         fontWeight: "bold",
-        color: "#9c0b9c",
+        color: "#6082B6",
         fontSize: 30,
         textAlign: "center"
     },
@@ -132,7 +135,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.4,
         justifyContent: "center",
         textAlign: "center",
-        backgroundColor: "#9c0b9c",
+        backgroundColor: "#4682B4",
         marginVertical: 10,
         paddingVertical: 4,
 
@@ -143,5 +146,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingVertical: 5
     },
+    
 })
 export default SignIn
