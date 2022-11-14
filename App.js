@@ -4,11 +4,11 @@ import AuthNavigation from './Navigators/AuthNavigator';
 import MainNavigation from './Navigators/MainNavigation';
 import SignIn from './Screen/AuthScreen/SignIn/SignIn';
 import SignUp from './Screen/AuthScreen/SignUp/SignUp';
-const App=()=>{
+const App = () => {
   return (
     <NavigationContainer>
-      <AuthNavigation/>
-      {/* <MainNavigation/> */}
+      {/* <AuthNavigation/> */}
+      <MainNavigation />
     </NavigationContainer>
   );
 }
