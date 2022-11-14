@@ -7,7 +7,11 @@ const Stack = createBottomTabNavigator();
 const MainNavigation = () => {
 
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown:false
+            }}
+        >
             <Stack.Screen name="home" component={Home} />
             <Stack.Screen name="Service" component={Service} />
         </Stack.Navigator>
