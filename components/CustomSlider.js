@@ -14,8 +14,10 @@ const CustomSlider=(props)=>{
         <View style={styles.continer}>
             <ScrollView
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 pagingEnabled
                 onScroll={(e) => {
+                    // console.log(e.nativeEvent.contentOffset.x/windowWidth)
                     let value=Math.ceil(e.nativeEvent.contentOffset.x/windowWidth)
                     if(value!==active){
                         setActive(value);
@@ -52,7 +54,10 @@ const CustomSlider=(props)=>{
 }
 const styles=StyleSheet.create({
     continer:{
-        // flex:1,
+        backgroundColor:"white",
+        width:windowWidth-70,
+        height:windowHeight/4.5,
+        alignSelf:"center",
         alignItems:"center",
         justifyContent:"center",
         margin:10,
@@ -63,16 +68,16 @@ const styles=StyleSheet.create({
         shadowColor: "#FF00E1",
         shadowOffset: {
             width: 0,
-            height: -5,
+            height: -10,
         },
         shadowOpacity: 0.58,
         shadowRadius: 20.00,
-        elevation: 24,
+        elevation: 5,
     },
     imageStyle:{
-        width:windowWidth-40,
-        height:windowHeight/4,
-        resizeMode:"cover",
+        width:windowWidth-90,
+        height:windowHeight/5,
+        resizeMode:"stretch",
         marginVertical:5,
         borderRadius:30,
     },

@@ -9,7 +9,20 @@ const MainNavigation = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerShown:false
+                headerShown:false,
+                tabBarActiveTintColor: 'white',
+                tabBarShowLabel: false,
+                tabBarStyle: {
+                    // position: 'absolute',
+                    backgroundColor: 'pink',
+                    elevation: 15,
+                    height:60,
+                    // borderTopLeftRadius:100
+                    // bottom: 10,
+                    // left: 20,
+                    // right: 20,
+                    // height: 70,
+                },
             }}
         >
             <Stack.Screen name="home" component={Home} />

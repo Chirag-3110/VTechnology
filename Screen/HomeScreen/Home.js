@@ -12,12 +12,24 @@ const Home = () => {
     ];
     const renderItem = ({ item }) => (
         <View style={styles.ListView}>
-            <View>
+            <View style={{
+                shadowColor: "#FF00E1",
+                shadowOffset: {
+                    width: 10,
+                    height: -5,
+                },
+                shadowOpacity: 0.58,
+                shadowRadius: 500,
+                elevation:25,
+                margin:10,
+                borderRadius:10
+            }}>
                 <Image
                     style={styles.ImgLogo}
                     source={{
                         uri: item.ImgUrl
-                    }} />
+                    }} 
+                />
             </View>
             <View style={styles.TitleView}>
                 <Text style={styles.TitleViewText}>{item.title}</Text>
@@ -26,7 +38,7 @@ const Home = () => {
     );
     return (
        <>
-            <View style={{flex:1,backgroundColor:"white"}}>
+            <View style={{flex:1,backgroundColor:"white",}}>
                 <View style={styles.titleTopView}>
                     <View>
                         <Text style={styles.titleTopText}>Hi Chirag !</Text>
@@ -51,6 +63,7 @@ const Home = () => {
                         data={DATA}
                         renderItem={renderItem}
                         keyExtractor={item => item.id}
+                        showsHorizontalScrollIndicator={false}
                     />
                 </View>
                 </View>
@@ -70,25 +83,13 @@ const styles = StyleSheet.create({
     },
     ImgLogo: {
         width: 110,
-        height: 110,
-        borderRadius: 11
+        height: 120,
+        borderRadius: 11,
     },
     ListView: {
         marginHorizontal: 15,
-        backgroundColor:"white",
         width:windoWidth/3,
         alignItems:"center",
-        padding:5,
-        shadowColor: "#FF00E1",
-        shadowOffset: {
-            width: 0,
-            height: -5,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 500,
-        elevation: 10,
-        margin:10,
-        borderRadius:10
     },
     FlatListView: {
         marginHorizontal: 5,
@@ -112,12 +113,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: "#373637",
         fontWeight: "700",
-        backgroundColor:"rgba(254,115,238,0.3)",
-        // width:'95%',
         alignSelf:"flex-start",
         marginTop:10,
         borderRadius:8,
-        paddingHorizontal:15,
+        paddingHorizontal:30,
         paddingVertical:10
     },
     titleTopText:{
@@ -131,12 +130,11 @@ const styles = StyleSheet.create({
         fontSize:15,
     },
     titleTopView:{
-        paddingHorizontal:20,
+        paddingHorizontal:30,
         paddingVertical:10,
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-between",
-        backgroundColor:"rgba(254,115,238,0.3)",
         width:'95%',
         alignSelf:"center",
         marginTop:10,
