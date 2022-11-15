@@ -61,7 +61,7 @@ const styles=StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         margin:10,
-        marginTop:20,
+        // marginTop:20,
         padding:10,
         borderRadius:30,
         backgroundColor:"white",
@@ -77,9 +77,10 @@ const styles=StyleSheet.create({
     imageStyle:{
         width:windowWidth-90,
         height:windowHeight/5,
-        resizeMode:"stretch",
-        marginVertical:5,
+        resizeMode:"cover",
+        // marginVertical:10,
         borderRadius:30,
+        // marginBottom:5
     },
     seletedImage:{
         backgroundColor:"#FF00E1",

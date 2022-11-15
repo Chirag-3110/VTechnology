@@ -6,9 +6,9 @@ const windoWidth=Dimensions.get('window').width
 const Home = () => {
     const images = [
         'https://miro.medium.com/max/762/1*L5QyrMNalM3yhtgdgBcvkQ.png',
-        'https://miro.medium.com/max/762/1*L5QyrMNalM3yhtgdgBcvkQ.png',
-        'https://miro.medium.com/max/762/1*L5QyrMNalM3yhtgdgBcvkQ.png',
-        'https://miro.medium.com/max/762/1*L5QyrMNalM3yhtgdgBcvkQ.png',
+        "https://img.freepik.com/free-vector/cyber-security-concept_23-2148532223.jpg?w=2000",
+        "https://www.educative.io/v2api/editorpage/5393602882568192/image/6038586442907648",
+        "https://99designs-blog.imgix.net/blog/wp-content/uploads/2021/12/Digital-marketing-trends-2022.jpg?auto=format&q=60&w=1860&h=1046.25&fit=crop&crop=faces"
     ];
     const renderItem = ({ item }) => (
         <View style={styles.ListView}>
@@ -41,7 +41,7 @@ const Home = () => {
             <View style={{flex:1,backgroundColor:"white",}}>
                 <View style={styles.titleTopView}>
                     <View>
-                        <Text style={styles.titleTopText}>Hi Chirag !</Text>
+                        <Text style={styles.titleTopText}>Hi User !</Text>
                         <Text style={styles.titleTopSubText}>Welcome back</Text>
                     </View>
                     <Image
@@ -107,10 +107,10 @@ const styles = StyleSheet.create({
     OptionView: {
         marginVertical: 20,
         marginTop: 50,
-        marginHorizontal: 20
+        marginHorizontal: 20,
     },
     OptionViewText: {
-        fontSize: 18,
+        fontSize:25,
         color: "#373637",
         fontWeight: "700",
         alignSelf:"flex-start",
