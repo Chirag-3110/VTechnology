@@ -71,6 +71,7 @@ const Bottomtab=(props)=> {
             backgroundColor: 'white',
             border: 5,
             borderWidth:1,
+            borderColor:"#EDEADE",
             radius: 3,
             shadowOpacity: 0.3,
             shadowRadius: 3,
@@ -172,5 +173,6 @@ const styles = StyleSheet.create({
     textShadowRadius: 10,
     borderWidth: 2,
     borderColor: '#fff',
+    
   },
 });
