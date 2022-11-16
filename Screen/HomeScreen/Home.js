@@ -54,9 +54,11 @@ const Home = () => {
                         style={styles.iconImage}
                     />
                 </View>
-                <CustomSlider
+
+                {/* <CustomSlider
                     images={images}
-                />
+                /> */}
+
                 <View style={{ flex: 1 }}>
                 <View style={styles.OptionView}>
                     <Text style={styles.OptionViewText}>Made for you</Text>
@@ -93,8 +95,6 @@ const Home = () => {
                 </View>
                 </View>
             </ScrollView>
-        
-            {/* <Bottomtab/> */}
        </View>
        </>
     )
