@@ -3,8 +3,8 @@ import React from 'react'
 
 function Service() {
     return (
-        <View>
-            <Text>hi</Text>
+        <View style={{flex:1,backgroundColor:"white"}}>
+            <Text style={{color:"black"}}>hi</Text>
         </View>
     )
 }

@@ -1,8 +1,11 @@
+// import { ScrollView } from 'native-base'
 import React from 'react'
-import { View, Text, FlatList, Image, StyleSheet,Dimensions } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet,Dimensions,ScrollView } from 'react-native'
 import CustomSlider from '../../components/CustomSlider'
 import DATA from "../../Data/CourseSuggestion"
+import Bottomtab from '../../Navigators/Bottomtab'
 const windoWidth=Dimensions.get('window').width
+const windoHeight=Dimensions.get('window').height
 const Home = () => {
     const images = [
         'https://miro.medium.com/max/762/1*L5QyrMNalM3yhtgdgBcvkQ.png',
@@ -38,7 +41,9 @@ const Home = () => {
     );
     return (
        <>
-            <View style={{flex:1,backgroundColor:"white",}}>
+       <View style={{backgroundColor:"white",flex:1}}>
+
+            <ScrollView style={{flex:1,backgroundColor:"white"}}>
                 <View style={styles.titleTopView}>
                     <View>
                         <Text style={styles.titleTopText}>Hi User !</Text>
@@ -66,8 +71,31 @@ const Home = () => {
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
+                <View style={styles.FlatListView}>
+
+                    <FlatList
+                        horizontal={true}
+                        data={DATA}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
                 </View>
-            </View>
+                <View style={[styles.FlatListView,{marginBottom:windoHeight/10}]}>
+
+                    <FlatList
+                        horizontal={true}
+                        data={DATA}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
+                </View>
+            </ScrollView>
+        
+            {/* <Bottomtab/> */}
+       </View>
        </>
     )
 }
