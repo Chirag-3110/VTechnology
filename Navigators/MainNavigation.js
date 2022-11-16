@@ -1,10 +1,9 @@
 import Home from "../Screen/HomeScreen/Home";
 import Service from "../Screen/HomeScreen/Service";
-import { createStackNavigator } from '@react-navigation/stack';
 import Bottomtab from "./Bottomtab";
+import DashBoard from "../Screen/HomeScreen/DashBoard";
 import { useState } from "react";
 
-const Stack = createStackNavigator();
 
 const MainNavigation = () => {
     const [route,setRoute]=useState('Home');
@@ -14,9 +13,9 @@ const MainNavigation = () => {
     return (
         <>
             {
-                route==="Home"?
-                <Home/>:
-                <Service/>
+                route==="Home"?<Home/>:
+                route==="Service"?<Service/>:
+                <DashBoard/>
             }
             <Bottomtab
                 setRoute={setNewRoute}
