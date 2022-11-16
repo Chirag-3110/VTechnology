@@ -3,6 +3,7 @@ import SignIn from '../Screen/AuthScreen/SignIn/SignIn';
 import SignUp from '../Screen/AuthScreen/SignUp/SignUp';
 import ForgotPass from '../Screen/AuthScreen/FogotPass/ForgotPass';
 import ConfimSignup from "../Screen/AuthScreen/SignUp/ConfimSignup";
+import OnBoarding from "../app/screens/OnBoarding/OnBoarding";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,9 +15,10 @@ const AuthNavigation = () => {
                 headerShown: false
             }}
         >
+            <Stack.Screen name="OnBoarding" component={OnBoarding} />
             <Stack.Screen name="signup" component={SignUp} />
             <Stack.Screen name="login" component={SignIn} />
-            <Stack.Screen name='confimSignup' component={ConfimSignup}/>
+            <Stack.Screen name='confimSignup' component={ConfimSignup} />
             <Stack.Screen name="forgotpass" component={ForgotPass} />
         </Stack.Navigator>
     )
