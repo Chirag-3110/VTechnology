@@ -55,14 +55,14 @@ const Home = () => {
       <View style={{backgroundColor: 'white', flex: 1}}>
         <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
           <View style={styles.titleTopView}>
-            <View>
+            {/* <View>
               <Text style={styles.titleTopText}>Hi User !</Text>
               <Text style={styles.titleTopSubText}>Welcome back</Text>
-            </View>
-            <Image
+            </View> */}
+            {/* <Image
               source={require('../../assests/search.png')}
               style={styles.iconImage}
-            />
+            /> */}
           </View>
 
           {/* <CustomSlider
@@ -70,7 +70,7 @@ const Home = () => {
                 /> */}
           <View style={styles.imagecourse}>
             <Image
-              source={require('../../assests/homepic2.jpg')}
+              source={require('../../assests/homepic3.jpg')}
               style={styles.course}
             />
           </View>
@@ -190,14 +190,14 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     paddingVertical: 40,
-    paddingHorizontal: 25,
-    width: 400,
+    paddingHorizontal: 15,
+    width: 390,
     height: 430,
   },
   course: {
     borderRadius: 30,
     maxWidth: '100%',
-    width: 400,
+    width: 390,
     height: 430,
     alignContent: 'center',
     justifyContent: 'center',
