@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Animated, TouchableOpacity, Text, View, StyleSheet, TextInput, Dimensions,ScrollView } from 'react-native';
+import CustomButton from '../../../components/AnimatedButton';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -114,12 +115,16 @@ const ConfimSignup=()=>{
                             }
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.btnContainer} 
+                    {/* <TouchableOpacity style={styles.btnContainer} 
                     >
                         <Text style={styles.btnText}>
                             Complete...
                         </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+                    <CustomButton
+                        title="Complete..."
+                        onpress={()=>alert("Data Added ")}
+                    />
                 </View>
             </Animated.View>
         </View>

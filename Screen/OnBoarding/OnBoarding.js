@@ -35,7 +35,7 @@ const onBoardings = [
     }
 ];
 
-const OnBoarding = () => {
+const OnBoarding = ({navigation}) => {
     const [completed, setCompleted] = React.useState(false);
 
     const scrollX = new Animated.Value(0);
@@ -126,9 +126,9 @@ const OnBoarding = () => {
                                 borderTopRightRadius: 0,
                                 backgroundColor: COLORS.blue
                             }}
-                            onPress={() => { console.log("Button on pressed") }}
+                            onPress={() => console.log("Pressed")}
                         >
-                            <Text style={styles.Skip}>{completed ? "Let's Go" : "Skip"}</Text>
+                            <Text  style={styles.Skip}>{completed ? "Let's Go" : "Skip"}</Text>
                         </TouchableOpacity>
                     </View>
                 ))}

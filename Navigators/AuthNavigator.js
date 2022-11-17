@@ -14,6 +14,7 @@ const AuthNavigation = () => {
             screenOptions={{
                 headerShown: false
             }}
+            initialRouteName={"signup"}
         >
             <Stack.Screen name="OnBoarding" component={OnBoarding} />
             <Stack.Screen name="signup" component={SignUp} />

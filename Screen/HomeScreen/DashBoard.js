@@ -1,85 +1,100 @@
-import React  from 'react';
-import { Dimensions, FlatList, StyleSheet, Text, View,Image } from 'react-native';
+import React, { useState }  from 'react';
+import { Dimensions, StyleSheet, Text, View,Image, ScrollView } from 'react-native';
+import { Table, Row, Cell ,TableWrapper} from 'react-native-table-component';
 import  DummyData  from '../../Data/DummyDashData';
 const windoWidth=Dimensions.get('window').width;
 const windoHeight=Dimensions.get('window').height;
 const DashBoard=()=>{
+    const [title,setTitle]=useState(['id', 'Task Name', 'Performance'])
 
-    const renderList = ({item}) => (
-        <View style={styles.ListView} >
-            <View style={styles.TitleView}>
-                <View style={{flexDirection:"row",alignItems:"center"}}>
-                    <Text style={[styles.TitleViewText,{fontSize:20}]}>{item.taskId}</Text>
-                    <View style={{flexDirection:"row",alignItems:"center",marginLeft:20}}>
-                        <Image
-                            source={{uri:item.userImage}}
-                            style={styles.taskImage}
-                        />
-                        <View>
-                            <Text style={styles.TitleViewText}>{item.taskName}</Text>   
-                            <Text style={[styles.TitleViewText,{fontSize:10,marginLeft:12}]}>{item.byUser}</Text>    
-                        </View>
-                    </View> 
-                </View>              
-                    <Text style={styles.TitleViewText}>{item.performane}</Text>
-            </View>
-        </View>
-    )
-    return(
-        <View style={styles.container}>
-            <FlatList
-                ListHeaderComponent={
-                    <View style={styles.headerTitleView}>
-                        <View style={{flexDirection:"row"}}>
-                            <Text style={[styles.TitleViewText,{fontSize:20}]}>id</Text>
-                            <Text style={[styles.TitleViewText,{fontSize:20}]}>Task Name</Text>    
-                        </View>                    
-                        <Text style={[styles.TitleViewText,{fontSize:20}]}>performane</Text>
-                    </View>
-                }
-                data={DummyData}
-                keyExtractor={item=>item.taskId}
-                renderItem={renderList}
-                style={{
-                    backgroundColor:"rgba(246,196,255,0.78)",
-                    paddingVertical:20,
-                }}
-                ListFooterComponent={
-                    <View style={{marginBottom:windoHeight/8}}/>
-                }
+    const element = (data, index) => (
+        <View style={{flexDirection:"row"}}>
+            <Image
+                source={{uri:data[1][1]}}
+                style={styles.taskImage}
             />
-        </View>
+            <View>
+                <Text style={styles.TitleViewText}>{data[1][0]}</Text>   
+                <Text style={[styles.TitleViewText,{fontSize:10,marginLeft:12}]}>{data[1][2]}</Text>    
+            </View>
+        </View> 
+      );
+    return(
+        <ScrollView style={styles.container}>
+            <Table>
+                <Row    
+                    data={title}    
+                    style={styles.head} 
+                    textStyle={styles.textLabels}
+                    // flexArr={[0, 2, 2]}
+                />
+                {
+                    DummyData.map((rowData, index) => (
+                        <TableWrapper key={index} style={styles.allRows}>
+                            {
+                                rowData.map((cellData, cellIndex) => (
+                                    <Cell 
+                                        key={cellIndex} 
+                                        data={
+                                            cellIndex === 1 ? 
+                                            element(rowData, index) :
+                                            cellData
+                                        } 
+                                        style={styles.perColoumn} 
+                                        textStyle={styles.textLabels}
+                                        // flexArr={[0, 2, 2]}
+                                        
+                                        widthArr={[50,100,100]}   
+                                    />
+                                ))
+                            }
+                        </TableWrapper>
+                    ))
+                }
+            </Table>
+        </ScrollView>
     )
 }
 const styles=StyleSheet.create({
     container:{
         flex:1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         backgroundColor:"white",
+        padding:10
     },
-    ListView: {
-        alignItems:"center",
-        width:windoWidth,
-    },
-    TitleView: {
-        marginVertical: 10,
-        flexDirection:'row',
-        justifyContent:"space-between",
-        alignItems: "center",
-        width:windoWidth,
-        paddingHorizontal: 20,
-    },
-    headerTitleView: {
-        marginVertical: 10,
-        flexDirection:'row',
-        justifyContent:"space-between",
-        width:windoWidth,
-        padding: 10,
-        backgroundColor:"rgba(250,233,255,0.78)",
-        width:'90%',
-        alignSelf:"center",
+    head: { 
+        height: 50, 
+        backgroundColor:"white",
+        justifyContent: 'center',
+        borderColor:"#ECECEC",
+        borderWidth:2,
         borderRadius:5
+        
+    },
+    allRows: { 
+        marginTop: 6 ,
+        backgroundColor:"white",
+        paddingHorizontal:10,
+        paddingVertical:20,
+        // alignItems: 'center',
+        shadowColor: "#FF00E1",
+        shadowOffset: {
+            width: 0,
+            height: -10,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 20.00,
+        elevation: 5,
+        borderRadius:5,
+        flexDirection:"row",
+    },
+    textLabels:{
+        color:"black",
+        fontWeight:"bold",
+        // textAlign:"center",
+        marginHorizontal:10,
+        fontSize:15,
     },
     TitleViewText: {
         fontSize: 18,

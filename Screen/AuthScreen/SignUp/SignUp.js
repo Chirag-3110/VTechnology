@@ -1,5 +1,6 @@
 import React from "react";
 import {View,Text, StyleSheet,TextInput, Dimensions, TouchableOpacity, ImageBackground} from 'react-native';
+import CustomButton from "../../../components/AnimatedButton";
 const windowWidth=Dimensions.get('window').width;
 const windowheight=Dimensions.get('window').height
 const SignUp=({navigation})=>{
@@ -30,13 +31,17 @@ const SignUp=({navigation})=>{
                         style={styles.customInput}
                     />
                 </View>
-                <TouchableOpacity style={styles.btnContainer}
+                {/* <TouchableOpacity style={styles.btnContainer}
                     onPress={()=>navigation.navigate("confimSignup")}
                 >
                     <Text style={styles.btnText}>
                         Sign Up
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <CustomButton
+                    title="Sign Up"
+                    onpress={()=>navigation.navigate("confimSignup")}
+                />
             </View>
         </View>
         <View style={styles.bottomText}>
