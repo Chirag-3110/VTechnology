@@ -1,215 +1,119 @@
-
-import React from 'react';
-import {
-    Animated,
-    Image,
-    SafeAreaView,
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity
-} from 'react-native';
-
-// constants
-import { images, theme } from "../../constants";
-const { onboarding1, onboarding2, onboarding3 } = images;
-
-// theme
-const { COLORS, FONTS, SIZES } = theme;
-
-const onBoardings = [
-    {
-        title: "Let's Travelling",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-        img: onboarding1
-    },
-    {
-        title: "Navigation",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-        img: onboarding2
-    },
-    {
-        title: "Destination",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-        img: onboarding3
-    }
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, interpolate, TouchableOpacity, View, Text, FlatList, StyleSheet, Dimensions, Image } from 'react-native';
+import NextScreen from './NextScreen';
+import Paginator from './Paginator';
+const windoWidth = Dimensions.get('window').width;
+const windoHeight = Dimensions.get('window').height;
+const DATA = [
+  {
+    id: '1',
+    title: 'Digital Maketing',
+    ImgUrl: "https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?w=2000"
+  },
+  {
+    id: '2',
+    title: 'Digital Maketing',
+    ImgUrl: "https://tbamarketingblog.com/wp-content/uploads/2022/09/6-Case-Studies-to-Inspire-Your-Digital-Marketing-Campaign.jpg"
+  },
+  {
+    id: '3',
+    title: 'Digital Maketing',
+    ImgUrl: "https://incredibleplanet.net/wp-content/uploads/2017/08/digital-marketing-1938274_1280-1280x715.png"
+  }
 ];
+const Onboarding = () => {
+  // const { width } = useWindowDimensions();
+  const [currentIndex, setcurrentIndex] = useState(0)
+  const scrollX = new Animated.Value(0)
+  const slidesRef = useRef(null)
+  const viewbleItemchanged = useRef(({ viewableItems }) => {
+    setcurrentIndex(viewableItems[0].index)
+    // console.log(currentIndex)
+  }).current
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
 
-const OnBoarding = ({navigation}) => {
-    const [completed, setCompleted] = React.useState(false);
 
-    const scrollX = new Animated.Value(0);
-
-    React.useEffect(() => {
-        scrollX.addListener(({ value }) => {
-            if (Math.floor(value / SIZES.width) === onBoardings.length - 1) {
-                setCompleted(true);
-            }
-        });
-
-        return () => scrollX.removeListener();
-    }, []);
-
-    // Render
-
-    function renderContent() {
-        return (
-            <Animated.ScrollView
-                horizontal
-                pagingEnabled
-                scrollEnabled
-                decelerationRate={0}
-                scrollEventThrottle={16}
-                snapToAlignment="center"
-                showsHorizontalScrollIndicator={false}
-                onScroll={Animated.event([
-                    { nativeEvent: { contentOffset: { x: scrollX } } },
-                ], { useNativeDriver: false })}
-            >
-                {onBoardings.map((item, index) => (
-                    <View
-                        //center
-                        //bottom
-                        key={`img-${index}`}
-                        style={styles.imageAndTextContainer}
-                    >
-                        <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
-                            <Image
-                                source={item.img}
-                                resizeMode="cover"
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                }}
-                            />
-                        </View>
-                        <View
-                            style={{
-                                position: 'absolute',
-                                bottom: '10%',
-                                left: 40,
-                                right: 40
-                            }}
-                        >
-                            <Text style={{
-                                ...FONTS.h1,
-                                color: COLORS.gray,
-                                textAlign: 'center',
-                            }}
-                            >
-                                {item.title}
-                            </Text>
-
-                            <Text style={{
-                                ...FONTS.body3,
-                                textAlign: 'center',
-                                marginTop: SIZES.base,
-                                color: COLORS.gray,
-                            }}
-                            >
-                                {item.description}
-                            </Text>
-                        </View>
-                        {/* Button */}
-                        <TouchableOpacity
-                            style={{
-                                position: 'absolute',
-                                right: 0,
-                                bottom: 10,
-                                width: 50,
-                                height: 20,
-                                paddingLeft: 20,
-                                justifyContent: 'center',
-                                borderTopLeftRadius: 30,
-                                borderBottomLeftRadius: 30,
-                                borderBottomRightRadius: 0,
-                                borderTopRightRadius: 0,
-                                backgroundColor: COLORS.blue
-                            }}
-                            onPress={() => console.log("Pressed")}
-                        >
-                            <Text  style={styles.Skip}>{completed ? "Let's Go" : "Skip"}</Text>
-                        </TouchableOpacity>
-                    </View>
-                ))}
-            </Animated.ScrollView>
-        );
+  const scrollTo = () => {
+    if (currentIndex < DATA.length - 1) {
+      slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     }
+    else {
 
-    function renderDots() {
-
-        const dotPosition = Animated.divide(scrollX, SIZES.width);
-
-        return (
-            <View style={styles.dotsContainer}>
-                {onBoardings.map((item, index) => {
-                    const opacity = dotPosition.interpolate({
-                        inputRange: [index - 1, index, index + 1],
-                        outputRange: [0.3, 1, 0.3],
-                        extrapolate: "clamp"
-                    });
-
-                    const dotSize = dotPosition.interpolate({
-                        inputRange: [index - 1, index, index + 1],
-                        outputRange: [SIZES.base, 17, SIZES.base],
-                        extrapolate: "clamp"
-                    });
-
-                    return (
-                        <Animated.View
-                            key={`dot-${index}`}
-                            opacity={opacity}
-                            style={[styles.dot, { width: dotSize, height: dotSize, }]}
-                        />
-                    );
-                })}
-            </View>
-        );
     }
+  }
+  const renderItem = ({ item }) => (
+    <View >
+      <Image style={{ width: windoWidth, height: windoHeight / 1.6 }}
+        source={{ uri: item.ImgUrl }} />
+      <View style={{ marginVertical: 10 }}>
+        <Text style={{ fontSize: 25, color: "black", fontWeight: "800", textAlign: "center" }}>{item.title}</Text>
+      </View>
+    </View>
+  );
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <View>
-                {renderContent()}
-            </View>
-            <View style={styles.dotsRootContainer}>
-                {renderDots()}
-            </View>
-        </SafeAreaView>
-    );
-};
+  return (
+    <>
+      <View style={[styles.FlatListView, { flex: 3 }]}>
+        <FlatList
+          bounces={false}
+          pagingEnabled={true}
+          horizontal={true}
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          showsHorizontalScrollIndicator={false}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+            useNativeDriver: false,
 
+          })}
+          scrollEventThrottle={32}
+          onViewableItemsChanged={viewbleItemchanged}
+          viewabilityConfig={viewConfig}
+          ref={slidesRef}
+        />
+      </View>
+      <Paginator data={DATA} scrollX={scrollX} />
+      <NextScreen scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / DATA.length)} />
+    </>
+  );
+}
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.white
-    },
-    imageAndTextContainer: {
-        width: SIZES.width
-    },
-    dotsRootContainer: {
-        position: 'absolute',
-        bottom: SIZES.height > 700 ? '20%' : '16%',
-    },
-    dotsContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: SIZES.padding / 2,
-        marginBottom: SIZES.padding * 3,
-        height: SIZES.padding,
-    },
-    dot: {
-        borderRadius: SIZES.radius,
-        backgroundColor: COLORS.blue,
-        marginHorizontal: SIZES.radius / 2
-    },
-    Skip: {
-        fontSize: 10,
-        color: "white"
-    }
-});
-
-export default OnBoarding;
+  main: {
+    textAlign: 'center'
+  },
+  image: {
+    // flex: "0.7",
+    justifyContent: "center"
+  },
+  title: {
+    fontWeight: "800",
+    fontSize: 28,
+    marginBottom: 10,
+    color: "#493d8a",
+    textAlign: "center"
+  },
+  desc: {
+    fontWeight: "300",
+    fontSize: 28,
+    marginBottom: 10,
+    color: "#493d8a",
+    paddingHorizontal: 64
+  },
+  FlatListView: {
+    // marginHorizontal: 10,
+    width: windoWidth,
+    height: windoHeight / 1.5
+  },
+  ImgLogo: {
+    width: windoWidth,
+    // height: 120,
+    borderRadius: 11,
+    flex: 0.7
+  },
+  ListView: {
+    marginHorizontal: 15,
+    width: windoWidth / 3,
+    alignItems: 'center',
+  },
+})
+export default Onboarding;

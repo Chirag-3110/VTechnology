@@ -3,8 +3,7 @@ import SignIn from '../Screen/AuthScreen/SignIn/SignIn';
 import SignUp from '../Screen/AuthScreen/SignUp/SignUp';
 import ForgotPass from '../Screen/AuthScreen/FogotPass/ForgotPass';
 import ConfimSignup from "../Screen/AuthScreen/SignUp/ConfimSignup";
-import OnBoarding from "../app/screens/OnBoarding/OnBoarding";
-
+import Onboarding from "../Screen/OnBoarding/Onboarding";
 const Stack = createNativeStackNavigator();
 
 const AuthNavigation = () => {
@@ -14,9 +13,9 @@ const AuthNavigation = () => {
             screenOptions={{
                 headerShown: false
             }}
-            initialRouteName={"signup"}
+            initialRouteName={"OnBoarding"}
         >
-            <Stack.Screen name="OnBoarding" component={OnBoarding} />
+            <Stack.Screen name="OnBoarding" component={Onboarding} />
             <Stack.Screen name="signup" component={SignUp} />
             <Stack.Screen name="login" component={SignIn} />
             <Stack.Screen name='confimSignup' component={ConfimSignup} />
