@@ -3,7 +3,7 @@ import SignIn from '../Screen/AuthScreen/SignIn/SignIn';
 import SignUp from '../Screen/AuthScreen/SignUp/SignUp';
 import ForgotPass from '../Screen/AuthScreen/FogotPass/ForgotPass';
 import ConfimSignup from "../Screen/AuthScreen/SignUp/ConfimSignup";
-import Onboarding from "../Screen/OnBoarding/Onboarding";
+import Onboarding from "../Screen/OnBoarding/OnBoarding";
 const Stack = createNativeStackNavigator();
 
 const AuthNavigation = () => {
