@@ -1,7 +1,7 @@
 import React, { useEffect, useRef ,useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Image } from 'react-native'
 import Svg, { G, Circle } from 'react-native-svg'
-function CustomCircleBar() {
+function CustomCircleBar(props) {
     const progressAnimation = new Animated.Value(0)
     const progressRef = useRef(null);
     const animation = (toValue) => {
@@ -17,7 +17,7 @@ function CustomCircleBar() {
     const radius = Size / 2 - strokeWidth / 2;
     const circumference = 2 * Math.PI * radius;
 
-    const [percentage,setPercentange]=useState(75);
+    const [percentage,setPercentange]=useState(props.percentageValue);
     useEffect(() => {
         animation(percentage)
     }, [percentage]);

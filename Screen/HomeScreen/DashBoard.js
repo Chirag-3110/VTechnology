@@ -107,7 +107,9 @@ const DashBoard=()=>{
                     <Text style={{color:"black",fontWeight:"bold",fontSize:20,padding:20}}>
                         Daily Progress
                     </Text>
-                    <CustomCircleBar/>
+                    <CustomCircleBar
+                        percentageValue={72}
+                    />
                 </LinearGradient>
             </ScrollView>
         </>
