@@ -7,16 +7,16 @@ import LinearGradient from 'react-native-linear-gradient';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 const DashBoard=()=>{
-    const d = new Date();
     const newDayDateArray=[];
-    const [visible, setVisible] = React.useState(false);
-    const openMenu = () => setVisible(true);
-    const closeMenu = () => setVisible(false);
+    const d = new Date();
     const [dateStateArray,setDateStateArray]=useState([]);
     const [monthStateArray,setMonthArray]=useState([]);
     useEffect(()=>{
         setMonthArray(MONTHS_NAME);
-        d.getFullYear();
+        var currentMonthsObject=MONTHS_NAME.filter((item)=>{
+            return item.index === d.getMonth();
+        })
+        setMonthAsSelected(currentMonthsObject[0]);
     },[])
     const setAsSelected=(dateObj,index)=>{
         setDateStateArray((seletedDate) =>
@@ -55,7 +55,6 @@ const DashBoard=()=>{
             isLooping++;
         }
         setDateStateArray(newDayDateArray);
-        setVisible(false)
     }
 
     const getSelectDateMonth=(monthName)=>{
