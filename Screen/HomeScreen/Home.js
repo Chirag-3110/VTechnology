@@ -23,7 +23,7 @@ const Home = () => {
     'https://www.educative.io/v2api/editorpage/5393602882568192/image/6038586442907648',
     'https://99designs-blog.imgix.net/blog/wp-content/uploads/2021/12/Digital-marketing-trends-2022.jpg?auto=format&q=60&w=1860&h=1046.25&fit=crop&crop=faces',
   ];
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <View style={styles.ListView}>
       <View
         style={{
@@ -52,8 +52,8 @@ const Home = () => {
   );
   return (
     <>
-      <View style={{backgroundColor: 'white', flex: 1}}>
-        <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={{ backgroundColor: 'white', flex: 1 }}>
+        <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
           <View style={styles.titleTopView}>
             {/* <View>
               <Text style={styles.titleTopText}>Hi User !</Text>
@@ -75,7 +75,7 @@ const Home = () => {
             />
           </View>
 
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <View style={styles.OptionView}>
               <Text style={styles.OptionViewText}>Made for you</Text>
             </View>
@@ -98,7 +98,7 @@ const Home = () => {
               />
             </View>
             <View
-              style={[styles.FlatListView, {marginBottom: windoHeight / 10}]}>
+              style={[styles.FlatListView, { marginBottom: windoHeight / 10 }]}>
               <FlatList
                 horizontal={true}
                 data={DATA}
@@ -172,14 +172,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   titleTopView: {
+    // borderWidth: 1,
     paddingHorizontal: 30,
-    paddingVertical: 10,
-    flexDirection: 'row',
+    // paddingVertical: 10,
+    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '95%',
     alignSelf: 'center',
-    marginTop: 10,
+    // marginTop: 10,
     borderRadius: 10,
   },
   iconImage: {
@@ -189,15 +190,18 @@ const styles = StyleSheet.create({
   imagecourse: {
     alignContent: 'center',
     justifyContent: 'center',
+    alignItems: "center",
     paddingVertical: 40,
-    paddingHorizontal: 15,
-    width: 390,
+    // paddingHorizontal: 15,
+    width: windoWidth,
     height: 430,
   },
   course: {
-    borderRadius: 30,
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
+    // borderRadius: 30,
     maxWidth: '100%',
-    width: 390,
+    width: windoWidth,
     height: 430,
     alignContent: 'center',
     justifyContent: 'center',
