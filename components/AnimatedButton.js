@@ -3,9 +3,12 @@ import { Animated, Button, Easing, View, Text, StyleSheet ,Dimensions,TouchableO
 const windowWidth=Dimensions.get('window').width;
 const windowheight=Dimensions.get('window').height
 const CustomButton=(props)=>{
-    const [width,setWidtht]=useState(new Animated.Value(1));
-    const [opacity,setOpactity]=useState(new Animated.Value(1));
-    const [btnOpacity,setBtnOpactity]=useState(new Animated.Value(1));
+  const [width,setWidtht]=useState(new Animated.Value(1));
+  const [opacity,setOpactity]=useState(new Animated.Value(1));
+  const [btnOpacity,setBtnOpactity]=useState(new Animated.Value(1));
+  useEffect(()=>{
+    console.log("jjk")
+  },[width,opacity,btnOpacity]);
   const handleButton = () => {
     Animated.timing(opacity, {
         toValue: 0,
@@ -28,10 +31,10 @@ const CustomButton=(props)=>{
         })
     })
   };
-    const maxWidth = width.interpolate({ 
-      inputRange: [0,1], 
-      outputRange: [0,windowWidth-60]
-    });
+  const maxWidth = width.interpolate({ 
+    inputRange: [0,1], 
+    outputRange: [0,windowWidth-60]
+  });
 
     return (
       <View style={styles.container}>

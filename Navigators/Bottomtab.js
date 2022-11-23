@@ -122,8 +122,8 @@ const Bottomtab=(props)=> {
               justifyContent: 'center',
               marginStart: 80,
             }}>
-            <TouchableOpacity onPress={()=>toggleOpen("List")}>
-              <FontAwesome name="list-ul" size={28} color={nav==='List'? defaultColor :"grey"} />
+            <TouchableOpacity onPress={()=>toggleOpen("Dashboard")}>
+              <FontAwesome name="list-ul" size={28} color={nav==='Dashboard'? defaultColor :"grey"} />
             </TouchableOpacity>
           </View>
           <View
@@ -133,8 +133,8 @@ const Bottomtab=(props)=> {
               justifyContent: 'center',
               marginEnd: 6,
             }}>
-            <TouchableOpacity onPress={()=>toggleOpen("Like")}>
-              <FontAwesome name="heart" size={28} color={nav==='Like'? defaultColor :"grey"} />
+            <TouchableOpacity onPress={()=>toggleOpen("Question")}>
+              <FontAwesome name="heart" size={28} color={nav==='Question'? defaultColor :"grey"} />
             </TouchableOpacity>
           </View>
         </View>

@@ -2,6 +2,7 @@ import Home from "../Screen/HomeScreen/Home";
 import Service from "../Screen/HomeScreen/Service";
 import Bottomtab from "./Bottomtab";
 import DashBoard from "../Screen/HomeScreen/DashBoard";
+import MainQuesionSceen from "../Screen/Questions/AddQuestion";
 import { useState } from "react";
 
 
@@ -15,6 +16,7 @@ const MainNavigation = () => {
             {
                 route==="Home"?<Home/>:
                 route==="Service"?<Service/>:
+                route==="Question"?<MainQuesionSceen/>:
                 <DashBoard/>
             }
             <Bottomtab

@@ -6684,6 +6684,11 @@ react-native-curved-bottom-bar@^2.1.4:
     d3-shape "*"
     react-native-size-scaling "*"
 
+react-native-dropdown-picker@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.3.tgz#adc16cfa52e8f3481220b377dd780040c3debf96"
+  integrity sha512-cwZzFcpyx/Stw3lZH2bvXxcsgwkR8c3rRZtOnlvyuN5pAplzA/9AiAxYlnJuspP9VvyU1XMePKOpgcHce6iyhA==
+
 react-native-gradle-plugin@^0.70.3:
   version "0.70.3"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
