@@ -83,7 +83,7 @@ const DashBoard=()=>{
                     <Text style={{fontWeight:"bold",color:"rgba(200,95,250,0.85)",padding:5,textAlign:"center",marginTop:10,fontSize:15}}>
                         Select Month
                     </Text>
-                    <ScrollView style={styles.container} horizontal={true} zIndex={-5} pagingEnabled >
+                    <ScrollView style={styles.container} horizontal={true} zIndex={-5}  decelerationRate={0}>
                         <View style={{flexDirection:"row",padding:10}}>
                             {
                                 MONTHS_NAME.map((month,index)=>(
@@ -97,7 +97,7 @@ const DashBoard=()=>{
                         </View>
                     </ScrollView>
                 </View>
-                <ScrollView style={styles.container} horizontal={true} zIndex={-5} pagingEnabled >
+                <ScrollView style={styles.container} horizontal={true} zIndex={-5}  decelerationRate={0} >
                     <View style={{flexDirection:"row"}}>
                         {
                             dateStateArray.length === 0 ?null:
