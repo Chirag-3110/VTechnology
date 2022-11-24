@@ -1,6 +1,6 @@
 import React, { useEffect, useRef ,useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Image } from 'react-native'
-import Svg, { G, Circle } from 'react-native-svg'
+import Svg, {  Circle } from 'react-native-svg'
 function CustomCircleBar(props) {
     const progressAnimation = new Animated.Value(0)
     const progressRef = useRef(null);
@@ -35,12 +35,13 @@ function CustomCircleBar(props) {
         }
     }, [percentage])
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Svg width={Size} height={Size}>
-                <Circle stroke="rgba(238,213,250,0.62)" cx={center} cy={center} r={radius} strokeWidth={strokeWidth}  />
-                <Circle ref={progressRef} stroke="rgba(255,178,247,1)"
+                <Circle stroke="rgba(85,149,250,0.62)" cx={center} cy={center} r={radius} strokeWidth={strokeWidth}  />
+                <Circle ref={progressRef} stroke="rgba(23,121,251,1)"
                     cx={center} cy={center} r={radius} strokeWidth={strokeWidth}
                     strokeDasharray={circumference}
+                    strokeLinecap="round"
                 />
             </Svg>
             <View style={styles.button}>
