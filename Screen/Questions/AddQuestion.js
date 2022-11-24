@@ -18,6 +18,10 @@ const MainQuesionSceen=({navigation})=>{
     const moveToQuestion=()=>{
         console.log(testName);
         console.log(noOfQuesValue);
+        if(noOfQuesValue===null){
+            alert("Please select Questions");
+            return ;
+        }
         navigation.navigate("QuestionsSet",{noOfQues:noOfQuesValue});
     }
     return(
