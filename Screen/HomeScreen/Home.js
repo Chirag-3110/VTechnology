@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import CustomSlider from '../../components/CustomSlider';
 import DATA from '../../Data/CourseSuggestion';
-import Bottomtab from '../../Navigators/Bottomtab';
 
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;

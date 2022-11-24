@@ -18,11 +18,8 @@ const MainQuesionSceen=({navigation})=>{
     const moveToQuestion=()=>{
         console.log(testName);
         console.log(noOfQuesValue);
-        navigation.navigate("Questions",{noOfQues:noOfQuesValue});
+        navigation.navigate("QuestionsSet",{noOfQues:noOfQuesValue});
     }
-    useEffect(()=>{
-
-    },[])
     return(
         <View style={styles.container}>
             <LinearGradient 
@@ -94,7 +91,7 @@ const MainQuesionSceen=({navigation})=>{
                     colors={['rgba(20,129,247,0.65)', 'rgba(59,148,247,0.80)','rgba(89,165,248,0.41)']}
                 >
                     <TouchableOpacity
-                        onPress={()=>moveToQuestion()}
+                        onPress={moveToQuestion}
                     >
                         <Text style={{color:"white",fontWeight:"bold"}}>Move To Next</Text>
                     </TouchableOpacity>

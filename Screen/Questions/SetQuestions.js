@@ -112,6 +112,7 @@ const QuestionsCards=({route})=>{
             {
                 quizQues.map((item,index)=>(
                     <LinearGradient 
+                        key={index}
                         colors={['rgba(245,230,252,0.80)', 'rgba(246,229,254,0.80)','rgba(249,243,252,0.80)']} 
                         style={styles.infoContainer}>
                         <View style={{paddingHorizontal:20,alignSelf:"center",marginTop:10}}>
@@ -148,16 +149,15 @@ const QuestionsCards=({route})=>{
                     </LinearGradient>
                 ))
             }
-            {/* <View style={{marginBottom:30}}>
-                {
+            <View style={{marginBottom:30}}>
+                {/* {
                     loading?
                     <ActivityIndicator size={30} color="blue" style={{margin:50}}/>:
                     <CustomButton
                         title="Post Questions"
-                        onpress={()=>uploadQuizData()}
                     />
-                }
-            </View> */}
+                } */}
+            </View>
         </ScrollView>
     )
 }
