@@ -3,13 +3,13 @@ import MainQuesionSceen from "../Screen/Questions/TakeQuestion";
 import QuestionsCards from "../Screen/Questions/AllQuestions";
 import ReviewQuestions from "../Screen/Questions/ReviewQuesions";
 
-const Stack=createNativeStackNavigator();
-const QuestionNavigation=()=>{
+const Stack = createNativeStackNavigator();
+const QuestionNavigation = () => {
 
-    return(
-        <Stack.Navigator 
+    return (
+        <Stack.Navigator
             screenOptions={{
-                headerShown:false
+                headerShown: false
             }}
         >
             <Stack.Screen name="MainQuiz" component={MainQuesionSceen} />

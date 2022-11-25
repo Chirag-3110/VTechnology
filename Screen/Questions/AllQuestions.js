@@ -57,15 +57,17 @@ const QuestionsCards=()=>{
                 </View>
                 {
                     ques.map((items,index)=>(
-                        <View style={styles.quesCard}>
+                        <View key={index} style={styles.quesCard}>
                             <Text style={{fontWeight:"bold",color:"black",fontSize:22,width:'95%',paddingVertical:10}}>
                                 Q{index+1}. {items.quesion}
                             </Text>
                             {
                                 items.options.map((value,index)=>(
-                                    <Text style={{fontWeight:"bold",color:"#2e2e2f",fontSize:20,width:'95%',padding:2}}>
-                                        {index+1}. {value}
-                                    </Text>
+                                    <TouchableOpacity style={{width:'95%',padding:2}}>
+                                        <Text key={index} style={{fontWeight:"bold",color:"#2e2e2f",fontSize:20,}}>
+                                            {index+1}. {value}
+                                        </Text>
+                                    </TouchableOpacity>
                                 ))
                             }
                         </View>
