@@ -1,42 +1,30 @@
 import React,{useEffect, useState} from 'react';
 import {View,Text,StyleSheet,ScrollView,Dimensions,Image,TouchableOpacity,ActivityIndicator} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-
+import dummyQuestion from '../../Data/DummyQuestionsData';
 const windoWidth=Dimensions.get('window').width;
 const QuestionsCards=()=>{
    
-    const [ques,setQues]=useState([
-        {
-            id:1,
-            quesion:"What is C ?",
-            options:["language","Function","os","none"],
-            corretOptionsIndex:0,
-        },
-        {
-            id:2,
-            quesion:"What is C ?",
-            options:["language","Function","os","none"],
-            corretOptionsIndex:0,
-        },
-        {
-            id:3,
-            quesion:"What is C ?",
-            options:["language","Function","os","none"],
-            corretOptionsIndex:0,
-        },
-        {
-            id:4,
-            quesion:"What is C ?",
-            options:["language","Function","os","none"],
-            corretOptionsIndex:0,
-        },
-        {
-            id:5,
-            quesion:"What is C ?",
-            options:["language","Function","os","none"],
-            corretOptionsIndex:0,
-        },
-    ])
+    const [ques,setQues]=useState([]);
+    const setAnswerAsSelected=(quesIndex,optIndex)=>{
+        setQues((question) =>
+            question.map((val,index) => {
+                if (index ===quesIndex) {
+                    for (let i = 0; i < val.options.length; i++) {
+                        if(i===optIndex){
+                            val.options[i].isSelected=true;
+                        }
+                        else{
+                            val.options[i].isSelected=false;
+                        }
+                    }
+                }
+                return val;
+            })
+        );
+    }
+    useEffect(()=>{
+        setQues(dummyQuestion)
+    },[])
     return(
        <ScrollView style={styles.container}>
             <View style={{ width: windoWidth ,padding:10,flexDirection:"row",justifyContent:"space-between",alignItems: 'center',alignSelf:"center"}}>
@@ -56,16 +44,18 @@ const QuestionsCards=()=>{
                     <Text style={{color:"white",fontWeight:"bold",fontSize:20,backgroundColor:"rgba(115,105,248,0.85)",padding:5,borderRadius:5,paddingHorizontal:10}}>5</Text>
                 </View>
                 {
-                    ques.map((items,index)=>(
-                        <View key={index} style={styles.quesCard}>
+                    ques.map((items,quesIndex)=>(
+                        <View key={quesIndex} style={styles.quesCard}>
                             <Text style={{fontWeight:"bold",color:"black",fontSize:22,width:'95%',paddingVertical:10}}>
-                                Q{index+1}. {items.quesion}
+                                Q{quesIndex+1}. {items.quesion}
                             </Text>
                             {
                                 items.options.map((value,index)=>(
-                                    <TouchableOpacity style={{width:'95%',padding:2}}>
-                                        <Text key={index} style={{fontWeight:"bold",color:"#2e2e2f",fontSize:20,}}>
-                                            {index+1}. {value}
+                                    <TouchableOpacity key={index}  style={[{width:'95%',padding:2},value.isSelected?styles.selctedOptionLabel:null]}
+                                        onPress={()=>setAnswerAsSelected(quesIndex,index)}
+                                    >
+                                        <Text style={{fontWeight:"bold",color:value.isSelected?'#6f2ff7':"#2e2e2f",fontSize:20}}>
+                                            {index+1}. {value.optionValue}
                                         </Text>
                                     </TouchableOpacity>
                                 ))
@@ -73,6 +63,21 @@ const QuestionsCards=()=>{
                         </View>
                     ))
                 }
+            </View>
+            <View style={{
+                width:windoWidth-30,
+                alignSelf:"center",
+                flexDirection:"row",
+                paddingVertical:10,
+                marginBottom:10,
+                justifyContent:"space-around"
+            }}>
+                <TouchableOpacity style={[styles.btnBody,{backgroundColor:"white"}]}>
+                    <Text style={{color:"#6f2ff7",fontWeight:"bold",fontSize:18}}>Clear</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.btnBody,{backgroundColor:"#6f2ff7"}]}>
+                    <Text style={{color:"white",fontWeight:"bold",fontSize:18}}>Check</Text>
+                </TouchableOpacity>
             </View>
        </ScrollView>
     )
@@ -134,6 +139,20 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         marginVertical:10,
         paddingVertical:20
+    },
+    btnBody:{
+        width:'40%',
+        height:40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius:5,
+        elevation:20
+    },
+    selctedOptionLabel:{
+        color:"rgba(115,105,248,0.85)",
+        backgroundColor:"rgba(198,194,250,0.80)",
+        paddingVertical:6,
+        borderRadius:3,
     }
 })
 export default QuestionsCards;
