@@ -58,7 +58,7 @@ const ReviewQuestions = () => {
                             />
                         </Svg>
                         <View style={styles.button}>
-                            <Text style={{ fontWeight: "bold", fontSize: 25, color: "white" }}>8/10</Text>
+                            <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>8/10</Text>
                         </View>
                     </View>
                     <View style={{ display: "flex", width: windoWidth / 2.5, justifyContent: "center", alignItems: "center" }}><Text style={{ fontSize: 14, color: "white", fontWeight: "800" }}>You have completed 50%</Text></View>
@@ -237,8 +237,9 @@ const styles = StyleSheet.create({
         // alignItems: "flex-start",
         backgroundColor: "yellow ",
         // backgroundColor: "red",
-        borderRadius: 15,
+        borderRadius: 30,
         paddingHorizontal: 10,
+        borderTopLeftRadius: 30,
         paddingVertical: 26,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0
