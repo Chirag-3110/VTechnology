@@ -3,7 +3,29 @@ import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity, 
 import { LineChart, } from "react-native-chart-kit";
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+
 function Home() {
+  const createNewUser = async () => {
+    createUserWithEmailAndPassword(auth, "abhishek.jangid643@gmail.com", "Abhi@123#k")
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user)
+
+      })
+      .catch((error) => {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            console.log("Email Already Exists")
+            break;
+          default:
+            break;
+        }
+      });
+  }
+
   return (
     <ScrollView style={styles.MainScreen}>
       <View style={styles.topMainView}>
@@ -26,7 +48,7 @@ function Home() {
           <View style={styles.TextMain}>
             <Text style={styles.AcitivitiesText}>Acitivities</Text>
             <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-            <TouchableOpacity style={styles.ActivityBtn}>
+            <TouchableOpacity style={styles.ActivityBtn} onPress={createNewUser}>
               <Text style={{ color: 'white' }}>View Acitivities</Text>
             </TouchableOpacity>
           </View>
