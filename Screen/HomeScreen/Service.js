@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { LineChart, } from "react-native-chart-kit";
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 function Service() {
     return (
-        <View style={styles.MainScreen}>
+        <ScrollView style={styles.MainScreen}>
             <View style={styles.topMainView}>
                 <View style={styles.profilePic}>
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/236/236831.png" }} style={styles.ProImg} />
@@ -51,7 +52,59 @@ function Service() {
                 </ScrollView>
 
             </View>
-        </View>
+            <View>
+                <View style={[styles.ViewPlanView, { marginVertical: 20 }]}>
+                    <Text style={styles.PlanText}>Track your Acitivities</Text>
+                </View>
+                <View style={{ marginLeft: 15 }}>
+                    <LineChart
+                        data={{
+                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
+                            datasets: [
+                                {
+                                    data: [
+                                        Math.random() * 100,
+                                        Math.random() * 10,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100
+                                    ]
+                                }
+                            ]
+                        }}
+                        width={Dimensions.get("window").width - 30}
+                        height={220}
+                        yAxisLabel="$"
+                        yAxisSuffix="k"
+                        // yAxisInterval={10} // optional, defaults to 1
+                        chartConfig={{
+                            backgroundColor: "white",
+                            backgroundGradientFrom: "white",
+                            backgroundGradientTo: "white",
+                            labelColor: (opacity = 1) => `rgba(2, 2, 2, ${opacity})`,
+                            color: (opacity = 1) => `rgba(37, 236, 204, ${opacity})`,
+
+                            style: {
+                                borderRadius: 16,
+                            },
+                            propsForDots: {
+                                r: "6",
+                                strokeWidth: "2",
+                                stroke: "#ffa726"
+                            }
+                        }}
+                        bezier
+                        style={{
+                            marginVertical: 8,
+                            borderRadius: 16
+                        }}
+                    />
+                </View>
+            </View>
+            <View style={{ marginTop: 100 }}>
+            </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
