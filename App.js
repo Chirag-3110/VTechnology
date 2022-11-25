@@ -7,15 +7,15 @@ const Stack=createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator
+      <Stack.Navigator
         screenOptions={{
           headerShown:false
         }}
         initialRouteName="MainNav"
       >
         <Stack.Screen name="MainNav" component={MainNavigation} />
-      </Stack.Navigator> */}
-      <Userfile/>
+      </Stack.Navigator>
+      {/* <Userfile/> */}
     </NavigationContainer>
   );
 }
