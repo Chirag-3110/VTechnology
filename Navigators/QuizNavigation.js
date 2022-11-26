@@ -12,9 +12,9 @@ const QuestionNavigation = () => {
                 headerShown: false
             }}
         >
+            <Stack.Screen name="ReviewQuestionsSet" component={ReviewQuestions} />
             <Stack.Screen name="MainQuiz" component={MainQuesionSceen} />
             <Stack.Screen name="QuestionsSet" component={QuestionsCards} />
-            <Stack.Screen name="ReviewQuestionsSet" component={ReviewQuestions} />
         </Stack.Navigator>
     )
 }
