@@ -11,6 +11,7 @@ const QuestionNavigation = () => {
             screenOptions={{
                 headerShown: false
             }}
+            initialRouteName="MainQuiz"
         >
             <Stack.Screen name="ReviewQuestionsSet" component={ReviewQuestions} />
             <Stack.Screen name="MainQuiz" component={MainQuesionSceen} />

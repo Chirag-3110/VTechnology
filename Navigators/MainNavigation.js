@@ -6,15 +6,9 @@ import Home from "../Screen/HomeScreen/Home";
 import Service from "../Screen/HomeScreen/Service";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DashBoard from "../Screen/HomeScreen/DashBoard";
+import MainDashboard from '../Screen/DashBoard/MainDashboard';
 import QuestionNavigation from './QuizNavigation';
 const windwoheight=Dimensions.get('window').height
-function Add(){
-    return(
-        <View style={{flex:1,backgroundColor:"white"}}> 
-        <Text style={{color:"black",flex:1,backgroundColor:"white"}}>Add Page</Text>
-      </View>
-    )
-}
 const Tab=createBottomTabNavigator();
 const MainNavigation=()=>{
     const [defaultColor,setDefaultColor]=useState('#AB47BC');
@@ -65,7 +59,7 @@ const MainNavigation=()=>{
                     }
                 }}
             />
-            <Tab.Screen name="Post" component={Add}
+            <Tab.Screen name="DashBoard" component={MainDashboard}
                 options={{
                     tabBarIcon:({focused})=>(
                         <View

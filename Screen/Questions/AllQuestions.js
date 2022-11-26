@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {View,Text,StyleSheet,ScrollView,Dimensions,Image,TouchableOpacity,ActivityIndicator} from 'react-native';
+import {View,Text,StyleSheet,ScrollView,Dimensions,Image,TouchableOpacity,TextInput} from 'react-native';
 import dummyQuestion from '../../Data/DummyQuestionsData';
 const windoWidth=Dimensions.get('window').width;
 const QuestionsCards=()=>{
@@ -60,6 +60,11 @@ const QuestionsCards=()=>{
                                     </TouchableOpacity>
                                 ))
                             }
+                            <TextInput
+                                placeholder='Enter Yor Answer'
+                                placeholderTextColor={"black"}
+                                style={styles.inputField}
+                            />
                         </View>
                     ))
                 }
@@ -153,6 +158,16 @@ const styles=StyleSheet.create({
         backgroundColor:"rgba(198,194,250,0.80)",
         paddingVertical:6,
         borderRadius:3,
+    },
+    inputField:{
+        backgroundColor:"white",
+        width:'98%',
+        height:50,
+        padding:10,
+        marginTop:10,
+        borderRadius:5,
+        borderColor:"rgba(115,105,248,0.85)",
+        borderWidth:2
     }
 })
 export default QuestionsCards;
