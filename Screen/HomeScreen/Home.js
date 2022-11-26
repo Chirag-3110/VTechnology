@@ -1,55 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, Animated, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../../firebase";
-
 function Home() {
-  const [showModel, setShowModel] = useState(false)
-  const position = new Animated.ValueXY({ x: 0, y: windoHeight });
-  const position1 = new Animated.ValueXY({ x: 0, y: 0 });
-
-
-  const showPopUp = () => {
-
-    setShowModel(true),
-      Animated.timing(position, {
-        // toValue: { x: 0, y: -windowHeight/80 },
-        duration: 1000,
-        useNativeDriver: true
-      }).start();
-  }
-  const showPopUpfalse = () => {
-
-    setShowModel(false),
-      Animated.timing(position1, {
-        // toValue: { x: 0, y: -windowHeight/80 },
-        duration: 1000,
-        useNativeDriver: true
-      }).start();
-  }
-
-  const createNewUser = async () => {
-    createUserWithEmailAndPassword(auth, "abhishek.jangid643@gmail.com", "Abhi@123#k")
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user)
-
-      })
-      .catch((error) => {
-        switch (error.code) {
-          case "auth/email-already-in-use":
-            console.log("Email Already Exists")
-            break;
-          default:
-            break;
-        }
-      });
-  }
-
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       <ScrollView style={styles.MainScreen}>
@@ -73,7 +28,7 @@ function Home() {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn} onPress={showPopUp}>
+              <TouchableOpacity style={styles.ActivityBtn} onPress={() => setModalVisible(true)}>
                 <Text style={{ color: 'white' }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>
@@ -152,43 +107,39 @@ function Home() {
         <View style={{ marginTop: 100 }}>
         </View>
       </ScrollView>
-      {
-        showModel ?
-          <Animated.View style={[styles.ModelView,
-          {
-            transform: [
-              { translateX: position.x },
-              { translateY: position.y }
-            ]
-          }
-          ]}>
-            <View style={styles.ModelTopView}>
-              <View style={styles.ContentView}>
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <View style={styles.ModelTopView}>
+                <View style={styles.ContentView}>
 
-                <Text style={styles.ModelTopViewText}>Get your position in digital marketing</Text>
+                  <Text style={styles.ModelTopViewText}>Get your position in digital marketing</Text>
+                </View>
+                <TouchableOpacity style={[styles.ContentView, { justifyContent: "flex-end", alignItems: "flex-end" }]} onPress={() => setModalVisible(!modalVisible)}>
+                  <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/656/656857.png" }} style={[styles.ProImg, { width: 20, height: 20, marginRight: 30 }]} />
+
+                </TouchableOpacity>
               </View>
-              <View style={[styles.ContentView, { justifyContent: "flex-end", alignItems: "flex-end" }]}>
-                <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/4340/4340207.png" }} style={styles.ProImg} />
-
+              <View style={styles.details}>
+                <Text style={styles.detailsText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</Text>
               </View>
+              <TouchableOpacity style={[styles.Modelviewbtn]} onPress={() => { setShowModel(false) }}>
+                <Text style={styles.ModelviewTextbtn}>Enroll Now</Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.PriceView}>
-              <Text style={styles.ModelTopTextPrice}>Price:$400</Text>
-            </View>
-            <View style={styles.details}>
-              <Text style={styles.detailsText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</Text>
-            </View>
-            <TouchableOpacity style={[styles.Modelviewbtn]} onPress={() => { setShowModel(false) }}>
-              <Text style={styles.ModelviewTextbtn}>Enroll Now</Text>
-            </TouchableOpacity>
-          </Animated.View>
-
-          : null
-      }
-
-
+          </View>
+        </Modal>
+      </View>
     </>
-
   )
 }
 const styles = StyleSheet.create({
@@ -298,7 +249,7 @@ const styles = StyleSheet.create({
     height: 120
   },
   ModelView: {
-    position: 'absolute',
+    // position: 'absolute',
     zIndex: 1,
     backgroundColor: "white",
     width: windoWidth,
@@ -332,19 +283,22 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontSize: 20,
     color: "black",
-    fontWeight: "800"
+    fontWeight: "800",
+    borderWidth: 1,
   },
   PriceView: {
     marginHorizontal: 25
   },
   details: {
-    marginHorizontal: 15,
-    fontWeight: "700"
+    marginHorizontal: 0,
+    fontWeight: "700",
+    width: windoWidth / 1.2
   },
   Modelviewbtn: {
+    width: windoWidth / 1.3,
     borderWidth: 1,
     backgroundColor: "black",
-    marginHorizontal: 30,
+    marginHorizontal: 10,
     marginVertical: 20,
     borderRadius: 20,
     paddingVertical: 10,
@@ -355,6 +309,57 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "700"
+  },
+  detailsText: {
+    fontWeight: "700"
+  },
+
+  //modelView
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 0,
+  },
+  modalView: {
+    width: windoWidth,
+    height: windoHeight / 2.3,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    borderRadius: 20,
+    borderTopLeftRadius: 70,
+    borderTopRightRadius: 70
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   }
 
 });
