@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Dimensions, Image, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 // import SignIn from '../../../assests/SignIn.jpeg';
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../../firebase";
 
 const ForgotPass = () => {
+    const [email, setemail] = useState("")
+    const ResetLink = () => {
+        console.log(email)
+        console.log("hello")
+        try {
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+
+                    console.log("link sent successfully")
+                    setemail("")
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode)
+                    console.log(errorMessage)
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <>
             <ImageBackground style={styles.container}
@@ -20,9 +43,10 @@ const ForgotPass = () => {
                             placeholder="Email"
                             placeholderTextColor='black'
                             style={styles.customInput}
+                            onChangeText={value => { setemail(value) }}
                         />
                     </View>
-                    <TouchableOpacity style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.btnContainer} onPress={ResetLink}>
                         <Text style={styles.btnText}>
                             Send link
                         </Text>

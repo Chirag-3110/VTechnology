@@ -1,55 +1,106 @@
-import React from "react";
-import {View,Text, StyleSheet,TextInput, Dimensions, TouchableOpacity, ImageBackground} from 'react-native';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from "../../../components/AnimatedButton";
-const windowWidth=Dimensions.get('window').width;
-const windowheight=Dimensions.get('window').height
-const SignUp=({navigation})=>{
-   return(
-    <ImageBackground style={styles.container}
-        source={require('../../../assests/nwe.png')}
-    >
-        <View>
+const windowWidth = Dimensions.get('window').width;
+const windowheight = Dimensions.get('window').height
+import EmailValidate from "../../../Validate/EmailValidation"
+import PasswordValidate from '../../../Validate/PasswordValidation';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../../firebase";
+const SignUp = ({ navigation }) => {
+    const [email, setemail] = useState('')
+    const [password, setpassword] = useState('');
+    const [Cpassword, setCpassword] = useState('');
+
+    const validateUser = () => {
+        // console.log("hii")
+        // console.log(email)
+        try {
+            if (userName === "")
+                throw "Please enter UserName";
+            if (email === "")
+                throw "Please enter Email";
+            if (password === "")
+                throw "Please enter Password";
+            if (Cpassword === "")
+                throw "Please enter confirm password"
+            if (!EmailValidate(email)) {
+                throw "Please enter a valid Email"
+            }
+            if (!PasswordValidate(password)) {
+                throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
+            }
+            createNewUser();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const createNewUser = async () => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        console.log("Email Already Exists")
+                        break;
+                    default:
+                        break;
+                }
+            });
+    }
+    return (
+        <ImageBackground style={styles.container}
+            source={require('../../../assests/nwe.png')}
+        >
             <View>
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.MainText}>Sign Up</Text>
-                    <Text style={styles.subText}>Create an account,it's free</Text>
-                </View>
                 <View>
-                    <TextInput
-                        placeholder="Email"
-                        placeholderTextColor='black'
-                        style={styles.customInput}
-                    />
-                    <TextInput
-                        placeholder="Password"
-                        placeholderTextColor='black'
-                        style={styles.customInput}
-                    />
-                    <TextInput
-                        placeholder="Confirm Password"
-                        placeholderTextColor='black'
-                        style={styles.customInput}
-                    />
-                </View>
-                {/* <TouchableOpacity style={styles.btnContainer}
+                    <View style={{ alignItems: "center" }}>
+                        <Text style={styles.MainText}>Sign Up</Text>
+                        <Text style={styles.subText}>Create an account,it's free</Text>
+                    </View>
+                    <View>
+                        <TextInput
+                            placeholder="Email"
+                            placeholderTextColor='black'
+                            style={styles.customInput}
+                            onChangeText={value => { setemail(value) }}
+                        />
+                        <TextInput
+                            placeholder="Password"
+                            placeholderTextColor='black'
+                            style={styles.customInput}
+                            onChangeText={value => { setpassword(value) }}
+                        />
+                        <TextInput
+                            placeholder="Confirm Password"
+                            placeholderTextColor='black'
+                            style={styles.customInput}
+                            onChangeText={value => { setCpassword(value) }}
+                        />
+                    </View>
+                    {/* <TouchableOpacity style={styles.btnContainer}
                     onPress={()=>navigation.navigate("confimSignup")}
                 >
                     <Text style={styles.btnText}>
                         Sign Up
                     </Text>
                 </TouchableOpacity> */}
-                <CustomButton
-                    title="Sign Up"
-                    onpress={()=>navigation.navigate("confimSignup")}
-                />
+                    <CustomButton
+                        title="Sign Up"
+                        onpress={() => { validateUser }}
+                    />
+                </View>
             </View>
-        </View>
-        <View style={styles.bottomText}>
-            <Text style={styles.subText}>Already have an account?</Text>
-            <Text style={styles.subText} onPress={()=>navigation.navigate("login")}>Log In</Text>
-        </View>
-    </ImageBackground>
-   ) 
+            <View style={styles.bottomText}>
+                <Text style={styles.subText}>Already have an account?</Text>
+                <Text style={styles.subText} onPress={() => navigation.navigate("login")}>Log In</Text>
+            </View>
+        </ImageBackground>
+    )
 }
 const styles = StyleSheet.create({
     container: {
@@ -92,11 +143,11 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor:"#10FFE5",
-        borderRadius:200,
-        borderWidth:2,
-        borderColor:"#66EECD",
-        marginTop:windowheight/20,
+        backgroundColor: "#10FFE5",
+        borderRadius: 200,
+        borderWidth: 2,
+        borderColor: "#66EECD",
+        marginTop: windowheight / 20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -111,11 +162,11 @@ const styles = StyleSheet.create({
         color: "#535353",
         fontSize: 18,
     },
-    bottomText:{
-        flexDirection:"row",
-        position:'absolute',
-        bottom:windowheight/40,
-        borderColor:"#BDFAFA",
+    bottomText: {
+        flexDirection: "row",
+        position: 'absolute',
+        bottom: windowheight / 40,
+        borderColor: "#BDFAFA",
     }
 })
 export default SignUp;
