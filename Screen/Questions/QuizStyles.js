@@ -90,6 +90,6 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         borderRadius:4,
         color:"black"
-    }
+    },
 })
 export default styles;

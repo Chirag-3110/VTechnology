@@ -1,5 +1,5 @@
 import react, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Animated, Image, ImageBackground } from 'react-native';
 const { width, height } = Dimensions.get('window');
 const MainDashboard = () => {
     const barWidth = useRef(new Animated.Value(0)).current;
@@ -7,7 +7,7 @@ const MainDashboard = () => {
         Animated.spring(barWidth, {
             toValue: width / 2,
             bounciness: 80,
-            speed: 0.5,
+            speed: 1,
             useNativeDriver: false
         }).start();
     }, [])
@@ -59,6 +59,18 @@ const MainDashboard = () => {
     }
     return (
         <View style={styles.container}>
+            <ImageBackground 
+                style={styles.titleMainImage}
+                source={{uri:"https://img.freepik.com/free-photo/wallpaper-background-several-transparent-circles-small_58702-7142.jpg?size=626&ext=jpg"}}
+            >
+                <View style={styles.mainCardTitle}>
+                    <Image
+                        style={{width:40,height:40,borderRadius:20,resizeMode:"contain",marginLeft:20}}
+                        source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcCXNh9OsJ5FQZPljU_-rLiND2_9XogYnyxQ&usqp=CAU"}}
+                    />
+                    <Text style={{color:"black",fontWeight:"bold",fontSize:20,marginLeft:10}}>Hello , Chirag</Text>
+                </View>
+            </ImageBackground>
             <View>
                 <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, paddingHorizontal: 10, marginTop: 20 }}>
                     Daily Progress
@@ -89,11 +101,11 @@ const MainDashboard = () => {
                     </View>
                 </View>
             </View>
-            <View>
+            <View style={{height: width/1.5 ,justifyContent:"center",alignSelf: 'center',}} >
                 <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, width: width, paddingHorizontal: 30, marginTop: 20 }}>
                     All You Previous Quiz
                 </Text>
-                <ScrollView style={styles.itemsContainer} horizontal={true} zIndex={-5} decelerationRate={0}>
+                <ScrollView style={styles.itemsContainer} showsHorizontalScrollIndicator={false} horizontal={true} zIndex={-5} decelerationRate={0}>
                     <View style={{ flexDirection: "row", padding: 10 }}>
                         {
                             quizdata.map((item, index) => (
@@ -119,6 +131,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "white",
     },
+    titleMainImage:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf:"center",
+        width:'100%',
+        height:80,
+        paddingVertical:15,
+        borderRadius:10
+    },
     previousQuizCard: {
         alignItems: "center",
         justifyContent: "center",
@@ -134,7 +155,7 @@ const styles = StyleSheet.create({
     },
     itemsContainer: {
         marginTop: 10,
-        marginHorizontal: 10,
+        marginHorizontal: 10,         
     },
     progressOuter: {
         backgroundColor: "rgba(198,194,250,1)",
@@ -152,6 +173,18 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 5,
         borderBottomLeftRadius: 5,
         elevation: 15,
-    }
+    },
+    mainCardTitle:{
+        color:"rgba(115,105,248,0.85)",
+        width:'65%',
+        backgroundColor:"rgba(198,194,250,0.72)",
+        padding:5,
+        borderRadius:10,
+        marginVertical:5,
+        flexDirection: 'row',
+        alignItems:"center",
+        // justifyContent:"center",
+        marginHorizontal:10
+    },
 })
 export default MainDashboard;
