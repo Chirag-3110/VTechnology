@@ -5,6 +5,8 @@ const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 function Home() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible1, setModalVisible1] = useState(false);
+
   return (
     <>
       <ScrollView style={styles.MainScreen}>
@@ -132,13 +134,59 @@ function Home() {
               <View style={styles.details}>
                 <Text style={styles.detailsText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</Text>
               </View>
-              <TouchableOpacity style={[styles.Modelviewbtn]} onPress={() => { setShowModel(false) }}>
+              <TouchableOpacity style={[styles.Modelviewbtn]}>
                 <Text style={styles.ModelviewTextbtn}>Enroll Now</Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
       </View>
+      <TouchableOpacity style={styles.NotifView} onPress={() => setModalVisible1(!modalVisible1)}>
+
+        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2546/2546749.png" }} style={styles.NotifImage} />
+      </TouchableOpacity>
+      <View style={styles.centeredView1}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible1}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible1(!modalVisible1);
+          }}
+        >
+          <View style={styles.centeredView1}>
+            <View style={styles.modalView1}>
+              <View style={styles.ModelTopView1}>
+                <View style={styles.ContentView1}>
+
+                  <Text style={styles.ModelTopViewText1}>Feedback</Text>
+                </View>
+                <TouchableOpacity style={[styles.ContentView1, { justifyContent: "flex-end", alignItems: "flex-end" }]} onPress={() => setModalVisible1(!modalVisible1)}>
+                  <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/656/656857.png" }} style={[styles.ProImg, { width: 20, height: 20, marginRight: 30 }]} />
+                </TouchableOpacity>
+              </View>
+              <ScrollView alwaysBounceVertical={true} showsVerticalScrollIndicator={false}>
+
+                <View style={styles.details1}>
+                  <View style={styles.NotifViewActivity}>
+                    <Text style={styles.NotifViewActivityText}>Activity name : DM Quiz</Text>
+                  </View>
+                  <Text style={styles.detailsText1}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</Text>
+                </View>
+                <View style={styles.details1}>
+                  <View style={styles.NotifViewActivity}>
+                    <Text style={styles.NotifViewActivityText}>Activity name : DM Quiz</Text>
+                  </View>
+                  <Text style={styles.detailsText1}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</Text>
+                </View>
+              </ScrollView>
+            </View>
+          </View>
+        </Modal>
+      </View>
+
+
     </>
   )
 }
@@ -360,6 +408,113 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
+  },
+
+  // Image for feedback
+  NotifView: {
+    position: "absolute",
+    right: 25,
+    bottom: windoHeight / 7,
+    borderWidth: 2,
+    borderColor: "yellow",
+    borderRadius: 30,
+    backgroundColor: "#0F69F4"
+  },
+  NotifImage: {
+    width: 50,
+    height: 50
+  },
+
+
+
+  // Model View for feedback
+  centeredView1: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 0,
+  },
+  modalView1: {
+    width: windoWidth,
+    height: windoHeight / 1.5,
+    backgroundColor: "white",
+    borderRadius: 20,
+    // padding: 35,
+    paddingVertical: 30,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    borderRadius: 20,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40
+  },
+  button1: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen1: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose1: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle1: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText1: {
+    marginBottom: 15,
+    textAlign: "center"
+  },
+  detailsText1: {
+    color: "white"
+  },
+  ModelTopView1: {
+    marginVertical: 15,
+    width: windoWidth,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  ModelTopViewText1: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "black"
+  },
+  ContentView1: {
+    // borderWidth: 1,
+    width: windoWidth / 2.3
+  },
+  ModelTopTextPrice1: {
+    marginVertical: 10,
+    fontSize: 20,
+    color: "black",
+    fontWeight: "800",
+    borderWidth: 1,
+  },
+  details1: {
+    marginHorizontal: 0,
+    fontWeight: "700",
+    width: windoWidth / 1.2,
+    backgroundColor: "rgba(115,105,248,0.85)",
+    padding: 20,
+    borderRadius: 10,
+    marginVertical: 10
+  },
+  NotifViewActivityText: {
+    fontSize: 20,
+    color: "white",
+    marginVertical: 10
   }
 
 });
