@@ -59,22 +59,61 @@ const MainDashboard = () => {
     }
     return (
         <View style={styles.container}>
-            <ImageBackground 
-                style={styles.titleMainImage}
-                source={{uri:"https://img.freepik.com/free-photo/wallpaper-background-several-transparent-circles-small_58702-7142.jpg?size=626&ext=jpg"}}
-            >
-                <View style={styles.mainCardTitle}>
+            <View style={{width:width,marginVertical:20}}>
+                <View 
+                    style={styles.titleMainImage}
+                >
                     <Image
                         style={{width:40,height:40,borderRadius:20,resizeMode:"contain",marginLeft:20}}
                         source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcCXNh9OsJ5FQZPljU_-rLiND2_9XogYnyxQ&usqp=CAU"}}
                     />
-                    <Text style={{color:"black",fontWeight:"bold",fontSize:20,marginLeft:10}}>Hello , Chirag</Text>
+                    <Text style={{color:"black",fontWeight:"bold",fontSize:20,marginLeft:10}}>Hello, User</Text>
                 </View>
-            </ImageBackground>
+                <TouchableOpacity style={{
+                    width:width/3,
+                    height:40,
+                    backgroundColor:"transparent",
+                    alignItems:"center",
+                    marginLeft:20,
+                    borderRadius:50,
+                    borderWidth:2,
+                    borderColor:"#001FFF",
+                    justifyContent: 'center',
+                }}>
+                    <Text style={{
+                        fontWeight:"bold",
+                        fontSize:13,
+                        color:"#001FFF"
+                    }}>
+                        History
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            <View style={{width:'100%',flexDirection: 'row',justifyContent: 'space-between',paddingHorizontal:10,alignItems: 'center',}}>
+                <View style={{flexDirection:"row",alignItems: 'center',}}>
+                    <Image
+                        style={{width:40,height:40,borderRadius:20,resizeMode:"contain",marginLeft:10}}
+                        source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROezRXsfr37yCx5KPjg8vuEzjP9d_GiZRUHQ&usqp=CAU"}}
+                    />
+                    <View style={{marginLeft:10}}>
+                        <Text style={{color:"black",fontWeight:"bold",fontSize:25}}>25</Text>
+                        <Text style={{color:"black",fontWeight:"700",fontSize:15}}>Punch Points</Text>
+                    </View>
+                </View>
+                <TouchableOpacity style={styles.btnContainer}>
+                    <Text style={{
+                        fontWeight:"bold",
+                        fontSize:15,
+                        color:"red"
+                    }}>
+                        REWARDS
+                    </Text>
+                </TouchableOpacity>
+            </View>
             <View>
-                <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, paddingHorizontal: 10, marginTop: 20 }}>
+                {/* <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, paddingHorizontal: 10, marginTop: 20 }}>
                     Daily Progress
-                </Text>
+                </Text> */}
                 <View style={{ marginTop: 20, marginHorizontal: 10 }}>
                     <View style={styles.progressOuter}>
                         <Animated.View
@@ -103,13 +142,13 @@ const MainDashboard = () => {
             </View>
             <View style={{height: width/1.5 ,justifyContent:"center",alignSelf: 'center',}} >
                 <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, width: width, paddingHorizontal: 30, marginTop: 20 }}>
-                    All You Previous Quiz
+                    Redeem your Punch Points
                 </Text>
                 <ScrollView style={styles.itemsContainer} showsHorizontalScrollIndicator={false} horizontal={true} zIndex={-5} decelerationRate={0}>
                     <View style={{ flexDirection: "row", padding: 10 }}>
                         {
                             quizdata.map((item, index) => (
-                                <TouchableOpacity key={index} style={[styles.previousQuizCard, item.isSelect ? { backgroundColor: "#93A0FF" } : { backgroundColor: "white" }]} onPress={() => seletedQuiz(item)} >
+                                <TouchableOpacity key={index} style={[styles.previousQuizCard, item.isSelect ? { backgroundColor: "#001FFF" } : { backgroundColor: "white" }]} onPress={() => seletedQuiz(item)} >
                                     <Text style={{ color: item.isSelect ? "white" : "black", fontWeight: "bold", fontSize: 22, marginHorizontal: 5 }}>
                                         {item.title}
                                     </Text>
@@ -183,8 +222,18 @@ const styles = StyleSheet.create({
         marginVertical:5,
         flexDirection: 'row',
         alignItems:"center",
-        // justifyContent:"center",
         marginHorizontal:10
     },
+    btnContainer:{
+        width:width/3,
+        height:40,
+        backgroundColor:"transparent",
+        alignItems:"center",
+        // paddingVertical:8,
+        borderRadius:50,
+        borderWidth:2,
+        borderColor:"red",
+        justifyContent: 'center',
+    }
 })
 export default MainDashboard;

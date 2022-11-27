@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     MainView: {
         width: windoWidth,
         height: windoHeight,
-        backgroundColor: "rgba(115,105,248,0.85)"
+        backgroundColor: "white"
     },
     TopView: {
         display: "flex",
