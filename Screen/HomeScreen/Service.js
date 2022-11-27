@@ -1,218 +1,91 @@
 import React from 'react'
 import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
-import { LineChart, } from "react-native-chart-kit";
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 function Service() {
     return (
-        <ScrollView style={styles.MainScreen}>
-            <View style={styles.topMainView}>
-                <View style={styles.profilePic}>
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/236/236831.png" }} style={styles.ProImg} />
-                </View>
-                <View style={styles.TopText}>
-                    <Text>Hello World</Text>
-                    <Text style={styles.TopDate}>Thrusday ,08 July</Text>
-                </View>
-                <View>
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/1182/1182718.png" }} style={styles.ProImg} />
-                </View>
+        <View style={styles.MainView}>
+            <View style={styles.TopView}>
+                <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/5708/5708793.png" }} style={styles.OptionImage} />
+                <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/850/850960.png" }} style={styles.OptionImage} />
             </View>
-            <View style={{ marginVertical: 15 }}>
-                <View style={styles.CourseView}>
-                    <View style={{ width: 130 }}>
-                        <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/male-character-sitting-on-chair-and-reading-a-book-4634471-3855676.png" }} style={styles.MainImg} />
-                    </View>
-                    <View style={styles.TextMain}>
-                        <Text style={styles.AcitivitiesText}>Acitivities</Text>
-                        <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-                        <TouchableOpacity style={styles.ActivityBtn}>
-                            <Text style={{ color: 'white' }}>View Acitivities</Text>
-                        </TouchableOpacity>
-                    </View>
+            <View style={styles.CourseImageView}>
+                <View style={styles.Course}>
+                    <Image source={{ uri: "https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2020/06/05174400/Types-of-Digital-Marketing.png" }} style={styles.CourseImage} />
                 </View>
+                <Text style={styles.CourseNameText}>Digital Marketing</Text>
             </View>
-            <View style={styles.MyPlanView}>
-                <View style={styles.ViewPlanView}>
-                    <Text style={styles.PlanText}>View Plan</Text>
-                </View>
-                <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-                    <View style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]}>
-                        <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/social-media-app-5473289-4589249.png" }} style={[styles.ScrollImg, {}]} />
-                        <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-                    </View>
-                    <View style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]}>
-                        <Image source={{ uri: "https://img.pikbest.com/png-images/20210414/social-media-marketing-illustration-red_5845297.png!bw700" }} style={[styles.ScrollImg, {}]} />
-                        <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-                    </View>
-                    <View style={styles.Scrollview}>
-                        <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/new-social-media-notification-5473287-4589247.png" }} style={[styles.ScrollImg, {}]} />
-                        <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-                    </View>
-                </ScrollView>
-
+            <View style={[styles.MiddleView]}>
+                <TouchableOpacity style={[styles.btnCourse, { borderTopRightRadius: 0, borderBottomRightRadius: 0, backgroundColor: "rgba(115,105,248,0.85)", borderRightWidth: 0, borderColor: "rgba(115,105,248,0.85)", borderWidth: 2 }]}>
+                    <Text style={[styles.TextCourse, { color: "white" }]}>Questions</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.btnCourse, { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderColor: "rgba(115,105,248,0.85)", borderWidth: 2 }]}>
+                    <Text style={[styles.TextCourse]}>Feedback</Text>
+                </TouchableOpacity>
             </View>
-            <View>
-                <View style={[styles.ViewPlanView, { marginVertical: 20 }]}>
-                    <Text style={styles.PlanText}>Track your Acitivities</Text>
-                </View>
-                <View style={{ marginLeft: 15 }}>
-                    <LineChart
-                        data={{
-                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
-                            datasets: [
-                                {
-                                    data: [
-                                        Math.random() * 100,
-                                        Math.random() * 10,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100
-                                    ]
-                                }
-                            ]
-                        }}
-                        width={Dimensions.get("window").width - 30}
-                        height={220}
-                        yAxisLabel="$"
-                        yAxisSuffix="k"
-                        // yAxisInterval={10} // optional, defaults to 1
-                        chartConfig={{
-                            backgroundColor: "white",
-                            backgroundGradientFrom: "white",
-                            backgroundGradientTo: "white",
-                            labelColor: (opacity = 1) => `rgba(2, 2, 2, ${opacity})`,
-                            color: (opacity = 1) => `rgba(37, 236, 204, ${opacity})`,
-
-                            style: {
-                                borderRadius: 16,
-                            },
-                            propsForDots: {
-                                r: "6",
-                                strokeWidth: "2",
-                                stroke: "#ffa726"
-                            }
-                        }}
-                        bezier
-                        style={{
-                            marginVertical: 8,
-                            borderRadius: 16
-                        }}
-                    />
-                </View>
-            </View>
-            <View style={{ marginTop: 100 }}>
-            </View>
-        </ScrollView>
+        </View>
     )
 }
 const styles = StyleSheet.create({
-    MainScreen: {
-        height: windoHeight,
+    MainView: {
         width: windoWidth,
+        height: windoHeight,
         backgroundColor: "white"
     },
-    topMainView: {
-        // borderWidth: 1,
-        width: windoWidth,
-        display: "flex",
-        flexDirection: 'row',
-        justifyContent: "flex-start",
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        alignContent: "center",
-        alignItems: "center",
-        marginVertical: 10,
-        marginLeft: 10
-    },
-    ProImg: {
-        width: 37,
-        height: 37
-    },
-    profilePic: {
-        width: windoWidth / 7
-    },
-    TopText: {
-        width: windoWidth / 1.56
-    },
-    TopDate: {
-        fontWeight: "800",
-        fontSize: 18,
-        color: "black"
-    },
-    MainImg: {
-        width: 100,
-        height: 150,
-    },
-    CourseView: {
-        // borderWidth: 1,
-        backgroundColor: "#FFE7DF",
-        marginHorizontal: 20,
-        borderRadius: 14,
-        paddingVertical: 10,
+    TopView: {
         display: "flex",
         flexDirection: "row",
-        shadowColor: 'red',
+        justifyContent: "space-between",
+        marginHorizontal: 13,
+        marginVertical: 15
+    },
+    OptionImage: {
+        width: 33,
+        height: 33
+    },
+    CourseImageView: {
+        height: windoHeight / 3.5,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    CourseImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+    },
+    Course: {
+        borderRadius: 30,
+        shadowColor: "rgba(115,105,248,0.9)",
         shadowOffset: {
             width: 10,
             height: -16,
         },
         shadowOpacity: 0.58,
-        shadowRadius: 700,
+        shadowRadius: 900,
         elevation: 20,
-        //   elevation: 25,
     },
-    TextMain: {
-        // borderWidth: 1,
-        width: windoWidth / 2.2,
-        // justifyContent: "center"
-        alignItems: "center",
-        marginTop: 10
-    },
-    AcitivitiesText: {
-
-        fontSize: 28,
-        color: "black",
-        fontWeight: "800"
-    },
-    AcitivitiesTextanother: {
-        fontSize: 14,
-        color: "grey",
-        marginVertical: 10
-    },
-    ActivityBtn: {
-        marginVertical: 10,
-        backgroundColor: "#FC6736",
-        borderRadius: 5,
-        padding: 6,
-        paddingHorizontal: 8
-    },
-    MyPlanView: {
-        // borderWidth: 1,
-        marginVertical: 15
-    },
-    ViewPlanView: {
-        marginHorizontal: 25,
-        marginTop: 20
-    },
-    PlanText: {
-        fontSize: 20,
+    CourseNameText: {
+        fontSize: 19,
         fontWeight: "800",
+        marginVertical: 10,
         color: "black"
     },
-    Scrollview: {
-        backgroundColor: "#FFE7DF",
-        width: windoWidth / 2.5,
-        borderRadius: 14,
-        paddingVertical: 10,
-        marginHorizontal: 10,
-        marginVertical: 10,
+    btnCourse: {
+        borderWidth: 1,
+        padding: 15,
+        borderRadius: 20,
+        width: windoWidth / 2.2,
+        alignItems: "center"
     },
-    ScrollImg: {
-        width: windoWidth / 2.6,
-        height: 120
+    MiddleView: {
+        display: "flex",
+        flexDirection: "row",
+        marginHorizontal: 15
+    },
+    TextCourse: {
+        fontSize: 15,
+        fontWeight: "700",
+        color: "black"
     }
-
 });
 export default Service
