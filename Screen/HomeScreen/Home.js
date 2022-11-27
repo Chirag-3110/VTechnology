@@ -30,7 +30,7 @@ function Home() {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn} onPress={() => setModalVisible(true)}>
+              <TouchableOpacity style={styles.ActivityBtn}>
                 <Text style={{ color: 'white' }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>
@@ -109,38 +109,6 @@ function Home() {
         <View style={{ marginTop: 100 }}>
         </View>
       </ScrollView>
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <View style={styles.ModelTopView}>
-                <View style={styles.ContentView}>
-
-                  <Text style={styles.ModelTopViewText}>Get your position in digital marketing</Text>
-                </View>
-                <TouchableOpacity style={[styles.ContentView, { justifyContent: "flex-end", alignItems: "flex-end" }]} onPress={() => setModalVisible(!modalVisible)}>
-                  <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/656/656857.png" }} style={[styles.ProImg, { width: 20, height: 20, marginRight: 30 }]} />
-
-                </TouchableOpacity>
-              </View>
-              <View style={styles.details}>
-                <Text style={styles.detailsText}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</Text>
-              </View>
-              <TouchableOpacity style={[styles.Modelviewbtn]}>
-                <Text style={styles.ModelviewTextbtn}>Enroll Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-      </View>
       <TouchableOpacity style={styles.NotifView} onPress={() => setModalVisible1(!modalVisible1)}>
 
         <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2546/2546749.png" }} style={styles.NotifImage} />
