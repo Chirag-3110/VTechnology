@@ -1,5 +1,5 @@
-import { StyleSheet,Dimensions } from "react-native";
-const windoWidth=Dimensions.get('window').width;
+import { StyleSheet, Dimensions } from "react-native";
+const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     MainView: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         marginHorizontal: 15,
-        elevation:20
+        elevation: 20
     },
     TextCourse: {
         fontSize: 15,
@@ -65,87 +65,88 @@ const styles = StyleSheet.create({
     },
 
 
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
         // backgroundColor:"rgba(115,105,248,0.85)",
-        marginBottom:windoHeight/10
+        marginBottom: windoHeight / 10
     },
     MainImg: {
         width: 150,
         height: 200,
     },
-    Quiztitle:{
-        width:windoWidth-30,
-        padding:15,
-        borderRadius:10,
-        backgroundColor:"white",
-        alignSelf:"center",
-        elevation:50,
-        shadowColor:"#1000ff",
-        marginBottom:20,
-        shadowOffset:{
-            width:0,
-            height:-20
-        }
+    Quiztitle: {
+        width: windoWidth - 30,
+        padding: 15,
+        borderRadius: 10,
+        backgroundColor: "white",
+        alignSelf: "center",
+        elevation: 50,
+        shadowColor: "#1000ff",
+        marginBottom: 20,
+        shadowOffset: {
+            width: 0,
+            height: -20
+        },
+        marginVertical: 15
     },
-    quiCardTitle:{
-        color:"rgba(115,105,248,0.85)",
-        fontWeight:"bold",
-        fontSize:16,
-        width:'70%',
-        backgroundColor:"rgba(198,194,250,0.40)",
-        textAlign:"center",
-        padding:10,
-        borderRadius:10,
-        marginVertical:5,
+    quiCardTitle: {
+        color: "rgba(115,105,248,0.85)",
+        fontWeight: "bold",
+        fontSize: 16,
+        width: '70%',
+        backgroundColor: "rgba(198,194,250,0.40)",
+        textAlign: "center",
+        padding: 10,
+        borderRadius: 10,
+        marginVertical: 5,
     },
-    quizCardSubText:{
-        color:"#2e2e2f",
-        fontWeight:"bold",
-        fontSize:20,
-        paddingHorizontal:10,
-        paddingVertical:5,
+    quizCardSubText: {
+        color: "#2e2e2f",
+        fontWeight: "bold",
+        fontSize: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
     },
-    quizCardMiniText:{
-        color:"#7f7f7f",
-        fontWeight:"800",
-        fontSize:15,
-        paddingHorizontal:10,
-        paddingVertical:5,
-        width:'90%'
+    quizCardMiniText: {
+        color: "#7f7f7f",
+        fontWeight: "800",
+        fontSize: 15,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        width: '90%'
     },
-    quesCard:{
-        backgroundColor:"red",
-        padding:10,
-        backgroundColor:"rgba(198,194,250,0.40)",
-        borderRadius:10,
+    quesCard: {
+        backgroundColor: "red",
+        padding: 10,
+        backgroundColor: "rgba(198,194,250,0.40)",
+        borderRadius: 10,
         alignItems: 'center',
-        marginVertical:10,
-        paddingVertical:20
+        marginVertical: 10,
+        paddingVertical: 20
     },
-    btnBody:{
-        width:'40%',
-        height:40,
+    btnBody: {
+        width: '40%',
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius:5,
-        elevation:20
+        borderRadius: 5,
+        elevation: 20
     },
-    selctedOptionLabel:{
-        color:"rgba(115,105,248,0.85)",
-        backgroundColor:"rgba(198,194,250,0.80)",
-        paddingVertical:6,
-        borderRadius:3,
+    selctedOptionLabel: {
+        color: "rgba(115,105,248,0.85)",
+        backgroundColor: "rgba(198,194,250,0.80)",
+        paddingVertical: 6,
+        borderRadius: 3,
     },
-    inputField:{
-        backgroundColor:"white",
-        width:'98%',
-        height:50,
-        padding:10,
-        marginTop:10,
-        borderRadius:5,
-        borderColor:"rgba(115,105,248,0.85)",
-        borderWidth:2
+    inputField: {
+        backgroundColor: "white",
+        width: '98%',
+        height: 50,
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 5,
+        borderColor: "rgba(115,105,248,0.85)",
+        borderWidth: 2
     }
 });
 export default styles;
