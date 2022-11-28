@@ -4,7 +4,7 @@ import { LineChart, } from "react-native-chart-kit";
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 const image = { uri: "https://cdn3d.iconscout.com/3d/premium/thumb/man-with-ok-gesture-showing-business-charts-in-laptop-screen-4929412-4122896.png" };
-function CourseDetail() {
+function CourseDetail({ navigation }) {
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
         setModalVisible(true)
@@ -12,11 +12,11 @@ function CourseDetail() {
 
     return (
         <View style={styles.MainView}>
-            <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview}>
-                <View style={{ marginHorizontal: 20, marginVertical: 20 }}>
+            <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview} >
+                <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20 }} onPress={navigation.navigate("Home")}>
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
 
-                </View>
+                </TouchableOpacity>
             </ImageBackground>
             <View style={styles.centeredView}>
                 <Modal
