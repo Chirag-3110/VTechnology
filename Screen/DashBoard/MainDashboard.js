@@ -58,110 +58,120 @@ const MainDashboard = () => {
         console.log(selectedItem)
     }
     return (
-        <View style={styles.container}>
-            <View style={{width:width,marginVertical:20}}>
-                <View 
-                    style={styles.titleMainImage}
-                >
-                    <Image
-                        style={{width:40,height:40,borderRadius:20,resizeMode:"contain",marginLeft:20}}
-                        source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcCXNh9OsJ5FQZPljU_-rLiND2_9XogYnyxQ&usqp=CAU"}}
-                    />
-                    <Text style={{color:"black",fontWeight:"bold",fontSize:20,marginLeft:10}}>Hello, User</Text>
-                </View>
-                <TouchableOpacity style={{
-                    width:width/3,
-                    height:40,
-                    backgroundColor:"transparent",
-                    alignItems:"center",
-                    marginLeft:20,
-                    borderRadius:50,
-                    borderWidth:2,
-                    borderColor:"#001FFF",
-                    justifyContent: 'center',
-                }}>
-                    <Text style={{
-                        fontWeight:"bold",
-                        fontSize:13,
-                        color:"#001FFF"
-                    }}>
-                        History
-                    </Text>
-                </TouchableOpacity>
-            </View>
-            <View style={{width:'100%',flexDirection: 'row',justifyContent: 'space-between',paddingHorizontal:10,alignItems: 'center',}}>
-                <View style={{flexDirection:"row",alignItems: 'center',}}>
-                    <Image
-                        style={{width:40,height:40,borderRadius:20,resizeMode:"contain",marginLeft:10}}
-                        source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROezRXsfr37yCx5KPjg8vuEzjP9d_GiZRUHQ&usqp=CAU"}}
-                    />
-                    <View style={{marginLeft:10}}>
-                        <Text style={{color:"black",fontWeight:"bold",fontSize:25}}>25</Text>
-                        <Text style={{color:"black",fontWeight:"700",fontSize:15}}>Punch Points</Text>
+        <>
+            <View style={styles.container}>
+                <View style={{ width: width, marginVertical: 20 }}>
+                    <View
+                        style={styles.titleMainImage}
+                    >
+                        <Image
+                            style={{ width: 40, height: 40, borderRadius: 20, resizeMode: "contain", marginLeft: 20 }}
+                            source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }}
+                        />
+                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, marginLeft: 10 }}>Hello, User</Text>
                     </View>
-                </View>
-                <TouchableOpacity style={styles.btnContainer}>
-                    <Text style={{
-                        fontWeight:"bold",
-                        fontSize:15,
-                        color:"red"
+                    <TouchableOpacity style={{
+                        width: width / 3,
+                        height: 40,
+                        backgroundColor: "transparent",
+                        alignItems: "center",
+                        marginLeft: 20,
+                        borderRadius: 50,
+                        borderWidth: 2,
+                        borderColor: "#001FFF",
+                        justifyContent: 'center',
                     }}>
-                        REWARDS
-                    </Text>
-                </TouchableOpacity>
-            </View>
-            <View>
-                {/* <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, paddingHorizontal: 10, marginTop: 20 }}>
+                        <Text style={{
+                            fontWeight: "bold",
+                            fontSize: 13,
+                            color: "#001FFF"
+                        }}>
+                            History
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, alignItems: 'center', }}>
+                    <View style={{ flexDirection: "row", alignItems: 'center', }}>
+                        <Image
+                            style={{ width: 35, height: 35, borderRadius: 20, resizeMode: "contain", marginLeft: 10 }}
+                            source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROezRXsfr37yCx5KPjg8vuEzjP9d_GiZRUHQ&usqp=CAU" }}
+                        />
+                        <View style={{ marginLeft: 10 }}>
+                            <Text style={{ color: "black", fontWeight: "bold", fontSize: 25 }}>25</Text>
+                            <Text style={{ color: "black", fontWeight: "700", fontSize: 15 }}>Punch Points</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity style={styles.btnContainer}>
+                        <Text style={{
+                            fontWeight: "bold",
+                            fontSize: 15,
+                            color: "red"
+                        }}>
+                            REWARDS
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    {/* <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, paddingHorizontal: 10, marginTop: 20 }}>
                     Daily Progress
                 </Text> */}
-                <View style={{ marginTop: 20, marginHorizontal: 10 }}>
-                    <View style={styles.progressOuter}>
-                        <Animated.View
-                            style={[styles.progressInner, { width: barWidth }]}
-                        />
-                        <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between", position: "absolute", width: '100%' }}>
+                    <View style={{ marginTop: 20, marginHorizontal: 10 }}>
+                        <View style={styles.progressOuter}>
+                            <Animated.View
+                                style={[styles.progressInner, { width: barWidth }]}
+                            />
+                            <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between", position: "absolute", width: '100%' }}>
+                                {
+                                    [0, 20, 40, 60, 80].map((items, index) => (
+                                        <View key={index} style={{ alignItems: 'center', justifyContent: "center", top: 8, paddingHorizontal: 5 }}>
+                                            <View style={{ width: 10, height: 10, backgroundColor: "#001FFF", borderRadius: 5, elevation: 20 }} />
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between" }}>
                             {
                                 [0, 20, 40, 60, 80].map((items, index) => (
-                                    <View key={index} style={{ alignItems: 'center', justifyContent: "center", top: 8, paddingHorizontal: 5 }}>
-                                        <View style={{ width: 10, height: 10, backgroundColor: "#001FFF", borderRadius: 5, elevation: 20 }} />
+                                    <View key={index} style={{ alignItems: 'center', marginTop: 5, paddingHorizontal: 5 }}>
+                                        <Text style={{ color: "#5E71FF", fontWeight: "bold", fontSize: 15 }}>{items}</Text>
                                     </View>
                                 ))
                             }
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between" }}>
-                        {
-                            [0, 20, 40, 60, 80].map((items, index) => (
-                                <View key={index} style={{ alignItems: 'center', marginTop: 5, paddingHorizontal: 5 }}>
-                                    <Text style={{ color: "#5E71FF", fontWeight: "bold", fontSize: 15 }}>{items}</Text>
-                                </View>
-                            ))
-                        }
-                    </View>
+                </View>
+                <View style={{ height: width / 1.5, justifyContent: "center", alignSelf: 'center', }} >
+                    <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, width: width, paddingHorizontal: 30, marginTop: 20 }}>
+                        Redeem your Punch Points
+                    </Text>
+                    <ScrollView style={styles.itemsContainer} showsHorizontalScrollIndicator={false} horizontal={true} zIndex={-5} decelerationRate={0}>
+                        <View style={{ flexDirection: "row", padding: 10 }}>
+                            {
+                                quizdata.map((item, index) => (
+                                    <TouchableOpacity key={index} style={[styles.previousQuizCard, item.isSelect ? { backgroundColor: "#001FFF" } : { backgroundColor: "white" }]} onPress={() => seletedQuiz(item)} >
+                                        <Text style={{ color: item.isSelect ? "white" : "black", fontWeight: "bold", fontSize: 22, marginHorizontal: 5 }}>
+                                            {item.title}
+                                        </Text>
+                                        <Text style={{ color: item.isSelect ? "white" : "#4A4A4A", fontWeight: "bold", fontSize: 15 }}>
+                                            {item.quizDate}
+                                        </Text>
+                                    </TouchableOpacity>
+                                ))
+                            }
+                        </View>
+                    </ScrollView>
                 </View>
             </View>
-            <View style={{height: width/1.5 ,justifyContent:"center",alignSelf: 'center',}} >
-                <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, width: width, paddingHorizontal: 30, marginTop: 20 }}>
-                    Redeem your Punch Points
-                </Text>
-                <ScrollView style={styles.itemsContainer} showsHorizontalScrollIndicator={false} horizontal={true} zIndex={-5} decelerationRate={0}>
-                    <View style={{ flexDirection: "row", padding: 10 }}>
-                        {
-                            quizdata.map((item, index) => (
-                                <TouchableOpacity key={index} style={[styles.previousQuizCard, item.isSelect ? { backgroundColor: "#001FFF" } : { backgroundColor: "white" }]} onPress={() => seletedQuiz(item)} >
-                                    <Text style={{ color: item.isSelect ? "white" : "black", fontWeight: "bold", fontSize: 22, marginHorizontal: 5 }}>
-                                        {item.title}
-                                    </Text>
-                                    <Text style={{ color: item.isSelect ? "white" : "#4A4A4A", fontWeight: "bold", fontSize: 15 }}>
-                                        {item.quizDate}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))
-                        }
-                    </View>
-                </ScrollView>
-            </View>
-        </View>
+            <Image
+                style={{ width: 110, height: 110, borderRadius: 20, position: "absolute", right: 20, top: 20 }}
+                source={{ uri: "https://cdn-icons-png.flaticon.com/128/6009/6009688.png" }}
+            />
+            <Image
+                style={{ width: 30, height: 30, borderRadius: 20, position: "absolute", right: 100, top: 10 }}
+                source={{ uri: "https://cdn-icons-png.flaticon.com/128/686/686751.png" }}
+            />
+        </>
     )
 }
 const styles = StyleSheet.create({
@@ -170,14 +180,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "white",
     },
-    titleMainImage:{
+    titleMainImage: {
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf:"center",
-        width:'100%',
-        height:80,
-        paddingVertical:15,
-        borderRadius:10
+        alignSelf: "center",
+        width: '100%',
+        height: 80,
+        paddingVertical: 15,
+        borderRadius: 10
     },
     previousQuizCard: {
         alignItems: "center",
@@ -194,7 +204,7 @@ const styles = StyleSheet.create({
     },
     itemsContainer: {
         marginTop: 10,
-        marginHorizontal: 10,         
+        marginHorizontal: 10,
     },
     progressOuter: {
         backgroundColor: "rgba(198,194,250,1)",
@@ -213,26 +223,26 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 5,
         elevation: 15,
     },
-    mainCardTitle:{
-        color:"rgba(115,105,248,0.85)",
-        width:'65%',
-        backgroundColor:"rgba(198,194,250,0.72)",
-        padding:5,
-        borderRadius:10,
-        marginVertical:5,
+    mainCardTitle: {
+        color: "rgba(115,105,248,0.85)",
+        width: '65%',
+        backgroundColor: "rgba(198,194,250,0.72)",
+        padding: 5,
+        borderRadius: 10,
+        marginVertical: 5,
         flexDirection: 'row',
-        alignItems:"center",
-        marginHorizontal:10
+        alignItems: "center",
+        marginHorizontal: 10
     },
-    btnContainer:{
-        width:width/3,
-        height:40,
-        backgroundColor:"transparent",
-        alignItems:"center",
+    btnContainer: {
+        width: width / 3,
+        height: 40,
+        backgroundColor: "transparent",
+        alignItems: "center",
         // paddingVertical:8,
-        borderRadius:50,
-        borderWidth:2,
-        borderColor:"red",
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: "red",
         justifyContent: 'center',
     }
 })

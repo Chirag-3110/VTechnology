@@ -14,7 +14,7 @@ function CourseDetail() {
         <View style={styles.MainView}>
             <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview}>
                 <View style={{ marginHorizontal: 20, marginVertical: 20 }}>
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/4518/4518010.png" }} style={{ width: 35, height: 35 }} />
+                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
 
                 </View>
             </ImageBackground>
