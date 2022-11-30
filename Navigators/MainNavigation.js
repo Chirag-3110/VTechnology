@@ -2,12 +2,15 @@ import React,{useState} from 'react';
 import { Text ,StyleSheet,View,Dimensions,Image} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native'
-import Home from "../Screen/HomeScreen/Home";
+//screens for tab
+import HomeStack from './HomeNavigation';
 import Service from "../Screen/HomeScreen/Service";
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DashBoard from "../Screen/HomeScreen/DashBoard";
 import MainDashboard from '../Screen/DashBoard/MainDashboard';
-import QuestionNavigation from './QuizNavigation';
+import Userfile from '../Screen/Userprofile/Userprofile';
+import Profile from '../Screen/Userprofile/Profile';
+
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const windwoheight=Dimensions.get('window').height
 const Tab=createBottomTabNavigator();
 const MainNavigation=()=>{
@@ -31,7 +34,7 @@ const MainNavigation=()=>{
                 
             }}
         >
-            <Tab.Screen name="Home" component={Home} 
+            <Tab.Screen name="HomeTab" component={HomeStack} 
                 options={{
                     tabBarIcon:({focused})=>{
                         return (
@@ -50,9 +53,9 @@ const MainNavigation=()=>{
                     tabBarIcon:({focused})=>{
                         return (
                             <View style={{alignItems:"center",justifyContent: 'center',marginTop:10,marginBottom:20}}>
-                                <FontAwesome name="search" size={28} color={focused? defaultColor :"grey"} />
+                                <FontAwesome name="mortar-board" size={28} color={focused? defaultColor :"grey"} />
                                 <Text style={{color:"black",fontSize:10,fontWeight:"bold"}}>
-                                    Service
+                                    Quiz
                                 </Text>
                             </View>
                         )
@@ -101,35 +104,19 @@ const MainNavigation=()=>{
                     }
                 }}
             />
-            <Tab.Screen name="AddQues" component={QuestionNavigation}
-                options={({ route }) => ({
-                    tabBarStyle: ((route) => {
-                    const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                    if (routeName === 'QuestionsSet') {
-                        return { display: "none", }
-                    }else{
-                        return {
-                            borderTopRightRadius:50,
-                            borderTopLeftRadius:50,
-                            backgroundColor:"white",
-                            height:70,
-                            position:'absolute',
-                            paddingVertical:10,
-                            ...styles.shadow,
-                        }
-                    }
-                    })(route),
+            <Tab.Screen name="Profile" component={Profile}
+                options={{
                     tabBarIcon:({focused})=>{
                         return (
                             <View style={{alignItems:"center",justifyContent: 'center',marginTop:10,marginBottom:20}}>
-                                <FontAwesome name="question-circle" size={28} color={focused? defaultColor :"grey"} />
+                                <FontAwesome name="user" size={28} color={focused? defaultColor :"grey"} />
                                 <Text style={{color:"black",fontSize:10,fontWeight:"bold"}}>
-                                    Test
+                                    Profile
                                 </Text>
                             </View>
                         )
                     }
-                })}
+                }}
             />
         </Tab.Navigator>
     )

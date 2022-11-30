@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
-import { LineChart, } from "react-native-chart-kit";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
-function CourseDetail() {
+function CourseDetail({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
         setModalVisible(true)
@@ -11,6 +13,21 @@ function CourseDetail() {
 
     return (
         <View style={styles.MainView}>
+                {/* <TouchableOpacity 
+                    style={{
+                        position:"absolute",
+                        margin:25,
+                        // padding:10,
+                        // backgroundColor:"red",
+                        width: 50,
+                        height:50,
+                        zIndex:5000,
+                        // alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    onPress={()=>navigation.navigate("Home")}>
+                    <FontAwesome name="chevron-left" size={30} color={"white"} />
+                </TouchableOpacity> */}
             <View style={styles.MainTopview}>
                 <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/man-with-ok-gesture-showing-business-charts-in-laptop-screen-4929412-4122896.png" }} style={[styles.ProImg]} />
             </View>
@@ -20,8 +37,9 @@ function CourseDetail() {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                        setModalVisible(!modalVisible);
+                        // alert("Modal has been closed.");
+                        navigation.navigate("Home")
+                        // setModalVisible(!modalVisible);
                     }}
                 >
                     <View style={styles.centeredView}>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
-function Home() {
+function Home({navigation}) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
 
@@ -41,18 +43,24 @@ function Home() {
             <Text style={styles.PlanText}>View Plan</Text>
           </View>
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-            <View style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]}>
+            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]}
+              onPress={()=>navigation.navigate("Course")}
+            >
               <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/social-media-app-5473289-4589249.png" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-            </View>
-            <View style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]}>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]}
+              onPress={()=>navigation.navigate("Course")}
+            >
               <Image source={{ uri: "https://img.pikbest.com/png-images/20210414/social-media-marketing-illustration-red_5845297.png!bw700" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-            </View>
-            <View style={styles.Scrollview}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Scrollview}
+              onPress={()=>navigation.navigate("Course")}
+            >
               <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/new-social-media-notification-5473287-4589247.png" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-            </View>
+            </TouchableOpacity>
           </ScrollView>
 
         </View>
