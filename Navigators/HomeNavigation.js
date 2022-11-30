@@ -12,8 +12,7 @@ const HomeNavigator = () => {
             initialRouteName="Home"
         >
             <Homes.Screen name="Home" component={Home} />
-            <Homes.Screen name="CourseDetail" component={CourseDetail} />
-            {/* <Homes.Screen name="QuestionsSet" component={QuestionsCards} /> */}
+            <Homes.Screen name="Course" component={CourseDetail} />
         </Homes.Navigator>
     )
 }
