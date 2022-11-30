@@ -25,7 +25,17 @@ const Service = () => {
     }
     useEffect(() => {
         setQues(dummyQuestion)
-    }, [])
+    }, []);
+    const clearAll=()=>{
+        setQues((question) =>
+            question.map((val, index) => {
+                for (let i = 0; i < val.options.length; i++) {
+                    val.options[i].isSelected = false;
+                }
+                return val;
+            })
+        );
+    }
     return (
         <ScrollView style={styles.MainView}>
             <View style={styles.TopView}>
@@ -81,7 +91,7 @@ const Service = () => {
                                     ))
                                 }
                                 <TextInput
-                                    placeholder='Enter Yor Answer'
+                                    placeholder='Enter Your Answer'
                                     placeholderTextColor={"black"}
                                     style={styles.inputField}
                                 />
@@ -97,7 +107,9 @@ const Service = () => {
                     marginBottom: 10,
                     justifyContent: "space-around"
                 }}>
-                    <TouchableOpacity style={[styles.btnBody, { backgroundColor: "white" }]}>
+                    <TouchableOpacity style={[styles.btnBody, { backgroundColor: "white" }]}
+                        onPress={clearAll}
+                    >
                         <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.btnBody, { backgroundColor: "#6f2ff7" }]}>

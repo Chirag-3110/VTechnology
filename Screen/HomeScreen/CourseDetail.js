@@ -24,8 +24,9 @@ function CourseDetail({ navigation }) {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                        setModalVisible(!modalVisible);
+                        // alert("Modal has been closed.");
+                        navigation.navigate("Home")
+                        // setModalVisible(!modalVisible);
                     }}
                 >
                     <View style={styles.centeredView}>
