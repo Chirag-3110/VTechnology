@@ -13,7 +13,7 @@ function CourseDetail({ navigation }) {
     return (
         <View style={styles.MainView}>
             <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview} >
-                <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20 }} onPress={navigation.navigate("Home")}>
+                <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20 }} onPress={()=>navigation.navigate("HomeStack")}>
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
 
                 </TouchableOpacity>
@@ -25,7 +25,7 @@ function CourseDetail({ navigation }) {
                     visible={modalVisible}
                     onRequestClose={() => {
                         // alert("Modal has been closed.");
-                        navigation.navigate("Home")
+                        navigation.navigate("HomeStack")
                         // setModalVisible(!modalVisible);
                     }}
                 >
@@ -45,7 +45,7 @@ function CourseDetail({ navigation }) {
                             </View>
                             <View style={{ marginTop: 10 }}>
                                 <Text style={{ fontSize: 17, fontWeight: "800", color: 'black' }}>Description</Text>
-                                <Text style={{}}>Lorem ipsum” dummy text isith real data. Often, developers use third-party services to generate “Lorem ipsum” text, but now you can do that right in your editor. Just expand lorem or lipsum abbreviations to get the following snippet:</Text>
+                                <Text style={{color:"black"}}>Lorem ipsum” dummy text isith real data. Often, developers use third-party services to generate “Lorem ipsum” text, but now you can do that right in your editor. Just expand lorem or lipsum abbreviations to get the following snippet:</Text>
                             </View>
                             <TouchableOpacity style={styles.ActivityStartBtn}>
                                 <Text style={styles.ActivityStartBtnText}>Start Activity</Text>

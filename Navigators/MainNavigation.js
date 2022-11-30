@@ -48,7 +48,7 @@ const MainNavigation=()=>{
                     }
                 }}
             />
-            <Tab.Screen name="Service" component={QuestionNavigation}
+            <Tab.Screen name="Service" component={Service}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
@@ -90,12 +90,12 @@ const MainNavigation=()=>{
                     ),
                 }}
             />
-            <Tab.Screen name="dashboard" component={DashBoard}
+            <Tab.Screen name="progress" component={DashBoard}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
                             <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
-                                <FontAwesome name="hand-dots" size={28} color={focused ? defaultColor : "grey"} />
+                                <FontAwesome name="list" size={28} color={focused ? defaultColor : "grey"} />
                                 <Text style={{ color: "black", fontSize: 10, fontWeight: "bold" }}>
                                     Progress
                                 </Text>

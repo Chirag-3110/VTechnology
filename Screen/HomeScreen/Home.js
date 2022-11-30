@@ -41,18 +41,18 @@ function Home({ navigation }) {
             <Text style={styles.PlanText}>View Plan</Text>
           </View>
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={navigation.navigate("CourseDetail")}>
+            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={()=>navigation.navigate("Course")}>
               <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/social-media-app-5473289-4589249.png" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
             </TouchableOpacity>
-            <View style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]}>
+            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]} onPress={()=>navigation.navigate("Course")}>
               <Image source={{ uri: "https://img.pikbest.com/png-images/20210414/social-media-marketing-illustration-red_5845297.png!bw700" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-            </View>
-            <View style={styles.Scrollview}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Scrollview} onPress={()=>navigation.navigate("Course")}>
               <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/new-social-media-notification-5473287-4589247.png" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
-            </View>
+            </TouchableOpacity>
           </ScrollView>
 
         </View>
