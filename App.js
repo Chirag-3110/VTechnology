@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MainNavigation from './Navigators/MainNavigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Userfile from './Screen/Userprofile/Userprofile';
 const Stack=createNativeStackNavigator();
 const App = () => {
   return (
@@ -15,7 +14,6 @@ const App = () => {
       >
         <Stack.Screen name="MainNav" component={MainNavigation} />
       </Stack.Navigator>
-      {/* <Userfile/> */}
     </NavigationContainer>
   );
 }

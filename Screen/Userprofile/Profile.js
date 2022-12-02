@@ -6,7 +6,7 @@ function Profile() {
     return (
         <View style={styles.Header}>
             <View style={styles.LogInBox}>
-                <Text style={styles.ProfileText}>Complete Your Profile</Text>
+                <Text style={styles.ProfileText}>Profile</Text>
                 <View style={{ justifyContent: "center", alignItems: "center", }}>
 
                     <Image
