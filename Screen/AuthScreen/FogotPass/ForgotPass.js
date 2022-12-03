@@ -3,31 +3,31 @@ import { View, Text, StyleSheet, TextInput, Dimensions, Image, KeyboardAvoidingV
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 // import SignIn from '../../../assests/SignIn.jpeg';
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../../firebase";
+// import { sendPasswordResetEmail } from "firebase/auth";
+// import { auth } from "../../../firebase";
 
 const ForgotPass = () => {
     const [email, setemail] = useState("")
-    const ResetLink = () => {
-        console.log(email)
-        console.log("hello")
-        try {
-            sendPasswordResetEmail(auth, email)
-                .then(() => {
+    // const ResetLink = () => {
+    //     console.log(email)
+    //     console.log("hello")
+    //     try {
+    //         sendPasswordResetEmail(auth, email)
+    //             .then(() => {
 
-                    console.log("link sent successfully")
-                    setemail("")
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log(errorCode)
-                    console.log(errorMessage)
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    //                 console.log("link sent successfully")
+    //                 setemail("")
+    //             })
+    //             .catch((error) => {
+    //                 const errorCode = error.code;
+    //                 const errorMessage = error.message;
+    //                 console.log(errorCode)
+    //                 console.log(errorMessage)
+    //             });
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
     return (
         <>
             <ImageBackground style={styles.container}

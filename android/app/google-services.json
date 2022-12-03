@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "519744417866",
+    "project_id": "we-arcade",
+    "storage_bucket": "we-arcade.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519744417866:android:1f7926d03350daf36176b3",
+        "android_client_info": {
+          "package_name": "com.vtechnology"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519744417866-vva5lpr1584pkmke9du178t5tv9mr5gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn2QX1mXVuVc8KQhOfLQjjX_fahuPCrGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519744417866-vva5lpr1584pkmke9du178t5tv9mr5gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

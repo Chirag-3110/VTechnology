@@ -5,9 +5,9 @@ const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 import EmailValidate from "../../../Validate/EmailValidation"
 import PasswordValidate from '../../../Validate/PasswordValidation';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../../../firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { doc, setDoc } from "firebase/firestore";
+// import { auth, db } from "../../../firebase";
 const SignUp = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
@@ -31,27 +31,27 @@ const SignUp = ({ navigation }) => {
             if (!PasswordValidate(password)) {
                 throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
             }
-            createNewUser();
+            // createNewUser();
         } catch (error) {
             console.log(error)
         }
     }
-    const createNewUser = async () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-            })
-            .catch((error) => {
-                switch (error.code) {
-                    case "auth/email-already-in-use":
-                        console.log("Email Already Exists")
-                        break;
-                    default:
-                        break;
-                }
-            });
-    }
+    // const createNewUser = async () => {
+    //     createUserWithEmailAndPassword(auth, email, password)
+    //         .then((userCredential) => {
+    //             const user = userCredential.user;
+    //             console.log(user);
+    //         })
+    //         .catch((error) => {
+    //             switch (error.code) {
+    //                 case "auth/email-already-in-use":
+    //                     console.log("Email Already Exists")
+    //                     break;
+    //                 default:
+    //                     break;
+    //             }
+    //         });
+    // }
     return (
         <ImageBackground style={styles.container}
             source={require('../../../assests/nwe.png')}
