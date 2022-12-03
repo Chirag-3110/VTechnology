@@ -65,7 +65,10 @@ function Home({ navigation }) {
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
             {orderDetail.length === 0 ? null :
               orderDetail.map((item, index) => (
-                <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course")}>
+                <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
+                  Name: item.Name,
+                  Description: item.Description,
+                })}>
                   <Image source={{ uri: item.ImageUrl }} style={[styles.ScrollImg, {}]} />
                   <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>{item.Name}</Text></View>
                 </TouchableOpacity>
