@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
-import { db } from "../../firebase";
-import { addDoc, collection, getDocs, where, query, doc, updateDoc } from "firebase/firestore";
+import firestore from '@react-native-firebase/firestore';
 import { async } from '@firebase/util';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
@@ -10,40 +9,22 @@ function Home({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [orderDetail, setOrderDetail] = useState([]);
-  // const getOrderData = () => {
-  //   console.log("hey")
-  //   let resultArray = [];
-  //   const docRef = collection(db, "Courses");
-  //   console.log(docRef, "heyhey")
-  //   try {
-  //     const docSnap = getDocs(docRef);
-  //     docSnap.forEach((item) => {
-  //       resultArray.push({ id: item.id, ...item.data() });
-  //       console.log("hi");
-  //     });
-  //     console.log(resultArray);
-  //     setOrderDetail(resultArray);
 
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const getOrderData = async () => {
+    let resultArray = [];
+    try {
+      const usersCollection = firestore().collection('Courses');
+      const users = await  usersCollection.get();
+      users.forEach((item)=>{
+        resultArray.push({...item.data(),id:item.id})
+      })
+      console.log(resultArray)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const SubmitFeedback = () => {
-    console.log("hi")
-    addDoc(collection(db, "Courses"), {
-      Name: "Abhishek",
-      Description: "poneed",
-      ImageUrl: "clihpped"
-    }).then((docRef) => {
-      console.log(docRef.id)
-    }).catch((error) => {
-      console.log(error.code)
-      console.log(error.message)
-
-    });
-
-
-
+    
   }
   return (
     <>
@@ -68,7 +49,7 @@ function Home({ navigation }) {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn} onPress={SubmitFeedback}>
+              <TouchableOpacity style={styles.ActivityBtn} onPress={getOrderData}>
                 <Text style={{ color: 'white' }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>
