@@ -15,9 +15,9 @@ const AuthNavigation = () => {
             }}
             // initialRouteName={"OnBoarding"}
         >
-            <Stack.Screen name="OnBoarding" component={Onboarding} />
-            <Stack.Screen name="signup" component={SignUp} />
+            {/* <Stack.Screen name="OnBoarding" component={Onboarding} /> */}
             <Stack.Screen name="login" component={SignIn} />
+            <Stack.Screen name="signup" component={SignUp} />
             <Stack.Screen name='confimSignup' component={ConfimSignup} />
             <Stack.Screen name="forgotpass" component={ForgotPass} />
         </Stack.Navigator>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
+import auth from '@react-native-firebase/auth';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../../../firebase";
-// import EmailValidate from "../../../Validate/EmailValidation";
-// import PasswordValidate from '../../../Validate/PasswordValidation';
-const SignIn = () => {
+import EmailValidate from "../../../Validate/EmailValidation";
+import PasswordValidate from '../../../Validate/PasswordValidation';
+const SignIn = ({navigation}) => {
+
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     const validateUser = () => {
@@ -21,31 +21,19 @@ const SignIn = () => {
             if (!PasswordValidate(password)) {
                 throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
             }
-            // newUser();
+            auth().signInWithEmailAndPassword(email,password)
+            .catch((error)=>{
+                if (error.code === 'auth/invalid-email') {
+                    alert('That email address is invalid!');
+                }
+                if (error.code === 'auth/wrong-password') {
+                    alert('That Password is invalid!');
+                }
+            })            
         } catch (error) {
             console.log(error)
         }
     }
-    // const newUser = async () => {
-    //     console.log("use")
-    //     signInWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             const user = userCredential.user;
-    //             console.log(user)
-    //         })
-    //         .catch((error) => {
-    //             switch (error.code) {
-    //                 case "auth/user-not-found":
-    //                     console.log("Incorrect Email")
-    //                     break;
-    //                 case "auth/wrong-password":
-    //                     console.log("Incorrect Password");
-    //                     break;
-    //                 default:
-    //                     break;
-    //             }
-    //         });
-    // }
     return (
         <ImageBackground style={styles.container}
             source={require('../../../assests/nwe.png')}
@@ -68,11 +56,25 @@ const SignIn = () => {
                         style={styles.customInput}
                         onChangeText={value => { setpassword(value) }}
                     />
-
                 </View>
+                <TouchableOpacity
+                    onPress={()=>navigation.navigate("forgotpass")}
+                >
+                    <Text style={{
+                        color:"black",
+                        fontWeight:"bold"
+                    }}>
+                        Forget Password ?
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.btnContainer} onPress={validateUser}>
                     <Text style={styles.btnText}>
-                        Sign In
+                       Login
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btnContainer} onPress={()=>navigation.navigate("signup")}>
+                    <Text style={styles.btnText}>
+                        Create Account
                     </Text>
                 </TouchableOpacity>
             </View>

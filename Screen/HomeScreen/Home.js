@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
 import firestore from '@react-native-firebase/firestore';
-// import { db } from "../../firebase";
-// import { addDoc, collection, getDocs, where, query, doc, updateDoc } from "firebase/firestore";
-import { async } from '@firebase/util';
+import { GlobalVariable } from '../../App';
+import auth from '@react-native-firebase/auth';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
+
 function Home({ navigation }) {
+  const {userUid}=useContext(GlobalVariable);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [orderDetail, setOrderDetail] = useState([]);
   useEffect(() => {
     getOrderData();
+    console.log("home",userUid.uid)
   }, [])
 
   const getOrderData = async () => {
@@ -29,6 +31,11 @@ function Home({ navigation }) {
       console.log(error)
     }
   }
+  const logout=()=>{
+    auth()
+    .signOut()
+    .then(() => console.log('User signed out!'));
+  }
   return (
     <>
       <ScrollView style={styles.MainScreen}>
@@ -40,7 +47,9 @@ function Home({ navigation }) {
             <Text>Hello World</Text>
             <Text style={styles.TopDate}>Thrusday ,08 July</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={logout}
+          >
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
           </TouchableOpacity>
         </View>
@@ -65,7 +74,10 @@ function Home({ navigation }) {
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
             {orderDetail.length === 0 ? null :
               orderDetail.map((item, index) => (
-                <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course")}>
+                <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
+                  Name: item.Name,
+                  Description: item.Description,
+                })}>
                   <Image source={{ uri: item.ImageUrl }} style={[styles.ScrollImg, {}]} />
                   <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>{item.Name}</Text></View>
                 </TouchableOpacity>

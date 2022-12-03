@@ -2,32 +2,27 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Dimensions, Image, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
-// import SignIn from '../../../assests/SignIn.jpeg';
-// import { sendPasswordResetEmail } from "firebase/auth";
-// import { auth } from "../../../firebase";
-
-const ForgotPass = () => {
+import auth from '@react-native-firebase/auth';
+import EmailValidate from '../../../Validate/EmailValidation';
+const ForgotPass = ({navigation}) => {
     const [email, setemail] = useState("")
-    // const ResetLink = () => {
-    //     console.log(email)
-    //     console.log("hello")
-    //     try {
-    //         sendPasswordResetEmail(auth, email)
-    //             .then(() => {
-
-    //                 console.log("link sent successfully")
-    //                 setemail("")
-    //             })
-    //             .catch((error) => {
-    //                 const errorCode = error.code;
-    //                 const errorMessage = error.message;
-    //                 console.log(errorCode)
-    //                 console.log(errorMessage)
-    //             });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    const ResetLink = () => {
+        try {
+            if(email===""){
+                throw "Please Enter Email";
+            }   
+            if (!EmailValidate(email)) {
+                throw "Please enter a valid Email"
+            }
+            auth().sendPasswordResetEmail(email)
+            .then(()=>{
+                alert("Check you email and spam also")
+                navigation.navigate("login")
+            })
+        } catch (error) {
+            console.log(error);
+        }        
+    }
     return (
         <>
             <ImageBackground style={styles.container}
