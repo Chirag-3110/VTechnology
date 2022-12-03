@@ -1,12 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
+import { db } from "../../firebase";
+import { addDoc, collection, getDocs, where, query, doc, updateDoc } from "firebase/firestore";
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 function Home({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
+  const [orderDetail, setOrderDetail] = useState([]);
+  const getOrderData = () => {
+    console.log("hey")
+    let resultArray = [];
+    const docRef = collection(db, "Courses");
+    console.log(docRef, "heyhey")
+    try {
+      const docSnap = getDocs(docRef);
+      docSnap.forEach((item) => {
+        resultArray.push({ id: item.id, ...item.data() });
+        console.log("hi");
+      });
+      console.log(resultArray);
+      setOrderDetail(resultArray);
 
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <ScrollView style={styles.MainScreen}>
@@ -30,7 +50,7 @@ function Home({ navigation }) {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn}>
+              <TouchableOpacity style={styles.ActivityBtn} onPress={getOrderData}>
                 <Text style={{ color: 'white' }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>
@@ -41,15 +61,15 @@ function Home({ navigation }) {
             <Text style={styles.PlanText}>View Plan</Text>
           </View>
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={()=>navigation.navigate("Course")}>
+            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course")}>
               <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/social-media-app-5473289-4589249.png" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]} onPress={()=>navigation.navigate("Course")}>
+            <TouchableOpacity style={[styles.Scrollview, { backgroundColor: "#FAF6DB" }]} onPress={() => navigation.navigate("Course")}>
               <Image source={{ uri: "https://img.pikbest.com/png-images/20210414/social-media-marketing-illustration-red_5845297.png!bw700" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.Scrollview} onPress={()=>navigation.navigate("Course")}>
+            <TouchableOpacity style={styles.Scrollview} onPress={() => navigation.navigate("Course")}>
               <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/new-social-media-notification-5473287-4589247.png" }} style={[styles.ScrollImg, {}]} />
               <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>digital market</Text></View>
             </TouchableOpacity>
