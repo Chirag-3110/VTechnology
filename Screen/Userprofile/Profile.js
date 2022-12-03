@@ -1,144 +1,137 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, TextInput } from 'react-native';
+import { GlobalVariable } from '../../App';
+import firestore from '@react-native-firebase/firestore';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 function Profile() {
+    const [getAllDetails, setgetAllDetails] = useState("")
+    const { userUid } = useContext(GlobalVariable);
+    useEffect(() => {
+        GetDetails();
+    }, [])
+    const GetDetails = async () => {
+        try {
+            const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
+            const Data = user._data;
+            setgetAllDetails(Data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
     return (
-        <View style={styles.Header} >
-         
-          <View style={styles.Heading} >
-          <Image
-                source={require('../../assests/arrow.png')}
-                style={styles.next}
-              />
-                <Text style={{color:"black",marginLeft:110,fontSize:20,fontWeight:'bold'}} >MyProfile</Text>
-                <Image
-                source={require('../../assests/dots.png')}
-                style={styles.next1}
-              />
+        <View style={styles.Header}>
+            <View style={styles.ProfileTextView}>
+                <Text style={styles.ProfileText}>Profile</Text>
+            </View>
+            <View style={styles.MainProfileview}>
+                <View style={styles.MainProfileInnerview}>
+                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 50, height: 50, color: "white" }} />
                 </View>
-
-                <View style={styles.container1}>
-
-                    <Image
-                        style={[styles.BackImg, { height: 120, width: 120,marginLeft:40,borderRadius:80,borderColor:"black",borderWidth:1 }]}
-                        source={{ uri: "https://thumbs.dreamstime.com/b/add-account-glyph-color-flat-vector-icon-add-account-vector-icon-elements-mobile-concept-web-apps-thin-line-icons-142246431.jpg" }}
-                    />
-                    <Text style={{color:"black",marginTop:25,fontSize:20,fontWeight:'bold'}}>Edward</Text>
-                    <Image
-                source={require('../../assests/pencil.png')}
-                style={styles.next2}
-              />
+                <View style={[styles.MainProfileInnerview, { width: windowWidth / 1.5, alignItems: "flex-start", marginLeft: 2 }]}>
+                    <Text style={[styles.InfoText, { fontSize: 22, fontWeight: "900" }]}>{getAllDetails.Name}</Text>
+                    <Text style={styles.InfoText}>{getAllDetails.email}</Text>
                 </View>
-               
-               <View style={{marginTop:80}}>
-                <Text style={{color:"grey",marginLeft:50}}>Dashboard</Text>
-                <View style={{marginTop:25}} >
-
-                    <View style={{flexDirection:"row"}}>
-                    <Image
-                source={require('../../assests/payments.png')}
-                style={{height:50,width:50,marginLeft:40}}
-              />
-                    <Text style={{color:"black",marginLeft:20,marginTop:8,fontWeight:'bold'}}>Payments</Text>
-                    
+            </View>
+            <View style={styles.MenuSection}>
+                <View style={styles.OptionView}>
+                    <Text style={styles.OptionViewText}>Options</Text>
+                </View>
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 15, backgroundColor: "#CFD8FF", borderRadius: 13, marginVertical: 14 }}>
+                    <View style={styles.MainProfileInnerview1}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1100/1100523.png" }} style={{ width: 38, height: 38, color: "white" }} />
                     </View>
-                    
-                    <View style={{flexDirection:"row",marginTop:25}}>
-                    <Image
-                source={require('../../assests/achievements.png')}
-                style={{height:50,width:50,marginLeft:40}}
-              />
-                    <Text style={{color:"black",marginLeft:20,marginTop:8,fontWeight:'bold'}}>Achievements</Text>
+                    <View style={{ width: windowWidth / 2 }}>
+                        <Text style={{ fontSize: 18, fontWeight: "600", color: "black" }}>UserDetail</Text>
                     </View>
-
-                    <View style={{flexDirection:"row",marginTop:25}}>
-                    <Image
-                source={require('../../assests/privacy.png')}
-                style={{height:50,width:50,marginLeft:40}}
-              />
-                    <Text style={{color:"black",marginLeft:20,marginTop:8,fontWeight:'bold'}}>Privacy</Text>
+                    <View style={styles.MainProfileInnerview1}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/556/556690.png" }} style={{ width: 30, height: 30, color: "white" }} />
                     </View>
                 </View>
-               </View>
-
-               <View style={{marginTop:65,marginLeft:45}}>
-                <Text style={{color:"orange",fontSize:18,fontWeight:'bold'}}>Log Out</Text>
-               </View>
-          
-        </View>
-
-       
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 15, backgroundColor: "#C0FFF3", borderRadius: 13, marginVertical: 14 }}>
+                    <View style={styles.MainProfileInnerview1}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3368/3368819.png" }} style={{ width: 35, height: 35, color: "white" }} />
+                    </View>
+                    <View style={{ width: windowWidth / 2, }}>
+                        <Text style={{ fontSize: 18, fontWeight: "600", color: "black" }}>Dashboard</Text>
+                    </View>
+                    <View style={styles.MainProfileInnerview1}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1294/1294738.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                    </View>
+                </View>
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 15, backgroundColor: "#FBE0E6", borderRadius: 13, marginVertical: 14 }}>
+                    <View style={styles.MainProfileInnerview1}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/7111/7111141.png" }} style={{ width: 35, height: 35, color: "white" }} />
+                    </View>
+                    <View style={{ width: windowWidth / 2, }}>
+                        <Text style={{ fontSize: 18, fontWeight: "600", color: "black" }}>Activities</Text>
+                    </View>
+                    <View style={styles.MainProfileInnerview1}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/556/556690.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                    </View>
+                </View>
+            </View>
+        </View >
     )
 }
 const styles = StyleSheet.create({
     Header: {
         height: windowHeight,
         width: windowWidth,
-        backgroundColor: "white",
-        // justifyContent: "center",
-        color:"blue"
+        backgroundColor: "white"
     },
-    Heading:{
-        marginTop:50,
-        flexDirection:"row"
-    },
-    next:{
-        height:25,
-        width:25,
-        marginLeft:30
-    },
-    next1:{
-        height:25,
-        width:25,
-        marginLeft:100,
-    },
-    next2:{
-        height:20,
-        width:20,
-        marginLeft:100,
-        marginTop:25
-    },
-    container1:{
-        flexDirection:"row",
-        marginTop:70
-    },
-    next3:{
-        height:100,
-        marginRight:500
-    },
-    LogInBox: {
-        backgroundColor: "#FFFFFF",
-        height: windowHeight / 1.7,
-        borderRadius: 30,
-        marginHorizontal: 20,
-        alignContent: "center",
-        textAlign: "center",
+    ProfileTextView: {
+        // borderWidth: 1,
+        height: windowHeight / 10,
+        justifyContent: "center",
+        alignItems: "center"
     },
     ProfileText: {
-        fontSize: 27,
-        color: "black",
-        textAlign: "center",
-        marginVertical: 20
+        fontSize: 30,
+        fontWeight: "700",
+        color: "black"
     },
-    Input: {
+    MainProfileview: {
+        display: "flex",
+        flexDirection: "row",
+        width: windowWidth,
         // borderWidth: 1,
-        borderRadius: 30,
-        marginHorizontal: 20,
-        marginVertical: 10,
-        height: 45,
-        padding: 3,
-        paddingLeft: 15,
-        backgroundColor: "lightgrey"
+        height: windowHeight / 8,
     },
-    BackImg: {
-        width: 20,
-        height: 20,
+    MainProfileInnerview: {
+        // borderWidth: 1,
+        marginHorizontal: 2,
+        marginLeft: 10,
         justifyContent: "center",
-        alignSelf: "center",
-        marginHorizontal: 10,
+        width: windowWidth / 5,
+        alignItems: "center"
+    },
+    InfoText: {
+        fontSize: 17,
+        color: "black",
+        fontWeight: "600"
+    },
+    MenuSection: {
+        height: windowHeight / 1.5,
         // borderWidth: 1
+    },
+    OptionView: {
+        // borderWidth: 1,
+        marginVertical: 20,
+        marginHorizontal: 20
+    },
+    OptionViewText: {
+        fontSize: 25,
+        color: "black",
+        fontWeight: "700"
+    },
+    MainProfileInnerview1: {
+        // borderWidth: 1,
+        marginHorizontal: 2,
+        justifyContent: "center",
+        width: windowWidth / 5,
+        alignItems: "center"
     },
 });
 export default Profile

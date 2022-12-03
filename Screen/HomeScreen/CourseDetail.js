@@ -15,9 +15,9 @@ function CourseDetail({ route, navigation }) {
     return (
         <View style={styles.MainView}>
             <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview} >
-                <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20 }} onPress={() => navigation.navigate("HomeStack")}>
+                {/* <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20 }} onPress={() => navigation.navigate("HomeStack")}>
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </ImageBackground>
             <View style={styles.centeredView}>
                 <Modal
@@ -31,6 +31,9 @@ function CourseDetail({ route, navigation }) {
                     }}
                 >
                     <View style={styles.centeredView}>
+                        <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20, marginBottom: 350 }} onPress={() => navigation.navigate("HomeStack")}>
+                            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                        </TouchableOpacity>
                         <View style={styles.modalView}>
                             <Text style={styles.CourseName}>{Name}</Text>
                             <Text style={styles.CourseAdmin}>By Maddi Son (Exp 15 year)</Text>
@@ -69,8 +72,8 @@ const styles = StyleSheet.create({
         height: windoHeight / 1.8
     },
     centeredView: {
-        borderWidth: 1,
-        flex: 3,
+        // borderWidth: 1,
+        flex: 1,
         justifyContent: "center",
         position: "absolute",
         bottom: 0,
