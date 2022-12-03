@@ -5,9 +5,6 @@ const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 import EmailValidate from "../../../Validate/EmailValidation"
 import PasswordValidate from '../../../Validate/PasswordValidation';
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { doc, setDoc } from "firebase/firestore";
-// import { auth, db } from "../../../firebase";
 const SignUp = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
@@ -17,41 +14,25 @@ const SignUp = ({ navigation }) => {
         // console.log("hii")
         // console.log(email)
         try {
-            if (userName === "")
-                throw "Please enter UserName";
             if (email === "")
                 throw "Please enter Email";
             if (password === "")
                 throw "Please enter Password";
             if (Cpassword === "")
-                throw "Please enter confirm password"
+                throw "Please enter confirm password";
             if (!EmailValidate(email)) {
                 throw "Please enter a valid Email"
             }
             if (!PasswordValidate(password)) {
                 throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
             }
-            // createNewUser();
+            if(password!=Cpassword)
+                throw "Both Password Must Be Same";
+            navigation.navigate("confimSignup",{email:email,password:password});
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
-    // const createNewUser = async () => {
-    //     createUserWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential) => {
-    //             const user = userCredential.user;
-    //             console.log(user);
-    //         })
-    //         .catch((error) => {
-    //             switch (error.code) {
-    //                 case "auth/email-already-in-use":
-    //                     console.log("Email Already Exists")
-    //                     break;
-    //                 default:
-    //                     break;
-    //             }
-    //         });
-    // }
     return (
         <ImageBackground style={styles.container}
             source={require('../../../assests/nwe.png')}
@@ -82,17 +63,13 @@ const SignUp = ({ navigation }) => {
                             onChangeText={value => { setCpassword(value) }}
                         />
                     </View>
-                    {/* <TouchableOpacity style={styles.btnContainer}
-                    onPress={()=>navigation.navigate("confimSignup")}
-                >
-                    <Text style={styles.btnText}>
-                        Sign Up
-                    </Text>
-                </TouchableOpacity> */}
-                    <CustomButton
-                        title="Sign Up"
-                        onpress={() => { validateUser }}
-                    />
+                    <TouchableOpacity style={styles.btnContainer}
+                        onPress={validateUser}
+                    >
+                        <Text style={styles.btnText}>
+                            Sign Up
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.bottomText}>
