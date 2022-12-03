@@ -1,49 +1,112 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, TextInput } from 'react-native';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 function Profile() {
     return (
-        <View style={styles.Header}>
-            <View style={styles.LogInBox}>
-                <Text style={styles.ProfileText}>Profile</Text>
-                <View style={{ justifyContent: "center", alignItems: "center", }}>
+        <View style={styles.Header} >
+         
+          <View style={styles.Heading} >
+          <Image
+                source={require('../../assests/arrow.png')}
+                style={styles.next}
+              />
+                <Text style={{color:"black",marginLeft:110,fontSize:20,fontWeight:'bold'}} >MyProfile</Text>
+                <Image
+                source={require('../../assests/dots.png')}
+                style={styles.next1}
+              />
+                </View>
+
+                <View style={styles.container1}>
 
                     <Image
-                        style={[styles.BackImg, { height: 150, width: 150 }]}
+                        style={[styles.BackImg, { height: 120, width: 120,marginLeft:40,borderRadius:80,borderColor:"black",borderWidth:1 }]}
                         source={{ uri: "https://thumbs.dreamstime.com/b/add-account-glyph-color-flat-vector-icon-add-account-vector-icon-elements-mobile-concept-web-apps-thin-line-icons-142246431.jpg" }}
                     />
-                </View>
-                <View style={styles.Input}>
-                    <TextInput
-                        placeholder='Age'
-                        keyboardType='numeric'
-                    />
-                </View>
-                <View style={styles.Input}>
-                    <TextInput
-                        placeholder='Phone Number'
-                        keyboardType='numeric'
-                    />
-                </View>
-                <TouchableOpacity style={[styles.Input, { borderWidth: 0, backgroundColor: "#3063A0", width: windowWidth / 2.8, justifyContent: "center", borderRadius: 13, padding: 0, marginTop: 30, alignSelf: "flex-end", display: "flex", flexDirection: "row" }]}>
-
-                    <Text style={{ color: "white", textAlign: "center", fontSize: 20, margin: 0, padding: 0, alignSelf: "center" }}>Save</Text>
+                    <Text style={{color:"black",marginTop:25,fontSize:20,fontWeight:'bold'}}>Edward</Text>
                     <Image
-                        style={[styles.BackImg, { height: 30, width: 30, alignItems: "center", justifyContent: "center", alignContent: "center" }]}
-                        source={{ uri: "https://www.freeiconspng.com/thumbs/white-arrow-png/white-arrow-transparent-png-10.png" }}
-                    />
-                </TouchableOpacity>
-            </View>
+                source={require('../../assests/pencil.png')}
+                style={styles.next2}
+              />
+                </View>
+               
+               <View style={{marginTop:80}}>
+                <Text style={{color:"grey",marginLeft:50}}>Dashboard</Text>
+                <View style={{marginTop:25}} >
+
+                    <View style={{flexDirection:"row"}}>
+                    <Image
+                source={require('../../assests/payments.png')}
+                style={{height:50,width:50,marginLeft:40}}
+              />
+                    <Text style={{color:"black",marginLeft:20,marginTop:8,fontWeight:'bold'}}>Payments</Text>
+                    
+                    </View>
+                    
+                    <View style={{flexDirection:"row",marginTop:25}}>
+                    <Image
+                source={require('../../assests/achievements.png')}
+                style={{height:50,width:50,marginLeft:40}}
+              />
+                    <Text style={{color:"black",marginLeft:20,marginTop:8,fontWeight:'bold'}}>Achievements</Text>
+                    </View>
+
+                    <View style={{flexDirection:"row",marginTop:25}}>
+                    <Image
+                source={require('../../assests/privacy.png')}
+                style={{height:50,width:50,marginLeft:40}}
+              />
+                    <Text style={{color:"black",marginLeft:20,marginTop:8,fontWeight:'bold'}}>Privacy</Text>
+                    </View>
+                </View>
+               </View>
+
+               <View style={{marginTop:65,marginLeft:45}}>
+                <Text style={{color:"orange",fontSize:18,fontWeight:'bold'}}>Log Out</Text>
+               </View>
+          
         </View>
+
+       
     )
 }
 const styles = StyleSheet.create({
     Header: {
         height: windowHeight,
         width: windowWidth,
-        backgroundColor: "#3063A0",
-        justifyContent: "center"
+        backgroundColor: "white",
+        // justifyContent: "center",
+        color:"blue"
+    },
+    Heading:{
+        marginTop:50,
+        flexDirection:"row"
+    },
+    next:{
+        height:25,
+        width:25,
+        marginLeft:30
+    },
+    next1:{
+        height:25,
+        width:25,
+        marginLeft:100,
+    },
+    next2:{
+        height:20,
+        width:20,
+        marginLeft:100,
+        marginTop:25
+    },
+    container1:{
+        flexDirection:"row",
+        marginTop:70
+    },
+    next3:{
+        height:100,
+        marginRight:500
     },
     LogInBox: {
         backgroundColor: "#FFFFFF",
