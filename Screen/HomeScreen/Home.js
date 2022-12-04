@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
 import firestore from '@react-native-firebase/firestore';
 import { GlobalVariable } from '../../App';
@@ -8,13 +8,13 @@ const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 
 function Home({ navigation }) {
-  const {userUid}=useContext(GlobalVariable);
+  const { userUid } = useContext(GlobalVariable);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [orderDetail, setOrderDetail] = useState([]);
   useEffect(() => {
     getOrderData();
-    console.log("home",userUid.uid)
+    console.log("home", userUid.uid)
   }, [])
 
   const getOrderData = async () => {
@@ -31,10 +31,10 @@ function Home({ navigation }) {
       console.log(error)
     }
   }
-  const logout=()=>{
+  const logout = () => {
     auth()
-    .signOut()
-    .then(() => console.log('User signed out!'));
+      .signOut()
+      .then(() => console.log('User signed out!'));
   }
   return (
     <>
@@ -72,13 +72,16 @@ function Home({ navigation }) {
             <Text style={styles.PlanText}>View Plan</Text>
           </View>
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-            {orderDetail.length === 0 ? null :
+            {orderDetail.length === 0 ? <ActivityIndicator size="large" color="#00ff00" /> :
               orderDetail.map((item, index) => (
                 <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
                   Name: item.Name,
                   Description: item.Description,
                 })}>
-                  <Image source={{ uri: item.ImageUrl }} style={[styles.ScrollImg, {}]} />
+                  {
+                    item.ImageUrl == null ? <ActivityIndicator /> : <Image source={{ uri: item.ImageUrl }} style={[styles.ScrollImg, {}]} />
+                  }
+
                   <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>{item.Name}</Text></View>
                 </TouchableOpacity>
               ))
