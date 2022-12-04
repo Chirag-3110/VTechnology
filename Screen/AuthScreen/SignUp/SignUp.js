@@ -6,6 +6,7 @@ const windowheight = Dimensions.get('window').height
 import EmailValidate from "../../../Validate/EmailValidation"
 import PasswordValidate from '../../../Validate/PasswordValidation';
 import styles from "../SignIn/LoginStyle";
+import Lottie from 'lottie-react-native';
 const SignUp = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
@@ -53,7 +54,7 @@ const SignUp = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <View style={{ alignItems: "flex-start",justifyContent: 'center' }}>
+            <View>
                 <Animated.Text style={[
                     styles.MainText,
                     {
@@ -74,9 +75,9 @@ const SignUp = ({ navigation }) => {
                         ]
                     }
                 ]}>Connect With Us</Animated.Text>
-                <Image
+                <Lottie
+                    source={require('../../../lottiesAnimations/105639-signup.json')}  autoPlay={true} loop={true}
                     style={{width:windowWidth,height:windowWidth-50,resizeMode:"contain"}}
-                    source={{uri:"https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=338&ext=jpg"}}
                 />
             </View>
             <View style={{ alignItems: "center",width:"100%" }}>

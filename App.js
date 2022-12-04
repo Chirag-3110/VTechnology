@@ -9,10 +9,12 @@ const Stack=createNativeStackNavigator();
 export const GlobalVariable=createContext();
 const App = () => {
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(undefined);
 
-  function onAuthStateChanged(user) {
-    setUser(user);
+  function onAuthStateChanged(userNew) {
+    console.log(user)
+    setUser(userNew);
+    console.log(userNew);
     if (initializing) setInitializing(false);
   }
 
@@ -32,12 +34,14 @@ const App = () => {
           }}
         >
           {
-            !user?
+            user==null?
             <>
               {/* <Stack.Screen name="splash" component={SplashScreen} /> */}
               <Stack.Screen name="AuthNav" component={AuthNavigation} />
             </>:
-            <Stack.Screen name="MainNav" component={MainNavigation} />
+            <>
+              <Stack.Screen name="MainNav" component={MainNavigation} />
+            </>
           }
         </Stack.Navigator>
       </NavigationContainer>

@@ -6,6 +6,7 @@ const windowheight = Dimensions.get('window').height;
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import EmailValidate from "../../../Validate/EmailValidation";
 import PasswordValidate from '../../../Validate/PasswordValidation';
+import Lottie from 'lottie-react-native';
 import styles from "./LoginStyle";
 const SignIn = ({navigation}) => {
 
@@ -72,9 +73,9 @@ const SignIn = ({navigation}) => {
                         ]
                     }
                 ]}>Sign In</Animated.Text>
-                <Image
+                <Lottie
+                    source={require('../../../lottiesAnimations/124956-login.json')}  autoPlay={true} 
                     style={{width:windowWidth,height:windowWidth,resizeMode:"contain"}}
-                    source={{uri:"https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=338&ext=jpg"}}
                 />
             </View>
             <View style={{ alignItems: "center", }}>

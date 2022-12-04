@@ -4,9 +4,12 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import Lottie from 'lottie-react-native';
 let selectIntesertGlobal=[];
 const ConfimSignup=({route,navigation})=>{
     const {email,password}=route.params;
+    const [loading,setLoading]=useState(false)
+    const [name,setName]=useState(null);
     const [age,setAge]=useState(null);
     const [phone,setPhone]=useState(null);
     const [qualification,setQualification]=useState(null);
@@ -19,7 +22,6 @@ const ConfimSignup=({route,navigation})=>{
     const position = new Animated.ValueXY({ x: 0, y: windowHeight });
     const showPopUp = () => {
         Animated.timing(position, {
-            // toValue: { x: 0, y: -windowHeight/80 },
             duration: 1000,
             useNativeDriver: true
         }).start();
@@ -82,6 +84,17 @@ const ConfimSignup=({route,navigation})=>{
         try {
             console.log(email,password,age,phone,qualification);
             const newIntesetArray=convertInterestFormat(selctedInterestState)
+            if(name==null)
+                throw "Please enter Name";
+            if(age==null)
+                throw "Please enter Age";
+            if(phone.length!=10)
+                throw "Phone Should be 10 length long"
+            if(qualification==null)
+                throw "Please enter Qualification";
+            if (newIntesetArray.length==0)
+                throw "Please Select Atleast One Intreast";
+            setLoading(true);
             auth()
             .createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
@@ -90,28 +103,30 @@ const ConfimSignup=({route,navigation})=>{
                 firestore().collection("UserCollection")
                 .doc(user.uid)
                 .set({
-                    userCourse:['cpp','java'],
+                    userCourse:[],
                     email:email,
                     admin:false,
-                    UserQuiz:['dasd','adfdsaf'],
+                    UserQuiz:[],
                     Phone:phone,
                     Age:age,
-                    Name:'juhub',
+                    Name:name,
                     Interest:newIntesetArray
                 })
                 .then(()=>{
                     console.log("User created successfully")
-                    navigation.navigate("login")
+                    setLoading(false);
+                    navigation.replace("confirmaccount")
+                })
+                .catch((error)=>{
+                    setLoading(false);
+                    console.log(error);
                 })
             })
             .catch(error => {
-                if (error.code === 'auth/email-already-in-use') {
-                    console.log('That email address is already in use!');
-                }
                 console.error(error);
             });
         } catch (error) {
-            console.log(error);
+            alert(error);
         }
     }
     return(
@@ -128,6 +143,13 @@ const ConfimSignup=({route,navigation})=>{
             }
             ]}>
                 <View style={{alignItems:"center"}} >
+                    <TextInput
+                        placeholder="Name"
+                        placeholderTextColor='black'
+                        style={styles.customInput}
+                        keyboardType={"numeric"}
+                        onChangeText={(name)=>setName(name)}
+                    />
                     <TextInput
                         placeholder="Age"
                         placeholderTextColor='black'
@@ -169,13 +191,20 @@ const ConfimSignup=({route,navigation})=>{
                             }
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.btnContainer} 
+                    {
+                        loading?
+                        <Lottie
+                            source={require('../../../lottiesAnimations/84619-submitting-loading-button.json')}  autoPlay={true} loop={true}
+                            style={{width:windowWidth,height:windowWidth-50,resizeMode:"contain"}}
+                        />:
+                        <TouchableOpacity style={styles.btnContainer} 
                         onPress={()=>createNewUSer()}
-                    >
-                        <Text style={styles.btnText}>
-                            Complete...
-                        </Text>
-                    </TouchableOpacity>
+                        >
+                            <Text style={styles.btnText}>
+                                Complete...
+                            </Text>
+                        </TouchableOpacity>
+                    }
                 </View>
             </Animated.View>
         </View>

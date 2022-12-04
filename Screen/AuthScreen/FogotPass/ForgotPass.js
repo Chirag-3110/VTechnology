@@ -5,6 +5,7 @@ const windowheight = Dimensions.get('window').height
 import auth from '@react-native-firebase/auth';
 import EmailValidate from '../../../Validate/EmailValidation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Lottie from 'lottie-react-native';
 import styles from './ForgorStyle';
 const ForgotPass = ({navigation}) => {
     const [email, setemail] = useState("")
@@ -68,9 +69,9 @@ const ForgotPass = ({navigation}) => {
                     ]}>Send password reset link to your email</Animated.Text>
                     </View>
                     <View style={{alignItems: 'center',}}>
-                        <Image
+                        <Lottie
+                            source={require('../../../lottiesAnimations/94132-forgot-password.json')}  autoPlay={true} loop={true}
                             style={{width:windowWidth,height:windowWidth-50,resizeMode:"contain"}}
-                            source={{uri:"https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5488.jpg?size=338&ext=jpg"}}
                         />
                         <View style={[
                             { flexDirection: 'row', alignItems: "center" },
@@ -93,7 +94,7 @@ const ForgotPass = ({navigation}) => {
                     </View>
                     <View style={styles.bottomText}>
                         <Text style={[styles.subText,{fontWeight:"bold",color:"black"}]}>Back to </Text>
-                        <Text style={[styles.subText1,{color:"blue",fontWeight:"bold"}]}> Log In</Text>
+                        <Text style={[styles.subText1,{color:"blue",fontWeight:"bold"}]} onPress={()=>navigation.navigate("login")}> Log In</Text>
                     </View>
                 </View>
             </View>

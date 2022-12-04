@@ -6,9 +6,7 @@ const SplashScreen = ({ navigation }) => {
     let rotateHolder = new Animated.Value(0);
     useEffect(() => {
         rotateBox();
-        // setInterval(() => {
-        //     navigation.navigate("AuthNav")
-        // }, 2000);
+        navigation.replace("AuthNav")
     }, [])
     const rotateBox = () => {
         Animated.loop(
