@@ -74,7 +74,11 @@ function Home({ navigation }) {
             <Text style={styles.PlanText}>View Plan</Text>
           </View>
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-            {orderDetail.length === 0 ? <ActivityIndicator size="large" color="#00ff00" /> :
+            {orderDetail.length === 0 ? <View style={{ width: windoWidth / 1.1, alignItems: "center", height: windoHeight / 4 }}>
+
+              <Lottie
+                source={require('../../lottiesAnimations/96372-loader-5.json')} autoPlay loop style={{ height: 250, width: windoWidth, justifyContent: "center", alignItems: "center" }} />
+            </View> :
               orderDetail.map((item, index) => (
                 <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
                   Name: item.Name,
@@ -87,6 +91,7 @@ function Home({ navigation }) {
                   <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontWeight: "600", color: "black" }}>{item.Name}</Text></View>
                 </TouchableOpacity>
               ))
+
             }
           </ScrollView>
 
