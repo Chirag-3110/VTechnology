@@ -6,6 +6,8 @@ import { GlobalVariable } from '../../App';
 import auth from '@react-native-firebase/auth';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
+import Lottie from 'lottie-react-native';
+
 
 function Home({ navigation }) {
   const { userUid } = useContext(GlobalVariable);
@@ -152,7 +154,6 @@ function Home({ navigation }) {
           transparent={true}
           visible={modalVisible1}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
             setModalVisible1(!modalVisible1);
           }}
         >
@@ -162,10 +163,15 @@ function Home({ navigation }) {
                 <View style={styles.ContentView1}>
 
                   <Text style={styles.ModelTopViewText1}>Feedback</Text>
+
                 </View>
                 <TouchableOpacity style={[styles.ContentView1, { justifyContent: "flex-end", alignItems: "flex-end" }]} onPress={() => setModalVisible1(!modalVisible1)}>
                   <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/656/656857.png" }} style={[styles.ProImg, { width: 20, height: 20, marginRight: 30 }]} />
                 </TouchableOpacity>
+              </View>
+              <View style={{ height: 150, backgroundColor: "white", justifyContent: "center", alignItems: "center", width: windoWidth, marginVertical: 25, marginTop: 10, borderTopColor: "blue", borderTopWidth: 2 }}>
+                <Lottie
+                  source={require('../../lottiesAnimations/33000-feedback.json')} autoPlay loop style={{ height: 350, width: windoWidth }} />
               </View>
               <ScrollView alwaysBounceVertical={true} showsVerticalScrollIndicator={false}>
 
@@ -185,7 +191,7 @@ function Home({ navigation }) {
             </View>
           </View>
         </Modal>
-      </View>
+      </View >
 
 
     </>
@@ -438,7 +444,7 @@ const styles = StyleSheet.create({
   },
   modalView1: {
     width: windoWidth,
-    height: windoHeight / 1.5,
+    height: windoHeight / 1.2,
     backgroundColor: "white",
     borderRadius: 20,
     // padding: 35,
@@ -477,7 +483,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   detailsText1: {
-    color: "white"
+    color: "black"
   },
   ModelTopView1: {
     marginVertical: 15,
@@ -507,14 +513,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     fontWeight: "700",
     width: windoWidth / 1.2,
-    backgroundColor: "rgba(115,105,248,0.85)",
+    // backgroundColor: "rgba(115,105,248,0.85)",
+    backgroundColor: "white",
+    borderColor: "blue",
+    borderWidth: 1,
     padding: 20,
     borderRadius: 10,
     marginVertical: 10
   },
   NotifViewActivityText: {
     fontSize: 20,
-    color: "white",
+    color: "black",
     marginVertical: 10
   }
 
