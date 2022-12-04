@@ -1,18 +1,21 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
-import CustomButton from "../../../components/AnimatedButton";
+import React, { useState,useEffect } from "react";
+import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Animated,Image } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 import EmailValidate from "../../../Validate/EmailValidation"
 import PasswordValidate from '../../../Validate/PasswordValidation';
+import styles from "../SignIn/LoginStyle";
 const SignUp = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
     const [Cpassword, setCpassword] = useState('');
+    const [showPassword, setShowPassword] = useState(true);
 
+    useEffect(() => {
+        showPopUp();
+    }, [])
     const validateUser = () => {
-        // console.log("hii")
-        // console.log(email)
         try {
             if (email === "")
                 throw "Please enter Email";
@@ -33,117 +36,122 @@ const SignUp = ({ navigation }) => {
             alert(error)
         }
     }
+    const position = new Animated.ValueXY({ x: 0, y: -windowheight });
+    const subTextposition = new Animated.ValueXY({ x: 0, y: -windowheight });
+    const showPopUp = () => {
+        Animated.timing(subTextposition, {
+            toValue: { x: 0, y: -windowheight/300 },
+            duration: 1000,
+            useNativeDriver: true
+        }).start(()=>{
+            Animated.timing(position, {
+                toValue: { x: 0, y: -windowheight/300},
+                duration:500,
+                useNativeDriver: true
+            }).start();
+        });
+    }
     return (
-        <ImageBackground style={styles.container}
-            source={require('../../../assests/nwe.png')}
-        >
-            <View>
+        <View style={styles.container}>
+            <View style={{ alignItems: "flex-start",justifyContent: 'center' }}>
+                <Animated.Text style={[
+                    styles.MainText,
+                    {
+                        transform: [
+                            { translateX: position.x },
+                            { translateY: position.y }
+                        ]
+                    }
+                ]}>Sign In</Animated.Text>
+                <Animated.Text style={[
+                    styles.MainText,
+                    {
+                        fontSize:25,
+                        marginLeft:30,
+                        transform: [
+                            { translateX: subTextposition.x },
+                            { translateY: subTextposition.y }
+                        ]
+                    }
+                ]}>Connect With Us</Animated.Text>
+                <Image
+                    style={{width:windowWidth,height:windowWidth-50,resizeMode:"contain"}}
+                    source={{uri:"https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=338&ext=jpg"}}
+                />
+            </View>
+            <View style={{ alignItems: "center",width:"100%" }}>
                 <View>
-                    <View style={{ alignItems: "center" }}>
-                        <Text style={styles.MainText}>Sign Up</Text>
-                        <Text style={styles.subText}>Create an account,it's free</Text>
-                    </View>
-                    <View>
+                    <Text style={{color:"black",fontWeight:"bold"}}>Email</Text>
+                    <View style={[
+                        { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                    >
+                        <FontAwesome name="user" size={25} color={"grey"} />
                         <TextInput
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10 }}
                             placeholder="Email"
-                            placeholderTextColor='black'
-                            style={styles.customInput}
+                            placeholderTextColor={"grey"}
                             onChangeText={value => { setemail(value) }}
                         />
+                    </View>
+                </View>
+                <View style={{marginTop:10}}>
+                    <Text style={{color:"black",fontWeight:"bold"}}>Password</Text>
+                    <View style={[
+                        { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                    >
+                        <FontAwesome name="lock" size={25} color={"grey"} />
                         <TextInput
-                            placeholder="Password"
-                            placeholderTextColor='black'
-                            style={styles.customInput}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10}}
+                            placeholder={"Password"}
+                            placeholderTextColor={"grey"}
+                            secureTextEntry={showPassword}
                             onChangeText={value => { setpassword(value) }}
+                            autoCapitalize={true}
                         />
+                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} >
+                            {
+                                showPassword?
+                                <FontAwesome name="eye" size={25} color={"grey"} />:
+                                <FontAwesome name="eye-slash" size={25} color={"grey"} />
+                            }
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={{marginTop:10}}>
+                    <Text style={{color:"black",fontWeight:"bold"}}>Password</Text>
+                    <View style={[
+                        { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                    >
+                        <FontAwesome name="lock" size={25} color={"grey"} />
                         <TextInput
-                            placeholder="Confirm Password"
-                            placeholderTextColor='black'
-                            style={styles.customInput}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10}}
+                            placeholder={"Confirm Password"}
+                            placeholderTextColor={"grey"}
+                            secureTextEntry={showPassword}
                             onChangeText={value => { setCpassword(value) }}
+                            autoCapitalize={true}
                         />
                     </View>
-                    <TouchableOpacity style={styles.btnContainer}
-                        onPress={validateUser}
-                    >
-                        <Text style={styles.btnText}>
-                            Sign Up
-                        </Text>
-                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.btnContainer} 
+                    onPress={validateUser}
+                >
+                <Text style={styles.btnText}>
+                    Create Account
+                </Text>
+                </TouchableOpacity>
+                <View style={styles.bottomText}>
+                    <Text style={[styles.subText,{color:"black",fontWeight:"bold",marginRight:10}]}>Already have an account?</Text>
+                    <Text style={[styles.subText,{color:"blue",fontWeight:"bold"}]} onPress={() => navigation.navigate("login")}>Log In</Text>
                 </View>
             </View>
-            <View style={styles.bottomText}>
-                <Text style={styles.subText}>Already have an account?</Text>
-                <Text style={styles.subText} onPress={() => navigation.navigate("login")}>Log In</Text>
-            </View>
-        </ImageBackground>
+        </View>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: 'center',
-    },
-    MainText: {
-        color: "black",
-        fontWeight: "bold",
-        fontSize: 30,
-    },
-    subText: {
-        color: "#5B5B5B",
-        fontWeight: "bold",
-        marginTop: 10,
-        marginBottom: 10
-    },
-    customInput: {
-        width: windowWidth - 60,
-        backgroundColor: "white",
-        marginTop: 20,
-        borderRadius: 5,
-        paddingHorizontal: 20,
-        borderWidth: 1.5,
-        borderColor: "#A8A8A8",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: -5,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 20.00,
-        elevation: 24,
-        fontWeight: "bold",
-        color: "black"
-    },
-    btnContainer: {
-        width: windowWidth - 60,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: "#10FFE5",
-        borderRadius: 200,
-        borderWidth: 2,
-        borderColor: "#66EECD",
-        marginTop: windowheight / 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 25,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 50,
-    },
-    btnText: {
-        fontWeight: "bold",
-        color: "#535353",
-        fontSize: 18,
-    },
-    bottomText: {
-        flexDirection: "row",
-        position: 'absolute',
-        bottom: windowheight / 40,
-        borderColor: "#BDFAFA",
-    }
-})
 export default SignUp;

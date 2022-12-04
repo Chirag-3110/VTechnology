@@ -160,10 +160,10 @@ const ConfimSignup=({route,navigation})=>{
                             {
                                 interestArray.map((item,index)=>(
                                     <TouchableOpacity
-                                        style={[styles.itemText,item.isSelect?{backgroundColor:"#BBBABF"}:{backgroundColor:"cyan"}]}
+                                        style={[styles.itemText,item.isSelect?{backgroundColor:"#BBBABF"}:{backgroundColor:"#1D0EFE"}]}
                                         onPress={()=>selectInterest(item,index)}
                                     >
-                                        <Text style={{color:"black",fontWeight:"bold"}}>{item.value}</Text>
+                                        <Text style={{color:"white",fontWeight:"bold"}}>{item.value}</Text>
                                     </TouchableOpacity>
                                 ))
                             }
@@ -176,10 +176,6 @@ const ConfimSignup=({route,navigation})=>{
                             Complete...
                         </Text>
                     </TouchableOpacity>
-                    {/* <CustomButton
-                        title="Complete..."
-                        onpress={()=>alert("Data Added ")}
-                    /> */}
                 </View>
             </Animated.View>
         </View>
@@ -214,7 +210,6 @@ const styles = StyleSheet.create({
     animtedView: {
         backgroundColor: "white",
         width: windowWidth-25,
-        // height: (windowHeight / 1.5),
         paddingVertical:20,
         borderRadius: 40,
         marginTop:windowHeight/20,
@@ -242,27 +237,25 @@ const styles = StyleSheet.create({
         borderRadius:100,
     },
     btnContainer:{
-        width:windowWidth-60,
-        height:50,
+        width: windowWidth - 60,
+        height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor:"#10FFE5",
-        borderRadius:200,
-        borderWidth:2,
-        borderColor:"#66EECD",
-        marginTop:windowHeight/20,
+        backgroundColor: "#1D0EFE",
+        borderRadius:10,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height:25,
+            height: 25,
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 50,
+        marginTop:10
     },
     btnText:{
         fontWeight:"bold",
-        color:"#535353",
+        color:"white",
         fontSize:18,
     },
 })

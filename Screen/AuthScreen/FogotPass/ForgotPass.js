@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Dimensions, Image, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, TextInput, Dimensions, Image, Animated, TouchableOpacity } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 import auth from '@react-native-firebase/auth';
 import EmailValidate from '../../../Validate/EmailValidation';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import styles from './ForgorStyle';
 const ForgotPass = ({navigation}) => {
     const [email, setemail] = useState("")
     const ResetLink = () => {
@@ -20,132 +22,83 @@ const ForgotPass = ({navigation}) => {
                 navigation.navigate("login")
             })
         } catch (error) {
-            console.log(error);
+            alert(error);
         }        
+    }
+    useEffect(()=>{
+        showPopUp();
+    },[])
+    const position = new Animated.ValueXY({ x: 0, y: -windowheight });
+    const subTextposition = new Animated.ValueXY({ x: 0, y: -windowheight });
+    const showPopUp = () => {
+        Animated.timing(subTextposition, {
+            toValue: { x: 0, y: -windowheight/300 },
+            duration: 1000,
+            useNativeDriver: true
+        }).start(()=>{
+            Animated.timing(position, {
+                toValue: { x: 0, y: -windowheight/300},
+                duration:500,
+                useNativeDriver: true
+            }).start();
+        });
     }
     return (
         <>
-            <ImageBackground style={styles.container}
-                source={require('../../../assests/nwe.png')}
-            >
-                <View>
+            <View style={styles.container}>
+                <View >
                     <View style={{ alignItems: "center" }}>
-                        <Text style={styles.MainText}>Forgot Password</Text>
-                        <Text style={styles.subText}>Send password reset link to your email</Text>
+                    <Animated.Text style={[
+                        styles.MainText,
+                        {
+                            transform: [
+                                { translateX: position.x },
+                                { translateY: position.y }
+                            ]
+                        }
+                    ]}>Forgot Password</Animated.Text>
+                    <Animated.Text style={[
+                        styles.subText,
+                        {
+                            transform: [
+                                { translateX: subTextposition.x },
+                                { translateY: subTextposition.y }
+                            ]
+                        }
+                    ]}>Send password reset link to your email</Animated.Text>
                     </View>
-                    <View>
-                        <TextInput
-                            placeholder="Email"
-                            placeholderTextColor='black'
-                            style={styles.customInput}
-                            onChangeText={value => { setemail(value) }}
+                    <View style={{alignItems: 'center',}}>
+                        <Image
+                            style={{width:windowWidth,height:windowWidth-50,resizeMode:"contain"}}
+                            source={{uri:"https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5488.jpg?size=338&ext=jpg"}}
                         />
+                        <View style={[
+                            { flexDirection: 'row', alignItems: "center" },
+                                styles.customInput
+                            ]}
+                        >
+                            <FontAwesome name="user" size={25} color={"grey"} />
+                            <TextInput
+                                style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10 }}
+                                placeholder="Email"
+                                placeholderTextColor={"grey"}
+                                onChangeText={value => { setemail(value) }}
+                            />
+                        </View>
+                        <TouchableOpacity style={styles.btnContainer} onPress={ResetLink}>
+                            <Text style={styles.btnText}>
+                                Send link
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.btnContainer} onPress={ResetLink}>
-                        <Text style={styles.btnText}>
-                            Send link
-                        </Text>
-                    </TouchableOpacity>
+                    <View style={styles.bottomText}>
+                        <Text style={[styles.subText,{fontWeight:"bold",color:"black"}]}>Back to </Text>
+                        <Text style={[styles.subText1,{color:"blue",fontWeight:"bold"}]}> Log In</Text>
+                    </View>
                 </View>
-
-                <View style={styles.bottomText}>
-                    <Text style={styles.subText}>Back to </Text>
-                    <Text style={styles.subText1}> Log In</Text>
-                </View>
-            </ImageBackground>
+            </View>
         </>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: 'center',
-    },
-    Mainn: {
-        flex: 1,
-    },
-    MainText: {
-        color: "black",
-        fontWeight: "bold",
-        fontSize: 30,
-    },
-    subText: {
-        color: "#5B5B5B",
-        fontWeight: "bold",
-        marginTop: 10,
-        marginBottom: 10
-    },
-    subText1: {
-        color: "#10e6e2",
-        fontWeight: "800",
-        marginTop: 10,
-        marginBottom: 10
-    },
-    customInput: {
-        width: windowWidth - 60,
-        backgroundColor: "white",
-        marginTop: 20,
-        borderRadius: 5,
-        paddingHorizontal: 20,
-        borderWidth: 1.5,
-        borderColor: "#A8A8A8",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: -5,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 20.00,
-        elevation: 24,
-        fontWeight: "bold",
-        color: "black"
-    },
-    btnContainer: {
-        width: windowWidth - 60,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: "#10FFE5",
-        borderRadius: 200,
-        borderWidth: 2,
-        borderColor: "#66EECD",
-        marginTop: windowheight / 15,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 50,
-    },
-    btnText: {
-        fontWeight: "bold",
-        color: "#535353",
-        fontSize: 18,
-    },
-    bottomText: {
-        flexDirection: "row",
-        position: 'absolute',
-        bottom: 20,
-        // backgroundColor: 'rgba(161,255,255,0.7)',
-        width: windowWidth - 60,
-        padding: 5,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 5,
-        // borderWidth: 2,
-        // borderColor: "#BDFAFA",
-        marginTop: windowheight / 15,
-        shadowColor: "#0DB0FA",
-        shadowOffset: {
-            width: 0,
-            height: 25,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 50,
-    }
-})
+
 export default ForgotPass

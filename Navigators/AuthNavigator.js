@@ -4,6 +4,7 @@ import SignUp from '../Screen/AuthScreen/SignUp/SignUp';
 import ForgotPass from '../Screen/AuthScreen/FogotPass/ForgotPass';
 import ConfimSignup from "../Screen/AuthScreen/SignUp/ConfimSignup";
 import Onboarding from "../Screen/OnBoarding/OnBoarding";
+import SplashScreen from "../Screen/AuthScreen/SplashScreen";
 const Stack = createNativeStackNavigator();
 
 const AuthNavigation = () => {
