@@ -27,49 +27,81 @@ function Profile() {
             </View>
             <View style={styles.MainProfileview}>
                 <View style={styles.MainProfileInnerview}>
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 50, height: 50, color: "white" }} />
+                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 70, height: 70, color: "white" }} />
                 </View>
-                <View style={[styles.MainProfileInnerview, { width: windowWidth / 1.5, alignItems: "flex-start", marginLeft: 2 }]}>
-                    <Text style={[styles.InfoText, { fontSize: 22, fontWeight: "900" }]}>{getAllDetails.Name}</Text>
-                    <Text style={styles.InfoText}>{getAllDetails.email}</Text>
+                <View style={[styles.MainProfileInnerview, { width: windowWidth / 1.5, alignItems: "flex-start" }]}>
+                    <Text style={[styles.InfoText, { fontSize: 22, fontWeight: "900", color: "black" }]}>{getAllDetails.Name}</Text>
+                    <Text style={[styles.InfoText]}>{getAllDetails.email}</Text>
+                </View>
+            </View>
+            <View style={{ paddingVertical: 10, marginBottom: 15 }}>
+                <Text style={{ fontWeight: "800", marginHorizontal: 20, marginVertical: 10, color: "lightgrey" }}>My Status</Text>
+                <View style={{ display: "flex", flexDirection: "row", padding: 8 }}>
+
+                    <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
+                        <View style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#373738" }}>
+                            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/742/742751.png" }} style={{ width: 20, height: 20, color: "white" }} />
+                            <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3 }}>Away</Text>
+                        </View>
+                    </View>
+                    <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
+                        <View style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#FBF6B3" }}>
+                            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3281/3281289.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                            <Text style={{ fontSize: 15, color: "black", marginHorizontal: 3 }}>Away</Text>
+                        </View>
+                    </View>
+                    <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
+                        <View style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#FFDA87" }}>
+                            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3281/3281289.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                            <Text style={{ fontSize: 15, color: "black", marginHorizontal: 3 }}>Away</Text>
+                        </View>
+                    </View>
+
                 </View>
             </View>
             <View style={styles.MenuSection}>
                 <View style={styles.OptionView}>
                     <Text style={styles.OptionViewText}>Options</Text>
                 </View>
-                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 15, backgroundColor: "#CFD8FF", borderRadius: 13, marginVertical: 14 }}>
-                    <View style={styles.MainProfileInnerview1}>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1100/1100523.png" }} style={{ width: 38, height: 38, color: "white" }} />
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }}>
+                    <View style={[styles.MainProfileInnerview1, {}]}>
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1144/1144709.png" }} style={{ width: 40, height: 40, color: "white" }} />
                     </View>
                     <View style={{ width: windowWidth / 2 }}>
-                        <Text style={{ fontSize: 18, fontWeight: "600", color: "black" }}>UserDetail</Text>
+                        <Text style={{ fontSize: 18, fontWeight: "800", color: "black" }}>UserDetail</Text>
                     </View>
                     <View style={styles.MainProfileInnerview1}>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/556/556690.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                     </View>
                 </View>
-                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 15, backgroundColor: "#C0FFF3", borderRadius: 13, marginVertical: 14 }}>
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }}>
                     <View style={styles.MainProfileInnerview1}>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3368/3368819.png" }} style={{ width: 35, height: 35, color: "white" }} />
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/9115/9115400.png" }} style={{ width: 40, height: 40, color: "white" }} />
                     </View>
                     <View style={{ width: windowWidth / 2, }}>
-                        <Text style={{ fontSize: 18, fontWeight: "600", color: "black" }}>Dashboard</Text>
+                        <Text style={{ fontSize: 18, fontWeight: "800", color: "black" }}>Dashboard</Text>
                     </View>
                     <View style={styles.MainProfileInnerview1}>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1294/1294738.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                     </View>
                 </View>
-                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 15, backgroundColor: "#FBE0E6", borderRadius: 13, marginVertical: 14 }}>
+                <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }}>
                     <View style={styles.MainProfileInnerview1}>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/7111/7111141.png" }} style={{ width: 35, height: 35, color: "white" }} />
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/7111/7111141.png" }} style={{ width: 40, height: 40, color: "white" }} />
                     </View>
                     <View style={{ width: windowWidth / 2, }}>
-                        <Text style={{ fontSize: 18, fontWeight: "600", color: "black" }}>Activities</Text>
+                        <Text style={{ fontSize: 18, fontWeight: "800", color: "black" }}>Activities</Text>
                     </View>
                     <View style={styles.MainProfileInnerview1}>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/556/556690.png" }} style={{ width: 30, height: 30, color: "white" }} />
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                     </View>
+                </View>
+                <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
+                    <Text style={{ marginVertical: 5, fontWeight: "800", color: "lightgrey" }}>My Account</Text>
+                    <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text>
+                    <Text style={{ fontSize: 18, color: "red", marginVertical: 5 }}>Log Out</Text>
+
+
                 </View>
             </View>
         </View >
@@ -101,29 +133,29 @@ const styles = StyleSheet.create({
     },
     MainProfileInnerview: {
         // borderWidth: 1,
-        marginHorizontal: 2,
-        marginLeft: 10,
+        marginHorizontal: 7,
+        marginLeft: 20,
         justifyContent: "center",
         width: windowWidth / 5,
         alignItems: "center"
     },
     InfoText: {
         fontSize: 17,
-        color: "black",
         fontWeight: "600"
     },
     MenuSection: {
-        height: windowHeight / 1.5,
+        height: windowHeight / 1.9,
         // borderWidth: 1
     },
     OptionView: {
         // borderWidth: 1,
-        marginVertical: 20,
+        // marginVertical: 20,
+        marginTop: 20,
         marginHorizontal: 20
     },
     OptionViewText: {
-        fontSize: 25,
-        color: "black",
+        fontSize: 20,
+        color: "lightgrey",
         fontWeight: "700"
     },
     MainProfileInnerview1: {
