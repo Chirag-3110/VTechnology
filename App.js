@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import MainNavigation from './Navigators/MainNavigation';
 import AuthNavigation from './Navigators/AuthNavigator';
 import SplashScreen from './Screen/AuthScreen/SplashScreen';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 const Stack=createNativeStackNavigator();
@@ -46,6 +47,7 @@ const App = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </GlobalVariable.Provider>
+    
   );
 }
 export default App;
