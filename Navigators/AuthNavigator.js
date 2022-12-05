@@ -4,7 +4,7 @@ import SignUp from '../Screen/AuthScreen/SignUp/SignUp';
 import ForgotPass from '../Screen/AuthScreen/FogotPass/ForgotPass';
 import ConfimSignup from "../Screen/AuthScreen/SignUp/ConfimSignup";
 import ConifirmAccount from "../Screen/AuthScreen/SignUp/ConifirmAccount";
-
+import Onboardingscreen from '../Screen/AuthScreen/Onboardingscreen';
 const Stack = createNativeStackNavigator();
 
 const AuthNavigation = () => {
@@ -15,6 +15,7 @@ const AuthNavigation = () => {
                 headerShown: false
             }}
         >
+            <Stack.Screen name="Onboardingscreen" component={Onboardingscreen} />
             <Stack.Screen name="login" component={SignIn} />
             <Stack.Screen name="signup" component={SignUp} />
             <Stack.Screen name='confimSignup' component={ConfimSignup} />

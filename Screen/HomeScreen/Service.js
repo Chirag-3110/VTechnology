@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, TextInput, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react'
+import { View, Text, TextInput, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import styles from './QuestionsStyles';
-import dummyQuestion from '../../Data/DummyQuestionsData';
 const windoWidth = Dimensions.get('window').width;
-const windoHeight = Dimensions.get('window').height;
-const Service = () => {
+import {GlobalVariable} from '../../App';
+import firestore from '@react-native-firebase/firestore';
+
+const Service = ({route,navigation}) => {
+    const {quizArrayData,itemID} = route.params;
+    const {userUid} = useContext(GlobalVariable);
     const [ques, setQues] = useState([]);
-    const setAnswerAsSelected = (quesIndex, optIndex) => {
+    const [loading,setLoading]=useState(false);
+
+    useEffect(() => {
+        setQues(quizArrayData)
+    }, []);
+    const setAnswerAsSelected = (quesIndex, optIndex,selectedQues) => {
         setQues((question) =>
             question.map((val, index) => {
                 if (index === quesIndex) {
                     for (let i = 0; i < val.options.length; i++) {
                         if (i === optIndex) {
                             val.options[i].isSelected = true;
+                            selectedQues.selectedOption=i
                         }
                         else {
                             val.options[i].isSelected = false;
@@ -23,14 +32,52 @@ const Service = () => {
             })
         );
     }
-    useEffect(() => {
-        setQues(dummyQuestion)
-    }, []);
+    const convertData=(quizData)=>{
+        const newArray=[];
+        quizData.forEach((item)=>{
+            item.options.forEach((value)=>{
+                newArray.push({_id:value._id,answer:value.answer,option:value.option})
+            })
+            item.options=newArray;   
+        })
+        return quizData   
+    }
+    const setUserQuizDataPerformance=async()=>{
+        try {
+            const newUpdatedQuesArray=convertData(ques)
+            setLoading(true)
+            firestore()
+            .collection("UserPerformance")
+            .add({
+                AdminFeedback:"",
+                ReviewerName:"",
+                UserID:userUid.uid,
+                quizID:itemID,
+                status:"Pending",
+                QuesArray:newUpdatedQuesArray
+            })
+            .then(()=>{
+                alert("Quiz Submitted");
+                setLoading(false)
+                clearAll();
+                navigation.navigate("MainQuiz")
+            })
+            .catch((error)=>{
+                setLoading(false)
+                console.log(error);
+            })
+        } catch (error) {
+            setLoading(false)
+            console.log('yo',error);
+        }
+    }
+
     const clearAll=()=>{
         setQues((question) =>
             question.map((val, index) => {
                 for (let i = 0; i < val.options.length; i++) {
                     val.options[i].isSelected = false;
+                    val.selectedOption=""
                 }
                 return val;
             })
@@ -57,10 +104,6 @@ const Service = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.container}>
-                {/* <View style={{ width: windoWidth ,padding:10,flexDirection:"row",justifyContent:"space-between",alignItems: 'center',alignSelf:"center"}}>
-                    <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/male-character-sitting-on-chair-and-reading-a-book-4634471-3855676.png" }} style={styles.MainImg} />
-                    <Text style={{color:"white",fontWeight:"bold",fontSize:60,width:170,}}>Quiz Time</Text>
-                </View> */}
                 <View style={styles.Quiztitle}>
                     <Text style={styles.quiCardTitle}>Hello there, Quiz Time</Text>
                     <Text style={styles.quizCardSubText}>Digital Maketing Quiz</Text>
@@ -77,24 +120,24 @@ const Service = () => {
                         ques.map((items, quesIndex) => (
                             <View key={quesIndex} style={styles.quesCard}>
                                 <Text style={{ fontWeight: "bold", color: "black", fontSize: 22, width: '95%', paddingVertical: 10 }}>
-                                    Q{quesIndex + 1}. {items.quesion}
+                                    Q{quesIndex + 1}. {items.question}
                                 </Text>
                                 {
                                     items.options.map((value, index) => (
                                         <TouchableOpacity key={index} style={[{ width: '95%', padding: 2 }, value.isSelected ? styles.selctedOptionLabel : null]}
-                                            onPress={() => setAnswerAsSelected(quesIndex, index)}
+                                            onPress={() => setAnswerAsSelected(quesIndex, index,items)}
                                         >
                                             <Text style={{ fontWeight: "bold", color: value.isSelected ? '#6f2ff7' : "#2e2e2f", fontSize: 20 }}>
-                                                {index + 1}. {value.optionValue}
+                                                {index + 1}. {value.answer}
                                             </Text>
                                         </TouchableOpacity>
                                     ))
                                 }
-                                <TextInput
+                                {/* <TextInput
                                     placeholder='Enter Your Answer'
                                     placeholderTextColor={"black"}
                                     style={styles.inputField}
-                                />
+                                /> */}
                             </View>
                         ))
                     }
@@ -112,8 +155,12 @@ const Service = () => {
                     >
                         <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.btnBody, { backgroundColor: "#6f2ff7" }]}>
-                        <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }}>Check</Text>
+                    <TouchableOpacity style={[styles.btnBody, { backgroundColor: "#6f2ff7" }]} onPress={()=>console.log(ques)}>
+                        {
+                            loading?
+                            <ActivityIndicator size={25} color="white"/>:
+                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }} onPress={setUserQuizDataPerformance}>Submit</Text>
+                        }
                     </TouchableOpacity>
                 </View>
             </View>

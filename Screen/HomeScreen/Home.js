@@ -7,15 +7,12 @@ import auth from '@react-native-firebase/auth';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 import Lottie from 'lottie-react-native';
-import ToastManager, { Toast } from 'toastify-react-native'
 function Home({ navigation }) {
   const { userUid } = useContext(GlobalVariable);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [orderDetail, setOrderDetail] = useState([]);
-  const showToasts = () => {
-    Toast.success('Promised is resolved')
-  }
+
   useEffect(() => {
     getOrderData();
     console.log("home", userUid.uid)
@@ -46,7 +43,7 @@ function Home({ navigation }) {
             <Text>Hello World</Text>
             <Text style={styles.TopDate}>Thrusday ,08 July</Text>
           </View>
-          <TouchableOpacity onPress={showToasts}>
+          <TouchableOpacity>
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
           </TouchableOpacity>
         </View>
@@ -203,7 +200,6 @@ function Home({ navigation }) {
         </Modal>
       </View >
 
-      <ToastManager />
 
     </>
   )
