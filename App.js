@@ -2,19 +2,16 @@ import React,{useState,useEffect,createContext} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import MainNavigation from './Navigators/MainNavigation';
 import AuthNavigation from './Navigators/AuthNavigator';
-import SplashScreen from './Screen/AuthScreen/SplashScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 const Stack=createNativeStackNavigator();
 export const GlobalVariable=createContext();
 const App = () => {
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
 
   function onAuthStateChanged(userNew) {
-    console.log(user)
     setUser(userNew);
-    console.log(userNew);
     if (initializing) setInitializing(false);
   }
 
@@ -35,13 +32,8 @@ const App = () => {
         >
           {
             user==null?
-            <>
-              {/* <Stack.Screen name="splash" component={SplashScreen} /> */}
-              <Stack.Screen name="AuthNav" component={AuthNavigation} />
-            </>:
-            <>
+              <Stack.Screen name="AuthNav" component={AuthNavigation} />:
               <Stack.Screen name="MainNav" component={MainNavigation} />
-            </>
           }
         </Stack.Navigator>
       </NavigationContainer>

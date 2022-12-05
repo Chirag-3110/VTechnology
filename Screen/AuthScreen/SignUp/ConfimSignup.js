@@ -82,7 +82,6 @@ const ConfimSignup=({route,navigation})=>{
     }
     const createNewUSer=()=>{
         try {
-            console.log(email,password,age,phone,qualification);
             const newIntesetArray=convertInterestFormat(selctedInterestState)
             if(name==null)
                 throw "Please enter Name";
@@ -94,37 +93,17 @@ const ConfimSignup=({route,navigation})=>{
                 throw "Please enter Qualification";
             if (newIntesetArray.length==0)
                 throw "Please Select Atleast One Intreast";
-            setLoading(true);
-            auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                const user=userCredential.user;
-                console.log('User account created & signed in!',user.uid);
-                firestore().collection("UserCollection")
-                .doc(user.uid)
-                .set({
-                    userCourse:[],
-                    email:email,
-                    admin:false,
-                    UserQuiz:[],
-                    Phone:phone,
-                    Age:age,
-                    Name:name,
-                    Interest:newIntesetArray
-                })
-                .then(()=>{
-                    console.log("User created successfully")
-                    setLoading(false);
-                    navigation.replace("confirmaccount")
-                })
-                .catch((error)=>{
-                    setLoading(false);
-                    console.log(error);
-                })
-            })
-            .catch(error => {
-                console.error(error);
-            });
+            const userDetails={
+                userCourse:[],
+                email:email,
+                admin:false,
+                UserQuiz:[],
+                Phone:phone,
+                Age:age,
+                Name:name,
+                Interest:newIntesetArray
+            }
+            navigation.navigate("confirmaccount",{userData:userDetails,password:password})
         } catch (error) {
             alert(error);
         }
@@ -147,7 +126,6 @@ const ConfimSignup=({route,navigation})=>{
                         placeholder="Name"
                         placeholderTextColor='black'
                         style={styles.customInput}
-                        keyboardType={"numeric"}
                         onChangeText={(name)=>setName(name)}
                     />
                     <TextInput

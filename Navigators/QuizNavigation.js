@@ -1,8 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MainQuesionSceen from "../Screen/Questions/TakeQuestion";
-import QuestionsCards from "../Screen/Questions/AllQuestions";
-import ReviewQuestions from "../Screen/Questions/ReviewQuesions";
-
+import MainQuizHome from "../Screen/HomeScreen/MainQuizHome";
+import Service from "../Screen/HomeScreen/Service";
 const Stack = createNativeStackNavigator();
 const QuestionNavigation = () => {
 
@@ -13,9 +11,8 @@ const QuestionNavigation = () => {
             }}
             initialRouteName="MainQuiz"
         >
-            <Stack.Screen name="ReviewQuestionsSet" component={ReviewQuestions} />
-            <Stack.Screen name="MainQuiz" component={MainQuesionSceen} />
-            <Stack.Screen name="QuestionsSet" component={QuestionsCards} />
+            <Stack.Screen name="MainQuiz" component={MainQuizHome} />
+            <Stack.Screen name="serviceQuiz" component={Service} />
         </Stack.Navigator>
     )
 }

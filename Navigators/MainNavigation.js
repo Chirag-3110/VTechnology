@@ -9,6 +9,7 @@ import DashBoard from "../Screen/HomeScreen/DashBoard";
 import MainDashboard from '../Screen/DashBoard/MainDashboard';
 import Userfile from '../Screen/Userprofile/Userprofile';
 import Profile from '../Screen/Userprofile/Profile';
+import QuestionNavigation from './QuizNavigation';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const windwoheight=Dimensions.get('window').height
@@ -48,7 +49,7 @@ const MainNavigation=()=>{
                     }
                 }}
             />
-            <Tab.Screen name="Service" component={Service}
+            <Tab.Screen name="Quiz" component={QuestionNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (

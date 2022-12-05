@@ -24,12 +24,6 @@ const SignIn = ({navigation}) => {
                 throw "Please enter Email";
             if (password === "")
                 throw "Please enter Password";
-            if (!EmailValidate(email)) {
-                throw "Please enter a valid Email"
-            }
-            if (!PasswordValidate(password)) {
-                throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
-            }
             setLoading(true)
             auth().signInWithEmailAndPassword(email,password)
             .catch((error)=>{
@@ -74,7 +68,7 @@ const SignIn = ({navigation}) => {
                     }
                 ]}>Sign In</Animated.Text>
                 <Lottie
-                    source={require('../../../lottiesAnimations/124956-login.json')}  autoPlay={true} 
+                    source={require('../../../lottiesAnimations/124956-login.json')}  autoPlay={true} loop={false} 
                     style={{width:windowWidth,height:windowWidth,resizeMode:"contain"}}
                 />
             </View>
