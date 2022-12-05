@@ -1,203 +1,84 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-  Animated,
-  Image,
-  Easing,
-  StatusBar,
-  SafeAreaView,
-  TouchableHighlight,
-} from 'react-native';
-import Svg, {Path, Rect} from 'react-native-svg';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import LinearGradient from 'react-native-linear-gradient';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
-const {width, height} = Dimensions.get('screen');
-
-function Userfile() {
-  return (
-    <View style={{flex: 1}}>
-      <LinearGradient colors={['white', 'pink']} style={{flex: 1}}>
-        <View style={styles.header1}>
-
-          <View style={styles.header2}>
-          <Image
-                source={require('../../assests/leftarrow.png')}
-                style={styles.next3}
-              />
-            <Text style={styles.heading}>Profile</Text>
-          </View>
-          <View style={styles.profile1}>
-            <TouchableHighlight
-              style={{
-                borderRadius:
-                  Math.round(
-                    Dimensions.get('window').width +
-                      Dimensions.get('window').height,
-                  ) / 2,
-                width: Dimensions.get('window').width * 0.5,
-                height: Dimensions.get('window').width * 0.5,
-                // backgroundColor: 'white',
-                opacity: 0.7,
-                backgroundColor: 'pink',
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignSelf: 'center',
-              }}
-              underlayColor="#ccc"
-              onPress={() => alert('Yaay!')}>
-              <Text> Mom, look, I am a circle! </Text>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.container1}>
-
-            <View style={styles.container3}>
-                 <Image
-                     source={require('../../assests/refresh.png')}
-                     style={styles.next2}
-                  />
-                <Text style={styles.container2}>Privacy & Setting</Text>
-                   <Image
-                   source={require('../../assests/rightarrow.png')}
-                   style={styles.nextarrow}
-                   />
-            </View>
-
-            <View style={styles.container3}>
-              <Image
-                source={require('../../assests/notification1.png')}
-                style={styles.next3}
-              />
-              <Text style={styles.container5}>Notification</Text>
-              <Image
-                source={require('../../assests/rightarrow.png')}
-                style={styles.next1}
-              />
-            </View>
-            <View style={styles.container3}>
-              <Image
-                source={require('../../assests/schedule.png')}
-                style={styles.next4}
-              />
-              <Text style={styles.container4}>Order History</Text>
-              <Image
-                source={require('../../assests/rightarrow.png')}
-                style={styles.next1}
-              />
-            </View>
-          
-          </View>
-          <View style={styles.signout}>
-          <Image
-                source={require('../../assests/exit.png')}
-                style={styles.next5}
-              />
-              <Text style={styles.container6}>Sign Out</Text>
-            </View>
-        </View>
-      </LinearGradient>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  header1: {
-    margin: 24,
-    // alignItems: 'center',
-  },
-  header2:{
-    flexDirection:"row"
-  },
-  heading:{
-    marginTop:25,
-    alignSelf:"center",
-    marginLeft:80,
-    justifyContent:"center",
-    alignContent:"center",
-    alignItems:"center",
-   fontSize:20
-  },
-  profile1: {
-    margin: 50,
-  },
-  next3: {
-    height: 30,
-    width: 30,
-   alignSelf:"flex-start",
-    marginTop: 20,
-  marginRight:35
-  },
-  next2: {
-    height: 30,
-    width: 30,
-   alignSelf:"flex-start",
-    marginTop: 20,
-    marginStart:3
-  },
-  next4: {
-    height: 30,
-    width: 30,
-   alignSelf:"flex-start",
-    marginTop: 20,
-    marginRight:18
-  },
-  next1: {
-    margin: 25,
-    height: 35,
-    width: 35,
-    alignSelf: 'flex-end',
-    marginLeft:80
-  },
-  nextarrow:{
-    margin: 25,
-    height: 35,
-    width: 35,
-    alignSelf: 'flex-end',
-    marginLeft:65
-  },
-  next5:{
-    height:25,
-    width:25
-  },
-  container1: {
-    alignItems: 'center',
-    margin: 25,
-  },
-  container2: {
-    margin: 25,
-  },
-  container4:{
-    marginTop:26,
-    marginRight:40
-  },
-  container5:{
-    marginTop:26,
-   paddingRight:40
-  },
-  container3: {
-    flexDirection: 'row',
-  },
-  container6:{
-    // marginTop:2,
-  marginLeft:10
-  },
-  signout:{
-    flexDirection:"row",
-    marginLeft:20,
-    backgroundColor:"pink",
-    width:100,
-    borderRadius:10,
-    height:40,
-    alignContent:"center",
-    alignItems:"center"
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
+const windoWidth = Dimensions.get('window').width;
+const windoHeight = Dimensions.get('window').height;
+import Lottie from 'lottie-react-native';
+import { GlobalVariable } from '../../App';
+import firestore from '@react-native-firebase/firestore';
+function Userprofile({ navigation }) {
+  const [getAllDetails, setgetAllDetails] = useState("")
+  const { userUid } = useContext(GlobalVariable);
+  useEffect(() => {
+    GetDetails();
+  }, [])
+  const GetDetails = async () => {
+    try {
+      const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
+      const Data = user._data;
+      setgetAllDetails(Data);
+      // console.log(getAllDetails)
+    } catch (error) {
+      console.error(error);
+    }
   }
-});
-export default Userfile;
+  return (
+    <View style={styles.MainView}>
+      <View style={styles.InnerMainView}>
+        <TouchableOpacity style={{ marginHorizontal: 20, width: windoWidth - 290 }} onPress={() => navigation.navigate("Prof")}>
+          <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "black" }} />
+        </TouchableOpacity>
+        <Text style={{ fontSize: 30, fontWeight: "800", color: "black" }}>UserProfile</Text>
+      </View>
+
+      <View style={styles.ProfileBox}>
+        <View style={{ alignItems: "center" }}>
+          <Lottie
+            source={require('../../lottiesAnimations/3825-name.json')} autoPlay loop style={{ height: 170, width: windoWidth, justifyContent: "center", alignItems: "center" }} />
+        </View>
+        <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
+          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Name : {getAllDetails.Name}</Text>
+        </View>
+        <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
+          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Age : {getAllDetails.Age}</Text>
+        </View>
+        <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
+          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Phone : {getAllDetails.Phone}</Text>
+        </View>
+        <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
+          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>city : jaipur</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+const styles = StyleSheet.create({
+  MainView: {
+    width: windoWidth,
+    height: windoHeight,
+    backgroundColor: "white"
+  },
+  InnerMainView: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    height: windoHeight / 8,
+    display: "flex",
+    flexDirection: "row"
+  },
+  ProfileBox: {
+    // borderWidth: 1,
+    marginHorizontal: 30,
+    height: windoHeight / 1.5,
+    marginTop: 30,
+    backgroundColor: "#FFE1CA",
+    borderRadius: 20,
+    shadowColor: 'red',
+    shadowOffset: {
+      width: 50,
+      height: -10,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 900,
+    elevation: 15,
+  }
+})
+export default Userprofile

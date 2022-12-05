@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, Dimensions, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native'
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 //screens for tab
 import HomeStack from './HomeNavigation';
 import Service from "../Screen/HomeScreen/Service";
@@ -12,10 +12,11 @@ import Profile from '../Screen/Userprofile/Profile';
 import QuestionNavigation from './QuizNavigation';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-const windwoheight=Dimensions.get('window').height
-const Tab=createBottomTabNavigator();
-const MainNavigation=()=>{
-    const [defaultColor,setDefaultColor]=useState('#AB47BC');
+import ProfileStack from './Profile';
+const windwoheight = Dimensions.get('window').height
+const Tab = createBottomTabNavigator();
+const MainNavigation = () => {
+    const [defaultColor, setDefaultColor] = useState('#AB47BC');
     return (
         <Tab.Navigator
             screenOptions={{
@@ -35,7 +36,7 @@ const MainNavigation=()=>{
 
             }}
         >
-            <Tab.Screen name="HomeTab" component={HomeStack} 
+            <Tab.Screen name="HomeTab" component={HomeStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
@@ -53,9 +54,9 @@ const MainNavigation=()=>{
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{alignItems:"center",justifyContent: 'center',marginTop:10,marginBottom:20}}>
-                                <FontAwesome name="mortar-board" size={28} color={focused? defaultColor :"grey"} />
-                                <Text style={{color:"black",fontSize:10,fontWeight:"bold"}}>
+                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
+                                <FontAwesome name="mortar-board" size={28} color={focused ? defaultColor : "grey"} />
+                                <Text style={{ color: "black", fontSize: 10, fontWeight: "bold" }}>
                                     Quiz
                                 </Text>
                             </View>
@@ -105,13 +106,13 @@ const MainNavigation=()=>{
                     }
                 }}
             />
-            <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name="Profile" component={ProfileStack}
                 options={{
-                    tabBarIcon:({focused})=>{
+                    tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{alignItems:"center",justifyContent: 'center',marginTop:10,marginBottom:20}}>
-                                <FontAwesome name="user" size={28} color={focused? defaultColor :"grey"} />
-                                <Text style={{color:"black",fontSize:10,fontWeight:"bold"}}>
+                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
+                                <FontAwesome name="user" size={28} color={focused ? defaultColor : "grey"} />
+                                <Text style={{ color: "black", fontSize: 10, fontWeight: "bold" }}>
                                     Profile
                                 </Text>
                             </View>

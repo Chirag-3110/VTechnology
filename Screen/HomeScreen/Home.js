@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
+import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
 import { LineChart, } from "react-native-chart-kit";
 import firestore from '@react-native-firebase/firestore';
 import { GlobalVariable } from '../../App';
@@ -7,13 +7,15 @@ import auth from '@react-native-firebase/auth';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 import Lottie from 'lottie-react-native';
-
-
+import ToastManager, { Toast } from 'toastify-react-native'
 function Home({ navigation }) {
   const { userUid } = useContext(GlobalVariable);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [orderDetail, setOrderDetail] = useState([]);
+  const showToasts = () => {
+    Toast.success('Promised is resolved')
+  }
   useEffect(() => {
     getOrderData();
     console.log("home", userUid.uid)
@@ -33,11 +35,6 @@ function Home({ navigation }) {
       console.log(error)
     }
   }
-  const logout = () => {
-    auth()
-      .signOut()
-      .then(() => console.log('User signed out!'));
-  }
   return (
     <>
       <ScrollView style={styles.MainScreen}>
@@ -49,11 +46,19 @@ function Home({ navigation }) {
             <Text>Hello World</Text>
             <Text style={styles.TopDate}>Thrusday ,08 July</Text>
           </View>
-          <TouchableOpacity
-            onPress={logout}
-          >
+          <TouchableOpacity onPress={showToasts}>
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
           </TouchableOpacity>
+        </View>
+        <View style={{ borderWidth: 1, borderColor: "orange", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }}>
+          <TextInput
+            style={{ fontWeight: "bold", fontSize: 15, color: "black", width: windoWidth / 1.4 }}
+            placeholder={"Search"}
+            placeholderTextColor={"black"}
+            autoCapitalize={true}
+          />
+          <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3128/3128287.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
+
         </View>
         <View style={{ marginVertical: 15 }}>
           <View style={styles.CourseView}>
@@ -63,7 +68,7 @@ function Home({ navigation }) {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn} onPress={getOrderData}>
+              <TouchableOpacity style={styles.ActivityBtn}>
                 <Text style={{ color: 'white' }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>
@@ -198,6 +203,7 @@ function Home({ navigation }) {
         </Modal>
       </View >
 
+      <ToastManager />
 
     </>
   )
