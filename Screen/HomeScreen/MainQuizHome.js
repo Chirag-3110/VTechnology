@@ -68,7 +68,7 @@ const MainQuizHome=({navigation})=>{
                         getQuestionData={moveToQuestion}
                     />
                 )}
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
             />
             <View style={{marginBottom:height/9.5,backgroundColor:"white"}}/>
         </View>
@@ -83,7 +83,8 @@ const styles=StyleSheet.create({
     },
     header:{
         width:width,
-        alignItems:"center"
+        alignItems:"center",
+        marginVertical:15
     },
     searchBox:{ 
         borderWidth: 1, 

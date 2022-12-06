@@ -3,7 +3,6 @@ import {  StyleSheet, Text, View, ScrollView, TouchableOpacity,Dimensions } from
 import CustomCircleBar from  '../../components/CustomCicleBar';
 import MONTHS_NAME from '../../Componentdata/APPConstants';
 import WEEK_DAYS_NAMES from '../../Componentdata/WeekData';
-import LinearGradient from 'react-native-linear-gradient';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 const DashBoard=()=>{
@@ -112,8 +111,7 @@ const DashBoard=()=>{
                         }
                     </View>
                 </ScrollView>
-                <LinearGradient 
-                    colors={['rgba(102,167,255,0.50)','rgba(142,189,251,0.40)','rgba(203,222,248,0.50)','rgba(191,217,251,0.30)']} 
+                <View 
                     style={styles.cardStyle}>
                     <Text style={{color:"black",fontWeight:"bold",fontSize:30,fontStyle:"italic",padding:20,color:"#3D3D3D"}}>
                         Daily Progress
@@ -139,7 +137,7 @@ const DashBoard=()=>{
                     <CustomCircleBar
                         percentageValue={75}
                     />
-                </LinearGradient>
+                </View>
             </ScrollView>
             <View style={{marginBottom:windoHeight / 10,backgroundColor:"white"}}/>
             </View>

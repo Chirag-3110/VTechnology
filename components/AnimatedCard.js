@@ -10,8 +10,8 @@ const AnimatedQuizCard=(props)=>{
         setExpanded(!expanded)
         Animated.timing(heightState, {
             toValue: 1,
-            duration: 800,
-            easing: Easing.linear,
+            duration: 1000,
+            easing: Easing.circle,
             useNativeDriver: false 
           }).start(()=>{
             Animated.timing(opacity, {
@@ -30,7 +30,7 @@ const AnimatedQuizCard=(props)=>{
         }).start(()=>{
             Animated.timing(heightState, {
                 toValue: 0,
-                duration: 800,
+                duration: 1000,
                 easing: Easing.linear,
                 useNativeDriver: false
             }).start();  

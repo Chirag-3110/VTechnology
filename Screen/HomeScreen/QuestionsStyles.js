@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "white",
         alignSelf: "center",
-        elevation: 50,
+        elevation: 10,
         shadowColor: "#1000ff",
         marginBottom: 20,
         shadowOffset: {
@@ -147,6 +147,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderColor: "rgba(115,105,248,0.85)",
         borderWidth: 2
+    },
+    youtueIconsLink:{
+        width:40,
+        height:40,
+        borderRadius:5,
+        backgroundColor:"#c760fe",
+        alignItems:"center",
+        justifyContent: 'center',
+        alignSelf:"flex-end"
     }
 });
 export default styles;

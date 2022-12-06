@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, TextInput, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Image, Linking, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import styles from './QuestionsStyles';
 const windoWidth = Dimensions.get('window').width;
 import {GlobalVariable} from '../../App';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 
 const Service = ({route,navigation}) => {
@@ -61,7 +62,8 @@ const Service = ({route,navigation}) => {
                 UserID:userUid.uid,
                 quizID:itemID,
                 status:"Pending",
-                QuesArray:newUpdatedQuesArray
+                QuesArray:newUpdatedQuesArray,
+                quizDate:new Date()
             })
             .then(()=>{
                 alert("Quiz Submitted");
@@ -144,11 +146,21 @@ const Service = ({route,navigation}) => {
                                         </TouchableOpacity>
                                     ))
                                 }
-                                {/* <TextInput
-                                    placeholder='Enter Your Answer'
-                                    placeholderTextColor={"black"}
-                                    style={styles.inputField}
-                                /> */}
+                                {/* <View style={{width:'100%',flexDirection: 'row',justifyContent: 'space-between',alignItems:"center"}}> */}
+                                    {/* <TextInput
+                                        placeholder='Enter Your Answer'
+                                        placeholderTextColor={"black"}
+                                        style={[styles.inputField,{width:'80%'}]}
+                                    /> */}
+                                    {
+                                        items.youTubevideoLink===""?null:
+                                        <TouchableOpacity style={styles.youtueIconsLink}
+                                            onPress={()=>Linking.openURL(items.youTubevideoLink)}
+                                        >
+                                            <FontAwesome name="link" size={20} color={"white"} />
+                                        </TouchableOpacity>
+                                    }
+                                {/* </View> */}
                             </View>
                         ))
                     }
