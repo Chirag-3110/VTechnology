@@ -10,7 +10,7 @@ const AnimatedQuizCard=(props)=>{
         setExpanded(!expanded)
         Animated.timing(heightState, {
             toValue: 1,
-            duration: 500,
+            duration: 800,
             easing: Easing.linear,
             useNativeDriver: false 
           }).start(()=>{
@@ -30,7 +30,7 @@ const AnimatedQuizCard=(props)=>{
         }).start(()=>{
             Animated.timing(heightState, {
                 toValue: 0,
-                duration: 500,
+                duration: 800,
                 easing: Easing.linear,
                 useNativeDriver: false
             }).start();  
@@ -50,7 +50,7 @@ const AnimatedQuizCard=(props)=>{
                         <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,color:"#a000ff"}]}>{!expanded?"Show":"Hide"}</Text>
                     </TouchableOpacity>
                     </View>
-                    <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15}]}>course name</Text>
+                    <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:10}]}>{props.dataProps.item.courseName}</Text>
                 </View>
                 <Animated.View style={{opacity:opacity}} >
                     <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,marginVertical:10,}]}>No Of Questions {props.dataProps.item.NOQues}</Text>

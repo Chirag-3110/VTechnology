@@ -6,10 +6,11 @@ import {GlobalVariable} from '../../App';
 import firestore from '@react-native-firebase/firestore';
 
 const Service = ({route,navigation}) => {
-    const {quizArrayData,itemID} = route.params;
+    const {quizArrayData,itemID,numOfQues} = route.params;
     const {userUid} = useContext(GlobalVariable);
     const [ques, setQues] = useState([]);
     const [loading,setLoading]=useState(false);
+    const [loadingClear,setloadingClear]=useState(false);
 
     useEffect(() => {
         setQues(quizArrayData)
@@ -43,7 +44,13 @@ const Service = ({route,navigation}) => {
         return quizData   
     }
     const setUserQuizDataPerformance=async()=>{
+        if(loading || loadingClear)
+            return;
         try {
+            ques.forEach((item)=>{
+                if(item.selectedOption==="")
+                    throw "Please Select Option before submittion";
+            })
             const newUpdatedQuesArray=convertData(ques)
             setLoading(true)
             firestore()
@@ -68,11 +75,12 @@ const Service = ({route,navigation}) => {
             })
         } catch (error) {
             setLoading(false)
-            console.log('yo',error);
+            alert(error);
         }
     }
 
     const clearAll=()=>{
+        setloadingClear(true)
         setQues((question) =>
             question.map((val, index) => {
                 for (let i = 0; i < val.options.length; i++) {
@@ -81,7 +89,8 @@ const Service = ({route,navigation}) => {
                 }
                 return val;
             })
-        );
+        ); 
+        setloadingClear(false)
     }
     return (
         <ScrollView style={styles.MainView}>
@@ -114,7 +123,9 @@ const Service = ({route,navigation}) => {
                 <View style={styles.Quiztitle}>
                     <View style={[styles.quiCardTitle, { flexDirection: 'row', alignItems: "center", justifyContent: 'space-evenly', }]}>
                         <Text style={{ fontWeight: "bold", fontSize: 20, color: "rgba(115,105,248,0.85)" }}>Questions</Text>
-                        <Text style={{ color: "white", fontWeight: "bold", fontSize: 20, backgroundColor: "rgba(115,105,248,0.85)", padding: 5, borderRadius: 5, paddingHorizontal: 10 }}>5</Text>
+                        <Text style={{ color: "white", fontWeight: "bold", fontSize: 20, backgroundColor: "rgba(115,105,248,0.85)", padding: 5, borderRadius: 5, paddingHorizontal: 10 }}>
+                            {numOfQues}
+                        </Text>
                     </View>
                     {
                         ques.map((items, quesIndex) => (
@@ -153,7 +164,11 @@ const Service = ({route,navigation}) => {
                     <TouchableOpacity style={[styles.btnBody, { backgroundColor: "white" }]}
                         onPress={clearAll}
                     >
-                        <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
+                        {
+                            loadingClear?
+                            <ActivityIndicator size={25} color="white"/>:
+                            <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
+                        }
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.btnBody, { backgroundColor: "#6f2ff7" }]} onPress={()=>console.log(ques)}>
                         {
