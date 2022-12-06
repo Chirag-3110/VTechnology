@@ -12,23 +12,23 @@ const ConifirmAccount=({navigation,route})=>{
     },[])
     const setUserData=()=>{
         auth()
-            .createUserWithEmailAndPassword(userData.email, password)
-            .then((userCredential) => {
-                const user=userCredential.user;
-                console.log('User account created & signed in!',user.uid);
-                firestore().collection("UserCollection")
-                .doc(user.uid)
-                .set(userData)
-                .then(()=>{
-                    console.log("User created successfully")
-                })
-                .catch((error)=>{
-                    console.log(error);
-                })
+        .createUserWithEmailAndPassword(userData.email, password)
+        .then((userCredential) => {
+            const user=userCredential.user;
+            console.log('User account created & signed in!',user.uid);
+            firestore().collection("UserCollection")
+            .doc(user.uid)
+            .set(userData)
+            .then(()=>{
+                console.log("User created successfully")
             })
-            .catch(error => {
-                console.error(error);
-            });
+            .catch((error)=>{
+                console.log(error);
+            })
+        })
+        .catch(error => {
+            console.error(error);
+        });
     }
     return(
         <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:"white"}}>

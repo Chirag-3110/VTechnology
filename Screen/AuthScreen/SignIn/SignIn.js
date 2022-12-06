@@ -8,7 +8,14 @@ import EmailValidate from "../../../Validate/EmailValidation";
 import PasswordValidate from '../../../Validate/PasswordValidation';
 import Lottie from 'lottie-react-native';
 import styles from "./LoginStyle";
+import CustomToast from "../../../components/CustomToast";
+
 const SignIn = ({navigation}) => {
+//toast states
+    const [show,setShow]=useState(false);
+    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
+    const [toastTextColorState,setToastTextColorState]=useState('black');
+    const [toastMessage,setToastMessage]=useState('');
 
     useEffect(() => {
         showPopUp();
@@ -28,15 +35,24 @@ const SignIn = ({navigation}) => {
             auth().signInWithEmailAndPassword(email,password)
             .catch((error)=>{
                 if (error.code === 'auth/invalid-email') {
-                    alert('That email address is invalid!');
+                    setShow(true)
+                    setToastMessage("Email Address is Wrong");
+                    setToastTextColorState("white")
+                    setToastColorState("red")
                 }
                 if (error.code === 'auth/wrong-password') {
-                    alert('That Password is invalid!');
+                    setShow(true)
+                    setToastMessage('Incorrect Password');
+                    setToastTextColorState("white")
+                    setToastColorState("red")
                 }
                 setLoading(false);
             })            
         } catch (error) {
-            console.log(error)
+            setShow(true)
+            setToastMessage(error);
+            setToastTextColorState("white")
+            setToastColorState("red")
             setLoading(false)
         }
     }
@@ -147,6 +163,13 @@ const SignIn = ({navigation}) => {
                     </Text>
                 </View>
             </View>
+            <CustomToast
+                showToast={show}
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                manageShow={setShow}
+            />
         </View>
     )
 }

@@ -7,7 +7,15 @@ import EmailValidate from '../../../Validate/EmailValidation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Lottie from 'lottie-react-native';
 import styles from './ForgorStyle';
+import CustomToast from '../../../components/CustomToast';
+
 const ForgotPass = ({navigation}) => {
+//toast states
+    const [show,setShow]=useState(false);
+    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
+    const [toastTextColorState,setToastTextColorState]=useState('#575757');
+    const [toastMessage,setToastMessage]=useState('');
+
     const [email, setemail] = useState("")
     const ResetLink = () => {
         try {
@@ -19,11 +27,19 @@ const ForgotPass = ({navigation}) => {
             }
             auth().sendPasswordResetEmail(email)
             .then(()=>{
-                alert("Check you email and spam also")
-                navigation.navigate("login")
+                setShow(true)
+                setToastMessage("Email Send Successfully to your Email (Check Spam Too)");
+                setToastTextColorState("#575757")
+                setToastColorState("rgba(41,250,25,1)")
+                setTimeout(() => {
+                    navigation.navigate("login")
+                }, 2000);
             })
         } catch (error) {
-            alert(error);
+            setShow(true)
+            setToastMessage(error);
+            setToastTextColorState("white")
+            setToastColorState("red")
         }        
     }
     useEffect(()=>{
@@ -97,6 +113,13 @@ const ForgotPass = ({navigation}) => {
                         <Text style={[styles.subText1,{color:"blue",fontWeight:"bold"}]} onPress={()=>navigation.navigate("login")}> Log In</Text>
                     </View>
                 </View>
+                <CustomToast
+                    showToast={show}
+                    toastColor={toastColorState}
+                    toastTextColor={toastTextColorState}
+                    toastMessage={toastMessage}
+                    manageShow={setShow}
+                />
             </View>
         </>
     )

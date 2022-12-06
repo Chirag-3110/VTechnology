@@ -2,11 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Animated, TouchableOpacity, Text, View, StyleSheet, TextInput, Dimensions,ScrollView } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+import CustomToast from '../../../components/CustomToast';
 import Lottie from 'lottie-react-native';
 let selectIntesertGlobal=[];
 const ConfimSignup=({route,navigation})=>{
+//toast states
+    const [show,setShow]=useState(false);
+    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
+    const [toastTextColorState,setToastTextColorState]=useState('#575757');
+    const [toastMessage,setToastMessage]=useState('');
+
     const {email,password}=route.params;
     const [loading,setLoading]=useState(false)
     const [name,setName]=useState(null);
@@ -82,6 +87,7 @@ const ConfimSignup=({route,navigation})=>{
     }
     const createNewUSer=()=>{
         try {
+            setShow(false)
             const newIntesetArray=convertInterestFormat(selctedInterestState)
             if(name==null)
                 throw "Please enter Name";
@@ -103,9 +109,18 @@ const ConfimSignup=({route,navigation})=>{
                 Name:name,
                 Interest:newIntesetArray
             }
-            navigation.navigate("confirmaccount",{userData:userDetails,password:password})
+            setShow(true)
+            setToastMessage("Account Created Successsfully");
+            setToastTextColorState("#575757")
+            setToastColorState("rgba(41,250,25,1)")
+            setTimeout(() => {
+                navigation.navigate("confirmaccount",{userData:userDetails,password:password})
+            }, 2000);
         } catch (error) {
-            alert(error);
+            setShow(true)
+            setToastMessage(error);
+            setToastTextColorState("white")
+            setToastColorState("red")
         }
     }
     return(
@@ -185,6 +200,13 @@ const ConfimSignup=({route,navigation})=>{
                     }
                 </View>
             </Animated.View>
+            <CustomToast
+                showToast={show}
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                manageShow={setShow}
+            />
         </View>
     )
 }

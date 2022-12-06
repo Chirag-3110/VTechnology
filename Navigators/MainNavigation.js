@@ -4,15 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 //screens for tab
 import HomeStack from './HomeNavigation';
-import Service from "../Screen/HomeScreen/Service";
 import DashBoard from "../Screen/HomeScreen/DashBoard";
 import MainDashboard from '../Screen/DashBoard/MainDashboard';
-import Userfile from '../Screen/Userprofile/Userprofile';
-import Profile from '../Screen/Userprofile/Profile';
 import QuestionNavigation from './QuizNavigation';
+import ProfileStack from './Profile';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import ProfileStack from './Profile';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const MainNavigation = () => {
