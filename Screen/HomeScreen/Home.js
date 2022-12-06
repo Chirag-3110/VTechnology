@@ -47,16 +47,21 @@ function Home({ navigation }) {
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
           </TouchableOpacity>
         </View>
-        <View style={{ borderWidth: 1, borderColor: "orange", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }}>
+        <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
+          <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/54/54481.png" }} style={[styles.ProImg, { width: 25, height: 25, marginRight: 10 }]} />
+
           <TextInput
-            style={{ fontWeight: "bold", fontSize: 15, color: "black", width: windoWidth / 1.4 }}
+            style={{ fontWeight: "bold", fontSize: 15, color: "black", width: windoWidth / 1.6 }}
             placeholder={"Search"}
             placeholderTextColor={"black"}
             autoCapitalize={true}
           />
-          <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3128/3128287.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
+          <TouchableOpacity onPress={() => navigation.navigate("SearchPage")} >
 
-        </View>
+            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/9073/9073147.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
+          </TouchableOpacity>
+
+        </TouchableOpacity>
         <View style={{ marginVertical: 15 }}>
           <View style={styles.CourseView}>
             <View style={{ width: 130 }}>
