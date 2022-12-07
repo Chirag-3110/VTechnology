@@ -84,7 +84,7 @@ function Home({ navigation }) {
             {orderDetail.length === 0 ? <View style={{ width: windoWidth / 1.1, alignItems: "center", height: windoHeight / 4 }}>
 
               <Lottie
-                source={require('../../lottiesAnimations/96372-loader-5.json')} autoPlay loop style={{ height: 250, width: windoWidth, justifyContent: "center", alignItems: "center" }} />
+                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 250, width: windoWidth, justifyContent: "center", alignItems: "center" }} />
             </View> :
               orderDetail.map((item, index) => (
                 <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
