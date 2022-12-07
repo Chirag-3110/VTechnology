@@ -7,7 +7,7 @@ import Lottie from 'lottie-react-native';
 let selectIntesertGlobal=[];
 const ConfimSignup=({route,navigation})=>{
 //toast states
-    const [show,setShow]=useState(false);
+    const childRef = useRef(null);
     const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
     const [toastTextColorState,setToastTextColorState]=useState('#575757');
     const [toastMessage,setToastMessage]=useState('');
@@ -87,7 +87,6 @@ const ConfimSignup=({route,navigation})=>{
     }
     const createNewUSer=()=>{
         try {
-            setShow(false)
             const newIntesetArray=convertInterestFormat(selctedInterestState)
             if(name==null)
                 throw "Please enter Name";
@@ -109,22 +108,30 @@ const ConfimSignup=({route,navigation})=>{
                 Name:name,
                 Interest:newIntesetArray
             }
-            setShow(true)
             setToastMessage("Account Created Successsfully");
             setToastTextColorState("#575757")
             setToastColorState("rgba(41,250,25,1)")
-            setTimeout(() => {
-                navigation.navigate("confirmaccount",{userData:userDetails,password:password})
-            }, 2000);
+            childRef.current.showToast();
+            // setTimeout(() => {
+            //     navigation.navigate("confirmaccount",{userData:userDetails,password:password})
+            // }, 2000);
         } catch (error) {
-            setShow(true)
             setToastMessage(error);
             setToastTextColorState("white")
             setToastColorState("red")
+            childRef.current.showToast();
         }
     }
     return(
         <View style={styles.container}>
+            <View style={{position:"absolute",top:0,zIndex:1000}}>
+                <CustomToast
+                    toastColor={toastColorState}
+                    toastTextColor={toastTextColorState}
+                    toastMessage={toastMessage}
+                    ref={childRef} 
+                />
+            </View>
             <Text style={styles.textStyle}>
                 Complete Your Profile
             </Text>
@@ -200,19 +207,13 @@ const ConfimSignup=({route,navigation})=>{
                     }
                 </View>
             </Animated.View>
-            <CustomToast
-                showToast={show}
-                toastColor={toastColorState}
-                toastTextColor={toastTextColorState}
-                toastMessage={toastMessage}
-                manageShow={setShow}
-            />
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
     },
     iconImage: {
         width: 40,

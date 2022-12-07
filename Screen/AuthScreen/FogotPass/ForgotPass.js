@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import { View, Text, StyleSheet, TextInput, Dimensions, Image, Animated, TouchableOpacity } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
@@ -11,7 +11,7 @@ import CustomToast from '../../../components/CustomToast';
 
 const ForgotPass = ({navigation}) => {
 //toast states
-    const [show,setShow]=useState(false);
+    const childRef = useRef(null);
     const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
     const [toastTextColorState,setToastTextColorState]=useState('#575757');
     const [toastMessage,setToastMessage]=useState('');
@@ -27,19 +27,19 @@ const ForgotPass = ({navigation}) => {
             }
             auth().sendPasswordResetEmail(email)
             .then(()=>{
-                setShow(true)
                 setToastMessage("Email Send Successfully to your Email (Check Spam Too)");
                 setToastTextColorState("#575757")
                 setToastColorState("rgba(41,250,25,1)")
+                childRef.current.showToast();
                 setTimeout(() => {
                     navigation.navigate("login")
                 }, 2000);
             })
         } catch (error) {
-            setShow(true)
             setToastMessage(error);
             setToastTextColorState("white")
             setToastColorState("red")
+            childRef.current.showToast();
         }        
     }
     useEffect(()=>{
@@ -63,6 +63,14 @@ const ForgotPass = ({navigation}) => {
     return (
         <>
             <View style={styles.container}>
+                <View style={{position:"absolute",top:0,zIndex:1000}}>
+                    <CustomToast
+                        toastColor={toastColorState}
+                        toastTextColor={toastTextColorState}
+                        toastMessage={toastMessage}
+                        ref={childRef} 
+                    />
+                </View>
                 <View >
                     <View style={{ alignItems: "center" }}>
                     <Animated.Text style={[
@@ -113,13 +121,6 @@ const ForgotPass = ({navigation}) => {
                         <Text style={[styles.subText1,{color:"blue",fontWeight:"bold"}]} onPress={()=>navigation.navigate("login")}> Log In</Text>
                     </View>
                 </View>
-                <CustomToast
-                    showToast={show}
-                    toastColor={toastColorState}
-                    toastTextColor={toastTextColorState}
-                    toastMessage={toastMessage}
-                    manageShow={setShow}
-                />
             </View>
         </>
     )

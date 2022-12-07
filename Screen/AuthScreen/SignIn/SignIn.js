@@ -1,18 +1,17 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Image, ScrollView, Animated, ActivityIndicator } from 'react-native';
 import auth from '@react-native-firebase/auth';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import EmailValidate from "../../../Validate/EmailValidation";
-import PasswordValidate from '../../../Validate/PasswordValidation';
 import Lottie from 'lottie-react-native';
 import styles from "./LoginStyle";
 import CustomToast from "../../../components/CustomToast";
 
 const SignIn = ({navigation}) => {
 //toast states
-    const [show,setShow]=useState(false);
+    const childRef = useRef(null);
+
     const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
     const [toastTextColorState,setToastTextColorState]=useState('black');
     const [toastMessage,setToastMessage]=useState('');
@@ -35,25 +34,25 @@ const SignIn = ({navigation}) => {
             auth().signInWithEmailAndPassword(email,password)
             .catch((error)=>{
                 if (error.code === 'auth/invalid-email') {
-                    setShow(true)
                     setToastMessage("Email Address is Wrong");
                     setToastTextColorState("white")
                     setToastColorState("red")
+                    childRef.current.showToast();
                 }
                 if (error.code === 'auth/wrong-password') {
-                    setShow(true)
                     setToastMessage('Incorrect Password');
                     setToastTextColorState("white")
                     setToastColorState("red")
+                    childRef.current.showToast();
                 }
                 setLoading(false);
             })            
         } catch (error) {
-            setShow(true)
             setToastMessage(error);
             setToastTextColorState("white")
             setToastColorState("red")
             setLoading(false)
+            childRef.current.showToast();
         }
     }
     const position = new Animated.ValueXY({ x: 0, y: -windowheight });
@@ -73,6 +72,14 @@ const SignIn = ({navigation}) => {
 
     return (
         <View style={styles.container}>
+            <View style={{position:"absolute",top:0,zIndex:1000}}>
+                <CustomToast
+                    toastColor={toastColorState}
+                    toastTextColor={toastTextColorState}
+                    toastMessage={toastMessage}
+                    ref={childRef} 
+                />
+            </View>
             <View style={{ alignItems: "flex-start",justifyContent: 'center' }}>
                 <Animated.Text style={[
                     styles.MainText,
@@ -163,13 +170,6 @@ const SignIn = ({navigation}) => {
                     </Text>
                 </View>
             </View>
-            <CustomToast
-                showToast={show}
-                toastColor={toastColorState}
-                toastTextColor={toastTextColorState}
-                toastMessage={toastMessage}
-                manageShow={setShow}
-            />
         </View>
     )
 }

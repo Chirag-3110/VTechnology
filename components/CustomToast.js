@@ -1,34 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import {View,Text,Modal, StyleSheet, Dimensions,TouchableOpacity} from 'react-native';
+import React, {forwardRef, useRef,useImperativeHandle } from 'react';
+import {View,Text, StyleSheet, Dimensions,TouchableOpacity,Animated} from 'react-native';
 const {width,height}=Dimensions.get('window');
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const CustomToast=(props)=>{
-    const [show,setShow]=useState(false);
-    const closeModal=()=>{
-        setTimeout(() => {
-            setShow(!show)
-            props.manageShow(false)
-        }, 1500);
+const CustomToast=forwardRef((props,ref)=>{
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    useImperativeHandle(ref, () => ({
+        showToast(){
+            Animated.sequence([
+                Animated.timing(fadeAnim,{
+                    toValue:1,
+                    duration:200,
+                    useNativeDriver:true
+                }),
+                Animated.delay(2000),
+                Animated.timing(fadeAnim,{
+                    toValue:0,
+                    duration:200,
+                    useNativeDriver:true
+                })
+            ]).start()
+        }
+      }));
+    
+    const closetoast=()=>{
+        Animated.timing(fadeAnim,{
+            toValue:0,
+            duration:200,
+            useNativeDriver:true
+        }).start();
     }
-    useEffect(()=>{
-        setShow(props.showToast);
-    },[props.showToast])
     return(
         <View style={styles.container}>
-            <Modal visible={show} animationType='slide' transparent={true} onShow={closeModal}>
-                <View style={[styles.toastContainer,{backgroundColor:props.toastColor}]}>
-                    <Text style={{color:props.toastTextColor,fontWeight:"bold"}}>
-                        {props.toastMessage}
-                    </Text>
-                    <TouchableOpacity onPress={()=>props.manageShow(false)}>
-                        <FontAwesome name="close" size={30} color={"white"}  />
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+            <Animated.View style={[styles.toastContainer,{
+                backgroundColor:props.toastColor,
+                opacity:fadeAnim,
+                transform:[
+                    {translateY:fadeAnim.interpolate({
+                        inputRange:[0,1],
+                        outputRange:[-20,0]
+                    })},
+                ]
+            }]}>
+                <Text style={{color:props.toastTextColor,fontWeight:"bold",width:'90%',marginRight:5}}>
+                    {props.toastMessage}
+                </Text>
+                <TouchableOpacity onPress={()=>closetoast()}>
+                    <FontAwesome name="close" size={30} color={"white"} style={{marginLeft:-15}} />
+                </TouchableOpacity>
+            </Animated.View>
         </View>
     )
-}
+})
 const styles=StyleSheet.create({
     container:{
         alignItems: 'center',
@@ -40,7 +63,7 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent:"space-between",
         flexDirection: 'row',
-        padding:18,
+        padding:15,
         alignSelf:"center",
         marginTop:5
     }

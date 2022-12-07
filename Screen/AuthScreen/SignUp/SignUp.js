@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Animated,Image } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const windowWidth = Dimensions.get('window').width;
@@ -11,10 +11,10 @@ import CustomToast from "../../../components/CustomToast";
 
 const SignUp = ({ navigation }) => {
 //toast states
-    const [show,setShow]=useState(false);
+    const childRef = useRef(null);
     const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
     const [toastTextColorState,setToastTextColorState]=useState('#575757');
-    const [toastMessage,setToastMessage]=useState('');
+    const [toastMessage,setToastMessage]=useState('dd');
     
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
@@ -23,10 +23,9 @@ const SignUp = ({ navigation }) => {
 
     useEffect(() => {
         showPopUp();
-    }, [show,setShow])
+    }, [])
     const validateUser = () => {
         try {
-            setShow(false)
             if (email === "")
                 throw "Please enter Email";
             if (password === "")
@@ -43,10 +42,10 @@ const SignUp = ({ navigation }) => {
                 throw "Both Password Must Be Same";
             navigation.navigate("confimSignup",{email:email,password:password});
         } catch (error) {
-            setShow(true)
             setToastMessage(error);
             setToastTextColorState("white")
             setToastColorState("red")
+            childRef.current.showToast();
         }
     }
     const position = new Animated.ValueXY({ x: 0, y: -windowheight });
@@ -66,6 +65,14 @@ const SignUp = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
+            <View style={{position:"absolute",top:0,zIndex:1000}}>
+                <CustomToast
+                    toastColor={toastColorState}
+                    toastTextColor={toastTextColorState}
+                    toastMessage={toastMessage}
+                    ref={childRef} 
+                />
+            </View>
             <View>
                 <Animated.Text style={[
                     styles.MainText,
@@ -164,13 +171,6 @@ const SignUp = ({ navigation }) => {
                     <Text style={[styles.subText,{color:"blue",fontWeight:"bold"}]} onPress={() => navigation.navigate("login")}>Log In</Text>
                 </View>
             </View>
-            <CustomToast
-                showToast={show}
-                toastColor={toastColorState}
-                toastTextColor={toastTextColorState}
-                toastMessage={toastMessage}
-                manageShow={setShow}
-            />
         </View>
     )
 }
