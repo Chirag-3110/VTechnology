@@ -130,8 +130,9 @@ const styles = StyleSheet.create({
     },
     ProfileText: {
         fontSize: 30,
-        fontWeight: "700",
-        color: "black"
+        // fontWeight: "700",
+        color: "black",
+        fontFamily:'Quicksand-Bold'
     },
     MainProfileview: {
         display: "flex",

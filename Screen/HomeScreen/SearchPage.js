@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
+import Lottie from 'lottie-react-native';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 function SearchPage({ navigation }) {
@@ -28,6 +29,8 @@ function SearchPage({ navigation }) {
                     <Text style={styles.SearchText}>Profile</Text>
                 </TouchableOpacity>
             </View>
+            <Lottie
+                source={require('../../lottiesAnimations/115478-webdesign-support.json')} autoPlay loop style={{ height: 380, width: windoWidth, justifyContent: "center", alignItems: "center",marginTop:50,marginLeft:3 }} />
         </View>
     )
 }
