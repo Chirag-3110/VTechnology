@@ -4,6 +4,18 @@ const {width,height}=Dimensions.get('window');
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const CustomToast=forwardRef((props,ref)=>{
+
+/* 
+            how to use
+
+                toastColor=toast body color
+                toastTextColor=toast text color
+                toastMessage=message for toast
+                ref=refernece using useRef hook like below
+                create for usong toast -> const childRef = useRef(null);
+                for calling toast use this -> childRef.current.showToast();
+
+*/
     const fadeAnim = useRef(new Animated.Value(0)).current;
     useImperativeHandle(ref, () => ({
         showToast(){
@@ -42,7 +54,7 @@ const CustomToast=forwardRef((props,ref)=>{
                     })},
                 ]
             }]}>
-                <Text style={{color:props.toastTextColor,fontWeight:"bold",width:'90%',marginRight:5}}>
+                <Text style={{color:props.toastTextColor,fontWeight:"bold",width:'90%',marginRight:5,}}>
                     {props.toastMessage}
                 </Text>
                 <TouchableOpacity onPress={()=>closetoast()}>
@@ -56,6 +68,8 @@ const styles=StyleSheet.create({
     container:{
         alignItems: 'center',
         justifyContent:"center",
+        position:"absolute",
+        top:0
     },
     toastContainer:{
         width:width/1.4,
@@ -65,7 +79,8 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         padding:15,
         alignSelf:"center",
-        marginTop:5
+        marginTop:5,
+        zIndex:200
     }
 })
 export default CustomToast;

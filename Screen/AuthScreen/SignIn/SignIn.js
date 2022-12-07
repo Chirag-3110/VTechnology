@@ -72,14 +72,12 @@ const SignIn = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <View style={{position:"absolute",top:0,zIndex:1000}}>
-                <CustomToast
-                    toastColor={toastColorState}
-                    toastTextColor={toastTextColorState}
-                    toastMessage={toastMessage}
-                    ref={childRef} 
-                />
-            </View>
+            <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef} 
+            />
             <View style={{ alignItems: "flex-start",justifyContent: 'center' }}>
                 <Animated.Text style={[
                     styles.MainText,
@@ -97,7 +95,6 @@ const SignIn = ({navigation}) => {
             </View>
             <View style={{ alignItems: "center", }}>
                 <View>
-                    <Text style={{color:"black",fontWeight:"bold"}}>Email</Text>
                     <View style={[
                         { flexDirection: 'row', alignItems: "center" },
                             styles.customInput
@@ -114,7 +111,6 @@ const SignIn = ({navigation}) => {
                     </View>
                 </View>
                 <View style={{marginTop:10}}>
-                    <Text style={{color:"black",fontWeight:"bold"}}>Password</Text>
                     <View style={[
                         { flexDirection: 'row', alignItems: "center" },
                             styles.customInput
@@ -144,7 +140,7 @@ const SignIn = ({navigation}) => {
                 >
                     <Text style={{
                         color:"black",
-                        fontWeight:"bold"
+                        fontWeight:"bold",
                     }}>
                         Forgot Password ?
                     </Text>

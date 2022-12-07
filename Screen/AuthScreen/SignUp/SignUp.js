@@ -65,14 +65,12 @@ const SignUp = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <View style={{position:"absolute",top:0,zIndex:1000}}>
-                <CustomToast
-                    toastColor={toastColorState}
-                    toastTextColor={toastTextColorState}
-                    toastMessage={toastMessage}
-                    ref={childRef} 
-                />
-            </View>
+            <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef} 
+            />
             <View>
                 <Animated.Text style={[
                     styles.MainText,
