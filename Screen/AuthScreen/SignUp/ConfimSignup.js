@@ -108,13 +108,9 @@ const ConfimSignup=({route,navigation})=>{
                 Name:name,
                 Interest:newIntesetArray
             }
-            setToastMessage("Account Created Successsfully");
-            setToastTextColorState("#575757")
-            setToastColorState("rgba(41,250,25,1)")
-            childRef.current.showToast();
-            // setTimeout(() => {
-            //     navigation.navigate("confirmaccount",{userData:userDetails,password:password})
-            // }, 2000);
+            setTimeout(() => {
+                navigation.navigate("confirmaccount",{userData:userDetails,password:password})
+            }, 2000);
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")

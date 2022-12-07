@@ -1,42 +1,29 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState,useRef} from 'react';
 import { View,Text,TouchableOpacity, StyleSheet, Dimensions,Animated,Easing } from 'react-native';
 const {width,height}=Dimensions.get('window');
 const AnimatedQuizCard=(props)=>{
-    const [heightState,setWidthtState]=useState(new Animated.Value(0));
-    const [opacity,setOpactity]=useState(new Animated.Value(0));
-    const [expanded,setExpanded]=useState(false)
+    const [expanded,setExpanded]=useState(false);
+    const fadeAnim = useRef(new Animated.Value(0)).current;
 
     const manageMaxCard=()=>{
         setExpanded(!expanded)
-        Animated.timing(heightState, {
+        Animated.timing(fadeAnim, {
             toValue: 1,
             duration: 1000,
             easing: Easing.circle,
             useNativeDriver: false 
-          }).start(()=>{
-            Animated.timing(opacity, {
-                toValue: 1,
-                duration: 100,
-                useNativeDriver: false
-            }).start()
-          });  
+          }).start();  
     }
     const manageMinCard=()=>{
         setExpanded(!expanded)
-        Animated.timing(opacity, {
+        Animated.timing(fadeAnim, {
             toValue: 0,
-            duration: 100,
+            duration: 1000,
+            easing: Easing.linear,
             useNativeDriver: false
-        }).start(()=>{
-            Animated.timing(heightState, {
-                toValue: 0,
-                duration: 1000,
-                easing: Easing.linear,
-                useNativeDriver: false
-            }).start();  
-        })
+        }).start()
     }
-    const maxHeight = heightState.interpolate({ 
+    const maxHeight = fadeAnim.interpolate({ 
         inputRange: [0,2], 
         outputRange: [height/7,height] 
     });
@@ -52,7 +39,7 @@ const AnimatedQuizCard=(props)=>{
                     </View>
                     <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:10}]}>{props.dataProps.item.courseName}</Text>
                 </View>
-                <Animated.View style={{opacity:opacity}} >
+                <Animated.View style={{opacity:fadeAnim}} >
                     <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,marginVertical:10,}]}>No Of Questions {props.dataProps.item.NOQues}</Text>
                     <TouchableOpacity style={styles.startButton} onPress={()=>props.getQuestionData(props.dataProps.item)}>
                         <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,color:"#a000ff"}]}>Start Quiz</Text>
