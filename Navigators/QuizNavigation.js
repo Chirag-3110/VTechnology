@@ -3,7 +3,6 @@ import MainQuizHome from "../Screen/HomeScreen/MainQuizHome";
 import Service from "../Screen/HomeScreen/Service";
 const Stack = createNativeStackNavigator();
 const QuestionNavigation = () => {
-
     return (
         <Stack.Navigator
             screenOptions={{

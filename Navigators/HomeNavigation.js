@@ -3,10 +3,8 @@ import Home from '../Screen/HomeScreen/Home';
 import Coursedetails from '../Screen/HomeScreen/CourseDetail';
 import SearchPage from "../Screen/HomeScreen/SearchPage";
 import DashBoard from "../Screen/HomeScreen/DashBoard";
-import MainQuizHome from "../Screen/HomeScreen/MainQuizHome";
-import Profile from "../Screen/Userprofile/Profile";
-
-
+import ProfileStack from "./Profile";
+import QuestionNavigation from "./QuizNavigation";
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
@@ -21,8 +19,8 @@ const HomeStack = () => {
             <Stack.Screen name='Course' component={Coursedetails} />
             <Stack.Screen name='SearchPage' component={SearchPage} />
             <Stack.Screen name='Dashboard' component={DashBoard} />
-            <Stack.Screen name='MainQuiz' component={MainQuizHome} />
-            <Stack.Screen name='Profile' component={Profile} />
+            <Stack.Screen name='Quiz' component={QuestionNavigation} />
+            <Stack.Screen name='Profile' component={ProfileStack} />
         </Stack.Navigator>
     )
 }

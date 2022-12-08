@@ -20,7 +20,7 @@ function SearchPage({ navigation }) {
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/610/610106.png" }} style={[{ width: 20, height: 20, marginRight: 4 }]} />
                     <Text style={styles.SearchText} >Dashboard</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.SearchBoxes} onPress={() => navigation.navigate("MainQuizHome")}>
+                <TouchableOpacity style={styles.SearchBoxes} onPress={() => navigation.navigate("Quiz")}>
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/8888/8888061.png" }} style={[{ width: 20, height: 20, marginRight: 4 }]} />
                     <Text style={styles.SearchText}>Activity</Text>
                 </TouchableOpacity>
@@ -30,7 +30,7 @@ function SearchPage({ navigation }) {
                 </TouchableOpacity>
             </View>
             <Lottie
-                source={require('../../lottiesAnimations/115478-webdesign-support.json')} autoPlay loop style={{ height: 380, width: windoWidth, justifyContent: "center", alignItems: "center",marginTop:50,marginLeft:3 }} />
+                source={require('../../lottiesAnimations/115478-webdesign-support.json')} autoPlay loop style={{ height: 380, width: windoWidth, justifyContent: "center", alignItems: "center", marginTop: 50, marginLeft: 3 }} />
         </View>
     )
 }

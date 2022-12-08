@@ -49,7 +49,6 @@ function Home({ navigation }) {
         </View>
         <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
           <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/54/54481.png" }} style={[styles.ProImg, { width: 25, height: 25, marginRight: 10 }]} />
-
           <TextInput
             style={{ fontWeight: "bold", fontSize: 15, color: "black", width: windoWidth / 1.6 }}
             placeholder={"Search"}
@@ -57,10 +56,8 @@ function Home({ navigation }) {
             autoCapitalize={true}
           />
           <TouchableOpacity onPress={() => navigation.navigate("SearchPage")} >
-
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/9073/9073147.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
           </TouchableOpacity>
-
         </TouchableOpacity>
         <View style={{ marginVertical: 15 }}>
           <View style={styles.CourseView}>
@@ -81,10 +78,9 @@ function Home({ navigation }) {
             <Text style={styles.PlanText}>View Plan</Text>
           </View>
           <ScrollView style={{ marginHorizontal: 15, marginVertical: 10 }} horizontal={true}>
-            {orderDetail.length === 0 ? <View style={{ width: windoWidth / 1.1, alignItems: "center", height: windoHeight / 4 }}>
-
+            {orderDetail.length === 0 ? <View style={{ width: windoWidth / 1.1, alignItems: "center", height: windoHeight / 4, backgroundColor: "#F0F3F0", opacity: 0.7, borderRadius: 20 }}>
               <Lottie
-                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 250, width: windoWidth, justifyContent: "center", alignItems: "center" }} />
+                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center", }} />
             </View> :
               orderDetail.map((item, index) => (
                 <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
@@ -537,7 +533,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "black",
     marginVertical: 10
-  }
+  },
+  blurViewStyle: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right: 0,
+  },
 
 });
 export default Home
