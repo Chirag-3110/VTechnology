@@ -78,7 +78,7 @@ const MainDashboard = () => {
                                     <View style={styles.PerformanceImage}>
                                         <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
                                         {
-                                            item.status!=="Pending"?null:
+                                            item.status==="Pending"?null:
                                             <TouchableOpacity style={styles.cardButton} >
                                                 <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,color:"#a000ff"}]}>More...</Text>
                                             </TouchableOpacity>
