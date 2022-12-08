@@ -40,7 +40,7 @@ const MainQuizHome=({navigation})=>{
       };
 
     const moveToQuestion=(questionArray)=>{
-        navigation.navigate("serviceQuiz",{quizArrayData:questionArray.QuesArray,itemID:questionArray.id,numOfQues:questionArray.NOQues})
+        navigation.navigate("serviceQuiz",{quizArrayData:questionArray})
     }
     return(
         <View style={styles.container}>

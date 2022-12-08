@@ -3,7 +3,6 @@ import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOp
 import { LineChart, } from "react-native-chart-kit";
 import firestore from '@react-native-firebase/firestore';
 import { GlobalVariable } from '../../App';
-import auth from '@react-native-firebase/auth';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 import Lottie from 'lottie-react-native';

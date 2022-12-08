@@ -13,14 +13,14 @@ const Service = ({route,navigation}) => {
     const [toastTextColorState,setToastTextColorState]=useState('black');
     const [toastMessage,setToastMessage]=useState('');
 
-    const {quizArrayData,itemID,numOfQues} = route.params;
+    const {quizArrayData} = route.params;
     const {userUid} = useContext(GlobalVariable);
     const [ques, setQues] = useState([]);
     const [loading,setLoading]=useState(false);
     const [loadingClear,setloadingClear]=useState(false);
 
     useEffect(() => {
-        setQues(quizArrayData)
+        setQues(quizArrayData.QuesArray)
     }, []);
     const setAnswerAsSelected = (quesIndex, optIndex,selectedQues) => {
         setQues((question) =>
@@ -66,10 +66,12 @@ const Service = ({route,navigation}) => {
                 AdminFeedback:"",
                 ReviewerName:"",
                 UserID:userUid.uid,
-                quizID:itemID,
+                quizID:quizArrayData.id,
                 status:"Pending",
                 QuesArray:newUpdatedQuesArray,
-                quizDate:new Date()
+                quizDate:new Date(),
+                activityName:quizArrayData.ActivityName,
+                courseName:quizArrayData.courseName
             })
             .then(()=>{
                 setToastMessage("Your Activity is Submitted");
@@ -150,7 +152,7 @@ const Service = ({route,navigation}) => {
                         <View style={[styles.quiCardTitle, { flexDirection: 'row', alignItems: "center", justifyContent: 'space-evenly', }]}>
                             <Text style={{ fontWeight: "bold", fontSize: 20, color: "rgba(115,105,248,0.85)" }}>Questions</Text>
                             <Text style={{ color: "white", fontWeight: "bold", fontSize: 20, backgroundColor: "rgba(115,105,248,0.85)", padding: 5, borderRadius: 5, paddingHorizontal: 10 }}>
-                                {numOfQues}
+                                {quizArrayData.NOQues}
                             </Text>
                         </View>
                         {

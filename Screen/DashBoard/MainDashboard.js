@@ -1,9 +1,34 @@
-import react, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Animated, Image, ImageBackground } from 'react-native';
+import react, { useContext, useEffect, useRef, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Animated, Image, ImageBackground, ImageComponent } from 'react-native';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
+import firestore from '@react-native-firebase/firestore';
 import Lottie from 'lottie-react-native';
+import { GlobalVariable } from '../../App';
 const MainDashboard = () => {
+    const {userUid}=useContext(GlobalVariable);
+    const [performanceStateArray,setPerformanceStateArray]=useState([]);
+    const [totalActivities,setTotalActivities]=useState(null);
+    const [userName,setUserName]=useState('');
+    useEffect(()=>{
+        getUserPerformance()
+    },[])
+    const getUserPerformance=async()=>{
+        try {
+            const resultedArray=[]
+            const performanceData=await firestore().collection("UserPerformance").where("UserID","==",userUid.uid).get();
+            const userDetails=await firestore().collection("UserCollection").doc(userUid.uid).get();
+            performanceData.forEach((item)=>{
+                resultedArray.push({...item.data(),id:item.id});
+            })
+            console.log(resultedArray)
+            setPerformanceStateArray(resultedArray);
+            setTotalActivities(resultedArray.length);
+            setUserName(userDetails.data().Name)
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <>
             <View style={{ backgroundColor: "white", width: windoWidth, height: windoHeight }}>
@@ -11,7 +36,7 @@ const MainDashboard = () => {
                     <View style={{ display: "flex", flexDirection: "row", height: windoHeight / 10, alignItems: "center" }}>
                         <View style={styles.NameView}>
                             <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>Name</Text>
-                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15 }}>Connected</Text>
+                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15 ,color:"black"}}>{userName}</Text>
                         </View>
                         <View style={styles.MainProfileInnerview}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 35, height: 35, color: "white" }} />
@@ -19,7 +44,7 @@ const MainDashboard = () => {
                     </View>
                     <View style={styles.LottieAnimation}>
                         <View style={styles.LView}>
-                            <Text style={{ fontSize: 80, color: "black", fontWeight: "800", justifyContent: "center", alignItems: "center", alignSelf: "center", marginTop: 30 }}>78</Text>
+                            <Text style={{ fontSize: 80, color: "black", fontWeight: "800", justifyContent: "center", alignItems: "center", alignSelf: "center", marginTop: 30 }}>{totalActivities}</Text>
                             <Text style={{ fontSize: 15, color: "black", fontWeight: "500", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
                         </View>
                         <View style={[styles.LottieView, { alignItems: "center" }]}>
@@ -37,38 +62,32 @@ const MainDashboard = () => {
 
                         </View>
                     </View>
-                    <ScrollView>
-                        <View style={styles.PerformanceMainView}>
-                            <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
-                                <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>Activity Name</Text>
-                                <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Course Name</Text>
-                                <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
-                            </View>
-                            <View style={styles.PerformanceImage}>
-                                <Image source={{ uri: "https://previews.123rf.com/images/yupiramos/yupiramos1502/yupiramos150206006/36634533-digital-marketing-design-over-white-background.jpg" }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-                            </View>
-                        </View>
-                        <View style={styles.PerformanceMainView}>
-                            <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
-                                <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>Activity Name</Text>
-                                <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Course Name</Text>
-                                <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
-                            </View>
-                            <View style={styles.PerformanceImage}>
-                                <Image source={{ uri: "https://previews.123rf.com/images/yupiramos/yupiramos1502/yupiramos150206006/36634533-digital-marketing-design-over-white-background.jpg" }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-                            </View>
-                        </View>
-                        <View style={styles.PerformanceMainView}>
-                            <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
-                                <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>Activity Name</Text>
-                                <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Course Name</Text>
-                                <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
-                            </View>
-                            <View style={styles.PerformanceImage}>
-                                <Image source={{ uri: "https://previews.123rf.com/images/yupiramos/yupiramos1502/yupiramos150206006/36634533-digital-marketing-design-over-white-background.jpg" }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-                            </View>
-                        </View>
-                    </ScrollView>
+                    <View>
+                        {
+                            performanceStateArray.length===0?
+                            <Lottie
+                                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center", }} 
+                            />:
+                            performanceStateArray.map((item,index)=>(
+                                <View style={styles.PerformanceMainView} key={index}>
+                                    <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
+                                        <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.activityName}</Text>
+                                        <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>{item.courseName}</Text>
+                                        <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
+                                    </View>
+                                    <View style={styles.PerformanceImage}>
+                                        <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
+                                        {
+                                            item.status!=="Pending"?null:
+                                            <TouchableOpacity style={styles.cardButton} >
+                                                <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,color:"#a000ff"}]}>More...</Text>
+                                            </TouchableOpacity>
+                                        }
+                                    </View>
+                                </View>
+                            ))
+                        }
+                    </View>
                 </ScrollView>
             </View>
         </>
@@ -102,8 +121,9 @@ const styles = StyleSheet.create({
     PerformanceMainView: {
         display: "flex",
         flexDirection: "row",
-        marginHorizontal: 30,
-        marginVertical: 13,
+        width:windoWidth-40,
+        alignSelf:"center",
+        marginVertical:15,
         backgroundColor: "#D4FFCD",
         shadowColor: 'green',
         shadowOffset: {
@@ -113,7 +133,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.7,
         shadowRadius: 900,
         elevation: 10,
-        borderRadius: 15,
+        borderRadius: 10,
+        padding:10
     },
     PerformanceinnerMainView: {
         width: windoWidth / 2
@@ -122,7 +143,9 @@ const styles = StyleSheet.create({
         width: windoWidth / 3.2,
         paddingVertical: 5,
         alignItems: "center",
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     CircularOption: {
         display: "flex",
@@ -143,6 +166,19 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.7,
         shadowRadius: 900,
         elevation: 10,
-    }
+    },
+    textStyles:{
+        color:"white",
+        fontWeight:"bold"
+    },
+    cardButton:{
+        width:100,
+        height:35,
+        backgroundColor:"white",
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius:5,
+        alignSelf:"flex-end",
+    },
 })
 export default MainDashboard;
