@@ -5,21 +5,21 @@ const windoHeight = Dimensions.get('window').height;
 import firestore from '@react-native-firebase/firestore';
 import Lottie from 'lottie-react-native';
 import { GlobalVariable } from '../../App';
-const MainDashboard = () => {
-    const {userUid}=useContext(GlobalVariable);
-    const [performanceStateArray,setPerformanceStateArray]=useState([]);
-    const [totalActivities,setTotalActivities]=useState(null);
-    const [userName,setUserName]=useState('');
-    useEffect(()=>{
+const MainDashboard = ({ navigation }) => {
+    const { userUid } = useContext(GlobalVariable);
+    const [performanceStateArray, setPerformanceStateArray] = useState([]);
+    const [totalActivities, setTotalActivities] = useState(null);
+    const [userName, setUserName] = useState('');
+    useEffect(() => {
         getUserPerformance()
-    },[])
-    const getUserPerformance=async()=>{
+    }, [])
+    const getUserPerformance = async () => {
         try {
-            const resultedArray=[]
-            const performanceData=await firestore().collection("UserPerformance").where("UserID","==",userUid.uid).get();
-            const userDetails=await firestore().collection("UserCollection").doc(userUid.uid).get();
-            performanceData.forEach((item)=>{
-                resultedArray.push({...item.data(),id:item.id});
+            const resultedArray = []
+            const performanceData = await firestore().collection("UserPerformance").where("UserID", "==", userUid.uid).get();
+            const userDetails = await firestore().collection("UserCollection").doc(userUid.uid).get();
+            performanceData.forEach((item) => {
+                resultedArray.push({ ...item.data(), id: item.id });
             })
             console.log(resultedArray)
             setPerformanceStateArray(resultedArray);
@@ -35,8 +35,8 @@ const MainDashboard = () => {
                 <ScrollView style={[styles.MainView, { marginBottom: 70 }]}>
                     <View style={{ display: "flex", flexDirection: "row", height: windoHeight / 10, alignItems: "center" }}>
                         <View style={styles.NameView}>
-                            <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>Name</Text>
-                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15 ,color:"black"}}>{userName}</Text>
+                            <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>{userName}</Text>
+                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15, color: "black" }}>{userName}</Text>
                         </View>
                         <View style={styles.MainProfileInnerview}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 35, height: 35, color: "white" }} />
@@ -49,7 +49,7 @@ const MainDashboard = () => {
                         </View>
                         <View style={[styles.LottieView, { alignItems: "center" }]}>
                             <Lottie
-                                source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 460 }} />
+                                source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 490, marginLeft: 10 }} />
                         </View>
                     </View>
                     <View>
@@ -64,28 +64,28 @@ const MainDashboard = () => {
                     </View>
                     <View>
                         {
-                            performanceStateArray.length===0?
-                            <Lottie
-                                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center", }} 
-                            />:
-                            performanceStateArray.map((item,index)=>(
-                                <View style={styles.PerformanceMainView} key={index}>
-                                    <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
-                                        <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.activityName}</Text>
-                                        <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>{item.courseName}</Text>
-                                        <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
-                                    </View>
-                                    <View style={styles.PerformanceImage}>
-                                        <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
-                                        {
-                                            item.status==="Pending"?null:
-                                            <TouchableOpacity style={styles.cardButton} >
-                                                <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,color:"#a000ff"}]}>More...</Text>
-                                            </TouchableOpacity>
-                                        }
-                                    </View>
-                                </View>
-                            ))
+                            performanceStateArray.length === 0 ? <Lottie
+                                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center", }}
+                            /> :
+
+                                performanceStateArray.map((item, index) => (
+                                    <TouchableOpacity style={styles.PerformanceMainView} key={index} onPress={() => navigation.navigate("InnerDashboard")}>
+                                        <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
+                                            <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.activityName}</Text>
+                                            <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>{item.courseName}</Text>
+                                            <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
+                                        </View>
+                                        <View style={styles.PerformanceImage}>
+                                            <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
+                                            {
+                                                item.status === "Pending" ? null :
+                                                    <TouchableOpacity style={styles.cardButton} >
+                                                        <Text style={[styles.textStyles, { fontSize: 15, paddingHorizontal: 15, color: "#a000ff" }]}>More...</Text>
+                                                    </TouchableOpacity>
+                                            }
+                                        </View>
+                                    </TouchableOpacity>
+                                ))
                         }
                     </View>
                 </ScrollView>
@@ -100,30 +100,30 @@ const styles = StyleSheet.create({
         backgroundColor: "white"
     },
     NameView: {
-        width: windoWidth / 3
+        width: windoWidth / 2
     },
     MainProfileInnerview: {
-        width: windoWidth / 1.6,
+        width: windoWidth / 2.2,
         justifyContent: "flex-end",
         alignItems: "flex-end"
     },
     LottieAnimation: {
-        height: windoHeight / 2,
+        height: windoHeight / 1.6,
         display: "flex",
         flexDirection: "row"
     },
     LView: {
-        width: windoWidth / 3
+        width: windoWidth / 3,
     },
     LottieView: {
-        width: windoWidth / 1.55
+        width: windoWidth / 1.55,
     },
     PerformanceMainView: {
         display: "flex",
         flexDirection: "row",
-        width:windoWidth-40,
-        alignSelf:"center",
-        marginVertical:15,
+        width: windoWidth - 40,
+        alignSelf: "center",
+        marginVertical: 15,
         backgroundColor: "#D4FFCD",
         shadowColor: 'green',
         shadowOffset: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         shadowRadius: 900,
         elevation: 10,
         borderRadius: 10,
-        padding:10
+        padding: 10
     },
     PerformanceinnerMainView: {
         width: windoWidth / 2
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         alignSelf: "center",
         marginVertical: 20,
-        marginTop: 100,
+        marginTop: 40,
         borderRadius: 30,
         paddingHorizontal: 20,
         backgroundColor: "white",
@@ -167,18 +167,18 @@ const styles = StyleSheet.create({
         shadowRadius: 900,
         elevation: 10,
     },
-    textStyles:{
-        color:"white",
-        fontWeight:"bold"
+    textStyles: {
+        color: "white",
+        fontWeight: "bold"
     },
-    cardButton:{
-        width:100,
-        height:35,
-        backgroundColor:"white",
+    cardButton: {
+        width: 100,
+        height: 35,
+        backgroundColor: "white",
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius:5,
-        alignSelf:"flex-end",
+        borderRadius: 5,
+        alignSelf: "flex-end",
     },
 })
 export default MainDashboard;

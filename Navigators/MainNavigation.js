@@ -10,6 +10,8 @@ import QuestionNavigation from './QuizNavigation';
 import ProfileStack from './Profile';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import InnerDashboard from '../Screen/DashBoard/InnerDashboard';
+import DashBoardStack from './DashboardStack';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const MainNavigation = () => {
@@ -61,7 +63,7 @@ const MainNavigation = () => {
                     }
                 }}
             />
-            <Tab.Screen name="DashBoard" component={MainDashboard}
+            <Tab.Screen name="DashBoard" component={DashBoardStack}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View
