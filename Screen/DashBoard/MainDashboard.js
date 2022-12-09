@@ -21,7 +21,6 @@ const MainDashboard = ({ navigation }) => {
             performanceData.forEach((item) => {
                 resultedArray.push({ ...item.data(), id: item.id });
             })
-            console.log(resultedArray)
             setPerformanceStateArray(resultedArray);
             setTotalActivities(resultedArray.length);
             setUserName(userDetails.data().Name)
@@ -64,12 +63,13 @@ const MainDashboard = ({ navigation }) => {
                     </View>
                     <View>
                         {
-                            performanceStateArray.length === 0 ? <Lottie
-                                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center", }}
+                            performanceStateArray.length === 0 ? 
+                            <Lottie
+                                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center",alignSelf:"center" }}
                             /> :
 
                                 performanceStateArray.map((item, index) => (
-                                    <TouchableOpacity style={styles.PerformanceMainView} key={index} onPress={() => navigation.navigate("InnerDashboard")}>
+                                    <View style={styles.PerformanceMainView} key={index} >
                                         <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
                                             <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.activityName}</Text>
                                             <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>{item.courseName}</Text>
@@ -79,12 +79,14 @@ const MainDashboard = ({ navigation }) => {
                                             <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
                                             {
                                                 item.status === "Pending" ? null :
-                                                    <TouchableOpacity style={styles.cardButton} >
-                                                        <Text style={[styles.textStyles, { fontSize: 15, paddingHorizontal: 15, color: "#a000ff" }]}>More...</Text>
+                                                    <TouchableOpacity style={styles.cardButton} 
+                                                        onPress={() => navigation.navigate("InnerDashboard",{performancedetails:item})}
+                                                    >
+                                                        <Text style={[styles.textStyles, { fontSize: 15, paddingHorizontal: 15, color: "#a000ff" }]}>View</Text>
                                                     </TouchableOpacity>
                                             }
                                         </View>
-                                    </TouchableOpacity>
+                                    </View>
                                 ))
                         }
                     </View>
@@ -124,15 +126,7 @@ const styles = StyleSheet.create({
         width: windoWidth - 40,
         alignSelf: "center",
         marginVertical: 15,
-        backgroundColor: "#D4FFCD",
-        shadowColor: 'green',
-        shadowOffset: {
-            width: 50,
-            height: -10,
-        },
-        shadowOpacity: 0.7,
-        shadowRadius: 900,
-        elevation: 10,
+        backgroundColor: "rgba(198,194,250,0.40)",
         borderRadius: 10,
         padding: 10
     },

@@ -1,22 +1,72 @@
-import react, { useContext, useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Animated, Image, ImageBackground, ImageComponent } from 'react-native';
+import react, { useEffect, useState, } from 'react';
+import { View, Text, StyleSheet, Dimensions,TouchableOpacity, ScrollView } from 'react-native';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
-function InnerDashboard() {
+function InnerDashboard({route}) {
+    const {performancedetails}=route.params;
+    const [performace,setPerformance]=useState(null)
+    useEffect(()=>{
+        setPerformance(performancedetails);
+    },[])
     return (
-        <View style={styles.MainView}>
-            <View style={styles.MainInnerView}>
-                <Text style={styles.DashboardText}>DashBoard Screen</Text>
-            </View>
-            <View style={styles.DetailView}>
-                <View>
-                    <Text style={styles.DetailText}>Activity Name : dhbjdbcj</Text>
-                    <Text style={styles.DetailText}>No of Question : 5</Text>
-                    <Text style={styles.DetailText}>Feedback Status : pending</Text>
-                    <Text style={styles.DetailText}>Course Name</Text>
-                </View>
-            </View>
-        </View>
+        <ScrollView style={styles.MainView}>
+            {
+                performace===null?null:
+                <>
+                    <View style={styles.MainInnerView}>
+                        <Text style={styles.DashboardText}>DashBoard Screen</Text>
+                    </View>
+                    <View style={styles.DetailView}>
+                        <View>
+                            <Text style={styles.DetailText}>Activity Name : {performace.activityName}</Text>
+                            <Text style={styles.DetailText}>No of Question : {performace.QuesArray.length}</Text>
+                            <Text style={styles.DetailText}>{performace.courseName}</Text>
+                            <Text style={styles.DetailText}>Feedback : {performace.AdminFeedback}</Text>
+                        </View>
+                    </View>
+                    <View>
+                        {
+                            performace.QuesArray.map((items, quesIndex) => (
+                                <View key={quesIndex} style={styles.quesCard}>
+                                    <Text style={{ fontWeight: "bold", color: "black", fontSize: 22, width: '95%', paddingVertical: 10 }}>
+                                        Q{quesIndex + 1}. {items.question}
+                                    </Text>
+                                    {
+                                        items.options.map((value, index) => (
+                                            <View key={index} style={{ width: '95%', padding: 2 }}>
+                                                <Text style={{ 
+                                                    fontWeight: "bold", 
+                                                    color: "#2e2e2f", 
+                                                    fontSize: 20
+                                                }}>
+                                                    {index + 1}. {value.answer}
+                                                </Text>
+                                            </View>
+                                        ))
+                                    }
+                                    <View style={{flexDirection: 'row',justifyContent: 'space-between',width:"100%",marginVertical:15}}>
+                                        <Text style={{color:"black",fontWeight:"bold",fontSize:13,backgroundColor:"lightgreen",paddingVertical:10,borderRadius:10,width:windoWidth/2.7,textAlign:"center"}}>
+                                            Correct Option : {items.correctAnswerIndex+1}
+                                        </Text>
+                                        <Text 
+                                            style={[{
+                                                fontWeight:"bold",
+                                                fontSize:13,
+                                                paddingVertical:10,
+                                                borderRadius:10,
+                                                width:windoWidth/2.7,
+                                                textAlign:"center"
+                                            },items.selectedOption===items.correctAnswerIndex?{backgroundColor:"lightgreen",color:"black"}:{backgroundColor:"red",color:"white",}]}>
+                                            Your Option : {items.selectedOption+1}
+                                        </Text>
+                                    </View>
+                                </View>
+                            ))
+                        }
+                    </View>
+                </>
+            }
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
@@ -27,10 +77,8 @@ const styles = StyleSheet.create({
     },
     MainInnerView: {
         height: windoHeight / 9,
-        // borderWidth: 1,
         justifyContent: "center",
         alignItems: "center",
-        // backgroundColor: "#B6FFB6"
         backgroundColor: "#97A3FF"
     },
     DashboardText: {
@@ -39,8 +87,7 @@ const styles = StyleSheet.create({
         color: "white"
     },
     DetailView: {
-        // borderWidth: 1,
-        height: windoHeight / 4,
+        paddingVertical:30,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#97A3FF",
@@ -50,7 +97,19 @@ const styles = StyleSheet.create({
     DetailText: {
         fontSize: 20,
         color: "white",
-        marginVertical: 6
-    }
+        marginVertical: 6,
+        fontWeight:"bold"
+    },
+    quesCard: {
+        backgroundColor: "red",
+        padding: 10,
+        backgroundColor: "rgba(198,194,250,0.40)",
+        borderRadius: 10,
+        alignItems: 'center',
+        marginVertical: 10,
+        paddingVertical: 20,
+        width:'90%',
+        alignSelf:"center"
+    },
 })
 export default InnerDashboard
