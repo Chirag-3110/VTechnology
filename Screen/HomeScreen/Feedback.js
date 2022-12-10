@@ -13,7 +13,11 @@ function Feedback({ navigation }) {
     }, [])
     const getUserFeedback = async () => {
         try {
+            let i = 0;
+            let j = 0;
+            // const NewAppendArray = []
             const resultedArray = []
+            const resultedArray1 = []
             const performanceData = await firestore().collection("UserPerformance").where("UserID", "==", userUid.uid).get();
             performanceData.forEach((item) => {
                 resultedArray.push({ ...item.data(), id: item.id });
@@ -46,13 +50,14 @@ function Feedback({ navigation }) {
                                 </View>
                                 <Text style={styles.detailsText1}>{item.AdminFeedback}</Text>
                                 <View style={{ display: "flex", flexDirection: "row" }}>
+
                                     <Text style={{ alignItems: "center", justifyContent: "center", alignSelf: "center", fontSize: 20, color: "black", fontWeight: "700" }}>Stars : </Text>
-                                    <Lottie
-                                        source={require('../../lottiesAnimations/59450-star.json')} autoPlay loop style={{ height: 40 }} />
-                                    <Lottie
-                                        source={require('../../lottiesAnimations/59450-star.json')} autoPlay loop style={{ height: 40 }} />
-                                    <Lottie
-                                        source={require('../../lottiesAnimations/59450-star.json')} autoPlay loop style={{ height: 40 }} />
+                                    {
+                                        item.StarArray.map((value) => (
+                                            <Lottie
+                                                source={require('../../lottiesAnimations/59450-star.json')} autoPlay loop style={{ height: 40 }} />
+                                        ))
+                                    }
                                 </View>
                             </View>
                         ))}
