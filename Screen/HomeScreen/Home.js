@@ -108,7 +108,7 @@ function Home({ navigation }) {
             </View>
             <View style={{ width: windoWidth / 2.6, justifyContent: "center", alignItems: "center" }}>
               <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Check Your</Text>
-              <TouchableOpacity onPress={() => navigation.navigate("Feedback")} style={{ backgroundColor: "orange", paddingHorizontal: 10, paddingVertical: 3, marginVertical: 10, borderRadius: 5 }}><Text style={{ color: "white", fontSize: 18, fontWeight: "600" }}>Feedbacks</Text></TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Feedback")} style={{ backgroundColor: "orange", paddingHorizontal: 10, paddingVertical: 3, marginVertical: 10, borderRadius: 5 }}><Text style={{ color: "white", fontSize: 18, fontWeight: "600" }}>Feedback</Text></TouchableOpacity>
             </View>
           </View>
         </View>

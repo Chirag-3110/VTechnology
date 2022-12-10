@@ -65,7 +65,6 @@ function Profile({ navigation }) {
                                 <Text style={{ fontSize: 15, color: "black", marginHorizontal: 3 }}>Away</Text>
                             </View>
                         </View>
-
                     </View>
                 </View>
                 <View style={styles.MenuSection}>
@@ -83,7 +82,7 @@ function Profile({ navigation }) {
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                         </View>
                     </TouchableOpacity>
-                    <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }}>
+                    <TouchableOpacity style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }} onPress={() => navigation.navigate("Dashboard")}>
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/9115/9115400.png" }} style={{ width: 40, height: 40, color: "white" }} />
                         </View>
@@ -93,8 +92,8 @@ function Profile({ navigation }) {
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                         </View>
-                    </View>
-                    <View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ display: "flex", flexDirection: "row", alignItems: "center", marginHorizontal: 15, paddingVertical: 5, borderRadius: 13, marginVertical: 7 }} onPress={() => navigation.navigate("QuizNavigation")}>
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/7111/7111141.png" }} style={{ width: 40, height: 40, color: "white" }} />
                         </View>
@@ -104,7 +103,7 @@ function Profile({ navigation }) {
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                         </View>
-                    </View>
+                    </TouchableOpacity>
                     <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
                         <Text style={{ marginVertical: 5, fontWeight: "800", color: "lightgrey" }}>My Account</Text>
                         <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text>
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         // fontWeight: "700",
         color: "black",
-        fontFamily:'Quicksand-Bold'
+        fontFamily: 'Quicksand-Bold'
     },
     MainProfileview: {
         display: "flex",
