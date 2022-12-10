@@ -47,8 +47,9 @@ const MainDashboard = ({ navigation }) => {
                             <Text style={{ fontSize: 15, color: "black", fontWeight: "500", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
                         </View>
                         <View style={[styles.LottieView, { alignItems: "center" }]}>
-                            <Lottie
-                                source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 490, marginLeft: 10 }} />
+                            <Image source={require('../../assests/DashboardBoy.png')} style={{ height: windoHeight / 1.4, width: windoWidth / 1.9 }} />
+                            {/* <Lottie
+                                source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 490, marginLeft: 10 }} /> */}
                         </View>
                     </View>
                     <View>
@@ -63,10 +64,10 @@ const MainDashboard = ({ navigation }) => {
                     </View>
                     <View>
                         {
-                            performanceStateArray.length === 0 ? 
-                            <Lottie
-                                source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center",alignSelf:"center" }}
-                            /> :
+                            performanceStateArray.length === 0 ?
+                                <Lottie
+                                    source={require('../../lottiesAnimations/124010-borboleta-rosa-carregando (1).json')} autoPlay loop style={{ height: 190, width: windoWidth, justifyContent: "center", alignItems: "center", alignSelf: "center" }}
+                                /> :
 
                                 performanceStateArray.map((item, index) => (
                                     <View style={styles.PerformanceMainView} key={index} >
@@ -79,8 +80,8 @@ const MainDashboard = ({ navigation }) => {
                                             <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
                                             {
                                                 item.status === "Pending" ? null :
-                                                    <TouchableOpacity style={styles.cardButton} 
-                                                        onPress={() => navigation.navigate("InnerDashboard",{performancedetails:item})}
+                                                    <TouchableOpacity style={styles.cardButton}
+                                                        onPress={() => navigation.navigate("InnerDashboard", { performancedetails: item })}
                                                     >
                                                         <Text style={[styles.textStyles, { fontSize: 15, paddingHorizontal: 15, color: "#a000ff" }]}>View</Text>
                                                     </TouchableOpacity>
@@ -110,15 +111,19 @@ const styles = StyleSheet.create({
         alignItems: "flex-end"
     },
     LottieAnimation: {
-        height: windoHeight / 1.6,
+        height: windoHeight / 1.9,
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        // borderWidth: 1
     },
     LView: {
         width: windoWidth / 3,
+        // borderWidth: 1
     },
     LottieView: {
-        width: windoWidth / 1.55,
+        width: windoWidth / 1.2444,
+        height: windoHeight / 7,
+        // borderWidth: 1
     },
     PerformanceMainView: {
         display: "flex",
@@ -147,7 +152,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         alignSelf: "center",
         marginVertical: 20,
-        marginTop: 40,
+        marginTop: 150,
         borderRadius: 30,
         paddingHorizontal: 20,
         backgroundColor: "white",

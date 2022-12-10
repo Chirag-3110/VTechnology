@@ -5,6 +5,7 @@ import SearchPage from "../Screen/HomeScreen/SearchPage";
 import DashBoard from "../Screen/HomeScreen/DashBoard";
 import ProfileStack from "./Profile";
 import QuestionNavigation from "./QuizNavigation";
+import Feedback from "../Screen/HomeScreen/Feedback";
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
@@ -20,7 +21,8 @@ const HomeStack = () => {
             <Stack.Screen name='SearchPage' component={SearchPage} />
             <Stack.Screen name='Dashboard' component={DashBoard} />
             <Stack.Screen name='Quiz' component={QuestionNavigation} />
-            <Stack.Screen name='Profile' component={ProfileStack} />
+            <Stack.Screen name='Feedback' component={Feedback} />
+
         </Stack.Navigator>
     )
 }
