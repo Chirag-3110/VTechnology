@@ -69,7 +69,7 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent:"center",
         position:"absolute",
-        top:0
+        top:0,
     },
     toastContainer:{
         width:width/1.4,
@@ -79,8 +79,10 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         padding:15,
         alignSelf:"center",
-        marginTop:5,
-        zIndex:200
+        // marginTop:5,
+        zIndex:200,
+        position:"absolute",
+        top:0,
     }
 })
 export default CustomToast;

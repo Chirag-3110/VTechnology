@@ -1,16 +1,31 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, Animated, Easing } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Image, Dimensions, Animated, Easing ,Modal, TouchableOpacity } from 'react-native';
 const { width, height } = Dimensions.get('window');
 import Lottie from 'lottie-react-native';
+import NetInfo from "@react-native-community/netinfo";
 const SplashScreen = ({ navigation }) => {
     let rotateHolder = new Animated.Value(0);
+    const [isNetOn,setIsnetOn]=useState();
+    const [showModel,setShowModel]=useState(false);
     useEffect(() => {
-        rotateBox();
-        navigation.replace("AuthNav")
-    }, [])
+        setShowModel(false);
+        checkforNet();
+
+    }, [isNetOn])
+    const checkforNet=()=>{
+        setShowModel(false)
+        NetInfo.addEventListener(state => {
+            setIsnetOn(state.isConnected);
+            setShowModel(!state.isConnected)
+            rotateBox()
+        });
+        if(isNetOn){
+            navigation.replace("App");
+        }
+    }
     const rotateBox = () => {
         Animated.loop(
-            Animated.timing(rotateHolder, {
+            Animated.timing(rotateHolder, { 
                 toValue: 1,
                 duration: 2000,
                 easing: Easing.linear,
@@ -38,14 +53,9 @@ const SplashScreen = ({ navigation }) => {
                     Have Some Fun With Studies
                 </Text>
             </View>
-            {/* <Lottie
-                source={require('../../lottiesAnimations/96372-loader-5.json')} autoPlay loop style={{ height: 250, width: windoWidth, justifyContent: "center", alignItems: "center" }} /> */}
             <Lottie
                 style={{
-                    // width: width,
                     height: height / 3,
-                    // resizeMode: "contain",
-                    // marginTop: 20
                 }}
                 source={require('../../lottiesAnimations/28909-v-icon-for-ideoo-academy.json')}
                 autoPlay loop
@@ -58,6 +68,20 @@ const SplashScreen = ({ navigation }) => {
             >
                 <Text style={{ fontWeight: "bold", fontSize: 15 }}>Loading</Text>
             </Animated.View>
+            <Modal visible={showModel} animationType='slide' transparent={true}>
+                <View style={styles.modeOuter}>
+                    <View style={styles.innnerModel}>
+                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 20,textAlign:"center" }}>
+                            Oops! Internet not Connected
+                        </Text>
+                        <TouchableOpacity style={styles.button} onPress={()=>checkforNet()}>
+                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 15 }}>
+                                Try Again !
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </View>
     )
 }
@@ -66,7 +90,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: "space-evenly",
-        // backgroundColor: "rgba(193,123,255,0.25)",
         backgroundColor: "skyblue"
     },
     animatedBox: {
@@ -76,8 +99,29 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        // marginTop:60,
         elevation: 15,
+    },
+    modeOuter:{
+        backgroundColor:'#000000aa',
+        flex:1,
+        justifyContent:'center',
+        alignItems: 'center',
+      },
+    innnerModel:{
+        backgroundColor:'white',
+        height:height/4,
+        borderRadius:30,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        width:width-20,
+    },
+    button:{
+        backgroundColor:'#70BBFF',
+        width:'70%',
+        padding:10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius:5
     }
 })
 export default SplashScreen

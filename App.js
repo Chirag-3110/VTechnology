@@ -26,19 +26,17 @@ const App = () => {
     <GlobalVariable.Provider value={{
       userUid:user
     }} >
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown:false
-          }}
-        >
-          {
-            user==null?
-              <Stack.Screen name="AuthNav" component={AuthNavigation} />:
-              <Stack.Screen name="MainNav" component={MainNavigation} />
-          }
+      <Stack.Navigator
+        screenOptions={{
+          headerShown:false
+        }}
+      >
+        {
+          user==null?
+            <Stack.Screen name="AuthNav" component={AuthNavigation} />:
+            <Stack.Screen name="MainNav" component={MainNavigation} />
+        }
         </Stack.Navigator>
-      </NavigationContainer>
     </GlobalVariable.Provider>
     
   );

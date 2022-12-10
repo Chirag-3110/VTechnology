@@ -4,6 +4,8 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import CustomToast from '../../../components/CustomToast';
 import Lottie from 'lottie-react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 let selectIntesertGlobal=[];
 const ConfimSignup=({route,navigation})=>{
 //toast states
@@ -19,6 +21,13 @@ const ConfimSignup=({route,navigation})=>{
     const [phone,setPhone]=useState(null);
     const [qualification,setQualification]=useState(null);
     const [selctedInterestState,setSelectedInterestState]=useState([]);
+    
+    const [open, setOpen] = useState(false);
+    const [gender,setGender]=useState(null);
+    const [items, setItems] = useState([
+        {label: 'Male', value: 'Male'},
+        {label: 'Female', value: 'Female'}
+      ]);
 
     useEffect(() => {
         showPopUp();
@@ -92,6 +101,8 @@ const ConfimSignup=({route,navigation})=>{
                 throw "Please enter Name";
             if(age==null)
                 throw "Please enter Age";
+            if(gender==null)
+                throw "Please select Gender";
             if(phone.length!=10)
                 throw "Phone Should be 10 length long"
             if(qualification==null)
@@ -106,7 +117,9 @@ const ConfimSignup=({route,navigation})=>{
                 Phone:phone,
                 Age:age,
                 Name:name,
-                Interest:newIntesetArray
+                Interest:newIntesetArray,
+                gender:gender,
+                accountDate:Date.now()
             }
             setTimeout(() => {
                 navigation.navigate("confirmaccount",{userData:userDetails,password:password})
@@ -120,14 +133,12 @@ const ConfimSignup=({route,navigation})=>{
     }
     return(
         <View style={styles.container}>
-            <View style={{position:"absolute",top:0,zIndex:1000}}>
-                <CustomToast
-                    toastColor={toastColorState}
-                    toastTextColor={toastTextColorState}
-                    toastMessage={toastMessage}
-                    ref={childRef} 
-                />
-            </View>
+            <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef} 
+            />
             <Text style={styles.textStyle}>
                 Complete Your Profile
             </Text>
@@ -152,6 +163,15 @@ const ConfimSignup=({route,navigation})=>{
                         style={styles.customInput}
                         keyboardType={"numeric"}
                         onChangeText={(age)=>setAge(age)}
+                    />
+                    <DropDownPicker
+                        open={open}
+                        value={gender}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setGender}
+                        setItems={setItems}
+                        style={styles.customInput}
                     />
                     <TextInput
                         placeholder="Phone"
@@ -218,7 +238,7 @@ const styles = StyleSheet.create({
     textStyle: {
         color: "#5B5B5B",
         fontWeight: "bold",
-        fontSize: 40,
+        fontSize: 30,
         paddingHorizontal: 30,
         marginTop:windowHeight/20
     },
@@ -236,9 +256,9 @@ const styles = StyleSheet.create({
     animtedView: {
         backgroundColor: "white",
         width: windowWidth-25,
-        paddingVertical:20,
+        paddingVertical:25,
         borderRadius: 40,
-        marginTop:windowHeight/20,
+        marginTop:windowHeight/30,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
