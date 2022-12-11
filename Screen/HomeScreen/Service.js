@@ -1,35 +1,35 @@
-import React, { useContext, useEffect, useState,useRef } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { View, Text, TextInput, Image, Linking, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import styles from './QuestionsStyles';
 const windoWidth = Dimensions.get('window').width;
-import {GlobalVariable} from '../../App';
+import { GlobalVariable } from '../../App';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 import CustomToast from '../../components/CustomToast';
 
-const Service = ({route,navigation}) => {
+const Service = ({ route, navigation }) => {
     const childRef = useRef(null);
-    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
-    const [toastTextColorState,setToastTextColorState]=useState('black');
-    const [toastMessage,setToastMessage]=useState('');
+    const [toastColorState, setToastColorState] = useState('rgba(41,250,25,1)');
+    const [toastTextColorState, setToastTextColorState] = useState('black');
+    const [toastMessage, setToastMessage] = useState('');
 
-    const {quizArrayData} = route.params;
-    const {userUid} = useContext(GlobalVariable);
+    const { quizArrayData } = route.params;
+    const { userUid } = useContext(GlobalVariable);
     const [ques, setQues] = useState([]);
-    const [loading,setLoading]=useState(false);
-    const [loadingClear,setloadingClear]=useState(false);
+    const [loading, setLoading] = useState(false);
+    const [loadingClear, setloadingClear] = useState(false);
 
     useEffect(() => {
         setQues(quizArrayData.QuesArray)
     }, []);
-    const setAnswerAsSelected = (quesIndex, optIndex,selectedQues) => {
+    const setAnswerAsSelected = (quesIndex, optIndex, selectedQues) => {
         setQues((question) =>
             question.map((val, index) => {
                 if (index === quesIndex) {
                     for (let i = 0; i < val.options.length; i++) {
                         if (i === optIndex) {
                             val.options[i].isSelected = true;
-                            selectedQues.selectedOption=i
+                            selectedQues.selectedOption = i
                         }
                         else {
                             val.options[i].isSelected = false;
@@ -40,57 +40,58 @@ const Service = ({route,navigation}) => {
             })
         );
     }
-    const convertData=(quizData)=>{
-        const newArray=[];
-        quizData.forEach((item)=>{
-            item.options.forEach((value)=>{
-                newArray.push({_id:value._id,answer:value.answer,option:value.option})
+    const convertData = (quizData) => {
+        const newArray = [];
+        quizData.forEach((item) => {
+            item.options.forEach((value) => {
+                newArray.push({ _id: value._id, answer: value.answer, option: value.option })
             })
-            item.options=newArray;   
+            item.options = newArray;
         })
-        return quizData   
+        return quizData
     }
-    const setUserQuizDataPerformance=async()=>{
-        if(loading || loadingClear)
+    const setUserQuizDataPerformance = async () => {
+        if (loading || loadingClear)
             return;
         try {
-            ques.forEach((item)=>{
-                if(item.selectedOption==="")
+            ques.forEach((item) => {
+                if (item.selectedOption === "")
                     throw "Please Select Option before submittion";
             })
-            const newUpdatedQuesArray=convertData(ques)
+            const newUpdatedQuesArray = convertData(ques)
             setLoading(true)
             firestore()
-            .collection("UserPerformance")
-            .add({
-                AdminFeedback:"",
-                ReviewerName:"",
-                UserID:userUid.uid,
-                quizID:quizArrayData.id,
-                status:"Pending",
-                QuesArray:newUpdatedQuesArray,
-                quizDate:new Date(),
-                activityName:quizArrayData.ActivityName,
-                courseName:quizArrayData.courseName
-            })
-            .then(()=>{
-                setToastMessage("Your Activity is Submitted");
-                setToastTextColorState("black")
-                setToastColorState("rgba(41,250,25,1)")
-                childRef.current.showToast();
-                setLoading(false)
-                setTimeout(() => {
-                    clearAll();
-                    navigation.navigate("MainQuiz")
-                }, 1500);
-            })
-            .catch((error)=>{
-                setToastMessage(error);
-                setToastTextColorState("white")
-                setToastColorState("#00C767")
-                childRef.current.showToast();
-                setLoading(false)
-            });
+                .collection("UserPerformance")
+                .add({
+                    AdminFeedback: "",
+                    ReviewerName: "",
+                    UserID: userUid.uid,
+                    quizID: quizArrayData.id,
+                    status: "Pending",
+                    QuesArray: newUpdatedQuesArray,
+                    quizDate: new Date(),
+                    activityName: quizArrayData.ActivityName,
+                    courseName: quizArrayData.courseName,
+                    StarArray: []
+                })
+                .then(() => {
+                    setToastMessage("Your Activity is Submitted");
+                    setToastTextColorState("black")
+                    setToastColorState("rgba(41,250,25,1)")
+                    childRef.current.showToast();
+                    setLoading(false)
+                    setTimeout(() => {
+                        clearAll();
+                        navigation.navigate("MainQuiz")
+                    }, 1500);
+                })
+                .catch((error) => {
+                    setToastMessage(error);
+                    setToastTextColorState("white")
+                    setToastColorState("#00C767")
+                    childRef.current.showToast();
+                    setLoading(false)
+                });
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
@@ -100,26 +101,26 @@ const Service = ({route,navigation}) => {
         }
     }
 
-    const clearAll=()=>{
+    const clearAll = () => {
         setloadingClear(true)
         setQues((question) =>
             question.map((val, index) => {
                 for (let i = 0; i < val.options.length; i++) {
                     val.options[i].isSelected = false;
-                    val.selectedOption=""
+                    val.selectedOption = ""
                 }
                 return val;
             })
-        ); 
+        );
         setloadingClear(false)
     }
     return (
-        <View style={{flex:1,alignItems: 'center',}}>
+        <View style={{ flex: 1, alignItems: 'center', }}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
                 toastMessage={toastMessage}
-                ref={childRef} 
+                ref={childRef}
             />
             <ScrollView style={styles.MainView}>
                 <View style={styles.TopView}>
@@ -164,7 +165,7 @@ const Service = ({route,navigation}) => {
                                     {
                                         items.options.map((value, index) => (
                                             <TouchableOpacity key={index} style={[{ width: '95%', padding: 2 }, value.isSelected ? styles.selctedOptionLabel : null]}
-                                                onPress={() => setAnswerAsSelected(quesIndex, index,items)}
+                                                onPress={() => setAnswerAsSelected(quesIndex, index, items)}
                                             >
                                                 <Text style={{ fontWeight: "bold", color: value.isSelected ? '#6f2ff7' : "#2e2e2f", fontSize: 20 }}>
                                                     {index + 1}. {value.answer}
@@ -173,19 +174,19 @@ const Service = ({route,navigation}) => {
                                         ))
                                     }
                                     {/* <View style={{width:'100%',flexDirection: 'row',justifyContent: 'space-between',alignItems:"center"}}> */}
-                                        {/* <TextInput
+                                    {/* <TextInput
                                             placeholder='Enter Your Answer'
                                             placeholderTextColor={"black"}
                                             style={[styles.inputField,{width:'80%'}]}
                                         /> */}
-                                        {
-                                            items.youTubevideoLink===""?null:
+                                    {
+                                        items.youTubevideoLink === "" ? null :
                                             <TouchableOpacity style={styles.youtueIconsLink}
-                                                onPress={()=>Linking.openURL(items.youTubevideoLink)}
+                                                onPress={() => Linking.openURL(items.youTubevideoLink)}
                                             >
                                                 <FontAwesome name="link" size={20} color={"white"} />
                                             </TouchableOpacity>
-                                        }
+                                    }
                                     {/* </View> */}
                                 </View>
                             ))
@@ -203,16 +204,16 @@ const Service = ({route,navigation}) => {
                             onPress={clearAll}
                         >
                             {
-                                loadingClear?
-                                <ActivityIndicator size={25} color="white"/>:
-                                <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
+                                loadingClear ?
+                                    <ActivityIndicator size={25} color="white" /> :
+                                    <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
                             }
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.btnBody, { backgroundColor: "#6f2ff7" }]} onPress={setUserQuizDataPerformance}>
                             {
-                                loading?
-                                <ActivityIndicator size={25} color="white"/>:
-                                <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }} onPress={setUserQuizDataPerformance}>Submit</Text>
+                                loading ?
+                                    <ActivityIndicator size={25} color="white" /> :
+                                    <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }} onPress={setUserQuizDataPerformance}>Submit</Text>
                             }
                         </TouchableOpacity>
                     </View>

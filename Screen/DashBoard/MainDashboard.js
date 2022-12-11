@@ -47,7 +47,7 @@ const MainDashboard = ({ navigation }) => {
                             <Text style={{ fontSize: 15, color: "black", fontWeight: "500", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
                         </View>
                         <View style={[styles.LottieView, { alignItems: "center" }]}>
-                            <Image source={require('../../assests/DashboardBoy.png')} style={{ height: windoHeight / 1.4, width: windoWidth / 1.9 }} />
+                            <Image source={require('../../assests/D2.png')} style={{ height: windoHeight / 1.378, width: windoWidth / 2 }} />
                             {/* <Lottie
                                 source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 490, marginLeft: 10 }} /> */}
                         </View>

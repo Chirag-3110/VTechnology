@@ -12,6 +12,7 @@ import ProfileStack from './Profile';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import InnerDashboard from '../Screen/DashBoard/InnerDashboard';
 import DashBoardStack from './DashboardStack';
+import Feedback from '../Screen/HomeScreen/Feedback';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const MainNavigation = () => {
@@ -91,7 +92,7 @@ const MainNavigation = () => {
                     ),
                 }}
             />
-            <Tab.Screen name="progress" component={DashBoard}
+            <Tab.Screen name="Feedback" component={Feedback}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (

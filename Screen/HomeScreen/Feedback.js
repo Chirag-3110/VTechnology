@@ -18,7 +18,7 @@ function Feedback({ navigation }) {
             // const NewAppendArray = []
             const resultedArray = []
             const resultedArray1 = []
-            const performanceData = await firestore().collection("UserPerformance").where("UserID", "==", userUid.uid).get();
+            const performanceData = await firestore().collection("UserPerformance").where("UserID", "==", userUid.uid).where("status", '==', "completed").get();
             performanceData.forEach((item) => {
                 resultedArray.push({ ...item.data(), id: item.id });
             })
@@ -42,7 +42,7 @@ function Feedback({ navigation }) {
                         source={require('../../lottiesAnimations/53778-customer-experience-and-website-feedback-five-stars-client-review (1).json')} autoPlay loop style={{ height: 210, width: windoWidth, }} />
                 </View>
                 <ScrollView alwaysBounceVertical={true} showsVerticalScrollIndicator={false} style={{ marginBottom: 70 }}>
-                    {performanceStateArray.length === 0 ? null :
+                    {performanceStateArray.length === 0 ? <Text style={{ justifyContent: "center", textAlign: "center", fontSize: 30, fontWeight: "700" }}>Nothing to show</Text> :
                         performanceStateArray.map((item, index) => (
                             <View style={styles.details1}>
                                 <View style={styles.NotifViewActivity}>

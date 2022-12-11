@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
+import { View, Text, Image, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
 import firestore from '@react-native-firebase/firestore';
 import { GlobalVariable } from '../../App';
 const windoWidth = Dimensions.get('window').width;
@@ -7,14 +7,15 @@ const windoHeight = Dimensions.get('window').height;
 import Lottie from 'lottie-react-native';
 import styles from "./HomeStyle";
 function Home({ navigation }) {
+  let Data = 0;
   const { userUid } = useContext(GlobalVariable);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalVisible1, setModalVisible1] = useState(false);
   const [orderDetail, setOrderDetail] = useState([]);
+  const [getAllDetails, setgetAllDetails] = useState("")
 
   useEffect(() => {
     getOrderData();
     console.log("home", userUid.uid)
+    GetDetails();
   }, [])
 
   const getOrderData = async () => {
@@ -26,9 +27,18 @@ function Home({ navigation }) {
         resultArray.push({ id: item.id, ...item.data() });
       });
       setOrderDetail(resultArray);
-      // console.log("hi i am ", orderDetail)
     } catch (error) {
       console.log(error)
+    }
+  }
+  const GetDetails = async () => {
+    try {
+      const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
+      const Data = user._data;
+      setgetAllDetails(Data);
+      console.log(getAllDetails)
+    } catch (error) {
+      console.error(error);
     }
   }
   return (
@@ -39,8 +49,8 @@ function Home({ navigation }) {
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/236/236831.png" }} style={styles.ProImg} />
           </View>
           <View style={styles.TopText}>
-            <Text>Hello World</Text>
-            <Text style={styles.TopDate}>Thrusday ,08 July</Text>
+            <Text style={styles.TopDate}> {getAllDetails.Name}</Text>
+            <Text style={{ fontWeight: "600" }}>{getAllDetails.email}</Text>
           </View>
           <TouchableOpacity>
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
