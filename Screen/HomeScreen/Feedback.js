@@ -44,7 +44,7 @@ function Feedback({ navigation }) {
                 <ScrollView alwaysBounceVertical={true} showsVerticalScrollIndicator={false} style={{ marginBottom: 70 }}>
                     {performanceStateArray.length === 0 ? <Text style={{ justifyContent: "center", textAlign: "center", fontSize: 30, fontWeight: "700" }}>Nothing to show</Text> :
                         performanceStateArray.map((item, index) => (
-                            <View style={styles.details1}>
+                            <View style={styles.details1} key={index}>
                                 <View style={styles.NotifViewActivity}>
                                     <Text style={styles.NotifViewActivityText}>Activity name : {item.activityName}</Text>
                                 </View>

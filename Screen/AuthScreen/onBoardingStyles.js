@@ -21,17 +21,18 @@ const styles=StyleSheet.create({
         alignItems:"center"
     },
     buttonBoarding:{
-        width:windowWidth-100,
+        width:60,
         height:60,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius:30,
         elevation:20,
         shadowColor: 'blue',
-        backgroundColor:"#4139FA"
+        backgroundColor:"#4139FA",
+        marginRight:15
     },
     subTitleText:{
-        color:"#727275",
+        color:"#B0B0B0",
         fontWeight:"bold",
         fontSize:15,
         width:250,
@@ -44,7 +45,7 @@ const styles=StyleSheet.create({
         position:"absolute",
         bottom:8,
         alignItems:"center",
-        justifyContent:"center",
+        justifyContent:"flex-end",
         width:windowWidth,
         bottom:windowHeight/10,
         paddingHorizontal:15

@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
         backgroundColor:"rgba(101,185,255,0.48)",
         paddingHorizontal:10,
         paddingVertical:5,
-        borderRadius:100,
+        borderRadius:5,
     },
     btnContainer:{
         width: windowWidth - 60,

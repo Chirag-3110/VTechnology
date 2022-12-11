@@ -21,21 +21,12 @@ function Profile({ navigation }) {
             const Data = user._data;
             setUserDate(Data.accountDate)
             setgetAllDetails(Data);
-            calulateDays()
         } catch (error) {
             console.error(error);
         }
     }
     const logout = () => {
         auth().signOut()
-    }
-    const calulateDays=()=>{
-        let tadayDate = Date.now();
-        let userSignupDate = new Date(parseInt(userDate));
-        const TotalDays=(Math.abs(tadayDate-userSignupDate)/(1000*60*60*24))
-        let finalDays;
-        finalDays = Math.ceil(TotalDays)
-        setShownDate(finalDays)
     }
     return (
         <>
@@ -57,22 +48,12 @@ function Profile({ navigation }) {
                     <View style={{ display: "flex", flexDirection: "row", padding: 8 }}>
 
                         <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
-                            <View style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#373738" }}>
+                            <TouchableOpacity style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#373738" }}
+                                onPress={()=>navigation.navigate("Feedback")}
+                            >
                                 <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/742/742751.png" }} style={{ width: 20, height: 20, color: "white" }} />
-                                <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3,}}>Away</Text>
-                            </View>
-                        </View>
-                        <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
-                            <View style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#FBF6B3" }}>
-                                <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3281/3281289.png" }} style={{ width: 30, height: 30, color: "white" }} />
-                                <Text style={{ fontSize: 15, color: "black", marginHorizontal: 3 }}>Away</Text>
-                            </View>
-                        </View>
-                        <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
-                            <View style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#FFDA87" }}>
-                                <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3281/3281289.png" }} style={{ width: 30, height: 30, color: "white" }} />
-                                <Text style={{ fontSize: 15, color: "black", marginHorizontal: 3 }}>Away</Text>
-                            </View>
+                                <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3,fontWeight:"bold"}}> FeedBack</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -159,7 +140,9 @@ const styles = StyleSheet.create({
     },
     InfoText: {
         fontSize: 17,
-        fontWeight: "600"
+        fontWeight: "600",
+        color:"black",
+        marginLeft: 5
     },
     MenuSection: {
         height: windowHeight / 1.9,

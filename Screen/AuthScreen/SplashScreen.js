@@ -33,10 +33,6 @@ const SplashScreen = ({ navigation }) => {
             })
         ).start();
     }
-    const rotate = rotateHolder.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '360deg']
-    })
     return (
         <View style={styles.container}>
             <View style={{ width: '100%', alignItems: 'center', }}>
@@ -60,14 +56,6 @@ const SplashScreen = ({ navigation }) => {
                 source={require('../../lottiesAnimations/28909-v-icon-for-ideoo-academy.json')}
                 autoPlay loop
             />
-            <Animated.View
-                style={[
-                    styles.animatedBox,
-                    { transform: [{ rotate: rotate }] }
-                ]}
-            >
-                <Text style={{ fontWeight: "bold", fontSize: 15 }}>Loading</Text>
-            </Animated.View>
             <Modal visible={showModel} animationType='slide' transparent={true}>
                 <View style={styles.modeOuter}>
                     <View style={styles.innnerModel}>
@@ -90,7 +78,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: "space-evenly",
-        // backgroundColor: "skyblue"
         backgroundColor: "white"
     },
     animatedBox: {

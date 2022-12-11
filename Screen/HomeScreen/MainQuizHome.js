@@ -3,6 +3,7 @@ import { View,Text,TouchableOpacity, StyleSheet, Dimensions,Image,TextInput, Fla
 const {width,height}=Dimensions.get('window');
 import AnimatedQuizCard from '../../components/AnimatedCard';
 import firestore from '@react-native-firebase/firestore';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const MainQuizHome=({navigation})=>{
     const [quizDetails,setQuizDetails]=useState([]);
     const [searchedArray,setSearchedArray]=useState([]);
@@ -47,16 +48,14 @@ const MainQuizHome=({navigation})=>{
             <View style={styles.header}>
                 <Text style={{fontSize:30,color:"black",fontWeight:"bold",paddingHorizontal:30,marginVertical:10,width:width}}>All Quizes</Text>
                 <View style={styles.searchBox}>
+                    <FontAwesome name="search" size={20} color={"grey"}  />
                     <TextInput
-                        style={{ fontWeight: "bold", fontSize: 15, color: "black",marginLeft:15 }}
+                        style={{ fontWeight: "bold", fontSize: 15, color: "black",marginLeft:10,flex:1  }}
                         placeholder={"Search"}
                         placeholderTextColor={"black"}
                         autoCapitalize={true}
                         onChangeText={(searchString)=>searchData(searchString)}
                     />
-                    <TouchableOpacity>
-                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3128/3128287.png" }} style={{ width: 30, height: 30,marginRight:15 }} />
-                    </TouchableOpacity>
                 </View>
             </View>
             <FlatList
@@ -86,15 +85,17 @@ const styles=StyleSheet.create({
         alignItems:"center",
         marginVertical:15
     },
-    searchBox:{ 
+    searchBox:{
         borderWidth: 1, 
-        borderColor: "orange", 
-        borderRadius: 10,
-        width: width-50, 
+        borderColor: "grey", 
+        borderRadius: 10, 
+        marginHorizontal: 20, 
+        width: width / 1.14, 
         display: "flex", 
         flexDirection: "row", 
-        alignItems: "center",
-        justifyContent:"space-between",
+        alignItems: "center", 
+        paddingHorizontal: 10,
+        // justifyContent: 'center',
     }
 })
 export default MainQuizHome;

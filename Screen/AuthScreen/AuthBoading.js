@@ -14,24 +14,18 @@ const windowWidth=Dimensions.get('window').width;
 import styles from "./onBoardingStyles";
 const AuthBoaring=({navigation})=>{
     const fadeAnim = useRef(new Animated.Value(0)).current;
-    const [width,setWidtht]=useState(new Animated.Value(60));
-    const [Name,setName]=useState(new Animated.Value(0));
-    const [ifName,setIfName]=useState(false)
     const imagePaths=[
         {
-            title:"Email Marketing",
-            subTitle:"Make the customer the hero of your story",
-            path:"https://img.freepik.com/free-vector/email-marketing-internet-chatting-24-hours-support_335657-3009.jpg?size=626&ext=jpg"
+            title:"Create Productive Work,Right Now",
+            subTitle:"Collaborate,create,and keep track of your project easily and effictively",
         },
         {
             title:"Digital Marketing",
             subTitle:"Good marketing makes the company look smart. Great marketing makes the customer feel smart",
-            path:"https://img.freepik.com/free-vector/abstract-illustration-social-media-apps_52683-62412.jpg?size=338&ext=jpg"
         },
         {
             title:"Marketing",
             subTitle:"Business has only two functions- marketing and innovation",
-            path:"https://img.freepik.com/free-vector/mobile-marketing-concept-illustration_114360-1497.jpg?size=338&ext=jpg"
         },
     ]
     useEffect(()=>{
@@ -45,19 +39,7 @@ const AuthBoaring=({navigation})=>{
         }).start();
     }
     const buttonAnimation=()=>{
-        Animated.timing(width, {
-            toValue: windowWidth,
-            duration: 1000,
-            easing: Easing.linear,
-            useNativeDriver: false
-        }).start(()=>{
-            setIfName(true);
-            Animated.timing(Name, {
-                toValue: 1,
-                duration: 500,
-                useNativeDriver: false
-            }).start(()=>navigation.replace('login')); 
-        });
+        navigation.replace('login')
     }
     return(
         <View style={styles.container}>
@@ -84,14 +66,25 @@ const AuthBoaring=({navigation})=>{
                                 ]
                             }}
                         >
-                            <Image
-                                source={{uri:path.path}}style={{ height: 350,width: windowWidth,resizeMode:"contain" }} 
-                            />
+                            <View style={{
+                                width:windowWidth,
+                                alignItems: 'center',
+                                height:windowWidth,
+                                justifyContent: 'center',
+                            }}>
+                                <Image  
+                                        source={require("../../assests/fff.png")}
+                                        style={{ height:400,width: windowWidth-20,resizeMode:"cover" }} 
+                                />
+                            </View>
                             <Text
                                 style={{
-                                    color:"#070286",
+                                    color:"#010E5F",
                                     fontWeight:"bold",
-                                    fontSize:30
+                                    fontSize:30,
+                                    width:300,
+                                    textAlign:"center",
+                                    marginTop:50
                                 }}
                             >
                                 {path.title}
@@ -109,19 +102,10 @@ const AuthBoaring=({navigation})=>{
                 style={styles.animated}
             >
                 <Animated.View 
-                    style={[styles.buttonBoarding,{maxWidth:width}]}
+                    style={styles.buttonBoarding}
                 >
                     <TouchableOpacity onPress={()=>buttonAnimation()}>
-                        {
-                            ifName?
-                            <Animated.Text style={{
-                                opacity:Name,
-                                color:"white",
-                                fontWeight:"bold",
-                                fontSize:15
-                            }}>Welcome to VTech App</Animated.Text>:
-                            <FontAwesome name="chevron-right" size={30} color={"white"}  />
-                        }
+                        <FontAwesome name="chevron-right" size={30} color={"white"}  />
                     </TouchableOpacity>
                 </Animated.View>
             </View>
