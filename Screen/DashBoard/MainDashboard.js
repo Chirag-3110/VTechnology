@@ -10,8 +10,10 @@ const MainDashboard = ({ navigation }) => {
     const [performanceStateArray, setPerformanceStateArray] = useState([]);
     const [totalActivities, setTotalActivities] = useState(null);
     const [userName, setUserName] = useState('');
+    const [getAllDetails, setgetAllDetails] = useState("")
     useEffect(() => {
         getUserPerformance()
+        GetDetails();
     }, [])
     const getUserPerformance = async () => {
         try {
@@ -26,6 +28,16 @@ const MainDashboard = ({ navigation }) => {
             setUserName(userDetails.data().Name)
         } catch (error) {
             console.log(error);
+        }
+    }
+    const GetDetails = async () => {
+        try {
+            const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
+            const Data = user._data;
+            setgetAllDetails(Data);
+            console.log(getAllDetails)
+        } catch (error) {
+            console.error(error);
         }
     }
     return (
@@ -47,7 +59,9 @@ const MainDashboard = ({ navigation }) => {
                             <Text style={{ fontSize: 15, color: "black", fontWeight: "500", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
                         </View>
                         <View style={[styles.LottieView, { alignItems: "center" }]}>
-                            <Image source={require('../../assests/D2.png')} style={{ height: windoHeight / 1.378, width: windoWidth / 2 }} />
+                            {
+                                getAllDetails.gender == "Male" ? <Image source={require('../../assests/D_Male.png')} style={{ height: windoHeight / 1.378, width: windoWidth / 1.9 }} /> : <Image source={require('../../assests/D2.png')} style={{ height: windoHeight / 1.378, width: windoWidth / 2 }} />
+                            }
                             {/* <Lottie
                                 source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 490, marginLeft: 10 }} /> */}
                         </View>
