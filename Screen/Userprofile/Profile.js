@@ -10,8 +10,8 @@ const windowHeight = Dimensions.get('window').height;
 function Profile({ navigation }) {
     const [getAllDetails, setgetAllDetails] = useState("")
     const { userUid } = useContext(GlobalVariable);
-    const [userDate,setUserDate]=useState('');
-    const [showndate,setShownDate]=useState('');
+    const [userDate, setUserDate] = useState('');
+    const [showndate, setShownDate] = useState('');
     useEffect(() => {
         GetDetails();
     }, [setShownDate])
@@ -49,10 +49,10 @@ function Profile({ navigation }) {
 
                         <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
                             <TouchableOpacity style={{ display: "flex", flexDirection: "row", paddingHorizontal: 15, paddingVertical: 6, borderRadius: 30, alignItems: "center", backgroundColor: "#373738" }}
-                                onPress={()=>navigation.navigate("Feedback")}
+                                onPress={() => navigation.navigate("Feedback")}
                             >
                                 <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/742/742751.png" }} style={{ width: 20, height: 20, color: "white" }} />
-                                <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3,fontWeight:"bold"}}> FeedBack</Text>
+                                <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3, fontWeight: "bold" }}> FeedBack</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -96,13 +96,12 @@ function Profile({ navigation }) {
                     </TouchableOpacity>
                     <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
                         <Text style={{ marginVertical: 5, fontWeight: "800", color: "lightgrey" }}>My Account</Text>
-                        <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text>
+                        {/* <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text> */}
                         <TouchableOpacity onPress={logout} ><Text style={{ fontSize: 18, color: "red", marginVertical: 5 }}>Log Out</Text></TouchableOpacity>
                     </View>
                 </View>
             </View >
         </>
-
     )
 }
 const styles = StyleSheet.create({
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
     InfoText: {
         fontSize: 17,
         fontWeight: "600",
-        color:"black",
+        color: "black",
         marginLeft: 5
     },
     MenuSection: {
