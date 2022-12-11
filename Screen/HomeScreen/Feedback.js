@@ -23,7 +23,6 @@ function Feedback({ navigation }) {
                 resultedArray.push({ ...item.data(), id: item.id });
             })
             setPerformanceStateArray(resultedArray);
-            console.log(resultedArray)
         } catch (error) {
             console.log(error);
         }

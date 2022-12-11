@@ -1,5 +1,5 @@
-import react, { useContext, useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Animated, Image, ImageBackground, ImageComponent } from 'react-native';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, RefreshControl, Image, ImageBackground, ImageComponent } from 'react-native';
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 import firestore from '@react-native-firebase/firestore';
@@ -10,7 +10,9 @@ const MainDashboard = ({ navigation }) => {
     const [performanceStateArray, setPerformanceStateArray] = useState([]);
     const [totalActivities, setTotalActivities] = useState(null);
     const [userName, setUserName] = useState('');
-    const [getAllDetails, setgetAllDetails] = useState("")
+    const [getAllDetails, setgetAllDetails] = useState("");
+    const [refreshing, setRefreshing] = React.useState(false);
+
     useEffect(() => {
         getUserPerformance()
         GetDetails();
@@ -40,10 +42,23 @@ const MainDashboard = ({ navigation }) => {
             console.error(error);
         }
     }
+    const onRefresh = React.useCallback(async() => {
+        setRefreshing(true);
+        await getUserPerformance();
+        setRefreshing(false);
+        // wait(2000).then(() => setRefreshing(false));
+    }, []);
     return (
         <>
             <View style={{ backgroundColor: "white", width: windoWidth, height: windoHeight }}>
-                <ScrollView style={[styles.MainView, { marginBottom: 70 }]}>
+                <ScrollView style={[styles.MainView, { marginBottom: 70 }]}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    }
+                >
                     <View style={{ display: "flex", flexDirection: "row", height: windoHeight / 10, alignItems: "center" }}>
                         <View style={styles.NameView}>
                             <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>{userName}</Text>
