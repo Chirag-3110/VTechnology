@@ -47,7 +47,7 @@ const MainDashboard = ({ navigation }) => {
                     <View style={{ display: "flex", flexDirection: "row", height: windoHeight / 10, alignItems: "center" }}>
                         <View style={styles.NameView}>
                             <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>{userName}</Text>
-                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15, color: "black" }}>{userName}</Text>
+                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15, color: "black" }}>{getAllDetails.email}</Text>
                         </View>
                         <View style={styles.MainProfileInnerview}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 35, height: 35, color: "white" }} />
