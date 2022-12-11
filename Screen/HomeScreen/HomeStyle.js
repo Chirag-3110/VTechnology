@@ -103,6 +103,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginVertical: 10,
     },
+    Scrollview1: {
+        backgroundColor: "#FFE7DF",
+        width: windoWidth / 2.5,
+        borderRadius: 14,
+        // paddingVertical: 10,
+        marginHorizontal: 10,
+        marginVertical: 10,
+    },
     ScrollImg: {
         width: windoWidth / 2.6,
         height: 120

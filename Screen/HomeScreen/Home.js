@@ -105,6 +105,9 @@ function Home({ navigation }) {
               ))
 
             }
+            <TouchableOpacity style={[styles.Scrollview1, { backgroundColor: "#DBFAF5" }]}>
+              <Image source={{ uri: "https://pro2-bar-s3-cdn-cf1.myportfolio.com/000909172f3cfec3f44bf971f9bfe486/c2a78af4-0920-48f1-9075-74d4e70bcd2f_car_202x158.png?h=2d924768f1f2722149817b3e25befe89" }} style={[styles.ScrollImg, { width: windoWidth / 2.55, height: 172, borderRadius: 15 }]} />
+            </TouchableOpacity>
           </ScrollView>
         </View>
         <View>
