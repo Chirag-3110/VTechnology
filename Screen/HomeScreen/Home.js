@@ -14,7 +14,6 @@ function Home({ navigation }) {
 
   useEffect(() => {
     getOrderData();
-    console.log("home", userUid.uid)
     GetDetails();
   }, [])
 

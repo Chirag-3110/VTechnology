@@ -46,7 +46,6 @@ const Service = ({ route, navigation }) => {
             item.options.forEach((value) => {
                 newArray.push({ _id: value._id, answer: value.answer, option: value.option })
             })
-            item.options = newArray;
         })
         return quizData
     }
@@ -59,39 +58,40 @@ const Service = ({ route, navigation }) => {
                     throw "Please Select Option before submittion";
             })
             const newUpdatedQuesArray = convertData(ques)
+            console.log(newUpdatedQuesArray);
             setLoading(true)
             firestore()
-                .collection("UserPerformance")
-                .add({
-                    AdminFeedback: "",
-                    ReviewerName: "",
-                    UserID: userUid.uid,
-                    quizID: quizArrayData.id,
-                    status: "Pending",
-                    QuesArray: newUpdatedQuesArray,
-                    quizDate: new Date(),
-                    activityName: quizArrayData.ActivityName,
-                    courseName: quizArrayData.courseName,
-                    StarArray: []
-                })
-                .then(() => {
-                    setToastMessage("Your Activity is Submitted");
-                    setToastTextColorState("black")
-                    setToastColorState("rgba(41,250,25,1)")
-                    childRef.current.showToast();
-                    setLoading(false)
-                    setTimeout(() => {
-                        clearAll();
-                        navigation.navigate("MainQuiz")
-                    }, 1500);
-                })
-                .catch((error) => {
-                    setToastMessage(error);
-                    setToastTextColorState("white")
-                    setToastColorState("#00C767")
-                    childRef.current.showToast();
-                    setLoading(false)
-                });
+            .collection("UserPerformance")
+            .add({
+                AdminFeedback: "",
+                ReviewerName: "",
+                UserID: userUid.uid,
+                quizID: quizArrayData.id,
+                status: "Pending",
+                QuesArray: newUpdatedQuesArray,
+                quizDate: new Date(),
+                activityName: quizArrayData.ActivityName,
+                courseName: quizArrayData.courseName,
+                StarArray: []
+            })
+            .then(() => {
+                setToastMessage("Your Activity is Submitted");
+                setToastTextColorState("black")
+                setToastColorState("rgba(41,250,25,1)")
+                childRef.current.showToast();
+                setLoading(false)
+                setTimeout(() => {
+                    clearAll();
+                    navigation.navigate("MainQuiz")
+                }, 1500);
+            })
+            .catch((error) => {
+                setToastMessage(error);
+                setToastTextColorState("white")
+                setToastColorState("#00C767")
+                childRef.current.showToast();
+                setLoading(false)
+            });
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
@@ -173,12 +173,6 @@ const Service = ({ route, navigation }) => {
                                             </TouchableOpacity>
                                         ))
                                     }
-                                    {/* <View style={{width:'100%',flexDirection: 'row',justifyContent: 'space-between',alignItems:"center"}}> */}
-                                    {/* <TextInput
-                                            placeholder='Enter Your Answer'
-                                            placeholderTextColor={"black"}
-                                            style={[styles.inputField,{width:'80%'}]}
-                                        /> */}
                                     {
                                         items.youTubevideoLink === "" ? null :
                                             <TouchableOpacity style={styles.youtueIconsLink}
@@ -187,7 +181,6 @@ const Service = ({ route, navigation }) => {
                                                 <FontAwesome name="link" size={20} color={"white"} />
                                             </TouchableOpacity>
                                     }
-                                    {/* </View> */}
                                 </View>
                             ))
                         }

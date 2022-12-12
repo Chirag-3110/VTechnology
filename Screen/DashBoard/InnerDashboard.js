@@ -64,6 +64,7 @@ function InnerDashboard({route}) {
                             ))
                         }
                     </View>
+                    <View style={{marginBottom:windoHeight/10}}/>
                 </>
             }
         </ScrollView>
