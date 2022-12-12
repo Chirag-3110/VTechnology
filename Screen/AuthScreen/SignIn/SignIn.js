@@ -45,6 +45,13 @@ const SignIn = ({navigation}) => {
                     setToastColorState("red")
                     childRef.current.showToast();
                 }
+                if (error.code === 'auth/user-not-found') {
+                    setToastMessage('User not Found');
+                    setToastTextColorState("white")
+                    setToastColorState("red")
+                    childRef.current.showToast();
+                }
+                console.log(error);
                 setLoading(false);
             })            
         } catch (error) {

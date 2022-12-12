@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef,useState } from "react";
 import Lottie from 'lottie-react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { View } from "react-native";
-import CustomToast from '../../../components/CustomToast';
 const ConifirmAccount = ({ navigation, route }) => {
     const { userData, password } = route.params
-    const childRef = useRef(null);
-    const [toastColorState, setToastColorState] = useState('rgba(41,250,25,1)');
-    const [toastTextColorState, setToastTextColorState] = useState('#575757');
-    const [toastMessage, setToastMessage] = useState('');
     useEffect(() => {
         setTimeout(() => {
             setUserData();
@@ -24,12 +19,6 @@ const ConifirmAccount = ({ navigation, route }) => {
                     .doc(user.uid)
                     .set(userData)
                     .then(() => {
-                    })
-                    .catch((error) => {
-                        setToastMessage(error);
-                        setToastTextColorState("white")
-                        setToastColorState("red")
-                        childRef.current.showToast();
                     })
             })
             .catch(error => {
