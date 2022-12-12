@@ -10,7 +10,6 @@ const SplashScreen = ({ navigation }) => {
     useEffect(() => {
         setShowModel(false);
         checkforNet();
-
     }, [isNetOn])
     const checkforNet = () => {
         setShowModel(false)
@@ -35,26 +34,31 @@ const SplashScreen = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <View style={{ width: '100%', alignItems: 'center', }}>
-                <Text style={{ color: "rgba(136,0,255,0.85)", fontWeight: "800", fontSize: 40 }}>We Arcade</Text>
-                <Text style={{
-                    color: "#1b1b1b",
-                    fontWeight: "bold",
-                    fontSize: 16,
-                    width: '70%',
-                    textAlign: "center",
-                    marginTop: 10
-                }}
-                >
-                    Get youself as carrer ready
-                </Text>
+            <View style={{flexDirection:"column",alignContent:"center",width:width,height:2*(height/3),justifyContent: 'center',}}>
+                <View style={{ width: '100%', alignItems: 'center', }}>
+                    <Text style={{ color: "rgba(136,0,255,0.85)", fontWeight: "800", fontSize: 40 }}>We Arcade</Text>
+                    <Text style={{
+                        color: "#1b1b1b",
+                        fontWeight: "bold",
+                        fontSize: 16,
+                        width: '70%',
+                        textAlign: "center",
+                        marginTop: 10
+                    }}
+                    >
+                        Get youself as carrer ready
+                    </Text>
+                </View>
+                <Image
+                    source={require("../../assests/icon.jpg")}
+                    style={{width:width,height:height/3}}
+                />
             </View>
             <Lottie
-                style={{
-                    height: height / 3,
-                }}
-                source={require('../../lottiesAnimations/28909-v-icon-for-ideoo-academy.json')}
-                autoPlay loop
+                source={require('../../lottiesAnimations/97071-infinite-scroll-loader.json')}  
+                autoPlay={true} 
+                loop={true} 
+                style={{width:width,height:width/2,resizeMode:"contain"}}
             />
             <Modal visible={showModel} animationType='slide' transparent={true}>
                 <View style={styles.modeOuter}>
