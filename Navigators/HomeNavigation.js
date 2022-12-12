@@ -2,7 +2,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from '../Screen/HomeScreen/Home';
 import Coursedetails from '../Screen/HomeScreen/CourseDetail';
 import SearchPage from "../Screen/HomeScreen/SearchPage";
-import ProfileStack from "./Profile";
 import QuestionNavigation from "./QuizNavigation";
 import Feedback from "../Screen/HomeScreen/Feedback";
 const Stack = createNativeStackNavigator();

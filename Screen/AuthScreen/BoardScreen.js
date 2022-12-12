@@ -20,7 +20,11 @@ function BoardScreen({ navigation }) {
                         <Text style={{ fontSize: 30, fontWeight: "800", color: "black", textAlign: "center" }}>Manage your Studies and Career</Text>
                     </View>
                     <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
-                        <Text style={{ textAlign: "center" }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa </Text>
+                        <Text style={{ textAlign: "center",color:"black" }}>
+                            Built For Students By Students.
+                            Execute, work and gain real job experience at the
+                            convenience of WeArcade.
+                        </Text>
 
                     </View>
                     <TouchableOpacity style={styles.BtnView} onPress={() => buttonAnimation()}>

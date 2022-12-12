@@ -25,7 +25,7 @@ const CustomToast=forwardRef((props,ref)=>{
                     duration:200,
                     useNativeDriver:true
                 }),
-                Animated.delay(2000),
+                Animated.delay(3000),
                 Animated.timing(fadeAnim,{
                     toValue:0,
                     duration:200,

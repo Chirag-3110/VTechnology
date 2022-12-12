@@ -49,9 +49,6 @@ function Home({ navigation }) {
             <Text style={styles.TopDate}> {getAllDetails.Name}</Text>
             <Text style={{ fontWeight: "600", color: "black", marginLeft: 5 }}>{getAllDetails.email}</Text>
           </View>
-          {/* <TouchableOpacity>
-            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />
-          </TouchableOpacity> */}
         </View>
         <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
           <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/54/54481.png" }} style={[styles.ProImg, { width: 25, height: 25, marginRight: 10 }]} />
@@ -73,7 +70,7 @@ function Home({ navigation }) {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn}>
+              <TouchableOpacity style={styles.ActivityBtn} onPress={()=>navigation.navigate("Quiz")}>
                 <Text style={{ color: 'white' }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>

@@ -123,10 +123,6 @@ const Service = ({ route, navigation }) => {
                 ref={childRef}
             />
             <ScrollView style={styles.MainView}>
-                <View style={styles.TopView}>
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/5708/5708793.png" }} style={styles.OptionImage} />
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/850/850960.png" }} style={styles.OptionImage} />
-                </View>
                 <View style={styles.CourseImageView}>
                     <View style={styles.Course}>
                         <Image source={{ uri: "https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2020/06/05174400/Types-of-Digital-Marketing.png" }} style={styles.CourseImage} />

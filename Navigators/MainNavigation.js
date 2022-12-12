@@ -96,7 +96,7 @@ const MainNavigation = () => {
                             <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
                                 <FontAwesome name="list" size={28} color={focused ? defaultColor : "grey"} />
                                 <Text style={{ color: "black", fontSize: 10, fontWeight: "bold" }}>
-                                    Progress
+                                    Feedback
                                 </Text>
                             </View>
                         )
