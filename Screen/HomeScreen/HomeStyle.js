@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     },
     TopText: {
         width: windoWidth / 1.56
+      
     },
     TopDate: {
         fontWeight: "800",
@@ -65,12 +66,13 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     AcitivitiesText: {
-
+        fontFamily:"SourceSansPro-Bold",
         fontSize: 28,
         color: "black",
-        fontWeight: "800"
+        // fontWeight: "800"
     },
     AcitivitiesTextanother: {
+        fontFamily:"SourceSansPro-Regular",
         fontSize: 14,
         color: "grey",
         marginVertical: 10
@@ -91,10 +93,10 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     PlanText: {
-        // fontSize: 20,
+         fontSize: 20,
         // fontWeight: "800",
         color: "black",
-        fontFamily:"MuseoModerno-BoldItalic"
+        fontFamily:"SourceSansPro-Bold"
         
     },
     Scrollview: {
