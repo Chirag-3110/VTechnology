@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
+import { View, Text, RefreshControl, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 import firestore from '@react-native-firebase/firestore';
@@ -8,6 +8,7 @@ import Lottie from 'lottie-react-native';
 function Feedback({ navigation }) {
     const { userUid } = useContext(GlobalVariable);
     const [performanceStateArray, setPerformanceStateArray] = useState([]);
+    const [refreshing, setRefreshing] = React.useState(false);
     useEffect(() => {
         getUserFeedback()
     }, [])
@@ -27,6 +28,11 @@ function Feedback({ navigation }) {
             console.log(error);
         }
     }
+    const onRefresh =useCallback(async() => {
+        setRefreshing(true);
+        await getUserFeedback();
+        setRefreshing(false);
+    }, []);
     return (
         <>
             <View style={styles.MainViewFeed}>
@@ -40,7 +46,17 @@ function Feedback({ navigation }) {
                     <Lottie
                         source={require('../../lottiesAnimations/53778-customer-experience-and-website-feedback-five-stars-client-review (1).json')} autoPlay loop style={{ height: 210, width: windoWidth, }} />
                 </View>
-                <ScrollView alwaysBounceVertical={true} showsVerticalScrollIndicator={false} style={{ marginBottom: 70 }}>
+                <ScrollView 
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    }
+                    alwaysBounceVertical={true} 
+                    showsVerticalScrollIndicator={false} 
+                    style={{ marginBottom: 70 }}
+                >
                     {performanceStateArray.length === 0 ? <Text style={{ justifyContent: "center", textAlign: "center", fontSize: 30, fontWeight: "700" }}>Nothing to show</Text> :
                         performanceStateArray.map((item, index) => (
                             <View style={styles.details1} key={index}>

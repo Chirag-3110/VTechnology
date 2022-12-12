@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { View,Text,TouchableOpacity, StyleSheet, Dimensions,Image,TextInput, FlatList } from 'react-native';
+import { View,Text,RefreshControl, StyleSheet, Dimensions,Image,TextInput, FlatList } from 'react-native';
 const {width,height}=Dimensions.get('window');
 import AnimatedQuizCard from '../../components/AnimatedCard';
 import firestore from '@react-native-firebase/firestore';
@@ -8,6 +8,7 @@ const MainQuizHome=({navigation})=>{
     const [quizDetails,setQuizDetails]=useState([]);
     const [searchedArray,setSearchedArray]=useState([]);
     const [search, setSearch] = useState("");
+    const [refreshing, setRefreshing] = React.useState(false);
     useEffect(()=>{
         getQuizdetails();
     },[])
@@ -43,6 +44,11 @@ const MainQuizHome=({navigation})=>{
     const moveToQuestion=(questionArray)=>{
         navigation.navigate("serviceQuiz",{quizArrayData:questionArray})
     }
+    const onRefresh = React.useCallback(async() => {
+        setRefreshing(true);
+        await getQuizdetails();
+        setRefreshing(false);
+    }, []);
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -59,6 +65,12 @@ const MainQuizHome=({navigation})=>{
                 </View>
             </View>
             <FlatList
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }
                 data={searchedArray.length > 0 ? searchedArray : quizDetails}
                 keyExtractor={i=>i.id}
                 renderItem={(item)=>(
