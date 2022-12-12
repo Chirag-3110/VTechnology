@@ -1,41 +1,47 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Lottie from 'lottie-react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { View } from "react-native";
-const ConifirmAccount=({navigation,route})=>{
-    const {userData,password}=route.params
-    useEffect(()=>{
+import CustomToast from '../../../components/CustomToast';
+const ConifirmAccount = ({ navigation, route }) => {
+    const { userData, password } = route.params
+    const childRef = useRef(null);
+    const [toastColorState, setToastColorState] = useState('rgba(41,250,25,1)');
+    const [toastTextColorState, setToastTextColorState] = useState('#575757');
+    const [toastMessage, setToastMessage] = useState('');
+    useEffect(() => {
         setTimeout(() => {
             setUserData();
         }, 3000);
-    },[])
-    const setUserData=()=>{
+    }, [])
+    const setUserData = () => {
         auth()
-        .createUserWithEmailAndPassword(userData.email, password)
-        .then((userCredential) => {
-            const user=userCredential.user;
-            console.log('User account created & signed in!',user.uid);
-            firestore().collection("UserCollection")
-            .doc(user.uid)
-            .set(userData)
-            .then(()=>{
-                console.log("User created successfully")
+            .createUserWithEmailAndPassword(userData.email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                firestore().collection("UserCollection")
+                    .doc(user.uid)
+                    .set(userData)
+                    .then(() => {
+                    })
+                    .catch((error) => {
+                        setToastMessage(error);
+                        setToastTextColorState("white")
+                        setToastColorState("red")
+                        childRef.current.showToast();
+                    })
             })
-            .catch((error)=>{
-                console.log(error);
-            })
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            .catch(error => {
+                console.error(error);
+            });
     }
-    return(
-        <View style={{flex:1,justifyContent: 'center',alignItems: 'center',backgroundColor:"white"}}>
-             <Lottie
-                source={require('../../../lottiesAnimations/110817-account-created.json')} autoPlay={true} loop={false} 
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "white" }}>
+            <Lottie
+                source={require('../../../lottiesAnimations/110817-account-created.json')} autoPlay={true} loop={false}
             />
-        </View> 
+        </View>
     )
 }
 export default ConifirmAccount;
