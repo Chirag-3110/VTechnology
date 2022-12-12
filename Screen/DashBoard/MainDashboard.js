@@ -50,7 +50,7 @@ const MainDashboard = ({ navigation }) => {
     return (
         <>
             <View style={{ backgroundColor: "white", width: windoWidth, height: windoHeight }}>
-                <ScrollView style={[styles.MainView, { marginBottom: 70 }]}
+                <ScrollView style={[styles.MainView, { marginBottom:windoHeight/10 }]}
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}
@@ -61,7 +61,7 @@ const MainDashboard = ({ navigation }) => {
                     <View style={{ display: "flex", flexDirection: "row", height: windoHeight / 10, alignItems: "center" }}>
                         <View style={styles.NameView}>
                             <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>{userName}</Text>
-                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15, color: "black" }}>{getAllDetails.email}</Text>
+                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15, color: "black",width:'100%' }}>{getAllDetails.email}</Text>
                         </View>
                         <View style={styles.MainProfileInnerview}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 35, height: 35, color: "white" }} />
@@ -99,10 +99,9 @@ const MainDashboard = ({ navigation }) => {
 
                                 performanceStateArray.map((item, index) => (
                                     <View style={styles.PerformanceMainView} key={index} >
-                                        <View style={[styles.PerformanceinnerMainView, { paddingLeft: 10, paddingTop: 10 }]}>
+                                        <View style={[styles.PerformanceinnerMainView, { padding:15}]}>
                                             <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.activityName}</Text>
                                             <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>{item.courseName}</Text>
-                                            <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>Points</Text>
                                         </View>
                                         <View style={styles.PerformanceImage}>
                                             <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
@@ -121,7 +120,7 @@ const MainDashboard = ({ navigation }) => {
                     </View>
                 </ScrollView>
             </View>
-        </>
+        </> 
     )
 }
 const styles = StyleSheet.create({

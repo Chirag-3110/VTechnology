@@ -58,7 +58,6 @@ const Service = ({ route, navigation }) => {
                     throw "Please Select Option before submittion";
             })
             const newUpdatedQuesArray = convertData(ques)
-            console.log(newUpdatedQuesArray);
             setLoading(true)
             firestore()
             .collection("UserPerformance")

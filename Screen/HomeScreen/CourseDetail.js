@@ -36,7 +36,7 @@ function CourseDetail({ route, navigation }) {
                                 <Text style={{ fontSize: 17, fontWeight: "800", color: 'black' }}>Description</Text>
                                 <Text style={{ color: "black" }}>{courseData.Description}</Text>
                             </View>
-                            <TouchableOpacity style={styles.ActivityStartBtn} onPress={()=>navigation.navigate("Quiz")}>
+                            <TouchableOpacity style={styles.ActivityStartBtn} onPress={()=>navigation.replace("Quiz")}>
                                 <Text style={styles.ActivityStartBtnText}>Start Activity</Text>
                             </TouchableOpacity>
                         </View>
