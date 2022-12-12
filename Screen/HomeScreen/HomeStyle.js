@@ -91,9 +91,11 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     PlanText: {
-        fontSize: 20,
-        fontWeight: "800",
-        color: "black"
+        // fontSize: 20,
+        // fontWeight: "800",
+        color: "black",
+        fontFamily:"MuseoModerno-BoldItalic"
+        
     },
     Scrollview: {
         backgroundColor: "#FFE7DF",

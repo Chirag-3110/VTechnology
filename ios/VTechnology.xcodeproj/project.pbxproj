@@ -14,12 +14,24 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-VTechnology-VTechnologyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-VTechnology-VTechnologyTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B8870161CCBB461B9988C8A5 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE7EDC9F520E4C3FB53EFBB5 /* Quicksand-Bold.ttf */; };
-		1C17F058CA034BA7AACB5AAC /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17F498B4B283402EA1B7E6B1 /* Quicksand-Light.ttf */; };
-		5FC7A27B1BCF4C899280F9FE /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 536DFFFC4C52483F9DEF3969 /* Quicksand-Medium.ttf */; };
-		3230421CA8DB4ED49B1D936F /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5ABAE73D6AD4FDC858D0C77 /* Quicksand-Regular.ttf */; };
-		F8723E36D4E54F40B87F28C2 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B909B01E66437ABF2F1FC6 /* Quicksand-SemiBold.ttf */; };
-		9E960053835046EF85D7AB35 /* Quicksand-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6BB40E80D1E4712801BC30B /* Quicksand-VariableFont_wght.ttf */; };
+		8C210CBA50C84D59B1E3FE12 /* MuseoModerno-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30D913DEA1EB4981958F70ED /* MuseoModerno-Black.ttf */; };
+		347D882909DD44668FCAA7F0 /* MuseoModerno-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D73403D3A91A4FE3BE08429C /* MuseoModerno-BlackItalic.ttf */; };
+		103B7A8F3DDA4C05BCA3129D /* MuseoModerno-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDB73DE4800445B5B9B68860 /* MuseoModerno-Bold.ttf */; };
+		FFD67CBBF4D34AEAB5B617B5 /* MuseoModerno-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D763AFA5BC9430D93F1C2A6 /* MuseoModerno-BoldItalic.ttf */; };
+		D5910B30376C4203947616AB /* MuseoModerno-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23EB68C7960B477EBEB4D3B0 /* MuseoModerno-ExtraBold.ttf */; };
+		27B600B05E514094ABF462D2 /* MuseoModerno-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53F8DAB9020A41C39D795A90 /* MuseoModerno-ExtraBoldItalic.ttf */; };
+		4A06A07E709C40D7B550904C /* MuseoModerno-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E94824C71C164472B449DB6D /* MuseoModerno-ExtraLight.ttf */; };
+		F314BECEFB7D4FE1A852BEA1 /* MuseoModerno-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD61F8AF89714701A1686406 /* MuseoModerno-ExtraLightItalic.ttf */; };
+		D4C18A7F17734AE0A2CEE242 /* MuseoModerno-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17090F19774842D386C5454D /* MuseoModerno-Italic.ttf */; };
+		86EA97FB8CB34AEF8AD12D4D /* MuseoModerno-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6D81410EFC64931AE7E707B /* MuseoModerno-Light.ttf */; };
+		B8D0BE688D884A379111BDD8 /* MuseoModerno-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C164CE0AC5A4F84830942E1 /* MuseoModerno-LightItalic.ttf */; };
+		C1960097100A4BA98FDA5F66 /* MuseoModerno-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27364E614CA242188F7B714B /* MuseoModerno-Medium.ttf */; };
+		C109B13A9AC448CB9892A2DA /* MuseoModerno-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB75E729B4E741669C9299A6 /* MuseoModerno-MediumItalic.ttf */; };
+		37C0951257D44AF3A0298F57 /* MuseoModerno-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059023F6AA214C4B8C408E49 /* MuseoModerno-Regular.ttf */; };
+		5D94F1C1C90246B58C774318 /* MuseoModerno-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 106D803E679C49B58E8FF99D /* MuseoModerno-SemiBold.ttf */; };
+		369FD26BE6C44A32ADA6943B /* MuseoModerno-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2F5BE4E310746E6BCFCC917 /* MuseoModerno-SemiBoldItalic.ttf */; };
+		F05CCEC1E9DF4559B27A9C58 /* MuseoModerno-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15630A5E4B7E4FBC95BA614F /* MuseoModerno-Thin.ttf */; };
+		5AD06E94DAAD4820A720FD51 /* MuseoModerno-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A788A0926425475E99D6D7FD /* MuseoModerno-ThinItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,12 +62,24 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VTechnology/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-VTechnology-VTechnologyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTechnology-VTechnologyTests.release.xcconfig"; path = "Target Support Files/Pods-VTechnology-VTechnologyTests/Pods-VTechnology-VTechnologyTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		BE7EDC9F520E4C3FB53EFBB5 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; name = "Quicksand-Bold.ttf"; path = "../assests/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		17F498B4B283402EA1B7E6B1 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; name = "Quicksand-Light.ttf"; path = "../assests/fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		536DFFFC4C52483F9DEF3969 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; name = "Quicksand-Medium.ttf"; path = "../assests/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E5ABAE73D6AD4FDC858D0C77 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; name = "Quicksand-Regular.ttf"; path = "../assests/fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D7B909B01E66437ABF2F1FC6 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; name = "Quicksand-SemiBold.ttf"; path = "../assests/fonts/Quicksand-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C6BB40E80D1E4712801BC30B /* Quicksand-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Quicksand-VariableFont_wght.ttf"; path = "../assests/fonts/Quicksand-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		30D913DEA1EB4981958F70ED /* MuseoModerno-Black.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Black.ttf"; path = "../assets/fonts/MuseoModerno-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D73403D3A91A4FE3BE08429C /* MuseoModerno-BlackItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-BlackItalic.ttf"; path = "../assets/fonts/MuseoModerno-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BDB73DE4800445B5B9B68860 /* MuseoModerno-Bold.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Bold.ttf"; path = "../assets/fonts/MuseoModerno-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1D763AFA5BC9430D93F1C2A6 /* MuseoModerno-BoldItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-BoldItalic.ttf"; path = "../assets/fonts/MuseoModerno-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		23EB68C7960B477EBEB4D3B0 /* MuseoModerno-ExtraBold.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-ExtraBold.ttf"; path = "../assets/fonts/MuseoModerno-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		53F8DAB9020A41C39D795A90 /* MuseoModerno-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-ExtraBoldItalic.ttf"; path = "../assets/fonts/MuseoModerno-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E94824C71C164472B449DB6D /* MuseoModerno-ExtraLight.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-ExtraLight.ttf"; path = "../assets/fonts/MuseoModerno-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD61F8AF89714701A1686406 /* MuseoModerno-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-ExtraLightItalic.ttf"; path = "../assets/fonts/MuseoModerno-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		17090F19774842D386C5454D /* MuseoModerno-Italic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Italic.ttf"; path = "../assets/fonts/MuseoModerno-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E6D81410EFC64931AE7E707B /* MuseoModerno-Light.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Light.ttf"; path = "../assets/fonts/MuseoModerno-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1C164CE0AC5A4F84830942E1 /* MuseoModerno-LightItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-LightItalic.ttf"; path = "../assets/fonts/MuseoModerno-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		27364E614CA242188F7B714B /* MuseoModerno-Medium.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Medium.ttf"; path = "../assets/fonts/MuseoModerno-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB75E729B4E741669C9299A6 /* MuseoModerno-MediumItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-MediumItalic.ttf"; path = "../assets/fonts/MuseoModerno-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		059023F6AA214C4B8C408E49 /* MuseoModerno-Regular.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Regular.ttf"; path = "../assets/fonts/MuseoModerno-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		106D803E679C49B58E8FF99D /* MuseoModerno-SemiBold.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-SemiBold.ttf"; path = "../assets/fonts/MuseoModerno-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E2F5BE4E310746E6BCFCC917 /* MuseoModerno-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-SemiBoldItalic.ttf"; path = "../assets/fonts/MuseoModerno-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		15630A5E4B7E4FBC95BA614F /* MuseoModerno-Thin.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-Thin.ttf"; path = "../assets/fonts/MuseoModerno-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A788A0926425475E99D6D7FD /* MuseoModerno-ThinItalic.ttf */ = {isa = PBXFileReference; name = "MuseoModerno-ThinItalic.ttf"; path = "../assets/fonts/MuseoModerno-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,12 +188,24 @@
 		CC5CED2DB2F44FA993A8C883 /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				BE7EDC9F520E4C3FB53EFBB5 /* Quicksand-Bold.ttf */,
-				17F498B4B283402EA1B7E6B1 /* Quicksand-Light.ttf */,
-				536DFFFC4C52483F9DEF3969 /* Quicksand-Medium.ttf */,
-				E5ABAE73D6AD4FDC858D0C77 /* Quicksand-Regular.ttf */,
-				D7B909B01E66437ABF2F1FC6 /* Quicksand-SemiBold.ttf */,
-				C6BB40E80D1E4712801BC30B /* Quicksand-VariableFont_wght.ttf */,
+				30D913DEA1EB4981958F70ED /* MuseoModerno-Black.ttf */,
+				D73403D3A91A4FE3BE08429C /* MuseoModerno-BlackItalic.ttf */,
+				BDB73DE4800445B5B9B68860 /* MuseoModerno-Bold.ttf */,
+				1D763AFA5BC9430D93F1C2A6 /* MuseoModerno-BoldItalic.ttf */,
+				23EB68C7960B477EBEB4D3B0 /* MuseoModerno-ExtraBold.ttf */,
+				53F8DAB9020A41C39D795A90 /* MuseoModerno-ExtraBoldItalic.ttf */,
+				E94824C71C164472B449DB6D /* MuseoModerno-ExtraLight.ttf */,
+				AD61F8AF89714701A1686406 /* MuseoModerno-ExtraLightItalic.ttf */,
+				17090F19774842D386C5454D /* MuseoModerno-Italic.ttf */,
+				E6D81410EFC64931AE7E707B /* MuseoModerno-Light.ttf */,
+				1C164CE0AC5A4F84830942E1 /* MuseoModerno-LightItalic.ttf */,
+				27364E614CA242188F7B714B /* MuseoModerno-Medium.ttf */,
+				FB75E729B4E741669C9299A6 /* MuseoModerno-MediumItalic.ttf */,
+				059023F6AA214C4B8C408E49 /* MuseoModerno-Regular.ttf */,
+				106D803E679C49B58E8FF99D /* MuseoModerno-SemiBold.ttf */,
+				E2F5BE4E310746E6BCFCC917 /* MuseoModerno-SemiBoldItalic.ttf */,
+				15630A5E4B7E4FBC95BA614F /* MuseoModerno-Thin.ttf */,
+				A788A0926425475E99D6D7FD /* MuseoModerno-ThinItalic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -271,12 +307,24 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				B8870161CCBB461B9988C8A5 /* Quicksand-Bold.ttf in Resources */,
-				1C17F058CA034BA7AACB5AAC /* Quicksand-Light.ttf in Resources */,
-				5FC7A27B1BCF4C899280F9FE /* Quicksand-Medium.ttf in Resources */,
-				3230421CA8DB4ED49B1D936F /* Quicksand-Regular.ttf in Resources */,
-				F8723E36D4E54F40B87F28C2 /* Quicksand-SemiBold.ttf in Resources */,
-				9E960053835046EF85D7AB35 /* Quicksand-VariableFont_wght.ttf in Resources */,
+				8C210CBA50C84D59B1E3FE12 /* MuseoModerno-Black.ttf in Resources */,
+				347D882909DD44668FCAA7F0 /* MuseoModerno-BlackItalic.ttf in Resources */,
+				103B7A8F3DDA4C05BCA3129D /* MuseoModerno-Bold.ttf in Resources */,
+				FFD67CBBF4D34AEAB5B617B5 /* MuseoModerno-BoldItalic.ttf in Resources */,
+				D5910B30376C4203947616AB /* MuseoModerno-ExtraBold.ttf in Resources */,
+				27B600B05E514094ABF462D2 /* MuseoModerno-ExtraBoldItalic.ttf in Resources */,
+				4A06A07E709C40D7B550904C /* MuseoModerno-ExtraLight.ttf in Resources */,
+				F314BECEFB7D4FE1A852BEA1 /* MuseoModerno-ExtraLightItalic.ttf in Resources */,
+				D4C18A7F17734AE0A2CEE242 /* MuseoModerno-Italic.ttf in Resources */,
+				86EA97FB8CB34AEF8AD12D4D /* MuseoModerno-Light.ttf in Resources */,
+				B8D0BE688D884A379111BDD8 /* MuseoModerno-LightItalic.ttf in Resources */,
+				C1960097100A4BA98FDA5F66 /* MuseoModerno-Medium.ttf in Resources */,
+				C109B13A9AC448CB9892A2DA /* MuseoModerno-MediumItalic.ttf in Resources */,
+				37C0951257D44AF3A0298F57 /* MuseoModerno-Regular.ttf in Resources */,
+				5D94F1C1C90246B58C774318 /* MuseoModerno-SemiBold.ttf in Resources */,
+				369FD26BE6C44A32ADA6943B /* MuseoModerno-SemiBoldItalic.ttf in Resources */,
+				F05CCEC1E9DF4559B27A9C58 /* MuseoModerno-Thin.ttf in Resources */,
+				5AD06E94DAAD4820A720FD51 /* MuseoModerno-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
