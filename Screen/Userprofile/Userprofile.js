@@ -16,7 +16,6 @@ function Userprofile({ navigation }) {
       const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
       const Data = user._data;
       setgetAllDetails(Data);
-      // console.log(getAllDetails)
     } catch (error) {
       console.error(error);
     }

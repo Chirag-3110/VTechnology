@@ -18,7 +18,6 @@ function Home({ navigation }) {
   }, [])
 
   const getOrderData = async () => {
-    console.log("hey")
     let resultArray = [];
     try {
       const user = await firestore().collection('Courses').get();
@@ -35,7 +34,6 @@ function Home({ navigation }) {
       const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
       const Data = user._data;
       setgetAllDetails(Data);
-      console.log(getAllDetails)
     } catch (error) {
       console.error(error);
     }
@@ -49,7 +47,7 @@ function Home({ navigation }) {
           </View>
           <View style={styles.TopText}>
             <Text style={styles.TopDate}> {getAllDetails.Name}</Text>
-            <Text style={{ fontWeight: "600",color:"black",marginLeft: 5}}>{getAllDetails.email}</Text>
+            <Text style={{ fontWeight: "600", color: "black", marginLeft: 5 }}>{getAllDetails.email}</Text>
           </View>
           {/* <TouchableOpacity>
             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/891/891012.png" }} style={[styles.ProImg, { width: 30, height: 30 }]} />

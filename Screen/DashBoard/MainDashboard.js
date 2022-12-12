@@ -37,12 +37,11 @@ const MainDashboard = ({ navigation }) => {
             const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
             const Data = user._data;
             setgetAllDetails(Data);
-            console.log(getAllDetails)
         } catch (error) {
             console.error(error);
         }
     }
-    const onRefresh = React.useCallback(async() => {
+    const onRefresh = React.useCallback(async () => {
         setRefreshing(true);
         await getUserPerformance();
         setRefreshing(false);
