@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         // fontSize: 20,
         // fontWeight: "800",
         color: "black",
-        fontFamily:"MuseoModerno-BoldItalic"
+        fontFamily:"MuseoModerno-Bold"
         
     },
     Scrollview: {

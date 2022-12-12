@@ -34,7 +34,7 @@ const SplashScreen = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <View style={{flexDirection:"column",alignContent:"center",width:width,height:2*(height/3),justifyContent: 'center',}}>
+            <View style={{flexDirection:"column",alignContent:"center",width:width,height:(height/2),justifyContent: 'center'}}>
                 <View style={{ width: '100%', alignItems: 'center', }}>
                     <Text style={{ color: "rgba(136,0,255,0.85)", fontWeight: "800", fontSize: 40 }}>We Arcade</Text>
                     <Text style={{

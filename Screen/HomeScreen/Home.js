@@ -87,8 +87,7 @@ function Home({ navigation }) {
             </View> :
               orderDetail.map((item, index) => (
                 <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
-                  Name: item.Name,
-                  Description: item.Description,
+                    courseData:item
                 })}>
                   {
                     item.ImageUrl == null ? <ActivityIndicator /> : <Image source={{ uri: item.ImageUrl }} style={[styles.ScrollImg, {}]} />

@@ -97,7 +97,7 @@ function Profile({ navigation }) {
                     <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
                         <Text style={{ marginVertical: 5, fontWeight: "800", color: "lightgrey" }}>My Account</Text>
                         {/* <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text> */}
-                        <TouchableOpacity onPress={logout} ><Text style={{ fontSize: 18, color: "red", marginVertical: 5 }}>Log Out</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={logout} ><Text style={{ fontSize: 18, color: "red", marginVertical: 5, }}>Log Out</Text></TouchableOpacity>
                     </View>
                 </View>
             </View >
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         // fontWeight: "700",
         color: "black",
-        fontFamily: 'Quicksand-Bold'
+        fontFamily:"MuseoModerno-Medium"
     },
     MainProfileview: {
         display: "flex",

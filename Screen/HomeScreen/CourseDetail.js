@@ -6,18 +6,15 @@ const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 const image = { uri: "https://cdn3d.iconscout.com/3d/premium/thumb/man-with-ok-gesture-showing-business-charts-in-laptop-screen-4929412-4122896.png" };
 function CourseDetail({ route, navigation }) {
-    const { Name, Description } = route.params;
+    const { courseData } = route.params;
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
-        setModalVisible(true)
+        setModalVisible(true);
     }, [])
 
     return (
         <View style={styles.MainView}>
             <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview} >
-                {/* <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20 }} onPress={() => navigation.navigate("HomeStack")}>
-                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
-                </TouchableOpacity> */}
             </ImageBackground>
             <View style={styles.centeredView}>
                 <Modal
@@ -25,9 +22,7 @@ function CourseDetail({ route, navigation }) {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                        // alert("Modal has been closed.");
                         navigation.navigate("HomeStack")
-                        // setModalVisible(!modalVisible);
                     }}
                 >
                     <View style={styles.centeredView}>
@@ -35,23 +30,13 @@ function CourseDetail({ route, navigation }) {
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
                         </TouchableOpacity>
                         <View style={styles.modalView}>
-                            <Text style={styles.CourseName}>{Name}</Text>
-                            <Text style={styles.CourseAdmin}>By Maddi Son (Exp 15 year)</Text>
-                            <View style={{ display: "flex", flexDirection: "row" }}>
-                                <View style={styles.LessonDetail}>
-                                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/9045/9045135.png" }} style={{ width: 23, height: 23 }} />
-                                    <Text style={styles.Question}>5 Question</Text>
-                                </View>
-                                <View style={styles.LessonDetail}>
-                                    <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3073/3073440.png" }} style={{ width: 23, height: 23 }} />
-                                    <Text style={styles.Question}>5 min</Text>
-                                </View>
-                            </View>
+                            <Text style={styles.CourseName}>{courseData.Name}</Text>
+                            <Text style={styles.CourseAdmin}>{courseData.adminName} (Exp {courseData.AdminExperience} year)</Text>
                             <View style={{ marginTop: 10, height: windoHeight / 5.7 }}>
                                 <Text style={{ fontSize: 17, fontWeight: "800", color: 'black' }}>Description</Text>
-                                <Text style={{ color: "black" }}>{Description}</Text>
+                                <Text style={{ color: "black" }}>{courseData.Description}</Text>
                             </View>
-                            <TouchableOpacity style={styles.ActivityStartBtn}>
+                            <TouchableOpacity style={styles.ActivityStartBtn} onPress={()=>navigation.navigate("Quiz")}>
                                 <Text style={styles.ActivityStartBtnText}>Start Activity</Text>
                             </TouchableOpacity>
                         </View>
