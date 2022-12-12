@@ -26,7 +26,7 @@ function Userprofile({ navigation }) {
         <TouchableOpacity style={{ marginHorizontal: 20, width: windoWidth - 290 }} onPress={() => navigation.navigate("Prof")}>
           <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "black" }} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 30, fontWeight: "800", color: "black" }}>UserProfile</Text>
+        <Text style={{ fontSize: 30,  fontFamily:"SourceSansPro-Bold", color: "black" }}>UserProfile</Text>
       </View>
 
       <View style={styles.ProfileBox}>
@@ -35,16 +35,16 @@ function Userprofile({ navigation }) {
             source={require('../../lottiesAnimations/3825-name.json')} autoPlay loop style={{ height: 170, width: windoWidth, justifyContent: "center", alignItems: "center" }} />
         </View>
         <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
-          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Name : {getAllDetails.Name}</Text>
+          <Text style={{ fontSize: 20,  fontFamily:"SourceSansPro-Bold",fontSize:21, color: "black" }}>Name : {getAllDetails.Name}</Text>
         </View>
         <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
-          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Age : {getAllDetails.Age}</Text>
+          <Text style={{ fontSize: 20,  fontFamily:"SourceSansPro-Bold",fontSize:21,color: "black" }}>Age : {getAllDetails.Age}</Text>
         </View>
         <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
-          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>Phone : {getAllDetails.Phone}</Text>
+          <Text style={{ fontSize: 20, fontFamily:"SourceSansPro-Bold",fontSize:21, color: "black" }}>Phone : {getAllDetails.Phone}</Text>
         </View>
         <View style={{ justifyContent: "flex-start", marginVertical: 15, marginHorizontal: 30 }}>
-          <Text style={{ fontSize: 20, fontWeight: "700", color: "black" }}>city : jaipur</Text>
+          <Text style={{ fontSize: 20, fontFamily:"SourceSansPro-Bold",fontSize:21, color: "black" }}>City : Jaipur</Text>
         </View>
       </View>
     </View>

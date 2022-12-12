@@ -39,12 +39,12 @@ function Profile({ navigation }) {
                         <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 70, height: 70, color: "white" }} />
                     </View>
                     <View style={[styles.MainProfileInnerview, { width: windowWidth / 1.5, alignItems: "flex-start" }]}>
-                        <Text style={[styles.InfoText, { fontSize: 22, fontWeight: "900", color: "black" }]}>{getAllDetails.Name}</Text>
+                        <Text style={[styles.InfoText, { fontSize: 22,  fontFamily:"SourceSansPro-Bold", color: "black" }]}>{getAllDetails.Name}</Text>
                         <Text style={[styles.InfoText]}>{getAllDetails.email}</Text>
                     </View>
                 </View>
                 <View style={{ paddingVertical: 10, marginBottom: 15 }}>
-                    <Text style={{ fontWeight: "800", marginHorizontal: 20, marginVertical: 10, color: "lightgrey" }}>My Status</Text>
+                    <Text style={{  fontFamily:"SourceSansPro-Bold",fontSize:15, marginHorizontal: 20, marginVertical: 10, color: "lightgrey" }}>My Status</Text>
                     <View style={{ display: "flex", flexDirection: "row", padding: 8 }}>
 
                         <View style={{ display: "flex", flexDirection: "row", marginHorizontal: 10 }}>
@@ -52,7 +52,7 @@ function Profile({ navigation }) {
                                 onPress={() => navigation.navigate("Feedback")}
                             >
                                 <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/742/742751.png" }} style={{ width: 20, height: 20, color: "white" }} />
-                                <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3, fontWeight: "bold" }}> FeedBack</Text>
+                                <Text style={{ fontSize: 15, color: "white", marginHorizontal: 3,  fontFamily:"SourceSansPro-Bold" }}> FeedBack</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -66,7 +66,7 @@ function Profile({ navigation }) {
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1144/1144709.png" }} style={{ width: 40, height: 40, color: "white" }} />
                         </View>
                         <View style={{ width: windowWidth / 2 }}>
-                            <Text style={{ fontSize: 18, fontWeight: "800", color: "black" }}>UserDetail</Text>
+                            <Text style={{ fontSize: 18,  fontFamily:"SourceSansPro-Bold", color: "black" }}>UserDetail</Text>
                         </View>
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
@@ -77,7 +77,7 @@ function Profile({ navigation }) {
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/9115/9115400.png" }} style={{ width: 40, height: 40, color: "white" }} />
                         </View>
                         <View style={{ width: windowWidth / 2, }}>
-                            <Text style={{ fontSize: 18, fontWeight: "800", color: "black" }}>Dashboard</Text>
+                            <Text style={{ fontSize: 18,  fontFamily:"SourceSansPro-Bold", color: "black" }}>Dashboard</Text>
                         </View>
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
@@ -88,16 +88,16 @@ function Profile({ navigation }) {
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/7111/7111141.png" }} style={{ width: 40, height: 40, color: "white" }} />
                         </View>
                         <View style={{ width: windowWidth / 2, }}>
-                            <Text style={{ fontSize: 18, fontWeight: "800", color: "black" }}>Activities</Text>
+                            <Text style={{ fontSize: 18,  fontFamily:"SourceSansPro-Bold", color: "black" }}>Activities</Text>
                         </View>
                         <View style={styles.MainProfileInnerview1}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                         </View>
                     </TouchableOpacity>
                     <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
-                        <Text style={{ marginVertical: 5, fontWeight: "800", color: "lightgrey" }}>My Account</Text>
+                        <Text style={{ marginVertical: 5,  fontFamily:"SourceSansPro-Bold",fontSize:15, color: "lightgrey" }}>My Account</Text>
                         {/* <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text> */}
-                        <TouchableOpacity onPress={logout} ><Text style={{ fontSize: 18, color: "red", marginVertical: 5, }}>Log Out</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={logout} ><Text style={{ fontSize: 18, color: "red", marginVertical: 5, fontFamily:"SourceSansPro-Regular" }}>Log Out</Text></TouchableOpacity>
                     </View>
                 </View>
             </View >
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         // fontWeight: "700",
         color: "black",
-        fontFamily:"MuseoModerno-Medium"
+        fontFamily:"SourceSansPro-Bold"
     },
     MainProfileview: {
         display: "flex",
@@ -139,9 +139,10 @@ const styles = StyleSheet.create({
     },
     InfoText: {
         fontSize: 17,
-        fontWeight: "600",
+        // fontWeight: "600",
         color: "black",
-        marginLeft: 5
+        marginLeft: 5,
+        fontFamily:"SourceSansPro-SemiBold"
     },
     MenuSection: {
         height: windowHeight / 1.9,
@@ -156,7 +157,8 @@ const styles = StyleSheet.create({
     OptionViewText: {
         fontSize: 20,
         color: "lightgrey",
-        fontWeight: "700"
+        fontFamily:"SourceSansPro-Bold"
+        // fontWeight: "700"
     },
     MainProfileInnerview1: {
         // borderWidth: 1,

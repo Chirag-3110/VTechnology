@@ -52,11 +52,11 @@ const MainQuizHome = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={{ fontSize: 30, color: "black", fontWeight: "bold", paddingHorizontal: 30, marginVertical: 10, width: width }}>All Quizes</Text>
+                <Text style={{ fontSize: 30, color: "black", fontFamily:"SourceSansPro-Bold", paddingHorizontal: 30, marginVertical: 10, width: width }}>All Quizes</Text>
                 <View style={styles.searchBox}>
                     <FontAwesome name="search" size={20} color={"grey"} />
                     <TextInput
-                        style={{ fontWeight: "bold", fontSize: 15, color: "black", marginLeft: 10, flex: 1 }}
+                        style={{ fontFamily:"SourceSansPro-Bold", fontSize: 17, color: "black", marginLeft: 10, flex: 1 }}
                         placeholder={"Search"}
                         placeholderTextColor={"black"}
                         autoCapitalize={true}

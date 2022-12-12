@@ -9,7 +9,7 @@ function SearchPage({ navigation }) {
             <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", marginVertical: 5, borderRadius: 1, display: "flex", flexDirection: "row", borderTopWidth: 0, alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
                 <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/54/54481.png" }} style={[{ width: 25, height: 25, marginRight: 10 }]} />
                 <TextInput
-                    style={{ fontWeight: "bold", fontSize: 15, color: "black", width: windoWidth / 1.6 }}
+                    style={{ fontFamily:"SourceSansPro-Bold", fontSize: 18, color: "black", width: windoWidth / 1.6 }}
                     placeholder={"Search"}
                     placeholderTextColor={"black"}
                     autoCapitalize={true}
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     SearchText: {
         fontSize: 14,
         color: "black",
-        fontWeight: "800"
+        fontFamily:"SourceSansPro-Bold"
+        // fontWeight: "800"
     }
 })
 export default SearchPage
