@@ -17,10 +17,10 @@ function BoardScreen({ navigation }) {
                 </View>
                 <View style={styles.BtmView}>
                     <View style={styles.MainBtmView}>
-                        <Text style={{ fontSize: 30, fontWeight: "800", color: "black", textAlign: "center" }}>Manage your Studies and Career</Text>
+                        <Text style={{ fontSize: 30, fontWeight: "800", color: "black", textAlign: "center",fontFamily:"SourceSansPro-Bold" }}>Manage your Studies and Career</Text>
                     </View>
                     <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
-                        <Text style={{ textAlign: "center",color:"black" }}>
+                        <Text style={{ textAlign: "center",color:"black",fontFamily:"SourceSansPro-Bold" }}>
                             Built For Students By Students.
                             Execute, work and gain real job experience at the
                             convenience of WeArcade.
@@ -28,7 +28,7 @@ function BoardScreen({ navigation }) {
 
                     </View>
                     <TouchableOpacity style={styles.BtnView} onPress={() => buttonAnimation()}>
-                        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>Start</Text>
+                        <Text style={{ color: "white", fontSize: 20, fontWeight: "700",fontFamily:"SourceSansPro-Bold" }}>Start</Text>
                     </TouchableOpacity>
                 </View>
                 <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/pencil-2872337-2389551.png" }} style={{ width: windoWidth / 2.5, height: windoHeight / 5, position: "absolute", right: -50, transform: [{ rotate: '70deg' }] }}></Image>

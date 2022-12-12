@@ -45,7 +45,6 @@ const MainDashboard = ({ navigation }) => {
         setRefreshing(true);
         await getUserPerformance();
         setRefreshing(false);
-        // wait(2000).then(() => setRefreshing(false));
     }, []);
     return (
         <>

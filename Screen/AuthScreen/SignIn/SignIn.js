@@ -89,6 +89,7 @@ const SignIn = ({navigation}) => {
                 <Animated.Text style={[
                     styles.MainText,
                     {
+                        fontFamily:"SourceSansPro-Bold",
                         transform: [
                             { translateX: position.x },
                             { translateY: position.y }
@@ -97,7 +98,7 @@ const SignIn = ({navigation}) => {
                 ]}>Sign In</Animated.Text>
                 <Lottie
                     source={require('../../../lottiesAnimations/124956-login.json')}  autoPlay={true} loop={false} 
-                    style={{width:windowWidth,height:windowWidth,resizeMode:"contain"}}
+                    style={{width:windowWidth,resizeMode:"contain"}}
                 />
             </View>
             <View style={{ alignItems: "center", }}>
@@ -109,7 +110,7 @@ const SignIn = ({navigation}) => {
                     >
                         <FontAwesome name="user" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10 }}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10,fontFamily:"SourceSansPro-Bold" }}
                             placeholder={"Email"}
                             placeholderTextColor={"grey"}
                             onChangeText={value => { setemail(value) }}
@@ -125,7 +126,7 @@ const SignIn = ({navigation}) => {
                     >
                         <FontAwesome name="lock" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10}}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10,fontFamily:"SourceSansPro-Bold"}}
                             placeholder={"Password"}
                             placeholderTextColor={"grey"}
                             secureTextEntry={showPassword}
@@ -148,6 +149,7 @@ const SignIn = ({navigation}) => {
                     <Text style={{
                         color:"black",
                         fontWeight:"bold",
+                        fontFamily:"SourceSansPro-Bold"
                     }}>
                         Forgot Password ?
                     </Text>
@@ -158,15 +160,15 @@ const SignIn = ({navigation}) => {
                     {
                         loading?
                         <ActivityIndicator color={'white'} size={30}/>:
-                        <Text style={styles.btnText}>
+                        <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
                             Login
                         </Text>
                     }
                 </TouchableOpacity>
                 <View style={{width:"100%",flexDirection:"row",marginTop:10}}>
-                    <Text style={{fontSize:15,fontWeight:"bold",color:"black",}}>Don't Have an Account ? </Text>
+                    <Text style={{fontSize:15,fontWeight:"bold",color:"black",fontFamily:"SourceSansPro-Bold"}}>Don't Have an Account ? </Text>
                     <Text 
-                        style={{fontSize:15,fontWeight:"bold",color:"blue",}}
+                        style={{fontSize:15,fontWeight:"bold",color:"blue",fontFamily:"SourceSansPro-Bold"}}
                         onPress={()=>navigation.navigate("signup")}
                     >
                         Create Account

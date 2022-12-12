@@ -107,7 +107,7 @@ const SignUp = ({ navigation }) => {
                     >
                         <FontAwesome name="user" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10 }}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold"}}
                             placeholder="Email"
                             placeholderTextColor={"grey"}
                             onChangeText={value => { setemail(value) }}
@@ -122,7 +122,7 @@ const SignUp = ({ navigation }) => {
                     >
                         <FontAwesome name="lock" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10 }}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold" }}
                             placeholder={"Password"}
                             placeholderTextColor={"grey"}
                             secureTextEntry={showPassword}
@@ -146,7 +146,7 @@ const SignUp = ({ navigation }) => {
                     >
                         <FontAwesome name="lock" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10 }}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold" }}
                             placeholder={"Confirm Password"}
                             placeholderTextColor={"grey"}
                             secureTextEntry={showPassword}
@@ -158,13 +158,13 @@ const SignUp = ({ navigation }) => {
                 <TouchableOpacity style={styles.btnContainer}
                     onPress={validateUser}
                 >
-                    <Text style={styles.btnText}>
+                    <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
                         Create Account
                     </Text>
                 </TouchableOpacity>
                 <View style={styles.bottomText}>
-                    <Text style={[styles.subText, { color: "black", fontWeight: "bold", marginRight: 10 }]}>Already have an account?</Text>
-                    <Text style={[styles.subText, { color: "blue", fontWeight: "bold" }]} onPress={() => navigation.navigate("login")}>Log In</Text>
+                    <Text style={[styles.subText, { color: "black", fontWeight: "bold", marginRight: 10,fontFamily:"SourceSansPro-Bold" }]}>Already have an account?</Text>
+                    <Text style={[styles.subText, { color: "blue", fontWeight: "bold" ,fontFamily:"SourceSansPro-Bold"}]} onPress={() => navigation.navigate("login")}>Log In</Text>
                 </View>
             </View>
         </View>

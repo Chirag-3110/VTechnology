@@ -36,14 +36,15 @@ const SplashScreen = ({ navigation }) => {
         <View style={styles.container}>
             <View style={{flexDirection:"column",alignContent:"center",width:width,height:(height/2),justifyContent: 'center'}}>
                 <View style={{ width: '100%', alignItems: 'center', }}>
-                    <Text style={{ color: "rgba(136,0,255,0.85)", fontWeight: "800", fontSize: 40 }}>We Arcade</Text>
+                    <Text style={{ color: "rgba(136,0,255,0.85)", fontWeight: "800", fontSize: 40 ,fontFamily:"SourceSansPro-Bold"}}>We Arcade</Text>
                     <Text style={{
                         color: "#1b1b1b",
                         fontWeight: "bold",
                         fontSize: 16,
                         width: '70%',
                         textAlign: "center",
-                        marginTop: 10
+                        marginTop: 10,
+                        fontFamily:"SourceSansPro-Bold"
                     }}
                     >
                         Get youself as carrer ready
@@ -63,11 +64,11 @@ const SplashScreen = ({ navigation }) => {
             <Modal visible={showModel} animationType='slide' transparent={true}>
                 <View style={styles.modeOuter}>
                     <View style={styles.innnerModel}>
-                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, textAlign: "center" }}>
+                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, textAlign: "center",fontFamily:"SourceSansPro-Bold" }}>
                             Oops! Internet not Connected
                         </Text>
                         <TouchableOpacity style={styles.button} onPress={() => checkforNet()}>
-                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 15 }}>
+                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 15 ,fontFamily:"SourceSansPro-Bold"}}>
                                 Try Again !
                             </Text>
                         </TouchableOpacity>

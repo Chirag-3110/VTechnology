@@ -54,7 +54,7 @@ const CustomToast=forwardRef((props,ref)=>{
                     })},
                 ]
             }]}>
-                <Text style={{color:props.toastTextColor,fontWeight:"bold",width:'90%',marginRight:5,}}>
+                <Text style={{color:props.toastTextColor,fontFamily:"SourceSansPro-Bold",fontWeight:"bold",width:'90%',marginRight:5,}}>
                     {props.toastMessage}
                 </Text>
                 <TouchableOpacity onPress={()=>closetoast()}>

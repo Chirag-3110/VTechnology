@@ -74,6 +74,7 @@ const ForgotPass = ({navigation}) => {
                     <Animated.Text style={[
                         styles.MainText,
                         {
+                            fontFamily:"SourceSansPro-Bold",
                             transform: [
                                 { translateX: position.x },
                                 { translateY: position.y }
@@ -83,6 +84,7 @@ const ForgotPass = ({navigation}) => {
                     <Animated.Text style={[
                         styles.subText,
                         {
+                            fontFamily:"SourceSansPro-Bold",
                             transform: [
                                 { translateX: subTextposition.x },
                                 { translateY: subTextposition.y }
@@ -102,21 +104,21 @@ const ForgotPass = ({navigation}) => {
                         >
                             <FontAwesome name="user" size={25} color={"grey"} />
                             <TextInput
-                                style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10 }}
+                                style={{ fontFamily:"SourceSansPro-Bold",flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10 }}
                                 placeholder="Email"
                                 placeholderTextColor={"grey"}
                                 onChangeText={value => { setemail(value) }}
                             />
                         </View>
                         <TouchableOpacity style={styles.btnContainer} onPress={ResetLink}>
-                            <Text style={styles.btnText}>
+                            <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
                                 Send link
                             </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.bottomText}>
-                        <Text style={[styles.subText,{fontWeight:"bold",color:"black"}]}>Back to </Text>
-                        <Text style={[styles.subText1,{color:"blue",fontWeight:"bold"}]} onPress={()=>navigation.navigate("login")}> Log In</Text>
+                        <Text style={[styles.subText,{fontFamily:"SourceSansPro-Bold",fontWeight:"bold",color:"black"}]}>Back to </Text>
+                        <Text style={[styles.subText1,{color:"blue",fontWeight:"bold",fontFamily:"SourceSansPro-Bold"}]} onPress={()=>navigation.navigate("login")}> Log In</Text>
                     </View>
                 </View>
             </View>

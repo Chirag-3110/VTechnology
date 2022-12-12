@@ -136,7 +136,7 @@ const ConfimSignup = ({ route, navigation }) => {
                 toastMessage={toastMessage}
                 ref={childRef}
             />
-            <Text style={styles.textStyle}>
+            <Text style={[styles.textStyle,{fontFamily:"SourceSansPro-Bold"}]}>
                 Complete Your Profile
             </Text>
             <Animated.View style={[styles.animtedView,
@@ -151,13 +151,13 @@ const ConfimSignup = ({ route, navigation }) => {
                     <TextInput
                         placeholder="Name"
                         placeholderTextColor='black'
-                        style={styles.customInput}
+                        style={[styles.customInput,{fontFamily:"SourceSansPro-Bold"}]}
                         onChangeText={(name) => setName(name)}
                     />
                     <TextInput
                         placeholder="Age"
                         placeholderTextColor='black'
-                        style={styles.customInput}
+                        style={[styles.customInput,{fontFamily:"SourceSansPro-Bold"}]}
                         keyboardType={"numeric"}
                         onChangeText={(age) => setAge(age)}
                     />
@@ -174,18 +174,18 @@ const ConfimSignup = ({ route, navigation }) => {
                     <TextInput
                         placeholder="Phone"
                         placeholderTextColor='black'
-                        style={styles.customInput}
+                        style={[styles.customInput,{fontFamily:"SourceSansPro-Bold"}]}
                         keyboardType={"phone-pad"}
                         onChangeText={(phone) => setPhone(phone)}
                     />
                     <TextInput
                         placeholder="Qualification"
                         placeholderTextColor='black'
-                        style={styles.customInput}
+                        style={[styles.customInput,{fontFamily:"SourceSansPro-Bold"}]}
                         onChangeText={(qualification) => setQualification(qualification)}
                     />
                     <View>
-                        <Text style={{ color: "#5B5B5B", fontWeight: "bold", margin: 10 }}>Interests</Text>
+                        <Text style={{ color: "#5B5B5B", fontWeight: "bold", margin: 10,fontFamily:"SourceSansPro-Bold" }}>Interests</Text>
                         <View style={{
                             flexDirection: "row",
                             width: "98%",
@@ -199,7 +199,7 @@ const ConfimSignup = ({ route, navigation }) => {
                                         style={[styles.itemText, item.isSelect ? { backgroundColor: "#BBBABF" } : { backgroundColor: "#1D0EFE" }]}
                                         onPress={() => selectInterest(item, index)}
                                     >
-                                        <Text style={{ color: "white", fontWeight: "bold" }}>{item.value}</Text>
+                                        <Text style={{ color: "white", fontWeight: "bold",fontFamily:"SourceSansPro-Bold" }}>{item.value}</Text>
                                     </TouchableOpacity>
                                 ))
                             }
