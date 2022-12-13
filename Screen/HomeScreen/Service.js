@@ -60,37 +60,37 @@ const Service = ({ route, navigation }) => {
             const newUpdatedQuesArray = convertData(ques)
             setLoading(true)
             firestore()
-            .collection("UserPerformance")
-            .add({
-                AdminFeedback: "",
-                ReviewerName: "",
-                UserID: userUid.uid,
-                quizID: quizArrayData.id,
-                status: "Pending",
-                QuesArray: newUpdatedQuesArray,
-                quizDate: new Date(),
-                activityName: quizArrayData.ActivityName,
-                courseName: quizArrayData.courseName,
-                StarArray: []
-            })
-            .then(() => {
-                setToastMessage("Your Activity is Submitted");
-                setToastTextColorState("black")
-                setToastColorState("rgba(41,250,25,1)")
-                childRef.current.showToast();
-                setLoading(false)
-                setTimeout(() => {
-                    clearAll();
-                    navigation.navigate("MainQuiz")
-                }, 1500);
-            })
-            .catch((error) => {
-                setToastMessage(error);
-                setToastTextColorState("white")
-                setToastColorState("#00C767")
-                childRef.current.showToast();
-                setLoading(false)
-            });
+                .collection("UserPerformance")
+                .add({
+                    AdminFeedback: "",
+                    ReviewerName: "",
+                    UserID: userUid.uid,
+                    quizID: quizArrayData.id,
+                    status: "Pending",
+                    QuesArray: newUpdatedQuesArray,
+                    quizDate: new Date(),
+                    activityName: quizArrayData.ActivityName,
+                    courseName: quizArrayData.courseName,
+                    StarArray: []
+                })
+                .then(() => {
+                    setToastMessage("Your Activity is Submitted");
+                    setToastTextColorState("black")
+                    setToastColorState("rgba(41,250,25,1)")
+                    childRef.current.showToast();
+                    setLoading(false)
+                    setTimeout(() => {
+                        clearAll();
+                        navigation.navigate("MainQuiz")
+                    }, 1500);
+                })
+                .catch((error) => {
+                    setToastMessage(error);
+                    setToastTextColorState("white")
+                    setToastColorState("#00C767")
+                    childRef.current.showToast();
+                    setLoading(false)
+                });
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
@@ -132,7 +132,7 @@ const Service = ({ route, navigation }) => {
                     <TouchableOpacity style={[styles.btnCourse, { borderTopRightRadius: 0, borderBottomRightRadius: 0, backgroundColor: "#7439FF", borderRightWidth: 0, borderColor: "rgba(120,105,248,0.85)", borderWidth: 2 }]}>
                         <Text style={[styles.TextCourse, { color: "white" }]}>Questions</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.btnCourse, { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderColor: "rgba(115,105,248,0.85)", borderWidth: 2, backgroundColor: "white" }]}>
+                    <TouchableOpacity style={[styles.btnCourse, { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderColor: "rgba(115,105,248,0.85)", borderWidth: 2, backgroundColor: "white" }]} onPress={() => navigation.navigate("Feedback")}>
                         <Text style={[styles.TextCourse]}>Feedback</Text>
                     </TouchableOpacity>
                 </View>
@@ -146,15 +146,15 @@ const Service = ({ route, navigation }) => {
                     </View>
                     <View style={styles.Quiztitle}>
                         <View style={[styles.quiCardTitle, { flexDirection: 'row', alignItems: "center", justifyContent: 'space-evenly', }]}>
-                            <Text style={{ fontWeight: "bold", fontSize: 20, color: "rgba(115,105,248,0.85)" }}>Questions</Text>
-                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 20, backgroundColor: "rgba(115,105,248,0.85)", padding: 5, borderRadius: 5, paddingHorizontal: 10 }}>
+                            <Text style={{ fontFamily: "SourceSansPro-Bold", fontSize: 20, color: "rgba(115,105,248,0.85)" }}>Questions</Text>
+                            <Text style={{ color: "white", fontFamily: "SourceSansPro-Bold", fontSize: 20, backgroundColor: "rgba(115,105,248,0.85)", padding: 5, borderRadius: 5, paddingHorizontal: 10 }}>
                                 {quizArrayData.NOQues}
                             </Text>
                         </View>
                         {
                             ques.map((items, quesIndex) => (
                                 <View key={quesIndex} style={styles.quesCard}>
-                                    <Text style={{ fontWeight: "bold", color: "black", fontSize: 22, width: '95%', paddingVertical: 10 }}>
+                                    <Text style={{ fontFamily: "SourceSansPro-Bold", color: "black", fontSize: 23, width: '95%', paddingVertical: 10 }}>
                                         Q{quesIndex + 1}. {items.question}
                                     </Text>
                                     {
@@ -162,7 +162,7 @@ const Service = ({ route, navigation }) => {
                                             <TouchableOpacity key={index} style={[{ width: '95%', padding: 2 }, value.isSelected ? styles.selctedOptionLabel : null]}
                                                 onPress={() => setAnswerAsSelected(quesIndex, index, items)}
                                             >
-                                                <Text style={{ fontWeight: "bold", color: value.isSelected ? '#6f2ff7' : "#2e2e2f", fontSize: 20 }}>
+                                                <Text style={{ fontFamily: "SourceSansPro-Bold", color: value.isSelected ? '#6f2ff7' : "#2e2e2f", fontSize: 21 }}>
                                                     {index + 1}. {value.answer}
                                                 </Text>
                                             </TouchableOpacity>
@@ -194,14 +194,14 @@ const Service = ({ route, navigation }) => {
                             {
                                 loadingClear ?
                                     <ActivityIndicator size={25} color="white" /> :
-                                    <Text style={{ color: "#6f2ff7", fontWeight: "bold", fontSize: 18 }}>Clear</Text>
+                                    <Text style={{ color: "#6f2ff7", fontFamily: "SourceSansPro-Bold", fontSize: 18 }}>Clear</Text>
                             }
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.btnBody, { backgroundColor: "#6f2ff7" }]} onPress={setUserQuizDataPerformance}>
                             {
                                 loading ?
                                     <ActivityIndicator size={25} color="white" /> :
-                                    <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }} onPress={setUserQuizDataPerformance}>Submit</Text>
+                                    <Text style={{ color: "white", fontFamily: "SourceSansPro-Bold", fontSize: 18 }} onPress={setUserQuizDataPerformance}>Submit</Text>
                             }
                         </TouchableOpacity>
                     </View>

@@ -43,17 +43,20 @@ function Home({ navigation }) {
       <ScrollView style={styles.MainScreen}>
         <View style={styles.topMainView}>
           <View style={styles.profilePic}>
-            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/236/236831.png" }} style={styles.ProImg} />
+            {
+              getAllDetails.gender == "Male" ? <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/236/236831.png" }} style={styles.ProImg} />
+                : <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/6997/6997662.png" }} style={styles.ProImg} />
+            }
           </View>
           <View style={styles.TopText}>
             <Text style={styles.TopDate}> {getAllDetails.Name}</Text>
-            <Text style={{  fontFamily:"SourceSansPro-Bold", color: "black", marginLeft: 5 }}>{getAllDetails.email}</Text>
+            <Text style={{ fontFamily: "SourceSansPro-Bold", color: "black", marginLeft: 5 }}>{getAllDetails.email}</Text>
           </View>
         </View>
         <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
           <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/54/54481.png" }} style={[styles.ProImg, { width: 25, height: 25, marginRight: 10 }]} />
           <TextInput
-            style={{  fontSize: 15, color: "black", width: windoWidth / 1.6 , fontFamily:"SourceSansPro-Bold"}}
+            style={{ fontSize: 15, color: "black", width: windoWidth / 1.6, fontFamily: "SourceSansPro-Bold" }}
             placeholder={"Search"}
             placeholderTextColor={"black"}
             autoCapitalize={true}
@@ -70,8 +73,8 @@ function Home({ navigation }) {
             <View style={styles.TextMain}>
               <Text style={styles.AcitivitiesText}>Acitivities</Text>
               <Text style={styles.AcitivitiesTextanother}>On your click</Text>
-              <TouchableOpacity style={styles.ActivityBtn} onPress={()=>navigation.navigate("Quiz")}>
-                <Text style={{ color: 'white', fontFamily:"SourceSansPro-Regular" }}>View Acitivities</Text>
+              <TouchableOpacity style={styles.ActivityBtn} onPress={() => navigation.navigate("Quiz")}>
+                <Text style={{ color: 'white', fontFamily: "SourceSansPro-Regular" }}>View Acitivities</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -87,19 +90,19 @@ function Home({ navigation }) {
             </View> :
               orderDetail.map((item, index) => (
                 <TouchableOpacity key={index} style={[styles.Scrollview, { backgroundColor: "#DBFAF5" }]} onPress={() => navigation.navigate("Course", {
-                    courseData:item
+                  courseData: item
                 })}>
                   {
                     item.ImageUrl == null ? <ActivityIndicator /> : <Image source={{ uri: item.ImageUrl }} style={[styles.ScrollImg, {}]} />
                   }
 
-                  <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontFamily:'SourceSansPro-SemiBold', color: "black" }}>{item.Name}</Text></View>
+                  <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 7 }}><Text style={{ fontSize: 15, fontFamily: 'SourceSansPro-SemiBold', color: "black" }}>{item.Name}</Text></View>
                 </TouchableOpacity>
               ))
 
             }
             <TouchableOpacity style={[styles.Scrollview1, { backgroundColor: "#DBFAF5" }]}>
-              <Image source={{ uri: "https://pro2-bar-s3-cdn-cf1.myportfolio.com/000909172f3cfec3f44bf971f9bfe486/c2a78af4-0920-48f1-9075-74d4e70bcd2f_car_202x158.png?h=2d924768f1f2722149817b3e25befe89" }} style={[styles.ScrollImg, { width: windoWidth / 2.55, height: 172, borderRadius: 15,fontFamily:"SourceSansPro-SemiBold" }]} />
+              <Image source={{ uri: "https://pro2-bar-s3-cdn-cf1.myportfolio.com/000909172f3cfec3f44bf971f9bfe486/c2a78af4-0920-48f1-9075-74d4e70bcd2f_car_202x158.png?h=2d924768f1f2722149817b3e25befe89" }} style={[styles.ScrollImg, { width: windoWidth / 2.55, height: 172, borderRadius: 15, fontFamily: "SourceSansPro-SemiBold" }]} />
             </TouchableOpacity>
           </ScrollView>
         </View>
@@ -113,8 +116,8 @@ function Home({ navigation }) {
                 source={require('../../lottiesAnimations/115554-leadership-talent.json')} autoPlay loop style={{ height: 150 }} />
             </View>
             <View style={{ width: windoWidth / 2.6, justifyContent: "center", alignItems: "center" }}>
-              <Text style={{ fontSize: 20, color: "black", fontFamily:"SourceSansPro-Bold" }}>Check Your</Text>
-              <TouchableOpacity onPress={() => navigation.navigate("Feedback")} style={{ backgroundColor: "orange", paddingHorizontal: 10, paddingVertical: 3, marginVertical: 10, borderRadius: 5 }}><Text style={{ color: "white", fontSize: 18, fontFamily:"SourceSansPro-SemiBold" }}>Feedback</Text></TouchableOpacity>
+              <Text style={{ fontSize: 20, color: "black", fontFamily: "SourceSansPro-Bold" }}>Check Your</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Feedback")} style={{ backgroundColor: "orange", paddingHorizontal: 10, paddingVertical: 3, marginVertical: 10, borderRadius: 5 }}><Text style={{ color: "white", fontSize: 18, fontFamily: "SourceSansPro-SemiBold" }}>Feedback</Text></TouchableOpacity>
             </View>
           </View>
         </View>

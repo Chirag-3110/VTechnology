@@ -34,9 +34,9 @@ const SplashScreen = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <View style={{flexDirection:"column",alignContent:"center",width:width,height:(height/2),justifyContent: 'center'}}>
-                <View style={{ width: '100%', alignItems: 'center', }}>
-                    <Text style={{ color: "rgba(136,0,255,0.85)", fontWeight: "800", fontSize: 40 ,fontFamily:"SourceSansPro-Bold"}}>We Arcade</Text>
+            <View style={{ flexDirection: "column", alignContent: "center", width: width, height: (height / 1.7), justifyContent: 'center', paddingTop: height / 3 }}>
+                <View style={{ width: '100%', alignItems: 'center' }}>
+                    <Text style={{ color: "#0E31A3", fontWeight: "800", fontSize: 40, fontFamily: "SourceSansPro-Bold" }}>We Arcade</Text>
                     <Text style={{
                         color: "#1b1b1b",
                         fontWeight: "bold",
@@ -44,7 +44,7 @@ const SplashScreen = ({ navigation }) => {
                         width: '70%',
                         textAlign: "center",
                         marginTop: 10,
-                        fontFamily:"SourceSansPro-Bold"
+                        fontFamily: "SourceSansPro-Bold"
                     }}
                     >
                         Get youself as carrer ready
@@ -52,23 +52,23 @@ const SplashScreen = ({ navigation }) => {
                 </View>
                 <Image
                     source={require("../../assests/icon.jpg")}
-                    style={{width:width,height:height/3}}
+                    style={{ width: width, height: height / 3 }}
                 />
             </View>
             <Lottie
-                source={require('../../lottiesAnimations/97071-infinite-scroll-loader.json')}  
-                autoPlay={true} 
-                loop={true} 
-                style={{width:width,height:width/2,resizeMode:"contain"}}
+                source={require('../../lottiesAnimations/97071-infinite-scroll-loader.json')}
+                autoPlay={true}
+                loop={true}
+                style={{ width: width, height: width / 2, resizeMode: "contain" }}
             />
             <Modal visible={showModel} animationType='slide' transparent={true}>
                 <View style={styles.modeOuter}>
                     <View style={styles.innnerModel}>
-                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, textAlign: "center",fontFamily:"SourceSansPro-Bold" }}>
+                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 20, textAlign: "center", fontFamily: "SourceSansPro-Bold" }}>
                             Oops! Internet not Connected
                         </Text>
                         <TouchableOpacity style={styles.button} onPress={() => checkforNet()}>
-                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 15 ,fontFamily:"SourceSansPro-Bold"}}>
+                            <Text style={{ color: "white", fontWeight: "bold", fontSize: 15, fontFamily: "SourceSansPro-Bold" }}>
                                 Try Again !
                             </Text>
                         </TouchableOpacity>

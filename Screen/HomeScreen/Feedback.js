@@ -28,7 +28,7 @@ function Feedback({ navigation }) {
             console.log(error);
         }
     }
-    const onRefresh =useCallback(async() => {
+    const onRefresh = useCallback(async () => {
         setRefreshing(true);
         await getUserFeedback();
         setRefreshing(false);
@@ -40,37 +40,37 @@ function Feedback({ navigation }) {
                     <TouchableOpacity style={{ marginHorizontal: 20, marginVertical: 20, }} onPress={() => navigation.navigate("HomeStack")}>
                         <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "white" }} />
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 30, fontWeight: "700", color: "black", width: windoWidth / 1.5, textAlign: "center" }}>Feedback</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", width: windoWidth / 1.5, textAlign: "center" }}>Feedback</Text>
                 </View>
                 <View style={{ justifyContent: "center", alignItems: "center" }}>
                     <Lottie
                         source={require('../../lottiesAnimations/53778-customer-experience-and-website-feedback-five-stars-client-review (1).json')} autoPlay loop style={{ height: 210, width: windoWidth, }} />
                 </View>
-                <ScrollView 
+                <ScrollView
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}
                             onRefresh={onRefresh}
                         />
                     }
-                    alwaysBounceVertical={true} 
-                    showsVerticalScrollIndicator={false} 
+                    alwaysBounceVertical={true}
+                    showsVerticalScrollIndicator={false}
                     style={{ marginBottom: 70 }}
                 >
-                    {performanceStateArray.length === 0 ? 
+                    {performanceStateArray.length === 0 ?
                         <Text style={{ justifyContent: "center", textAlign: "center", fontSize: 30, fontWeight: "700" }}>Nothing to show</Text> :
                         performanceStateArray.map((item, index) => (
-                            <View style={styles.details1} key={index}>
+                            <View key={index} style={styles.details1}>
                                 <View style={styles.NotifViewActivity}>
                                     <Text style={styles.NotifViewActivityText}>Activity name : {item.activityName}</Text>
                                 </View>
-                                <Text style={styles.detailsText1}>{item.AdminFeedback}</Text>
+                                <Text style={{ fontFamily: 'SourceSansPro-SemiBold' }}>{item.AdminFeedback}</Text>
                                 <View style={{ display: "flex", flexDirection: "row" }}>
 
-                                    <Text style={{ alignItems: "center", justifyContent: "center", alignSelf: "center", fontSize: 20, color: "black", fontWeight: "700" }}>Stars : </Text>
+                                    <Text style={{ alignItems: "center", justifyContent: "center", alignSelf: "center", fontSize: 20, color: "black", fontFamily: "SourceSansPro-Bold", }}>Stars : </Text>
                                     {
-                                        item.StarArray.map((value) => (
-                                            <Lottie
+                                        item.StarArray.map((value, index) => (
+                                            <Lottie key={index}
                                                 source={require('../../lottiesAnimations/59450-star.json')} autoPlay loop style={{ height: 40 }} />
                                         ))
                                     }
@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
     NotifViewActivityText: {
         fontSize: 20,
         color: "black",
-        marginVertical: 10
+        marginVertical: 10,
+        fontFamily: "SourceSansPro-Bold",
     },
 })
 export default Feedback

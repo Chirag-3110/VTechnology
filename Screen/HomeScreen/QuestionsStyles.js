@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     CourseNameText: {
         fontSize: 20,
-        fontWeight: "800",
+        FontFamily: "SourceSansPro-Bold",
         marginVertical: 10,
         color: "white"
     },
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
         elevation: 20
     },
     TextCourse: {
-        fontSize: 15,
-        fontWeight: "700",
+        fontSize: 17,
+        FontFamily: "SourceSansPro-Bold",
         color: "black"
     },
 
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     },
     quiCardTitle: {
         color: "rgba(115,105,248,0.85)",
-        fontWeight: "bold",
+        fontFamily: "SourceSansPro-Bold",
         fontSize: 16,
         width: '70%',
         backgroundColor: "rgba(198,194,250,0.40)",
@@ -102,14 +102,14 @@ const styles = StyleSheet.create({
     },
     quizCardSubText: {
         color: "#2e2e2f",
-        fontWeight: "bold",
+        fontFamily: "SourceSansPro-Bold",
         fontSize: 20,
         paddingHorizontal: 10,
         paddingVertical: 5,
     },
     quizCardMiniText: {
         color: "#7f7f7f",
-        fontWeight: "800",
+        FontFamily: "SourceSansPro-Bold",
         fontSize: 15,
         paddingHorizontal: 10,
         paddingVertical: 5,

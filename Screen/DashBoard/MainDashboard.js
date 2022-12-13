@@ -49,7 +49,7 @@ const MainDashboard = ({ navigation }) => {
     return (
         <>
             <View style={{ backgroundColor: "white", width: windoWidth, height: windoHeight }}>
-                <ScrollView style={[styles.MainView, { marginBottom:windoHeight/10 }]}
+                <ScrollView style={[styles.MainView, { marginBottom: windoHeight / 10 }]}
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}
@@ -59,17 +59,17 @@ const MainDashboard = ({ navigation }) => {
                 >
                     <View style={{ display: "flex", flexDirection: "row", height: windoHeight / 10, alignItems: "center" }}>
                         <View style={styles.NameView}>
-                            <Text style={{ fontSize: 20, fontWeight: "800", marginLeft: 15, color: "black" }}>{userName}</Text>
-                            <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 15, color: "black",width:'100%' }}>{getAllDetails.email}</Text>
+                            <Text style={{ fontSize: 25, marginLeft: 15, color: "black", fontFamily: "SourceSansPro-Bold", }}>{userName}</Text>
+                            <Text style={{ fontSize: 16, fontFamily: "SourceSansPro-Regular", marginLeft: 15, color: "black", width: '100%' }}>{getAllDetails.email}</Text>
                         </View>
-                        <View style={styles.MainProfileInnerview}>
+                        {/* <View style={styles.MainProfileInnerview}>
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2202/2202112.png" }} style={{ width: 35, height: 35, color: "white" }} />
-                        </View>
+                        </View> */}
                     </View>
                     <View style={styles.LottieAnimation}>
                         <View style={styles.LView}>
-                            <Text style={{ fontSize: 80, color: "black", fontWeight: "800", justifyContent: "center", alignItems: "center", alignSelf: "center", marginTop: 30 }}>{totalActivities}</Text>
-                            <Text style={{ fontSize: 15, color: "black", fontWeight: "500", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
+                            <Text style={{ fontSize: 80, color: "black", fontFamily: "SourceSansPro-Bold", justifyContent: "center", alignItems: "center", alignSelf: "center", marginTop: 30 }}>{totalActivities}</Text>
+                            <Text style={{ fontSize: 17, color: "black", fontFamily: "SourceSansPro-Bold", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
                         </View>
                         <View style={[styles.LottieView, { alignItems: "center" }]}>
                             {
@@ -98,18 +98,18 @@ const MainDashboard = ({ navigation }) => {
 
                                 performanceStateArray.map((item, index) => (
                                     <View style={styles.PerformanceMainView} key={index} >
-                                        <View style={[styles.PerformanceinnerMainView, { padding:15}]}>
-                                            <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.activityName}</Text>
-                                            <Text style={{ fontSize: 15, color: "black", fontWeight: "600", marginBottom: 5 }}>{item.courseName}</Text>
+                                        <View style={[styles.PerformanceinnerMainView, { padding: 15 }]}>
+                                            <Text style={{ fontSize: 22, color: "black", fontFamily: "SourceSansPro-Bold", marginBottom: 5 }}>{item.activityName}</Text>
+                                            <Text style={{ fontSize: 16, color: "black", fontFamily: "SourceSansPro-Bold", marginBottom: 5 }}>{item.courseName}</Text>
                                         </View>
                                         <View style={styles.PerformanceImage}>
-                                            <Text style={{ fontSize: 20, color: "black", fontWeight: "800", marginBottom: 5 }}>{item.status}</Text>
+                                            <Text style={{ fontSize: 20, color: "black", fontFamily: "SourceSansPro-Bold", marginBottom: 5 }}>{item.status}</Text>
                                             {
                                                 item.status === "Pending" ? null :
                                                     <TouchableOpacity style={styles.cardButton}
                                                         onPress={() => navigation.navigate("InnerDashboard", { performancedetails: item })}
                                                     >
-                                                        <Text style={[styles.textStyles, { fontSize: 15, paddingHorizontal: 15, color: "#a000ff" }]}>View</Text>
+                                                        <Text style={[styles.textStyles, { fontSize: 15, paddingHorizontal: 15, color: "#a000ff", fontFamily: "SourceSansPro-Bold", }]}>View</Text>
                                                     </TouchableOpacity>
                                             }
                                         </View>
@@ -119,7 +119,7 @@ const MainDashboard = ({ navigation }) => {
                     </View>
                 </ScrollView>
             </View>
-        </> 
+        </>
     )
 }
 const styles = StyleSheet.create({
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white"
     },
     NameView: {
-        width: windoWidth / 2
+        width: windoWidth / 1.1,
     },
     MainProfileInnerview: {
         width: windoWidth / 2.2,
