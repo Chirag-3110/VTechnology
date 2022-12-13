@@ -169,7 +169,7 @@ const ConfimSignup = ({ route, navigation }) => {
                         setValue={setGender}
                         setItems={setItems}
                         style={styles.customInput}
-
+                        placeholder="Select Gender"
                     />
                     <TextInput
                         placeholder="Phone"
@@ -196,6 +196,7 @@ const ConfimSignup = ({ route, navigation }) => {
                             {
                                 interestArray.map((item, index) => (
                                     <TouchableOpacity
+                                        key={index}
                                         style={[styles.itemText, item.isSelect ? { backgroundColor: "#BBBABF" } : { backgroundColor: "#1D0EFE" }]}
                                         onPress={() => selectInterest(item, index)}
                                     >
