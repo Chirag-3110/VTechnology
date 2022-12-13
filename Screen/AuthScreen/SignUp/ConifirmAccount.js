@@ -18,8 +18,6 @@ const ConifirmAccount = ({ navigation, route }) => {
                 firestore().collection("UserCollection")
                     .doc(user.uid)
                     .set(userData)
-                    .then(() => {
-                    })
             })
             .catch(error => {
                 console.error(error);

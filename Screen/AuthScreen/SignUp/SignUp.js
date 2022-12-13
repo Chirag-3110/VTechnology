@@ -8,7 +8,7 @@ import PasswordValidate from '../../../Validate/PasswordValidation';
 import styles from "../SignIn/LoginStyle";
 import Lottie from 'lottie-react-native';
 import CustomToast from "../../../components/CustomToast";
-
+import auth from '@react-native-firebase/auth';
 const SignUp = ({ navigation }) => {
     //toast states
     const childRef = useRef(null);
@@ -40,7 +40,19 @@ const SignUp = ({ navigation }) => {
             }
             if (password != Cpassword)
                 throw "Both Password Must Be Same";
-            navigation.navigate("confimSignup", { email: email, password: password });
+            auth().signInWithEmailAndPassword(email,"********")
+            .catch((error)=>{
+                if (error.code === 'auth/user-not-found') {
+                    // console.log("j")
+                    navigation.navigate("confimSignup", { email: email, password: password });
+                }
+                if (error.code === 'auth/wrong-password') {
+                    setToastMessage('Email Already Exists');
+                    setToastTextColorState("white")
+                    setToastColorState("red")
+                    childRef.current.showToast();
+                }
+            })
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")

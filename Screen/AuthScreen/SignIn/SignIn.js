@@ -7,7 +7,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Lottie from 'lottie-react-native';
 import styles from "./LoginStyle";
 import CustomToast from "../../../components/CustomToast";
-
 const SignIn = ({navigation}) => {
 //toast states
     const childRef = useRef(null);

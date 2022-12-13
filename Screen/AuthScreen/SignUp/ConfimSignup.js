@@ -118,9 +118,7 @@ const ConfimSignup = ({ route, navigation }) => {
                 gender: gender,
                 accountDate: Date.now()
             }
-            setTimeout(() => {
-                navigation.navigate("confirmaccount", { userData: userDetails, password: password })
-            }, 2000);
+            navigation.navigate("confirmaccount", { userData: userDetails, password: password })
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
