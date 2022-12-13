@@ -16,14 +16,14 @@ function BoardScreen({ navigation }) {
                 </View>
                 <View style={styles.BtmView}>
                     <View style={styles.MainBtmView}>
-                        <Text style={{ fontSize: 30, fontWeight: "800", color: "black", textAlign: "center" }}>Manage your Studies and Career</Text>
+                        <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
                     </View>
                     <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
-                        <Text style={{ textAlign: "center" }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa </Text>
+                        <Text style={{ textAlign: "center" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
 
                     </View>
                     <TouchableOpacity style={styles.BtnView} onPress={() => buttonAnimation()}>
-                        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>Start</Text>
+                        <Text style={{ color: "white", fontSize: 20, fontFamily: "SourceSansPro-Bold", }}>Start</Text>
                     </TouchableOpacity>
                 </View>
                 <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/pencil-2872337-2389551.png" }} style={{ width: windoWidth / 2.5, height: windoHeight / 5, position: "absolute", right: -50, transform: [{ rotate: '70deg' }] }}></Image>
