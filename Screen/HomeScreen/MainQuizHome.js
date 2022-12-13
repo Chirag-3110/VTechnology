@@ -64,23 +64,27 @@ const MainQuizHome = ({ navigation }) => {
                     />
                 </View>
             </View>
-            <FlatList
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
-                data={searchedArray.length > 0 ? searchedArray : quizDetails}
-                keyExtractor={i => i.id}
-                renderItem={(item) => (
-                    <AnimatedQuizCard
-                        dataProps={item}
-                        getQuestionData={moveToQuestion}
-                    />
-                )}
-                showsVerticalScrollIndicator={false}
-            />
+            {
+                quizDetails.length===0?
+                <Text style={{color:"black",fontWeight:"bold",fontSize:20, fontFamily:"SourceSansPro-Bold"}}>No Activites yet</Text>:
+                <FlatList
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    }
+                    data={searchedArray.length > 0 ? searchedArray : quizDetails}
+                    keyExtractor={i => i.id}
+                    renderItem={(item) => (
+                        <AnimatedQuizCard
+                            dataProps={item}
+                            getQuestionData={moveToQuestion}
+                        />
+                    )}
+                    showsVerticalScrollIndicator={false}
+                />
+             }
             <View style={{ marginBottom: height / 9.5, backgroundColor: "white" }} />
         </View>
     )
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         backgroundColor: "white"
     },
     header: {
