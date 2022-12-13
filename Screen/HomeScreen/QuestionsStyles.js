@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     youtueIconsLink: {
-        width: 40,
-        height: 40,
+        width: 35,
+        height: 35,
         borderRadius: 5,
         backgroundColor: "#c760fe",
         alignItems: "center",

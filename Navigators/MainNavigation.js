@@ -66,20 +66,20 @@ const MainNavigation = () => {
                     tabBarIcon: ({ focused }) => (
                         <View
                             style={{
-                                top: -windwoheight / 20,
+                                marginBottom: 20,
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                zIndex: 10,
+                                // zIndex: 10,
                                 backgroundColor: "white",
-                                width: 70,
-                                height: 70,
-                                borderRadius: 35,
+                                width: 60,
+                                height: 60,
+                                borderRadius: 30,
                                 borderWidth: 5,
                                 borderColor: focused ? '#FDC1FA' : "white"
                             }}
                         >
                             <Image
-                                style={{ width: 60, height: 60, borderRadius: 30 }}
+                                style={{ width: 50, height: 50, borderRadius: 25 }}
                                 resizeMode="contain"
                                 source={{
                                     uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVXNQCuHs9hAmj4b56PO7WHXgnt5FAgH3AmbS2A1DRtPfdhU31_o7Gay1eaLPsK4vOnp4&usqp=CAU',

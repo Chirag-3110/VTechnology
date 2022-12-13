@@ -40,6 +40,16 @@ const Service = ({ route, navigation }) => {
             })
         );
     }
+    const setAnswerFromuser = (quesIndex,value) => {
+        setQues((question) =>
+            question.map((val, index) => {
+                if (index === quesIndex) {
+                    val.userAnswer=value
+                }
+                return val;
+            })
+        );
+    }
     const convertData = (quizData) => {
         const newArray = [];
         quizData.forEach((item) => {
@@ -53,11 +63,7 @@ const Service = ({ route, navigation }) => {
         if (loading || loadingClear)
             return;
         try {
-            ques.forEach((item) => {
-                if (item.selectedOption === "")
-                    throw "Please Select Option before submittion";
-            })
-            const newUpdatedQuesArray = convertData(ques)
+            const newUpdatedQuesArray = convertData(ques);
             setLoading(true)
             firestore()
                 .collection("UserPerformance")
@@ -100,6 +106,7 @@ const Service = ({ route, navigation }) => {
         }
     }
 
+    
     const clearAll = () => {
         setloadingClear(true)
         setQues((question) =>
@@ -154,7 +161,7 @@ const Service = ({ route, navigation }) => {
                         {
                             ques.map((items, quesIndex) => (
                                 <View key={quesIndex} style={styles.quesCard}>
-                                    <Text style={{ fontFamily: "SourceSansPro-Bold", color: "black", fontSize: 23, width: '95%', paddingVertical: 10 }}>
+                                    <Text style={{ fontFamily: "SourceSansPro-Bold", color: "black", fontSize: 22, width: '95%', paddingVertical: 10 }}>
                                         Q{quesIndex + 1}. {items.question}
                                     </Text>
                                     {
@@ -162,19 +169,41 @@ const Service = ({ route, navigation }) => {
                                             <TouchableOpacity key={index} style={[{ width: '95%', padding: 2 }, value.isSelected ? styles.selctedOptionLabel : null]}
                                                 onPress={() => setAnswerAsSelected(quesIndex, index, items)}
                                             >
-                                                <Text style={{ fontFamily: "SourceSansPro-Bold", color: value.isSelected ? '#6f2ff7' : "#2e2e2f", fontSize: 21 }}>
+                                                <Text style={{ fontFamily: "SourceSansPro-Bold", color: value.isSelected ? '#6f2ff7' : "#2e2e2f", fontSize: 18 }}>
                                                     {index + 1}. {value.answer}
                                                 </Text>
                                             </TouchableOpacity>
                                         ))
                                     }
+                                    <TextInput
+                                        style={{ 
+                                            flex: 1, 
+                                            fontWeight: "bold", 
+                                            fontSize: 15, 
+                                            color: "black", 
+                                            paddingLeft: 10,
+                                            fontFamily:"SourceSansPro-Bold",
+                                            backgroundColor:"white",
+                                            width:'100%',
+                                            height:50,
+                                            borderRadius:5,
+                                            paddingHorizontal:10,
+                                            margin:10
+                                        }}
+                                        placeholder="Enter Answer"
+                                        placeholderTextColor={"grey"}
+                                        onChangeText={value => setAnswerFromuser(quesIndex,value,items)}
+                                    />
                                     {
                                         items.youTubevideoLink === "" ? null :
-                                            <TouchableOpacity style={styles.youtueIconsLink}
-                                                onPress={() => Linking.openURL(items.youTubevideoLink)}
-                                            >
-                                                <FontAwesome name="link" size={20} color={"white"} />
-                                            </TouchableOpacity>
+                                            <View style={{flexDirection:'row',alignItems:"center",margin:10,alignSelf:"flex-end"}}>
+                                                <Text style={{ fontFamily: "SourceSansPro-Bold", color: "#2e2e2f", fontSize: 18,marginRight:10 }}>YouTube Link</Text>
+                                                <TouchableOpacity style={styles.youtueIconsLink}
+                                                    onPress={() => Linking.openURL(items.youTubevideoLink)}
+                                                >
+                                                    <FontAwesome name="link" size={20} color={"white"} />
+                                                </TouchableOpacity>
+                                            </View>
                                     }
                                 </View>
                             ))
