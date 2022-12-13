@@ -12,7 +12,7 @@ function BoardScreen({ navigation }) {
         <View style={styles.MainView}>
             <ImageBackground source={image} style={styles.MainTopview} >
                 <View style={{ justifyContent: "center", alignItems: "center", height: windoHeight / 2, paddingTop: windoHeight / 5, zIndex: 5 }}>
-                    <Image source={require('../../assests/Boarding.png')} style={{ width: windoWidth / 1.5, height: windoHeight / 3, transform: [{ rotate: '-20deg' }] }}></Image>
+                    {/* <Image source={require('../../assests/Board.png')} style={{ width: windoWidth / 1.5, height: windoHeight / 3, transform: [{ rotate: '-20deg' }] }}></Image> */}
                 </View>
                 <View style={styles.BtmView}>
                     <View style={styles.MainBtmView}>
