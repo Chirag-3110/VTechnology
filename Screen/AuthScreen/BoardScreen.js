@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, Image, StyleSheet, Dimensions, ImageBackground, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from 'react-native'
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
-// const image = { uri: "https://i.pinimg.com/originals/34/7b/05/347b05f70e3ec739230bb470bdda89d7.jpg" };
 const image = { uri: "https://img.freepik.com/free-photo/yellow-watercolor-paper_95678-446.jpg" };
 function BoardScreen({ navigation }) {
     const buttonAnimation = () => {
@@ -12,14 +11,18 @@ function BoardScreen({ navigation }) {
         <View style={styles.MainView}>
             <ImageBackground source={image} style={styles.MainTopview} >
                 <View style={{ justifyContent: "center", alignItems: "center", height: windoHeight / 2, paddingTop: windoHeight / 5, zIndex: 5 }}>
-                    {/* <Image source={require('../../assests/Board.png')} style={{ width: windoWidth / 1.5, height: windoHeight / 3, transform: [{ rotate: '-20deg' }] }}></Image> */}
+                    <Image 
+                        source={{uri:"https://cdn3d.iconscout.com/3d/premium/thumb/paper-and-pencil-4329862-3599673.png"}} 
+                        style={{ width: windoWidth / 1.5, height: windoHeight / 3, 
+                        transform: [{ rotate: '-20deg' }] }}
+                    />
                 </View>
                 <View style={styles.BtmView}>
                     <View style={styles.MainBtmView}>
                         <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
                     </View>
                     <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
-                        <Text style={{ textAlign: "center" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
+                        <Text style={{ textAlign: "center",color:'black',fontFamily:"SourceSansPro-Bold" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
 
                     </View>
                     <TouchableOpacity style={styles.BtnView} onPress={() => buttonAnimation()}>
