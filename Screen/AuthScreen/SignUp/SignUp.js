@@ -16,6 +16,7 @@ const SignUp = ({ navigation }) => {
     const [toastTextColorState, setToastTextColorState] = useState('#575757');
     const [toastMessage, setToastMessage] = useState('dd');
 
+    const [loading,setLoading]=useState(false)
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
     const [Cpassword, setCpassword] = useState('');
@@ -40,13 +41,16 @@ const SignUp = ({ navigation }) => {
             }
             if (password != Cpassword)
                 throw "Both Password Must Be Same";
+            setLoading(true)
             auth().signInWithEmailAndPassword(email,"********")
             .catch((error)=>{
                 if (error.code === 'auth/user-not-found') {
                     // console.log("j")
+                    setLoading(false)
                     navigation.navigate("confimSignup", { email: email, password: password });
                 }
                 if (error.code === 'auth/wrong-password') {
+                    setLoading(false);
                     setToastMessage('Email Already Exists');
                     setToastTextColorState("white")
                     setToastColorState("red")
