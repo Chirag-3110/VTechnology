@@ -1,5 +1,5 @@
 const EmailValidate=(email)=>{
-    if(!email.includes("gmail.com")){
+    if(!email.includes("@gmail.com")){
         return  false
     }
     return true
