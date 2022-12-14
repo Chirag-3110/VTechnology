@@ -53,7 +53,7 @@ function Home({ navigation }) {
             <Text style={{ fontFamily: "SourceSansPro-Bold", color: "black", marginLeft: 5 }}>{getAllDetails.email}</Text>
           </View>
         </View>
-        <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.14, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
+        <TouchableOpacity style={{ borderWidth: 1, borderColor: "grey", borderRadius: 10, marginHorizontal: 20, width: windoWidth / 1.12, display: "flex", flexDirection: "row", alignItems: "center", paddingHorizontal: 10 }} onPress={() => navigation.navigate("SearchPage")}>
           <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/54/54481.png" }} style={[styles.ProImg, { width: 25, height: 25, marginRight: 10 }]} />
           <TextInput
             style={{ fontSize: 15, color: "black", width: windoWidth / 1.6, fontFamily: "SourceSansPro-Bold" }}
