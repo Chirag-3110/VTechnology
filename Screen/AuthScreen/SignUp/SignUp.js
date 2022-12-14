@@ -82,7 +82,7 @@ const SignUp = ({ navigation }) => {
                             { translateY: position.y }
                         ]
                     }
-                ]}>Sign In</Animated.Text>
+                ]}>Sign Up</Animated.Text>
                 <Animated.Text style={[
                     styles.MainText,
                     {
