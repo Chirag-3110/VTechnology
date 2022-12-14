@@ -47,7 +47,7 @@ const SplashScreen = ({ navigation }) => {
                         fontFamily: "SourceSansPro-Bold"
                     }}
                     >
-                        Get youself as carrer ready
+                        Built For Students By Students
                     </Text>
                 </View>
                 <Image
