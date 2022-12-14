@@ -9,6 +9,7 @@ import styles from "../SignIn/LoginStyle";
 import Lottie from 'lottie-react-native';
 import CustomToast from "../../../components/CustomToast";
 import auth from '@react-native-firebase/auth';
+import { ActivityIndicator } from "react-native-paper";
 const SignUp = ({ navigation }) => {
     //toast states
     const childRef = useRef(null);
@@ -36,27 +37,12 @@ const SignUp = ({ navigation }) => {
             if (!EmailValidate(email)) {
                 throw "Please enter a valid Email"
             }
-            if (!PasswordValidate(password)) {
-                throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
-            }
+            // if (!PasswordValidate(password)) {
+            //     throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
+            // }
             if (password != Cpassword)
                 throw "Both Password Must Be Same";
-            setLoading(true)
-            auth().signInWithEmailAndPassword(email,"********")
-            .catch((error)=>{
-                if (error.code === 'auth/user-not-found') {
-                    // console.log("j")
-                    setLoading(false)
-                    navigation.navigate("confimSignup", { email: email, password: password });
-                }
-                if (error.code === 'auth/wrong-password') {
-                    setLoading(false);
-                    setToastMessage('Email Already Exists');
-                    setToastTextColorState("white")
-                    setToastColorState("red")
-                    childRef.current.showToast();
-                }
-            })
+            navigation.navigate("confimSignup", { email: email, password: password });
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
@@ -115,7 +101,6 @@ const SignUp = ({ navigation }) => {
             </View>
             <View style={{ alignItems: "center", width: "100%" }}>
                 <View>
-                    {/* <Text style={{ color: "black", fontWeight: "bold" }}>Email</Text> */}
                     <View style={[
                         { flexDirection: 'row', alignItems: "center" },
                         styles.customInput
@@ -174,9 +159,13 @@ const SignUp = ({ navigation }) => {
                 <TouchableOpacity style={styles.btnContainer}
                     onPress={validateUser}
                 >
-                    <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
-                        Create Account
-                    </Text>
+                    {
+                        loading?
+                        <ActivityIndicator size={25} color={"white"}/>:
+                        <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
+                            Create Account
+                        </Text>
+                    }
                 </TouchableOpacity>
                 <View style={styles.bottomText}>
                     <Text style={[styles.subText, { color: "black", fontWeight: "bold", marginRight: 10,fontFamily:"SourceSansPro-Bold" }]}>Already have an account?</Text>

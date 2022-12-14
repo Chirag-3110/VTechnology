@@ -3,6 +3,7 @@ import Lottie from 'lottie-react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { View } from "react-native";
+import { NavigationHelpersContext } from "@react-navigation/native";
 const ConifirmAccount = ({ navigation, route }) => {
     const { userData, password } = route.params
     useEffect(() => {
@@ -20,7 +21,8 @@ const ConifirmAccount = ({ navigation, route }) => {
                     .set(userData)
             })
             .catch(error => {
-                console.error(error);
+                alert("Account Not Created");
+                navigation.replace("signup")
             });
     }
     return (
