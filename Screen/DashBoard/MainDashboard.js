@@ -71,9 +71,9 @@ const MainDashboard = ({ navigation }) => {
                             <Text style={{ fontSize: 80, color: "black", fontFamily: "SourceSansPro-Bold", justifyContent: "center", alignItems: "center", alignSelf: "center", marginTop: 30 }}>{totalActivities}</Text>
                             <Text style={{ fontSize: 17, color: "black", fontFamily: "SourceSansPro-Bold", justifyContent: "center", alignItems: "center", alignSelf: "center" }}>Activities done</Text>
                         </View>
-                        <View style={[styles.LottieView, { alignItems: "center",height:windoHeight/1.2 }]}>
+                        <View style={[styles.LottieView, { alignItems: "center", height: windoHeight / 1.2 }]}>
                             {
-                                getAllDetails.gender == "Male" ? <Image source={require('../../assests/D_Male.png')} style={{ height: '100%', width: windoWidth / 1.9 }} /> : <Image source={require('../../assests/D2.png')} style={{ height: '100%', width: windoWidth / 2 }} />
+                                getAllDetails.gender == "Male" ? <Image source={require('../../assests/D_Male.png')} style={{ height: '100%', width: windoWidth / 1.6 }} /> : <Image source={require('../../assests/D2.png')} style={{ height: '100%', width: windoWidth / 1.8 }} />
                             }
                             {/* <Lottie
                                 source={require('../../lottiesAnimations/45698-a-cool-boy-standing.json')} autoPlay loop style={{ height: 490, marginLeft: 10 }} /> */}
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         // borderWidth: 1
     },
     LottieView: {
-        width: windoWidth / 1.2444,
+        width: windoWidth / 1.4,
         height: windoHeight / 7,
         // borderWidth: 1
     },
