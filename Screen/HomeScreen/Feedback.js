@@ -44,7 +44,7 @@ function Feedback({ navigation }) {
                 </View>
                 <View style={{ justifyContent: "center", alignItems: "center" }}>
                     <Lottie
-                        source={require('../../lottiesAnimations/53778-customer-experience-and-website-feedback-five-stars-client-review (1).json')} autoPlay loop style={{ height: 210, width: windoWidth, }} />
+                        source={require('../../lottiesAnimations/53778-customer-experience-and-website-feedback-five-stars-client-review (1).json')} autoPlay loop style={{ height: 180, width: windoWidth, }} />
                 </View>
                 <ScrollView
                     refreshControl={

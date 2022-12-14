@@ -5,7 +5,9 @@ const windowHeight = Dimensions.get('window').height;
 import CustomToast from '../../../components/CustomToast';
 import Lottie from 'lottie-react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import { ActivityIndicator } from 'react-native-paper';
 let selectIntesertGlobal = [];
 const ConfimSignup = ({ route, navigation }) => {
     //toast states
@@ -118,13 +120,47 @@ const ConfimSignup = ({ route, navigation }) => {
                 gender: gender,
                 accountDate: Date.now()
             }
-            navigation.navigate("confirmaccount", { userData: userDetails, password: password })
+            setUserData(userDetails);
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
             setToastColorState("red")
             childRef.current.showToast();
         }
+    }
+    const setUserData = (userDetails) => {
+        if(loading)
+            return;
+        setLoading(true)
+        auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            firestore().collection("UserCollection").doc(user.uid).set(userDetails)
+            .then(()=>{
+                setLoading(false)
+            })
+            .catch((error)=>{
+                setLoading(false)
+                console.log(error);
+            })
+        })
+        .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+                setLoading(false)
+                setToastMessage('Email Already Exists');
+                setToastTextColorState("white")
+                setToastColorState("red")
+                childRef.current.showToast();
+            }
+            else{
+                setToastMessage("SomeThing went Wrong ! Try Again");
+                setLoading(false)
+                setToastTextColorState("white")
+                setToastColorState("red")
+                childRef.current.showToast();
+            }
+        });
     }
     return (
         <View style={styles.container}>
@@ -204,20 +240,17 @@ const ConfimSignup = ({ route, navigation }) => {
                             }
                         </View>
                     </View>
-                    {
-                        loading ?
-                            <Lottie
-                                source={require('../../../lottiesAnimations/84619-submitting-loading-button.json')} autoPlay={true} loop={true}
-                                style={{ width: windowWidth, height: windowWidth - 50, resizeMode: "contain" }}
-                            /> :
-                            <TouchableOpacity style={styles.btnContainer}
-                                onPress={() => createNewUSer()}
-                            >
-                                <Text style={styles.btnText}>
+                        <TouchableOpacity style={styles.btnContainer}
+                            onPress={() => createNewUSer()}
+                        >
+                            {
+                                loading?
+                                <ActivityIndicator size={25} color="white"/>:
+                                    <Text style={styles.btnText}>
                                     Complete...
                                 </Text>
-                            </TouchableOpacity>
-                    }
+                            }
+                        </TouchableOpacity>
                 </View>
             </Animated.View>
         </View>
