@@ -43,7 +43,7 @@ const CustomToast=forwardRef((props,ref)=>{
         }).start();
     }
     return(
-        <View style={styles.container}>
+        // <View style={styles.container}>
             <Animated.View style={[styles.toastContainer,{
                 backgroundColor:props.toastColor,
                 opacity:fadeAnim,
@@ -61,7 +61,7 @@ const CustomToast=forwardRef((props,ref)=>{
                     <FontAwesome name="close" size={30} color={"white"} style={{marginLeft:-15}} />
                 </TouchableOpacity>
             </Animated.View>
-        </View>
+        // </View>
     )
 })
 const styles=StyleSheet.create({
@@ -79,7 +79,7 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         padding:15,
         alignSelf:"center",
-        // marginTop:5,
+        marginTop:5,
         zIndex:200,
         position:"absolute",
         top:0,

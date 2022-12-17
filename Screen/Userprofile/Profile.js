@@ -1,25 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState,useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, TextInput } from 'react-native';
 import { GlobalVariable } from '../../App';
 import firestore from '@react-native-firebase/firestore';
-import Lottie from 'lottie-react-native';
-import AnimatedLottieView from 'lottie-react-native';
 import auth from '@react-native-firebase/auth';
+import CustomToast from '../../components/CustomToast';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 function Profile({ navigation }) {
     const [getAllDetails, setgetAllDetails] = useState("")
     const { userUid } = useContext(GlobalVariable);
-    const [userDate, setUserDate] = useState('');
-    const [showndate, setShownDate] = useState('');
+    const childRef = useRef(null);
+
+    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
+    const [toastTextColorState,setToastTextColorState]=useState('black');
+    const [toastMessage,setToastMessage]=useState('');
     useEffect(() => {
         GetDetails();
-    }, [setShownDate])
+    }, [])
     const GetDetails = async () => {
         try {
             const user = await firestore().collection('UserCollection').doc(userUid.uid).get()
             const Data = user._data;
-            setUserDate(Data.accountDate)
             setgetAllDetails(Data);
         } catch (error) {
             console.error(error);
@@ -28,9 +29,37 @@ function Profile({ navigation }) {
     const logout = () => {
         auth().signOut()
     }
+    const deleteAccount=()=>{
+        setToastMessage("Account Deleted Successfully");
+        setToastTextColorState("black")
+        setToastColorState("rgba(41,250,25,1)")
+        childRef.current.showToast();
+        console.log(userUid.uid)
+        let user = auth().currentUser;
+        user.delete()
+        .then(() => {
+            firestore().collection('UserCollection').doc(userUid.uid).delete()
+            .then(() => {
+                setToastMessage("Account Deleted Successfully");
+                setToastTextColorState("black")
+                setToastColorState("rgba(41,250,25,1)")
+                childRef.current.showToast();
+            })
+            .catch((e)=>{
+                console.log(e);
+            });
+        })
+        .catch((error) => console.log(error));
+    }
     return (
         <>
             <View style={styles.Header}>
+                <CustomToast
+                    toastColor={toastColorState}
+                    toastTextColor={toastTextColorState}
+                    toastMessage={toastMessage}
+                    ref={childRef}
+                />
                 <View style={styles.ProfileTextView}>
                     <Text style={styles.ProfileText}>Profile</Text>
                 </View>
@@ -100,8 +129,12 @@ function Profile({ navigation }) {
                     </TouchableOpacity>
                     <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
                         <Text style={{ marginVertical: 5, fontFamily: "SourceSansPro-Bold", fontSize: 15, color: "lightgrey" }}>My Account</Text>
-                        {/* <Text style={{ fontSize: 18, color: "blue", marginVertical: 5 }}>Switch to Other Account</Text> */}
-                        <TouchableOpacity onPress={logout} ><Text style={{ fontSize: 18, color: "red", marginVertical: 5, fontFamily: "SourceSansPro-Regular" }}>Log Out</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={logout} ><Text style={{fontWeight:"bold", fontSize: 18, color: "red", marginVertical: 5, fontFamily: "SourceSansPro-Regular" }}>Log Out</Text></TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={deleteAccount}
+                        >
+                            <Text style={{ fontSize: 18, color: "blue", marginVertical: 5,fontWeight:"bold" }}>Delete Account</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View >
