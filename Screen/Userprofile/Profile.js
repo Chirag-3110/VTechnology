@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState,useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Alert } from 'react-native';
 import { GlobalVariable } from '../../App';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import CustomToast from '../../components/CustomToast';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 function Profile({ navigation }) {
@@ -51,6 +52,19 @@ function Profile({ navigation }) {
         })
         .catch((error) => console.log(error));
     }
+    const createTwoButtonAlert = () =>
+    Alert.alert(
+     "Delete Your Account",
+      "Are you sure you wants to delete your acccount",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => deleteAccount() }
+      ]
+    );
     return (
         <>
             <View style={styles.Header}>
@@ -131,7 +145,7 @@ function Profile({ navigation }) {
                         <Text style={{ marginVertical: 5, fontFamily: "SourceSansPro-Bold", fontSize: 15, color: "lightgrey" }}>My Account</Text>
                         <TouchableOpacity onPress={logout} ><Text style={{fontWeight:"bold", fontSize: 18, color: "red", marginVertical: 5, fontFamily: "SourceSansPro-Regular" }}>Log Out</Text></TouchableOpacity>
                         <TouchableOpacity
-                            onPress={deleteAccount}
+                            onPress={createTwoButtonAlert}
                         >
                             <Text style={{ fontSize: 18, color: "blue", marginVertical: 5,fontWeight:"bold" }}>Delete Account</Text>
                         </TouchableOpacity>
