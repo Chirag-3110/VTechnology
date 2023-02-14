@@ -25,19 +25,19 @@ const AnimatedQuizCard=(props)=>{
     }
     const maxHeight = fadeAnim.interpolate({ 
         inputRange: [0,2], 
-        outputRange: [height/7,height] 
+        outputRange: [height/6,height] 
     });
     return(
         <View style={styles.container}>
             <Animated.View style={[styles.cardBody,{maxHeight:maxHeight}]}>
                 <View>
                     <View style={{flexDirection: 'row',justifyContent: 'space-between',alignItems:"center"}}>
-                    <Text style={[styles.textStyles,{fontSize:20,padding:10}]}>{props.dataProps.item.ActivityName}</Text>
+                        <Text style={[styles.textStyles,{fontSize:20,padding:10}]}>{props.dataProps.item.ActivityName}</Text>
+                    </View>
+                    <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:10}]}>{props.dataProps.item.courseName}</Text>
                     <TouchableOpacity style={styles.cardButton} onPress={!expanded?manageMaxCard:manageMinCard}>
                         <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,color:"#a000ff"}]}>{!expanded?"Show":"Hide"}</Text>
                     </TouchableOpacity>
-                    </View>
-                    <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:10}]}>{props.dataProps.item.courseName}</Text>
                 </View>
                 <Animated.View style={{opacity:fadeAnim}} >
                     <Text style={[styles.textStyles,{fontSize:15,paddingHorizontal:15,marginVertical:10,}]}>No Of Questions {props.dataProps.item.NOQues}</Text>
@@ -71,7 +71,7 @@ const styles=StyleSheet.create({
         justifyContent: 'center',
         borderRadius:5,
         alignSelf:"flex-end",
-        marginHorizontal:10
+        marginHorizontal:10,
     },
     startButton:{
         width:'90%',
