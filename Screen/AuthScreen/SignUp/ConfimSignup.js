@@ -152,6 +152,13 @@ const ConfimSignup = ({ route, navigation }) => {
                 setToastColorState("red")
                 childRef.current.showToast();
             }
+            if (error.code === 'auth/weak-password') {
+                setLoading(false)
+                setToastMessage('Weak password,Password should be at least 6 characters ');
+                setToastTextColorState("white")
+                setToastColorState("red")
+                childRef.current.showToast();
+            }
             else{
                 setToastMessage("SomeThing went Wrong ! Try Again");
                 setLoading(false)

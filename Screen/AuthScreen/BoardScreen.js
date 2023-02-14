@@ -8,9 +8,9 @@ function BoardScreen({ navigation }) {
         navigation.navigate('login')
     }
     return (
-        <View style={styles.MainView}>
+        // <View style={styles.MainView}>
             <ImageBackground source={image} style={styles.MainTopview} >
-                <View style={{ justifyContent: "center", alignItems: "center", height: windoHeight / 2, paddingTop: windoHeight / 5, zIndex: 5 }}>
+                <View style={{ justifyContent: "center", alignItems: "center", height: windoHeight / 2, zIndex: 5,marginTop:windoHeight/10 }}>
                     <Image 
                         source={{uri:"https://cdn3d.iconscout.com/3d/premium/thumb/paper-and-pencil-4329862-3599673.png"}} 
                         style={{ width: windoWidth / 1.5, height: windoHeight / 3, 
@@ -18,12 +18,14 @@ function BoardScreen({ navigation }) {
                     />
                 </View>
                 <View style={styles.BtmView}>
-                    <View style={styles.MainBtmView}>
-                        <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
-                    </View>
-                    <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
-                        <Text style={{ textAlign: "center",color:'black',fontFamily:"SourceSansPro-Bold" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
+                    <View>
+                        <View style={styles.MainBtmView}>
+                            <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
+                        </View>
+                        <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
+                            <Text style={{ textAlign: "center",color:'black',fontFamily:"SourceSansPro-Bold" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
 
+                        </View>
                     </View>
                     <TouchableOpacity style={styles.BtnView} onPress={() => buttonAnimation()}>
                         <Text style={{ color: "white", fontSize: 20, fontFamily: "SourceSansPro-Bold", }}>Start</Text>
@@ -31,7 +33,7 @@ function BoardScreen({ navigation }) {
                 </View>
                 <Image source={{ uri: "https://cdn3d.iconscout.com/3d/premium/thumb/pencil-2872337-2389551.png" }} style={{ width: windoWidth / 2.5, height: windoHeight / 5, position: "absolute", right: -50, transform: [{ rotate: '70deg' }] }}></Image>
             </ImageBackground>
-        </View>
+        // </View>
     )
 }
 const styles = StyleSheet.create({
@@ -41,15 +43,13 @@ const styles = StyleSheet.create({
         backgroundColor: "yellow"
     },
     MainTopview: {
-        backgroundColor: "rgba(115,105,248,0.85)",
-        backgroundColor: "#FDB65B",
         alignSelf: "center",
+        justifyContent:"space-between",
         width: windoWidth,
         height: windoHeight
     },
     BtmView: {
-        // borderWidth: 1,
-        height: windoHeight / 1.9999,
+        height: windoHeight / 2,
         backgroundColor: 'white',
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         width: windoWidth,
         zIndex: 1,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "space-around"
     },
     MainBtmView: {
         justifyContent: "center",
@@ -70,12 +70,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
         backgroundColor: "#BA5CFC",
-        width: 230,
+        width: windoWidth/2,
+        height:50,
         alignItems: "center",
-        marginVertical: 30,
-        paddingVertical: 10,
-        borderRadius: 20,
-        marginTop: 60,
+        borderRadius: 15,
+        // marginTop: 60,
         alignItems: "center",
         textAlign: "center",
         shadowColor: 'purple',

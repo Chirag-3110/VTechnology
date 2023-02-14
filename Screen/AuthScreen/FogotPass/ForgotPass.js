@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useRef } from 'react'
-import { View, Text, StyleSheet, TextInput, Dimensions, Image, Animated, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions, Image, Animated, TouchableOpacity, ScrollView } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 import auth from '@react-native-firebase/auth';
@@ -62,7 +62,7 @@ const ForgotPass = ({navigation}) => {
     }
     return (
         <>
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <CustomToast
                     toastColor={toastColorState}
                     toastTextColor={toastTextColorState}
@@ -121,7 +121,7 @@ const ForgotPass = ({navigation}) => {
                         <Text style={[styles.subText1,{color:"blue",fontWeight:"bold",fontFamily:"SourceSansPro-Bold"}]} onPress={()=>navigation.navigate("login")}> Log In</Text>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </>
     )
 }

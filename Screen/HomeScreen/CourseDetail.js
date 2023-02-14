@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
-import { LineChart, } from "react-native-chart-kit";
-import { Item } from 'react-native-paper/lib/typescript/components/List/List';
+import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ImageBackground,ScrollView } from 'react-native'
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 const image = { uri: "https://cdn3d.iconscout.com/3d/premium/thumb/man-with-ok-gesture-showing-business-charts-in-laptop-screen-4929412-4122896.png" };
@@ -13,7 +11,7 @@ function CourseDetail({ route, navigation }) {
     }, [])
 
     return (
-        <View style={styles.MainView}>
+        <ScrollView style={styles.MainView}>
             <ImageBackground source={image} resizeMode="cover" style={styles.MainTopview} >
             </ImageBackground>
             <View style={styles.centeredView}>
@@ -43,7 +41,7 @@ function CourseDetail({ route, navigation }) {
                     </View>
                 </Modal>
             </View >
-        </View >
+        </ScrollView >
     )
 }
 const styles = StyleSheet.create({

@@ -25,7 +25,7 @@ const AnimatedQuizCard=(props)=>{
     }
     const maxHeight = fadeAnim.interpolate({ 
         inputRange: [0,2], 
-        outputRange: [height/6,height] 
+        outputRange: [150,height] 
     });
     return(
         <View style={styles.container}>

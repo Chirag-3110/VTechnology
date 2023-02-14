@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, Animated, Image, StyleSheet, Modal, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 const windoWidth = Dimensions.get('window').width;
 const windoHeight = Dimensions.get('window').height;
 import Lottie from 'lottie-react-native';
@@ -21,7 +21,7 @@ function Userprofile({ navigation }) {
     }
   }
   return (
-    <View style={styles.MainView}>
+    <ScrollView style={styles.MainView}>
       <View style={styles.InnerMainView}>
         <TouchableOpacity style={{ marginHorizontal: 20, width: windoWidth - 290 }} onPress={() => navigation.navigate("Prof")}>
           <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3114/3114883.png" }} style={{ width: 30, height: 30, color: "black" }} />
@@ -47,7 +47,7 @@ function Userprofile({ navigation }) {
           <Text style={{ fontSize: 20, fontFamily: "SourceSansPro-Bold", fontSize: 21, color: "black" }}>gender : {getAllDetails.gender}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({

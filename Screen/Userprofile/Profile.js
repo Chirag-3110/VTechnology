@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState,useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
 import { GlobalVariable } from '../../App';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
@@ -67,7 +67,7 @@ function Profile({ navigation }) {
     );
     return (
         <>
-            <View style={styles.Header}>
+            <ScrollView style={styles.Header}>
                 <CustomToast
                     toastColor={toastColorState}
                     toastTextColor={toastTextColorState}
@@ -151,7 +151,7 @@ function Profile({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View >
+            </ScrollView >
         </>
     )
 }
