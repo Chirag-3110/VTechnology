@@ -3,7 +3,6 @@ import { Modal, Animated, TouchableOpacity, Text, View, StyleSheet, TextInput, D
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import CustomToast from '../../../components/CustomToast';
-import Lottie from 'lottie-react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
@@ -163,7 +162,7 @@ const ConfimSignup = ({ route, navigation }) => {
         });
     }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
@@ -253,14 +252,16 @@ const ConfimSignup = ({ route, navigation }) => {
                         </TouchableOpacity>
                 </View>
             </Animated.View>
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        backgroundColor: "white"
+        // alignItems: 'center',
+        width:windowWidth,
+        backgroundColor: "white",
+        paddingBottom:20
     },
     iconImage: {
         width: 40,
@@ -290,19 +291,12 @@ const styles = StyleSheet.create({
         paddingVertical: 25,
         borderRadius: 40,
         marginTop: windowHeight / 30,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: -5,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 20.00,
-        elevation: 24,
         fontWeight: "bold",
         color: "black",
         alignSelf: "center",
         alignItems: "center",
         justifyContent: "center",
+        marginBottom:10
     },
     itemText: {
         color: "#5B5B5B",
@@ -327,7 +321,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 50,
         marginTop: 10
     },
     btnText: {

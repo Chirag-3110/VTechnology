@@ -77,7 +77,7 @@ const SignIn = ({navigation}) => {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
@@ -164,7 +164,7 @@ const SignIn = ({navigation}) => {
                         </Text>
                     }
                 </TouchableOpacity>
-                <View style={{width:"100%",flexDirection:"row",marginTop:10}}>
+                <View style={{width:"100%",flexDirection:"row",marginTop:10,justifyContent:"center"}}>
                     <Text style={{fontSize:15,fontWeight:"bold",color:"black",fontFamily:"SourceSansPro-Bold"}}>Don't Have an Account ? </Text>
                     <Text 
                         style={{fontSize:15,fontWeight:"bold",color:"blue",fontFamily:"SourceSansPro-Bold"}}
@@ -174,7 +174,7 @@ const SignIn = ({navigation}) => {
                     </Text>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

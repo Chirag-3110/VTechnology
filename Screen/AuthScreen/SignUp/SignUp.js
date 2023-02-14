@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Animated, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Animated, Image, ScrollView } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height
 import EmailValidate from "../../../Validate/EmailValidation"
-import PasswordValidate from '../../../Validate/PasswordValidation';
 import styles from "../SignIn/LoginStyle";
 import Lottie from 'lottie-react-native';
 import CustomToast from "../../../components/CustomToast";
-import auth from '@react-native-firebase/auth';
 import { ActivityIndicator } from "react-native-paper";
 const SignUp = ({ navigation }) => {
     //toast states
@@ -37,9 +35,6 @@ const SignUp = ({ navigation }) => {
             if (!EmailValidate(email)) {
                 throw "Please enter a valid Email"
             }
-            // if (!PasswordValidate(password)) {
-            //     throw "Please enter a valid Password (Must Contains Capital Letter,Special Character and a Number)"
-            // }
             if (password != Cpassword)
                 throw "Both Password Must Be Same";
             navigation.navigate("confimSignup", { email: email, password: password });
@@ -66,7 +61,7 @@ const SignUp = ({ navigation }) => {
         });
     }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
@@ -172,7 +167,7 @@ const SignUp = ({ navigation }) => {
                     <Text style={[styles.subText, { color: "blue", fontWeight: "bold" ,fontFamily:"SourceSansPro-Bold"}]} onPress={() => navigation.navigate("login")}>Log In</Text>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 export default SignUp;

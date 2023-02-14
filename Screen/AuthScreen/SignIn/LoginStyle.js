@@ -5,10 +5,12 @@ const windowheight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: 'center',
+        // justifyContent: "center",
+        // alignItems: 'center',
         backgroundColor:"white",
-        // paddingVertical:15
+        alignSelf:"center",
+        width:windowWidth,
+        paddingVertical:15
     },
     MainText: {
         color: "black",
@@ -36,7 +38,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 20.00,
-        elevation: 24,
         fontWeight: "bold",
         color: "black"
     },
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 50,
         marginTop:10
     },
     btnText: {
