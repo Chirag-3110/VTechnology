@@ -23,9 +23,9 @@ function BoardScreen({ navigation }) {
                 {/* <ScrollView> */}
                 <View>
                     <View style={styles.MainBtmView}>
-                        <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
+                        <Text style={{ fontSize: 20, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
                     </View>
-                    <View style={[styles.MainBtmView, { marginHorizontal: 37, }]}>
+                    <View style={[styles.MainBtmView1, { marginHorizontal: 37, }]}>
                         <Text style={{ textAlign: "center", color: 'black', fontFamily: "SourceSansPro-Bold" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
                     </View>
                 </View>
@@ -67,7 +67,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // borderWidth: 1,
         marginHorizontal: 45,
-        marginTop: 40
+        marginTop: 30
+    },
+    MainBtmView1: {
+        justifyContent: "center",
+        // borderWidth: 1,
+        marginHorizontal: 45,
+        marginTop: 4
     },
     BtnView: {
 
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         backgroundColor: "#BA5CFC",
         width: windoWidth / 2,
-        height: 50,
+        height: 40,
         alignItems: "center",
         borderRadius: 15,
         // marginTop: 60,
