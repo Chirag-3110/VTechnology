@@ -61,113 +61,115 @@ const SignUp = ({ navigation }) => {
         });
     }
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
                 toastMessage={toastMessage}
                 ref={childRef}
             />
-            <View>
-                <Animated.Text style={[
-                    styles.MainText,
-                    {
-                        transform: [
-                            { translateX: position.x },
-                            { translateY: position.y }
-                        ]
-                    }
-                ]}>Sign Up</Animated.Text>
-                <Animated.Text style={[
-                    styles.MainText,
-                    {
-                        fontSize: 25,
-                        marginLeft: 30,
-                        transform: [
-                            { translateX: subTextposition.x },
-                            { translateY: subTextposition.y }
-                        ]
-                    }
-                ]}>Connect With Us</Animated.Text>
-                <Lottie
-                    source={require('../../../lottiesAnimations/105639-signup.json')} autoPlay={true} loop={true}
-                    style={{ width: windowWidth, height: windowWidth - 50, resizeMode: "contain" }}
-                />
-            </View>
-            <View style={{ alignItems: "center", width: "100%" }}>
+            <ScrollView>
                 <View>
-                    <View style={[
-                        { flexDirection: 'row', alignItems: "center" },
-                        styles.customInput
-                    ]}
+                    <Animated.Text style={[
+                        styles.MainText,
+                        {
+                            transform: [
+                                { translateX: position.x },
+                                { translateY: position.y }
+                            ]
+                        }
+                    ]}>Sign Up</Animated.Text>
+                    <Animated.Text style={[
+                        styles.MainText,
+                        {
+                            fontSize: 25,
+                            marginLeft: 30,
+                            transform: [
+                                { translateX: subTextposition.x },
+                                { translateY: subTextposition.y }
+                            ]
+                        }
+                    ]}>Connect With Us</Animated.Text>
+                    <Lottie
+                        source={require('../../../lottiesAnimations/105639-signup.json')} autoPlay={true} loop={true}
+                        style={{ width: windowWidth, height: windowWidth - 50, resizeMode: "contain" }}
+                    />
+                </View>
+                <View style={{ alignItems: "center", width: "100%" }}>
+                    <View>
+                        <View style={[
+                            { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                        >
+                            <FontAwesome name="user" size={25} color={"grey"} />
+                            <TextInput
+                                style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold"}}
+                                placeholder="Email"
+                                placeholderTextColor={"grey"}
+                                onChangeText={value => { setemail(value) }}
+                            />
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 10 }}>
+                        <View style={[
+                            { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                        >
+                            <FontAwesome name="lock" size={25} color={"grey"} />
+                            <TextInput
+                                style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold" }}
+                                placeholder={"Password"}
+                                placeholderTextColor={"grey"}
+                                secureTextEntry={showPassword}
+                                onChangeText={value => { setpassword(value) }}
+                                autoCapitalize={true}
+                            />
+                            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} >
+                                {
+                                    showPassword ?
+                                        <FontAwesome name="eye" size={25} color={"grey"} /> :
+                                        <FontAwesome name="eye-slash" size={25} color={"grey"} />
+                                }
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 10 }}>
+                        <View style={[
+                            { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                        >
+                            <FontAwesome name="lock" size={25} color={"grey"} />
+                            <TextInput
+                                style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold" }}
+                                placeholder={"Confirm Password"}
+                                placeholderTextColor={"grey"}
+                                secureTextEntry={showPassword}
+                                onChangeText={value => { setCpassword(value) }}
+                                autoCapitalize={true}
+                            />
+                        </View>
+                    </View>
+                    <TouchableOpacity style={styles.btnContainer}
+                        onPress={validateUser}
                     >
-                        <FontAwesome name="user" size={25} color={"grey"} />
-                        <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold"}}
-                            placeholder="Email"
-                            placeholderTextColor={"grey"}
-                            onChangeText={value => { setemail(value) }}
-                        />
+                        {
+                            loading?
+                            <ActivityIndicator size={25} color={"white"}/>:
+                            <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
+                                Create Account
+                            </Text>
+                        }
+                    </TouchableOpacity>
+                    <View style={styles.bottomText}>
+                        <Text style={[styles.subText, { color: "black", fontWeight: "bold", marginRight: 10,fontFamily:"SourceSansPro-Bold" }]}>Already have an account?</Text>
+                        <Text style={[styles.subText, { color: "blue", fontWeight: "bold" ,fontFamily:"SourceSansPro-Bold"}]} onPress={() => navigation.navigate("login")}>Log In</Text>
                     </View>
                 </View>
-                <View style={{ marginTop: 10 }}>
-                    <View style={[
-                        { flexDirection: 'row', alignItems: "center" },
-                        styles.customInput
-                    ]}
-                    >
-                        <FontAwesome name="lock" size={25} color={"grey"} />
-                        <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold" }}
-                            placeholder={"Password"}
-                            placeholderTextColor={"grey"}
-                            secureTextEntry={showPassword}
-                            onChangeText={value => { setpassword(value) }}
-                            autoCapitalize={true}
-                        />
-                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} >
-                            {
-                                showPassword ?
-                                    <FontAwesome name="eye" size={25} color={"grey"} /> :
-                                    <FontAwesome name="eye-slash" size={25} color={"grey"} />
-                            }
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={{ marginTop: 10 }}>
-                    <View style={[
-                        { flexDirection: 'row', alignItems: "center" },
-                        styles.customInput
-                    ]}
-                    >
-                        <FontAwesome name="lock" size={25} color={"grey"} />
-                        <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10,fontFamily:"SourceSansPro-Bold" }}
-                            placeholder={"Confirm Password"}
-                            placeholderTextColor={"grey"}
-                            secureTextEntry={showPassword}
-                            onChangeText={value => { setCpassword(value) }}
-                            autoCapitalize={true}
-                        />
-                    </View>
-                </View>
-                <TouchableOpacity style={styles.btnContainer}
-                    onPress={validateUser}
-                >
-                    {
-                        loading?
-                        <ActivityIndicator size={25} color={"white"}/>:
-                        <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
-                            Create Account
-                        </Text>
-                    }
-                </TouchableOpacity>
-                <View style={styles.bottomText}>
-                    <Text style={[styles.subText, { color: "black", fontWeight: "bold", marginRight: 10,fontFamily:"SourceSansPro-Bold" }]}>Already have an account?</Text>
-                    <Text style={[styles.subText, { color: "blue", fontWeight: "bold" ,fontFamily:"SourceSansPro-Bold"}]} onPress={() => navigation.navigate("login")}>Log In</Text>
-                </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
 export default SignUp;

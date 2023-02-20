@@ -62,14 +62,14 @@ const ForgotPass = ({ navigation }) => {
     }
     return (
         <>
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
                 <CustomToast
                     toastColor={toastColorState}
                     toastTextColor={toastTextColorState}
                     toastMessage={toastMessage}
                     ref={childRef}
                 />
-                <View >
+                <ScrollView >
                     <View style={{ alignItems: "center" }}>
                         <Animated.Text style={[
                             styles.MainText,
@@ -120,8 +120,8 @@ const ForgotPass = ({ navigation }) => {
                         <Text style={[styles.subText, { fontFamily: "SourceSansPro-Bold", fontWeight: "bold", color: "black" }]}>Back to </Text>
                         <Text style={[styles.subText1, { color: "blue", fontWeight: "bold", fontFamily: "SourceSansPro-Bold" }]} onPress={() => navigation.navigate("login")}> Log In</Text>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
         </>
     )
 }

@@ -77,104 +77,106 @@ const SignIn = ({ navigation }) => {
     }
 
     return (
-        <ScrollView style={[styles.container, {}]}>
+        <View style={[styles.container]}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
                 toastMessage={toastMessage}
                 ref={childRef}
             />
+           <ScrollView>
             <View style={{ alignItems: "flex-start", justifyContent: 'center', }}>
-                <Animated.Text style={[
-                    styles.MainText,
-                    {
-                        fontFamily: "SourceSansPro-Bold",
-                        transform: [
-                            { translateX: position.x },
-                            { translateY: position.y }
-                        ]
-                    }
-                ]}>Sign In</Animated.Text>
-                <Lottie
-                    source={require('../../../lottiesAnimations/124956-login.json')} autoPlay={true} loop={false}
-                    style={{ width: windowWidth, resizeMode: "contain" }}
-                />
-            </View>
-            <View style={{ alignItems: "center", }}>
-                <View>
-                    <View style={[
-                        { flexDirection: 'row', alignItems: "center" },
-                        styles.customInput
-                    ]}
+                    <Animated.Text style={[
+                        styles.MainText,
+                        {
+                            fontFamily: "SourceSansPro-Bold",
+                            transform: [
+                                { translateX: position.x },
+                                { translateY: position.y }
+                            ]
+                        }
+                    ]}>Sign In</Animated.Text>
+                    <Lottie
+                        source={require('../../../lottiesAnimations/124956-login.json')} autoPlay={true} loop={false}
+                        style={{ width: windowWidth, resizeMode: "contain" }}
+                    />
+                </View>
+                <View style={{ alignItems: "center", }}>
+                    <View>
+                        <View style={[
+                            { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                        >
+                            <FontAwesome name="user" size={25} color={"grey"} />
+                            <TextInput
+                                style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10, fontFamily: "SourceSansPro-Bold" }}
+                                placeholder={"Email"}
+                                placeholderTextColor={"grey"}
+                                onChangeText={value => { setemail(value) }}
+                                autoCapitalize={true}
+                            />
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 10 }}>
+                        <View style={[
+                            { flexDirection: 'row', alignItems: "center" },
+                            styles.customInput
+                        ]}
+                        >
+                            <FontAwesome name="lock" size={25} color={"grey"} />
+                            <TextInput
+                                style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10, fontFamily: "SourceSansPro-Bold" }}
+                                placeholder={"Password"}
+                                placeholderTextColor={"grey"}
+                                secureTextEntry={showPassword}
+                                onChangeText={value => { setpassword(value) }}
+                                autoCapitalize={true}
+                            />
+                            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} >
+                                {
+                                    showPassword ?
+                                        <FontAwesome name="eye" size={25} color={"grey"} /> :
+                                        <FontAwesome name="eye-slash" size={25} color={"grey"} />
+                                }
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <TouchableOpacity
+                        style={{ width: "100%", alignItems: "center", marginTop: 10 }}
+                        onPress={() => navigation.navigate("forgotpass")}
                     >
-                        <FontAwesome name="user" size={25} color={"grey"} />
-                        <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10, fontFamily: "SourceSansPro-Bold" }}
-                            placeholder={"Email"}
-                            placeholderTextColor={"grey"}
-                            onChangeText={value => { setemail(value) }}
-                            autoCapitalize={true}
-                        />
+                        <Text style={{
+                            color: "black",
+                            fontWeight: "bold",
+                            fontFamily: "SourceSansPro-Bold"
+                        }}>
+                            Forgot Password ?
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnContainer}
+                        onPress={validateUser}
+                    >
+                        {
+                            loading ?
+                                <ActivityIndicator color={'white'} size={30} /> :
+                                <Text style={[styles.btnText, { fontFamily: "SourceSansPro-Bold" }]}>
+                                    Login
+                                </Text>
+                        }
+                    </TouchableOpacity>
+                    <View style={{ width: "100%", flexDirection: "row", marginVertical: 10, justifyContent: "center" }}>
+                        <Text style={{ fontSize: 15, fontWeight: "bold", color: "black", fontFamily: "SourceSansPro-Bold" }}>Don't Have an Account ? </Text>
+                        <Text
+                            style={{ fontSize: 15, fontWeight: "bold", color: "blue", fontFamily: "SourceSansPro-Bold" }}
+                            onPress={() => navigation.navigate("signup")}
+                        >
+                            Create Account
+                        </Text>
                     </View>
                 </View>
-                <View style={{ marginTop: 10 }}>
-                    <View style={[
-                        { flexDirection: 'row', alignItems: "center" },
-                        styles.customInput
-                    ]}
-                    >
-                        <FontAwesome name="lock" size={25} color={"grey"} />
-                        <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10, fontFamily: "SourceSansPro-Bold" }}
-                            placeholder={"Password"}
-                            placeholderTextColor={"grey"}
-                            secureTextEntry={showPassword}
-                            onChangeText={value => { setpassword(value) }}
-                            autoCapitalize={true}
-                        />
-                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} >
-                            {
-                                showPassword ?
-                                    <FontAwesome name="eye" size={25} color={"grey"} /> :
-                                    <FontAwesome name="eye-slash" size={25} color={"grey"} />
-                            }
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <TouchableOpacity
-                    style={{ width: "100%", alignItems: "center", marginTop: 10 }}
-                    onPress={() => navigation.navigate("forgotpass")}
-                >
-                    <Text style={{
-                        color: "black",
-                        fontWeight: "bold",
-                        fontFamily: "SourceSansPro-Bold"
-                    }}>
-                        Forgot Password ?
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnContainer}
-                    onPress={validateUser}
-                >
-                    {
-                        loading ?
-                            <ActivityIndicator color={'white'} size={30} /> :
-                            <Text style={[styles.btnText, { fontFamily: "SourceSansPro-Bold" }]}>
-                                Login
-                            </Text>
-                    }
-                </TouchableOpacity>
-                <View style={{ width: "100%", flexDirection: "row", marginTop: 10, justifyContent: "center" }}>
-                    <Text style={{ fontSize: 15, fontWeight: "bold", color: "black", fontFamily: "SourceSansPro-Bold" }}>Don't Have an Account ? </Text>
-                    <Text
-                        style={{ fontSize: 15, fontWeight: "bold", color: "blue", fontFamily: "SourceSansPro-Bold" }}
-                        onPress={() => navigation.navigate("signup")}
-                    >
-                        Create Account
-                    </Text>
-                </View>
-            </View>
-        </ScrollView>
+           </ScrollView>
+        </View>
     )
 }
 

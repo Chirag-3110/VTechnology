@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         alignSelf: "center",
         width: windowWidth,
-        paddingVertical: 15,
-        // paddingBottom: 100
+        // paddingVertical: 15,
     },
     MainText: {
         color: "black",
@@ -92,6 +91,7 @@ const styles = StyleSheet.create({
     },
     bottomText: {
         flexDirection: "row",
+        marginVertical:10
     }
 })
 export default styles;
