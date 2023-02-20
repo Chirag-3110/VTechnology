@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.88,
         shadowRadius: 700,
         elevation: 10,
-        marginBottom: windoHeight / 8
+        // marginBottom: windoHeight / 8
     }
 })
 export default BoardScreen
