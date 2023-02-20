@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Image, ScrollView, Animated, ActivityIndicator } from 'react-native';
 import auth from '@react-native-firebase/auth';
 const windowWidth = Dimensions.get('window').width;
@@ -7,18 +7,18 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Lottie from 'lottie-react-native';
 import styles from "./LoginStyle";
 import CustomToast from "../../../components/CustomToast";
-const SignIn = ({navigation}) => {
-//toast states
+const SignIn = ({ navigation }) => {
+    //toast states
     const childRef = useRef(null);
 
-    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
-    const [toastTextColorState,setToastTextColorState]=useState('black');
-    const [toastMessage,setToastMessage]=useState('');
+    const [toastColorState, setToastColorState] = useState('rgba(41,250,25,1)');
+    const [toastTextColorState, setToastTextColorState] = useState('black');
+    const [toastMessage, setToastMessage] = useState('');
 
     useEffect(() => {
         showPopUp();
     }, [])
-    const [loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('');
     const [showPassword, setShowPassword] = useState(true);
@@ -30,29 +30,29 @@ const SignIn = ({navigation}) => {
             if (password === "")
                 throw "Please enter Password";
             setLoading(true)
-            auth().signInWithEmailAndPassword(email,password)
-            .catch((error)=>{
-                if (error.code === 'auth/invalid-email') {
-                    setToastMessage("Email Address is Wrong");
-                    setToastTextColorState("white")
-                    setToastColorState("red")
-                    childRef.current.showToast();
-                }
-                if (error.code === 'auth/wrong-password') {
-                    setToastMessage('Incorrect Password');
-                    setToastTextColorState("white")
-                    setToastColorState("red")
-                    childRef.current.showToast();
-                }
-                if (error.code === 'auth/user-not-found') {
-                    setToastMessage('User not Found');
-                    setToastTextColorState("white")
-                    setToastColorState("red")
-                    childRef.current.showToast();
-                }
-                console.log(error);
-                setLoading(false);
-            })            
+            auth().signInWithEmailAndPassword(email, password)
+                .catch((error) => {
+                    if (error.code === 'auth/invalid-email') {
+                        setToastMessage("Email Address is Wrong");
+                        setToastTextColorState("white")
+                        setToastColorState("red")
+                        childRef.current.showToast();
+                    }
+                    if (error.code === 'auth/wrong-password') {
+                        setToastMessage('Incorrect Password');
+                        setToastTextColorState("white")
+                        setToastColorState("red")
+                        childRef.current.showToast();
+                    }
+                    if (error.code === 'auth/user-not-found') {
+                        setToastMessage('User not Found');
+                        setToastTextColorState("white")
+                        setToastColorState("red")
+                        childRef.current.showToast();
+                    }
+                    console.log(error);
+                    setLoading(false);
+                })
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white")
@@ -64,12 +64,12 @@ const SignIn = ({navigation}) => {
     const position = new Animated.ValueXY({ x: 0, y: -windowheight });
     const showPopUp = () => {
         Animated.timing(position, {
-            toValue: { x: 0, y: -windowheight/200 },
+            toValue: { x: 0, y: -windowheight / 200 },
             duration: 1000,
             useNativeDriver: true
-        }).start(()=>{
+        }).start(() => {
             Animated.timing(position, {
-                toValue: { x: windowWidth/4, y: 0},
+                toValue: { x: windowWidth / 4, y: 0 },
                 duration: 1000,
                 useNativeDriver: true
             }).start();
@@ -77,18 +77,18 @@ const SignIn = ({navigation}) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={[styles.container, {}]}>
             <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
                 toastMessage={toastMessage}
-                ref={childRef} 
+                ref={childRef}
             />
-            <View style={{ alignItems: "flex-start",justifyContent: 'center' }}>
+            <View style={{ alignItems: "flex-start", justifyContent: 'center', }}>
                 <Animated.Text style={[
                     styles.MainText,
                     {
-                        fontFamily:"SourceSansPro-Bold",
+                        fontFamily: "SourceSansPro-Bold",
                         transform: [
                             { translateX: position.x },
                             { translateY: position.y }
@@ -96,20 +96,20 @@ const SignIn = ({navigation}) => {
                     }
                 ]}>Sign In</Animated.Text>
                 <Lottie
-                    source={require('../../../lottiesAnimations/124956-login.json')}  autoPlay={true} loop={false} 
-                    style={{width:windowWidth,resizeMode:"contain"}}
+                    source={require('../../../lottiesAnimations/124956-login.json')} autoPlay={true} loop={false}
+                    style={{ width: windowWidth, resizeMode: "contain" }}
                 />
             </View>
             <View style={{ alignItems: "center", }}>
                 <View>
                     <View style={[
                         { flexDirection: 'row', alignItems: "center" },
-                            styles.customInput
-                        ]}
+                        styles.customInput
+                    ]}
                     >
                         <FontAwesome name="user" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10,fontFamily:"SourceSansPro-Bold" }}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10, fontFamily: "SourceSansPro-Bold" }}
                             placeholder={"Email"}
                             placeholderTextColor={"grey"}
                             onChangeText={value => { setemail(value) }}
@@ -117,15 +117,15 @@ const SignIn = ({navigation}) => {
                         />
                     </View>
                 </View>
-                <View style={{marginTop:10}}>
+                <View style={{ marginTop: 10 }}>
                     <View style={[
                         { flexDirection: 'row', alignItems: "center" },
-                            styles.customInput
-                        ]}
+                        styles.customInput
+                    ]}
                     >
                         <FontAwesome name="lock" size={25} color={"grey"} />
                         <TextInput
-                            style={{ flex: 1, fontWeight: "bold", fontSize: 15,color:"black",paddingLeft:10,fontFamily:"SourceSansPro-Bold"}}
+                            style={{ flex: 1, fontWeight: "bold", fontSize: 15, color: "black", paddingLeft: 10, fontFamily: "SourceSansPro-Bold" }}
                             placeholder={"Password"}
                             placeholderTextColor={"grey"}
                             secureTextEntry={showPassword}
@@ -134,41 +134,41 @@ const SignIn = ({navigation}) => {
                         />
                         <TouchableOpacity onPress={() => setShowPassword(!showPassword)} >
                             {
-                                showPassword?
-                                <FontAwesome name="eye" size={25} color={"grey"} />:
-                                <FontAwesome name="eye-slash" size={25} color={"grey"} />
+                                showPassword ?
+                                    <FontAwesome name="eye" size={25} color={"grey"} /> :
+                                    <FontAwesome name="eye-slash" size={25} color={"grey"} />
                             }
                         </TouchableOpacity>
                     </View>
                 </View>
                 <TouchableOpacity
-                    style={{width:"100%",alignItems:"center",marginTop:10}}
-                    onPress={()=>navigation.navigate("forgotpass")}
+                    style={{ width: "100%", alignItems: "center", marginTop: 10 }}
+                    onPress={() => navigation.navigate("forgotpass")}
                 >
                     <Text style={{
-                        color:"black",
-                        fontWeight:"bold",
-                        fontFamily:"SourceSansPro-Bold"
+                        color: "black",
+                        fontWeight: "bold",
+                        fontFamily: "SourceSansPro-Bold"
                     }}>
                         Forgot Password ?
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btnContainer} 
+                <TouchableOpacity style={styles.btnContainer}
                     onPress={validateUser}
                 >
                     {
-                        loading?
-                        <ActivityIndicator color={'white'} size={30}/>:
-                        <Text style={[styles.btnText,{fontFamily:"SourceSansPro-Bold"}]}>
-                            Login
-                        </Text>
+                        loading ?
+                            <ActivityIndicator color={'white'} size={30} /> :
+                            <Text style={[styles.btnText, { fontFamily: "SourceSansPro-Bold" }]}>
+                                Login
+                            </Text>
                     }
                 </TouchableOpacity>
-                <View style={{width:"100%",flexDirection:"row",marginTop:10,justifyContent:"center"}}>
-                    <Text style={{fontSize:15,fontWeight:"bold",color:"black",fontFamily:"SourceSansPro-Bold"}}>Don't Have an Account ? </Text>
-                    <Text 
-                        style={{fontSize:15,fontWeight:"bold",color:"blue",fontFamily:"SourceSansPro-Bold"}}
-                        onPress={()=>navigation.navigate("signup")}
+                <View style={{ width: "100%", flexDirection: "row", marginTop: 10, justifyContent: "center" }}>
+                    <Text style={{ fontSize: 15, fontWeight: "bold", color: "black", fontFamily: "SourceSansPro-Bold" }}>Don't Have an Account ? </Text>
+                    <Text
+                        style={{ fontSize: 15, fontWeight: "bold", color: "blue", fontFamily: "SourceSansPro-Bold" }}
+                        onPress={() => navigation.navigate("signup")}
                     >
                         Create Account
                     </Text>

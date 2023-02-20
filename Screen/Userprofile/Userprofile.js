@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
   MainView: {
     width: windoWidth,
     height: windoHeight,
-    backgroundColor: "white"
+    backgroundColor: "white",
+    // marginBottom: 10
   },
   InnerMainView: {
     justifyContent: "flex-start",
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
   ProfileBox: {
     // borderWidth: 1,
     marginHorizontal: 30,
+    marginBottom: 300,
     height: windoHeight / 1.5,
     marginTop: 30,
     backgroundColor: "#FFE1CA",

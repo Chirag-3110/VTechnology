@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState,useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
 import { GlobalVariable } from '../../App';
 import firestore from '@react-native-firebase/firestore';
@@ -12,9 +12,9 @@ function Profile({ navigation }) {
     const { userUid } = useContext(GlobalVariable);
     const childRef = useRef(null);
 
-    const [toastColorState,setToastColorState]=useState('rgba(41,250,25,1)');
-    const [toastTextColorState,setToastTextColorState]=useState('black');
-    const [toastMessage,setToastMessage]=useState('');
+    const [toastColorState, setToastColorState] = useState('rgba(41,250,25,1)');
+    const [toastTextColorState, setToastTextColorState] = useState('black');
+    const [toastMessage, setToastMessage] = useState('');
     useEffect(() => {
         GetDetails();
     }, [])
@@ -30,7 +30,7 @@ function Profile({ navigation }) {
     const logout = () => {
         auth().signOut()
     }
-    const deleteAccount=()=>{
+    const deleteAccount = () => {
         setToastMessage("Account Deleted Successfully");
         setToastTextColorState("black")
         setToastColorState("rgba(41,250,25,1)")
@@ -38,33 +38,33 @@ function Profile({ navigation }) {
         console.log(userUid.uid)
         let user = auth().currentUser;
         user.delete()
-        .then(() => {
-            firestore().collection('UserCollection').doc(userUid.uid).delete()
             .then(() => {
-                setToastMessage("Account Deleted Successfully");
-                setToastTextColorState("black")
-                setToastColorState("rgba(41,250,25,1)")
-                childRef.current.showToast();
+                firestore().collection('UserCollection').doc(userUid.uid).delete()
+                    .then(() => {
+                        setToastMessage("Account Deleted Successfully");
+                        setToastTextColorState("black")
+                        setToastColorState("rgba(41,250,25,1)")
+                        childRef.current.showToast();
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    });
             })
-            .catch((e)=>{
-                console.log(e);
-            });
-        })
-        .catch((error) => console.log(error));
+            .catch((error) => console.log(error));
     }
     const createTwoButtonAlert = () =>
-    Alert.alert(
-     "Delete Your Account",
-      "Are you sure you wants to delete your acccount",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => deleteAccount() }
-      ]
-    );
+        Alert.alert(
+            "Delete Your Account",
+            "Are you sure you wants to delete your acccount",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteAccount() }
+            ]
+        );
     return (
         <>
             <ScrollView style={styles.Header}>
@@ -141,16 +141,20 @@ function Profile({ navigation }) {
                             <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/2989/2989988.png" }} style={{ width: 30, height: 30, color: "white" }} />
                         </View>
                     </TouchableOpacity>
+
                     <View style={{ marginHorizontal: 15, padding: 10, marginTop: 30 }}>
                         <Text style={{ marginVertical: 5, fontFamily: "SourceSansPro-Bold", fontSize: 15, color: "lightgrey" }}>My Account</Text>
-                        <TouchableOpacity onPress={logout} ><Text style={{fontWeight:"bold", fontSize: 18, color: "red", marginVertical: 5, fontFamily: "SourceSansPro-Regular" }}>Log Out</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={logout} ><Text style={{ fontWeight: "bold", fontSize: 18, color: "red", marginVertical: 5, fontFamily: "SourceSansPro-Regular" }}>Log Out</Text></TouchableOpacity>
                         <TouchableOpacity
                             onPress={createTwoButtonAlert}
                         >
-                            <Text style={{ fontSize: 18, color: "blue", marginVertical: 5,fontWeight:"bold" }}>Delete Account</Text>
+                            <Text style={{ fontSize: 18, color: "blue", marginVertical: 5, fontWeight: "bold" }}>Delete Account</Text>
                         </TouchableOpacity>
                     </View>
+
+
                 </View>
+
             </ScrollView >
         </>
     )
@@ -159,7 +163,7 @@ const styles = StyleSheet.create({
     Header: {
         height: windowHeight,
         width: windowWidth,
-        backgroundColor: "white"
+        backgroundColor: "white",
     },
     ProfileTextView: {
         // borderWidth: 1,
@@ -198,6 +202,7 @@ const styles = StyleSheet.create({
     MenuSection: {
         height: windowHeight / 1.9,
         // borderWidth: 1
+        marginBottom: 250
     },
     OptionView: {
         // borderWidth: 1,
