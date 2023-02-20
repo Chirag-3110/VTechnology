@@ -25,9 +25,8 @@ function BoardScreen({ navigation }) {
                     <View style={styles.MainBtmView}>
                         <Text style={{ fontSize: 30, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
                     </View>
-                    <View style={[styles.MainBtmView, { marginHorizontal: 37, marginTop: 20 }]}>
+                    <View style={[styles.MainBtmView, { marginHorizontal: 37, }]}>
                         <Text style={{ textAlign: "center", color: 'black', fontFamily: "SourceSansPro-Bold" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
-
                     </View>
                 </View>
                 <TouchableOpacity style={styles.BtnView} onPress={() => buttonAnimation()}>
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
         width: windoWidth,
         zIndex: 1,
         alignItems: "center",
-        justifyContent: "space-around"
+        // justifyContent: "space-around"
     },
     MainBtmView: {
         justifyContent: "center",
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
         marginTop: 40
     },
     BtnView: {
+
         justifyContent: "center",
         alignSelf: "center",
         backgroundColor: "#BA5CFC",
@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.88,
         shadowRadius: 700,
         elevation: 10,
+        position: "absolute",
+        bottom: 50
         // marginBottom: windoHeight / 8
     }
 })
