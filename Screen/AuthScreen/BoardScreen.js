@@ -23,7 +23,7 @@ function BoardScreen({ navigation }) {
                 {/* <ScrollView> */}
                 <View>
                     <View style={styles.MainBtmView}>
-                        <Text style={{ fontSize: 20, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
+                        <Text style={{ fontSize: 25, fontFamily: "SourceSansPro-Bold", color: "black", textAlign: "center" }}>Built For Students By Students</Text>
                     </View>
                     <View style={[styles.MainBtmView1, { marginHorizontal: 37, }]}>
                         <Text style={{ textAlign: "center", color: 'black', fontFamily: "SourceSansPro-Bold" }}>Execute, work and gain real job experience at the convenience of WeArcade </Text>
